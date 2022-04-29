@@ -354,6 +354,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22ac2c5935488294ea8f6cfb1f332b64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cards:
+  - {fileID: 3307337137049910837, guid: 659bb00e8eb85ae4da0949915e6fdd66, type: 3}
+  - {fileID: 63669640475768113, guid: de07accfe1aa9c04eb8476ed1c5d128a, type: 3}
+  playerHand: {fileID: 2083036620}
 --- !u!65 &242015179
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2472,30 +2476,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2083036620}
     m_Modifications:
-    - target: {fileID: 63669639639311851, guid: de07accfe1aa9c04eb8476ed1c5d128a, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 63669639639311851, guid: de07accfe1aa9c04eb8476ed1c5d128a, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 63669639639311851, guid: de07accfe1aa9c04eb8476ed1c5d128a, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 63669639639311851, guid: de07accfe1aa9c04eb8476ed1c5d128a, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 63669640209682529, guid: de07accfe1aa9c04eb8476ed1c5d128a, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 63669640209682529, guid: de07accfe1aa9c04eb8476ed1c5d128a, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 63669640475768113, guid: de07accfe1aa9c04eb8476ed1c5d128a, type: 3}
       propertyPath: m_Name
       value: PlayerCardWithOverlap
@@ -2546,7 +2526,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 63669640475768126, guid: de07accfe1aa9c04eb8476ed1c5d128a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0
+      value: 0.19544274
       objectReference: {fileID: 0}
     - target: {fileID: 63669640475768126, guid: de07accfe1aa9c04eb8476ed1c5d128a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2554,15 +2534,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 63669640475768126, guid: de07accfe1aa9c04eb8476ed1c5d128a, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 63669640475768126, guid: de07accfe1aa9c04eb8476ed1c5d128a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 63669640475768126, guid: de07accfe1aa9c04eb8476ed1c5d128a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 63669640475768126, guid: de07accfe1aa9c04eb8476ed1c5d128a, type: 3}
       propertyPath: m_AnchoredPosition.x
