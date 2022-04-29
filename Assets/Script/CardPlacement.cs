@@ -11,14 +11,20 @@ public class CardPlacement : MonoBehaviour
     bool hasBeenPulled;
     public void CardHoverEnter()
     {
-        this.gameObject.transform.localPosition += offset;
-        hasEntered = true;
+        if (!hasBeenPulled)
+        {
+            this.gameObject.transform.localPosition += offset;
+            hasEntered = true;
+        }
     }
 
     public void CardHoverExit()
     {
-        this.gameObject.transform.localPosition -= offset;
-        hasEntered = false;
+        if (!hasBeenPulled)
+        {
+            this.gameObject.transform.localPosition -= offset;
+            hasEntered = false;
+        }
     }
 
     public void Update()
@@ -28,6 +34,7 @@ public class CardPlacement : MonoBehaviour
             this.gameObject.transform.localPosition -= pullFromHand;
             GameObject.Find("PlayerHand").transform.localPosition += pullFromHand;
             hasBeenPulled = true;
+            GameManager.hasBeenPulled = true;
         }
 
         if (Input.GetMouseButtonDown(1) && hasEntered && hasBeenPulled)
@@ -35,6 +42,7 @@ public class CardPlacement : MonoBehaviour
             this.gameObject.transform.localPosition += pullFromHand;
             GameObject.Find("PlayerHand").transform.localPosition -= pullFromHand;
             hasBeenPulled = false;
+            GameManager.hasBeenPulled = false;
         }
     }
 }
