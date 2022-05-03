@@ -25,7 +25,6 @@ public class PlayingTable : MonoBehaviour
                     //Instantiate Card here
                     //Destroy Card in hand
                     //Update costs
-
                 }
             }
         }

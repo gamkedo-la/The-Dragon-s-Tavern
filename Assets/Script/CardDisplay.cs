@@ -40,12 +40,14 @@ public class CardDisplay : MonoBehaviour
             att.text = card.attack.ToString();
             cost.text = card.cost.ToString();
             type.text = card.type;
+            background.sprite = card.artwork;
         }
         else
         {
             title.text = spellCard.name;
             desc.text = spellCard.effect;
             type.text = spellCard.type;
+            background.sprite = spellCard.artwork;
         }
         //
         //to skip or play the card animation
