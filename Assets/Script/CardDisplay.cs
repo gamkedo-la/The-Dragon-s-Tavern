@@ -29,6 +29,13 @@ public class CardDisplay : MonoBehaviour
     public Text type;
     //
 
+    //Hovering over card and pulling card from hand
+    public Vector3 offset = new Vector3(0, 30, 0);
+    public Vector3 pullFromHand = new Vector3(0, -175f, 0);
+
+    bool hasEntered;
+    bool hasBeenPulled;
+    //
     void Start()
     {
         //Initial display of information
@@ -83,5 +90,43 @@ public class CardDisplay : MonoBehaviour
             }
         }
         //
+
+        // pull card from hand
+        if (Input.GetMouseButtonDown(0) && hasEntered && !hasBeenPulled)
+        {
+            this.gameObject.transform.localPosition -= pullFromHand;
+            GameObject.Find("PlayerHand").transform.localPosition += pullFromHand;
+            hasBeenPulled = true;
+            GameManager.hasBeenPulled = true;
+        }
+        //
+
+        //putting card back into hand
+        if (Input.GetMouseButtonDown(1) && hasEntered && hasBeenPulled)
+        {
+            this.gameObject.transform.localPosition += pullFromHand;
+            GameObject.Find("PlayerHand").transform.localPosition -= pullFromHand;
+            hasBeenPulled = false;
+            GameManager.hasBeenPulled = false;
+        }
+        //
+    }
+
+    public void CardHoverEnter()
+    {
+        if (!hasBeenPulled)
+        {
+            this.gameObject.transform.localPosition += offset;
+            hasEntered = true;
+        }
+    }
+
+    public void CardHoverExit()
+    {
+        if (!hasBeenPulled)
+        {
+            this.gameObject.transform.localPosition -= offset;
+            hasEntered = false;
+        }
     }
 }

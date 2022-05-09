@@ -266,6 +266,8 @@ MonoBehaviour:
   att: {fileID: 0}
   cost: {fileID: 0}
   type: {fileID: 3307337136934591685}
+  offset: {x: 0, y: 30, z: 0}
+  pullFromHand: {x: 500, y: -500, z: 0}
 --- !u!114 &3243777732746540131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,8 +280,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 043d191f30fb61d44a5bc05874b3f77c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: {x: 0, y: 30, z: 0}
-  pullFromHand: {x: 0, y: -175, z: 0}
 --- !u!114 &3243777732746540140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,8 +297,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 3243777732746540131}
-          m_TargetAssemblyTypeName: CardPlacement, Assembly-CSharp
+        - m_Target: {fileID: 3307337136157623300}
+          m_TargetAssemblyTypeName: CardDisplay, Assembly-CSharp
           m_MethodName: CardHoverEnter
           m_Mode: 1
           m_Arguments:
@@ -313,8 +313,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 3243777732746540131}
-          m_TargetAssemblyTypeName: CardPlacement, Assembly-CSharp
+        - m_Target: {fileID: 3307337136157623300}
+          m_TargetAssemblyTypeName: CardDisplay, Assembly-CSharp
           m_MethodName: CardHoverExit
           m_Mode: 1
           m_Arguments:
@@ -325,6 +325,10 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - eventID: 15
+    callback:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &3307337136934591687
 GameObject:
   m_ObjectHideFlags: 0
