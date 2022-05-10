@@ -42,20 +42,18 @@ public class PlayableSpot : MonoBehaviour
             if (GameManager.monsterSelected)
             {
                 print(GameManager.cardName);
-                card.name = GameManager.cardName.ToString();
 
-                print(card.name.ToString());
-                print(card.description.ToString());
-                print(card.attack.ToString());
-                /*  title.text = card.name;
-                  desc.text = card.description;
-                  def.text = card.defense.ToString();
-                  att.text = card.attack.ToString();
-                  cost.text = card.cost.ToString();
-                  type.text = card.type;
-                  backgroundImage.sprite = card.artwork;
+                  card.name = GameManager.cardName.ToString();
+
+                  title.text = GameManager.name;
+                  desc.text = GameManager.description;
+                  def.text = GameManager.defense.ToString();
+                  att.text = GameManager.attack.ToString();
+                  cost.text = GameManager.cost.ToString();
+                  type.text = GameManager.type;
+                  backgroundImage.sprite = GameManager.artwork;
                   backgroundColor.GetComponent<Image>().color = monsterColor;
-                */
+                
 
                 //Instantiate Monster (GameManager.name)
             }
