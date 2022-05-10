@@ -97,7 +97,17 @@ public class CardDisplay : MonoBehaviour
             this.gameObject.transform.localPosition -= pullFromHand;
             GameObject.Find("PlayerHand").transform.localPosition += pullFromHand;
             hasBeenPulled = true;
-            GameManager.hasBeenPulled = true;
+            if (isMonster)
+            {
+                GameManager.cardName = card.name;
+                GameManager.monsterSelected = true;
+            }
+            else
+            {
+                GameManager.cardName = spellCard.name;
+                GameManager.spellSelected = true;
+            }
+            UpdateGameManager();
         }
         //
 
@@ -107,7 +117,7 @@ public class CardDisplay : MonoBehaviour
             this.gameObject.transform.localPosition += pullFromHand;
             GameObject.Find("PlayerHand").transform.localPosition -= pullFromHand;
             hasBeenPulled = false;
-            GameManager.hasBeenPulled = false;
+            ClearGameManager();
         }
         //
     }
@@ -128,5 +138,54 @@ public class CardDisplay : MonoBehaviour
             this.gameObject.transform.localPosition -= offset;
             hasEntered = false;
         }
+    }
+
+    public void OnMouseOver()
+    {
+        if (hasBeenPulled)
+        {
+            print(gameObject.name);
+        }
+    }
+
+    void UpdateGameManager()
+    {
+        GameManager.hasBeenPulled = true;
+        if (isMonster)
+        {
+            GameManager.cardName = card.name;
+            GameManager.description = card.description;
+            GameManager.defense = card.defense;
+            GameManager.attack = card.attack;
+            GameManager.cost = card.cost;
+            GameManager.type = card.type;
+            GameManager.artwork = card.artwork;
+        }
+        else
+        {
+            GameManager.spellName = spellCard.name;
+            GameManager.effect = spellCard.effect;
+            GameManager.spellType = spellCard.type;
+            GameManager.spellArtwork = spellCard.artwork;
+        }
+    }
+
+    void ClearGameManager()
+    {
+        GameManager.monsterSelected = false;
+        GameManager.spellSelected = false;
+        GameManager.hasBeenPulled = false;
+
+        GameManager.cardName = null;
+        GameManager.description = null;
+        GameManager.defense = 0;
+        GameManager.attack = 0;
+        GameManager.cost = 0;
+        GameManager.type = null;
+        GameManager.artwork = null;
+        GameManager.spellName = null;
+        GameManager.effect = null;
+        GameManager.spellType = null;
+        GameManager.spellArtwork = null;
     }
 }
