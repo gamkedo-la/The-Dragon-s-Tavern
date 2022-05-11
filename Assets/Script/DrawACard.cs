@@ -55,6 +55,7 @@ public class DrawACard : MonoBehaviour
             newCard.GetComponentInChildren<CardDisplay>().card = Resources.Load<Card>("ScriptableObject/Monsters/" +cardNameToSave) as Card;
 
             //Remove Monster Card from List
+            monsterCards.Remove(monsterCards[monsterCardToMake]);
         }
 
         //pulling a spell card
@@ -68,6 +69,7 @@ public class DrawACard : MonoBehaviour
             newCard.GetComponentInChildren<CardDisplay>().spellCard = Resources.Load<SpellCard>("ScriptableObject/Spell/" + cardNameToSave) as SpellCard;
 
             //Remove Spell card from list
+            spellCards.Remove(spellCards[randomCardFromDeck]);
         }
 
         //Create the card
@@ -76,8 +78,7 @@ public class DrawACard : MonoBehaviour
         newCard.transform.localScale = new Vector3(1, 1, 1);
         newCard.transform.localRotation = Quaternion.identity;
 
-        //resize the given list (remove card from deck)
-       // totalCardsInDeck--;
+         totalCardsInDeck--;
     }
 
     IEnumerator WaitToDrawCard()
