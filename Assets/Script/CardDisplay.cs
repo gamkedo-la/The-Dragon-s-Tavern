@@ -41,6 +41,8 @@ public class CardDisplay : MonoBehaviour
         //Initial display of information
         if (isMonster)
         {
+            print(GameManager.cardNameToReference);
+
             title.text = card.name;
             desc.text = card.description;
             def.text = card.defense.ToString();
@@ -51,6 +53,8 @@ public class CardDisplay : MonoBehaviour
         }
         else
         {
+            print(GameManager.cardNameToReference);
+
             title.text = spellCard.name;
             desc.text = spellCard.effect;
             type.text = spellCard.type;

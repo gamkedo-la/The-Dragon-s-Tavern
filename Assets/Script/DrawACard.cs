@@ -9,16 +9,21 @@ public class DrawACard : MonoBehaviour
     public Transform playerHand;
 
     public int initialCardsToDraw = 5;
-    int cardCount;
+
     //Player Hand - remove this later to a more accessible place
     public List<Card> monsterCards = new List<Card>();
     public List<SpellCard> spellCards = new List<SpellCard>();
     List<MonoBehaviour> list = new List<MonoBehaviour>();
+    int totalCardsInDeck;
+    GameObject newCard;
+    string cardNameToSave;
 
     private void Start()
     {
         //draw initial hand
         StartCoroutine(WaitToDrawCard());
+        totalCardsInDeck = monsterCards.Count + spellCards.Count;
+        print(totalCardsInDeck);
     }
 
     private void OnMouseOver()
@@ -31,17 +36,44 @@ public class DrawACard : MonoBehaviour
 
     void DrawCard()
     {
-        //list of monster cards
-        //list of spell cards
+        //List of Monster Cards and Spell cards are public right now. May want to hide that eventually.
+
         //run a deck random number counter
-        //if random number < total spell cards, pull a spell card, else, pull a monster card
-        //resize the given list
-        GameObject newCard = Instantiate(cards[0], playerHand.transform.position, Quaternion.identity);
+        int randomCardFromDeck = Random.Range(0, totalCardsInDeck);
+        //pulling a monster card
+        if (randomCardFromDeck >= spellCards.Count)
+        {
+            int monsterCardToMake = randomCardFromDeck - spellCards.Count;
+            //  print(monsterCards[monsterCardToMake]);
+            cardNameToSave = monsterCards[monsterCardToMake].ToString();
+            cardNameToSave = cardNameToSave.Replace(" (Card)", "");
+            GameManager.cardNameToReference = cardNameToSave;
+            //print(GameManager.cardNameToReference);
+            newCard = Instantiate(cards[1], playerHand.transform.position, Quaternion.identity);
+            //Remove Monster Card from List
+        }
+        //pulling a spell card
+        else
+        {
+            //   print(spellCards[randomCardFromDeck]);
+
+            cardNameToSave = spellCards[randomCardFromDeck].ToString();
+            cardNameToSave = cardNameToSave.Replace(" (SpellCard)", "");
+            GameManager.cardNameToReference = cardNameToSave;
+            //print(GameManager.cardNameToReference);
+
+            newCard = Instantiate(cards[0], playerHand.transform.position, Quaternion.identity);
+            //Remove Spell card from list
+        }
+
+        //Create the card
+        
         newCard.transform.parent = playerHand;
         newCard.transform.localScale = new Vector3(1, 1, 1);
         newCard.transform.localRotation = Quaternion.identity;
 
-        cardCount++;
+        //resize the given list (remove card from deck)
+       // totalCardsInDeck--;
     }
 
     IEnumerator WaitToDrawCard()
@@ -50,9 +82,10 @@ public class DrawACard : MonoBehaviour
         while (initialCardsToDraw > 0)
         {
             //Wait .25f seconds
-            yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(0.5f);
             DrawCard();
             initialCardsToDraw--;
+           // print(initialCardsToDraw);
         }
     }
 }

@@ -1754,6 +1754,31 @@ MonoBehaviour:
   - {fileID: 3307337137049910837, guid: 659bb00e8eb85ae4da0949915e6fdd66, type: 3}
   - {fileID: 63669640475768113, guid: de07accfe1aa9c04eb8476ed1c5d128a, type: 3}
   playerHand: {fileID: 2083036620}
+  initialCardsToDraw: 5
+  monsterCards:
+  - {fileID: 11400000, guid: 3a8777e39da5e2841b8fdb589836e5e8, type: 2}
+  - {fileID: 11400000, guid: 86f794b6eb776744c99a979e59be8dfd, type: 2}
+  - {fileID: 11400000, guid: 937e2699855a7f942a204582415c5a5e, type: 2}
+  - {fileID: 11400000, guid: 5f8017a43e8855b42bd15b3493de10f6, type: 2}
+  - {fileID: 11400000, guid: 7b385161c18d1d84cac1b64156398bfc, type: 2}
+  - {fileID: 11400000, guid: a977ec0cbd408df4da1cc96f4fa4fd6f, type: 2}
+  - {fileID: 11400000, guid: 972a87b0e17414f42bb110e1f1424330, type: 2}
+  - {fileID: 11400000, guid: 3a8777e39da5e2841b8fdb589836e5e8, type: 2}
+  - {fileID: 11400000, guid: 86f794b6eb776744c99a979e59be8dfd, type: 2}
+  - {fileID: 11400000, guid: 937e2699855a7f942a204582415c5a5e, type: 2}
+  - {fileID: 11400000, guid: 5f8017a43e8855b42bd15b3493de10f6, type: 2}
+  - {fileID: 11400000, guid: 7b385161c18d1d84cac1b64156398bfc, type: 2}
+  - {fileID: 11400000, guid: a977ec0cbd408df4da1cc96f4fa4fd6f, type: 2}
+  - {fileID: 11400000, guid: 972a87b0e17414f42bb110e1f1424330, type: 2}
+  spellCards:
+  - {fileID: 11400000, guid: afb1de2208d02064cb612355c9556784, type: 2}
+  - {fileID: 11400000, guid: bd08f2420c77484468fa1d2fba1677db, type: 2}
+  - {fileID: 11400000, guid: 2bd14efeca58dd64ea26fbac312b06f5, type: 2}
+  - {fileID: 11400000, guid: 037c0dbe329ed8d47998f4b3ba1c6a0a, type: 2}
+  - {fileID: 11400000, guid: afb1de2208d02064cb612355c9556784, type: 2}
+  - {fileID: 11400000, guid: bd08f2420c77484468fa1d2fba1677db, type: 2}
+  - {fileID: 11400000, guid: 2bd14efeca58dd64ea26fbac312b06f5, type: 2}
+  - {fileID: 11400000, guid: 037c0dbe329ed8d47998f4b3ba1c6a0a, type: 2}
 --- !u!65 &242015179
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11503,31 +11528,35 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 63669639639311851, guid: de07accfe1aa9c04eb8476ed1c5d128a, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 63669639639311851, guid: de07accfe1aa9c04eb8476ed1c5d128a, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 63669639639311851, guid: de07accfe1aa9c04eb8476ed1c5d128a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 69.26
       objectReference: {fileID: 0}
     - target: {fileID: 63669639639311851, guid: de07accfe1aa9c04eb8476ed1c5d128a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -23.555
       objectReference: {fileID: 0}
     - target: {fileID: 63669640209682529, guid: de07accfe1aa9c04eb8476ed1c5d128a, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 138.52
       objectReference: {fileID: 0}
     - target: {fileID: 63669640209682529, guid: de07accfe1aa9c04eb8476ed1c5d128a, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 47.11
       objectReference: {fileID: 0}
     - target: {fileID: 63669640475768113, guid: de07accfe1aa9c04eb8476ed1c5d128a, type: 3}
       propertyPath: m_Name
       value: PlayerCardWithOverlap
+      objectReference: {fileID: 0}
+    - target: {fileID: 63669640475768113, guid: de07accfe1aa9c04eb8476ed1c5d128a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 63669640475768126, guid: de07accfe1aa9c04eb8476ed1c5d128a, type: 3}
       propertyPath: m_Pivot.x
@@ -11547,7 +11576,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 63669640475768126, guid: de07accfe1aa9c04eb8476ed1c5d128a, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 63669640475768126, guid: de07accfe1aa9c04eb8476ed1c5d128a, type: 3}
       propertyPath: m_AnchorMin.x
@@ -11555,7 +11584,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 63669640475768126, guid: de07accfe1aa9c04eb8476ed1c5d128a, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 63669640475768126, guid: de07accfe1aa9c04eb8476ed1c5d128a, type: 3}
       propertyPath: m_SizeDelta.x
@@ -11595,11 +11624,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 63669640475768126, guid: de07accfe1aa9c04eb8476ed1c5d128a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 63669640475768126, guid: de07accfe1aa9c04eb8476ed1c5d128a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -99.025
       objectReference: {fileID: 0}
     - target: {fileID: 63669640475768126, guid: de07accfe1aa9c04eb8476ed1c5d128a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -11625,23 +11654,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3307337135676485359, guid: 659bb00e8eb85ae4da0949915e6fdd66, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3307337135676485359, guid: 659bb00e8eb85ae4da0949915e6fdd66, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3307337135676485359, guid: 659bb00e8eb85ae4da0949915e6fdd66, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 69.26
       objectReference: {fileID: 0}
     - target: {fileID: 3307337135676485359, guid: 659bb00e8eb85ae4da0949915e6fdd66, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -23.555
       objectReference: {fileID: 0}
     - target: {fileID: 3307337137049910837, guid: 659bb00e8eb85ae4da0949915e6fdd66, type: 3}
       propertyPath: m_Name
       value: PlayerCardWithOverlap (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3307337137049910837, guid: 659bb00e8eb85ae4da0949915e6fdd66, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3307337137049910842, guid: 659bb00e8eb85ae4da0949915e6fdd66, type: 3}
       propertyPath: m_Pivot.x
@@ -11661,7 +11694,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3307337137049910842, guid: 659bb00e8eb85ae4da0949915e6fdd66, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3307337137049910842, guid: 659bb00e8eb85ae4da0949915e6fdd66, type: 3}
       propertyPath: m_AnchorMin.x
@@ -11669,7 +11702,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3307337137049910842, guid: 659bb00e8eb85ae4da0949915e6fdd66, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3307337137049910842, guid: 659bb00e8eb85ae4da0949915e6fdd66, type: 3}
       propertyPath: m_SizeDelta.x
@@ -11709,11 +11742,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3307337137049910842, guid: 659bb00e8eb85ae4da0949915e6fdd66, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 3307337137049910842, guid: 659bb00e8eb85ae4da0949915e6fdd66, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -99.025
       objectReference: {fileID: 0}
     - target: {fileID: 3307337137049910842, guid: 659bb00e8eb85ae4da0949915e6fdd66, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -11729,11 +11762,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3307337137320696677, guid: 659bb00e8eb85ae4da0949915e6fdd66, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 138.52
       objectReference: {fileID: 0}
     - target: {fileID: 3307337137320696677, guid: 659bb00e8eb85ae4da0949915e6fdd66, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 47.11
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3243777732746540131, guid: 659bb00e8eb85ae4da0949915e6fdd66, type: 3}
