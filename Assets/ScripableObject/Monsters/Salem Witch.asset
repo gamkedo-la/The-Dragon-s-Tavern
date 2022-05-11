@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d18519c36ab49d3439c5630dc1ee5001, type: 3}
-  m_Name: Squonk
+  m_Name: Salem Witch
   m_EditorClassIdentifier: 
-  name: Squonk
-  description: The saddest critter of Northern PA
+  name: Salem Witch
+  description: Bewitchers of Mass. that curse those who crossed them.
   type: Lore
-  artwork: {fileID: 21300000, guid: 1747a25aade27774298a5524b44aff9b, type: 3}
+  artwork: {fileID: 21300000, guid: ae1d083331ea95a4b99ea58dc4231d4f, type: 3}
   cost: 3
-  attack: 2
-  defense: 5
+  attack: 4
+  defense: 4
