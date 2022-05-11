@@ -17,6 +17,8 @@ public class DrawACard : MonoBehaviour
     int totalCardsInDeck;
     GameObject newCard;
     string cardNameToSave;
+    public Card monsterCardToPull;
+    SpellCard spellCardToPull;
 
     private void Start()
     {
@@ -44,30 +46,32 @@ public class DrawACard : MonoBehaviour
         if (randomCardFromDeck >= spellCards.Count)
         {
             int monsterCardToMake = randomCardFromDeck - spellCards.Count;
-            //  print(monsterCards[monsterCardToMake]);
             cardNameToSave = monsterCards[monsterCardToMake].ToString();
+            newCard = Instantiate(cards[1], playerHand.transform.position, Quaternion.identity) as GameObject;
+            print(newCard.name);
+
+            //Making the card name match the card that is drawn
             cardNameToSave = cardNameToSave.Replace(" (Card)", "");
-            GameManager.cardNameToReference = cardNameToSave;
-            //print(GameManager.cardNameToReference);
-            newCard = Instantiate(cards[1], playerHand.transform.position, Quaternion.identity);
+            newCard.GetComponentInChildren<CardDisplay>().card = Resources.Load<Card>("ScriptableObject/Monsters/" +cardNameToSave) as Card;
+
             //Remove Monster Card from List
         }
+
         //pulling a spell card
         else
         {
-            //   print(spellCards[randomCardFromDeck]);
-
             cardNameToSave = spellCards[randomCardFromDeck].ToString();
-            cardNameToSave = cardNameToSave.Replace(" (SpellCard)", "");
-            GameManager.cardNameToReference = cardNameToSave;
-            //print(GameManager.cardNameToReference);
-
             newCard = Instantiate(cards[0], playerHand.transform.position, Quaternion.identity);
+
+            //Making the card name match the card that is drawn
+            cardNameToSave = cardNameToSave.Replace(" (SpellCard)", "");
+            newCard.GetComponentInChildren<CardDisplay>().spellCard = Resources.Load<SpellCard>("ScriptableObject/Spell/" + cardNameToSave) as SpellCard;
+
             //Remove Spell card from list
         }
 
         //Create the card
-        
+
         newCard.transform.parent = playerHand;
         newCard.transform.localScale = new Vector3(1, 1, 1);
         newCard.transform.localRotation = Quaternion.identity;

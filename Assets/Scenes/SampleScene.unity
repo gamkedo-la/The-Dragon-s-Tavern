@@ -1779,6 +1779,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bd08f2420c77484468fa1d2fba1677db, type: 2}
   - {fileID: 11400000, guid: 2bd14efeca58dd64ea26fbac312b06f5, type: 2}
   - {fileID: 11400000, guid: 037c0dbe329ed8d47998f4b3ba1c6a0a, type: 2}
+  monsterCardToPull: {fileID: 11400000, guid: 86f794b6eb776744c99a979e59be8dfd, type: 2}
 --- !u!65 &242015179
 BoxCollider:
   m_ObjectHideFlags: 0
