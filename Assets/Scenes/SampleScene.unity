@@ -9565,6 +9565,8 @@ MonoBehaviour:
   CurrentStateUIImage: {fileID: 275880223}
   playerEndSetButton: {fileID: 1551624908}
   playerEndAttackButton: {fileID: 728492978}
+  playerCardPlacementOnTableParent: {fileID: 814905427}
+  enemyCardPlacementOnTableParent: {fileID: 143292830}
 --- !u!4 &1784273361
 Transform:
   m_ObjectHideFlags: 0

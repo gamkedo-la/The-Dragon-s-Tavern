@@ -37,6 +37,18 @@ public class CardDisplay : MonoBehaviour
     bool hasBeenPulled;
     //
 
+    public string NameOfCard()
+    {
+        if (isMonster)
+        {
+            return card.name;
+        }
+        else
+        {
+            return spellCard.name;
+        }
+    }
+
     public void ReadyToInit()
     {
         //Initial display of information

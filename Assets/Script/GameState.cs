@@ -18,6 +18,10 @@ public class GameState : MonoBehaviour
     public GameObject playerEndSetButton;
     public GameObject playerEndAttackButton;
 
+    //This is checking the players/enemies cards on table
+    public Transform playerCardPlacementOnTableParent;
+    public Transform enemyCardPlacementOnTableParent;
+
     private void Start()
     {
         //The initial Wait After Player draws their hand to draw a 6th card
@@ -112,6 +116,17 @@ public class GameState : MonoBehaviour
 
     void PlayerAttack()
     {
+        //Scoop up cards in the parent
+        CardDisplay[] cardsOnTable = playerCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
+       
+        for (int i = 0; i < cardsOnTable.Length; i++)
+        {
+            Debug.Log(cardsOnTable[i].NameOfCard());
+        }
+
+        //this should check the rules between the cards, may reference functions from other cards
+        //the actual doing of the stuff should be on the card display (updating HP or functions)
+
         displayCurrentState.text = "Player Attack";
         playerEndAttackButton.SetActive(true);
     }
