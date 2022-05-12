@@ -37,7 +37,7 @@ public class DrawACard : MonoBehaviour
         }
     }
 
-    void DrawCard()
+    public void DrawCard()
     {
         //List of Monster Cards and Spell cards are public right now. May want to hide that eventually.
 
