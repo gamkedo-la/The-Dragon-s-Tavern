@@ -8,6 +8,9 @@ public class DrawACard : MonoBehaviour
     public GameObject[] cards;
     public Transform playerHand;
 
+    public GameObject[] physicalCardsOnTable;
+    public Text deckCountRemainingUI;
+
     public int initialCardsToDraw = 5;
 
     //Player Hand - remove this later to a more accessible place
@@ -17,7 +20,6 @@ public class DrawACard : MonoBehaviour
     int totalCardsInDeck;
     GameObject newCard;
     string cardNameToSave;
-    public Card monsterCardToPull;
     SpellCard spellCardToPull;
 
     private void Start()
@@ -25,7 +27,6 @@ public class DrawACard : MonoBehaviour
         //draw initial hand
         StartCoroutine(WaitToDrawCard());
         totalCardsInDeck = monsterCards.Count + spellCards.Count;
-        print(totalCardsInDeck);
     }
 
     private void OnMouseOver()
@@ -45,10 +46,10 @@ public class DrawACard : MonoBehaviour
         //pulling a monster card
         if (randomCardFromDeck >= spellCards.Count)
         {
+            //take list of cards (monsters+spells), subtract the spell cards, then pull a monster card
             int monsterCardToMake = randomCardFromDeck - spellCards.Count;
             cardNameToSave = monsterCards[monsterCardToMake].ToString();
             newCard = Instantiate(cards[1], playerHand.transform.position, Quaternion.identity) as GameObject;
-            print(newCard.name);
 
             //Making the card name match the card that is drawn
             cardNameToSave = cardNameToSave.Replace(" (Card)", "");
@@ -79,6 +80,12 @@ public class DrawACard : MonoBehaviour
         newCard.transform.localRotation = Quaternion.identity;
 
          totalCardsInDeck--;
+         deckCountRemainingUI.text = totalCardsInDeck.ToString();
+
+        if (totalCardsInDeck < 10)
+        {
+            physicalCardsOnTable[totalCardsInDeck].SetActive(false);
+        }
     }
 
     IEnumerator WaitToDrawCard()
@@ -90,7 +97,6 @@ public class DrawACard : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
             DrawCard();
             initialCardsToDraw--;
-           // print(initialCardsToDraw);
         }
     }
 }
