@@ -16,7 +16,7 @@ public class DrawACard : MonoBehaviour
     //Player Hand - remove this later to a more accessible place
     public List<Card> monsterCards = new List<Card>();
     public List<SpellCard> spellCards = new List<SpellCard>();
-    List<MonoBehaviour> list = new List<MonoBehaviour>();
+
     int totalCardsInDeck;
     GameObject newCard;
     string cardNameToSave;
@@ -80,8 +80,9 @@ public class DrawACard : MonoBehaviour
         newCard.transform.localRotation = Quaternion.identity;
 
          totalCardsInDeck--;
+        //Update UI of cards in player's deck
          deckCountRemainingUI.text = totalCardsInDeck.ToString();
-
+        //Remove cards that are on the table if less than 10 remain
         if (totalCardsInDeck < 10)
         {
             physicalCardsOnTable[totalCardsInDeck].SetActive(false);
