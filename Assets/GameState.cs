@@ -1,10 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum GamePhases { PlayerDraw, PlayerSet, PlayerAttack, PlayerEnd, AIDraw, AISet, AIAttack, AIEnd }
-
-
 
 public class GameState : MonoBehaviour
 {
@@ -12,6 +11,9 @@ public class GameState : MonoBehaviour
     public int gamePhase;
 
     public GameObject playerDeck;
+
+    public Text displayCurrentState;
+    public Animator CurrentStateUIImage;
 
     private void Start()
     {
@@ -22,6 +24,7 @@ public class GameState : MonoBehaviour
     {
         //Wait 4 seconds from start. Long enough for player to draw 5 cards from hand, then draw a 6th. 
         yield return new WaitForSeconds(4f);
+        displayCurrentState.text = "Player Draw";
         state = GamePhases.PlayerDraw;
         DetermineTurn();
     }
@@ -42,6 +45,8 @@ public class GameState : MonoBehaviour
 
     void DetermineTurn()
     {
+        CurrentStateUIImage.SetTrigger("Play");
+
         switch (gamePhase)
         {
             case 0:
@@ -81,7 +86,7 @@ public class GameState : MonoBehaviour
 
     void PlayerDraw()
     {
-        print("PlayerDraw");
+        displayCurrentState.text = "Player Draw";
         playerDeck.GetComponent<DrawACard>().DrawCard();
 
         gamePhase++;
@@ -90,37 +95,37 @@ public class GameState : MonoBehaviour
 
     void PlayerSet()
     {
-        print("PlayerSet");
+        displayCurrentState.text = "Player Draw";
     }
 
     void PlayerAttack()
     {
-        print("PlayerAttack");
+        displayCurrentState.text = "Player Attack";
     }
 
     void PlayerEnd()
     {
-        print("PlayerEnd");
+        displayCurrentState.text = "Player End";
     }
 
     void AIDraw()
     {
-        print("AIDraw");
+        displayCurrentState.text = "AI Draw";
     }
 
     void AISet()
     {
-        print("AISet");
+        displayCurrentState.text = "AI Set";
     }
 
     void AIAttack()
     {
-        print("AIAttack");
+        displayCurrentState.text = "AI Attack";
     }
 
     void AIEnd()
     {
-        print("AIEnd");
+        displayCurrentState.text = "AI End";
     }
 
 }
