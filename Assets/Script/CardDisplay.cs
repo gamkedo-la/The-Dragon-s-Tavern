@@ -36,6 +36,7 @@ public class CardDisplay : MonoBehaviour
     bool hasEntered;
     bool hasBeenPulled;
     //
+
     void Start()
     {
         //Initial display of information
@@ -100,14 +101,19 @@ public class CardDisplay : MonoBehaviour
             hasBeenPulled = true;
             if (isMonster)
             {
+                GameManager.monsterPulled = true;
                 GameManager.cardName = card.name;
+                GameManager.cardToBePlayed = card.name;
                 GameManager.monsterSelected = true;
             }
             else
             {
+                GameManager.spellPulled = true;
                 GameManager.cardName = spellCard.name;
+                GameManager.cardToBePlayed = spellCard.name;
                 GameManager.spellSelected = true;
             }
+            
             UpdateGameManager();
         }
         //
@@ -198,6 +204,9 @@ public class CardDisplay : MonoBehaviour
 
     void PutCardBackInHand()
     {
+        GameManager.monsterPulled = false;
+        GameManager.spellPulled = false;
+
         GameObject.Find("PlayerHand").transform.localPosition -= pullFromHand;
         hasBeenPulled = false;
         ClearGameManager();
