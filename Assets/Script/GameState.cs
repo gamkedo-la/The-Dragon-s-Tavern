@@ -15,6 +15,9 @@ public class GameState : MonoBehaviour
     public Text displayCurrentState;
     public Animator CurrentStateUIImage;
 
+    public GameObject playerEndSetButton;
+    public GameObject playerEndAttackButton;
+
     private void Start()
     {
         //The initial Wait After Player draws their hand to draw a 6th card
@@ -35,10 +38,7 @@ public class GameState : MonoBehaviour
         {
             //Advance Battle State
             gamePhase++;
-            if (gamePhase > 7)
-            {
-                gamePhase = 0;
-            }
+            
             DetermineTurn();
         }
     }
@@ -46,6 +46,11 @@ public class GameState : MonoBehaviour
     void DetermineTurn()
     {
         CurrentStateUIImage.SetTrigger("Play");
+
+        if (gamePhase > 7)
+        {
+            gamePhase = 0;
+        }
 
         switch (gamePhase)
         {
@@ -87,45 +92,80 @@ public class GameState : MonoBehaviour
     void PlayerDraw()
     {
         displayCurrentState.text = "Player Draw";
-        playerDeck.GetComponent<DrawACard>().DrawCard();
 
         gamePhase++;
+        StartCoroutine(WaitForPlayerDraw());
+    }
+
+    IEnumerator WaitForPlayerDraw()
+    {
+        yield return new WaitForSeconds(1f);
+        playerDeck.GetComponent<DrawACard>().DrawCard();
         DetermineTurn();
     }
 
     void PlayerSet()
     {
-        displayCurrentState.text = "Player Draw";
+        displayCurrentState.text = "Player Set";
+        playerEndSetButton.SetActive(true);
     }
 
     void PlayerAttack()
     {
         displayCurrentState.text = "Player Attack";
+        playerEndAttackButton.SetActive(true);
     }
 
     void PlayerEnd()
     {
         displayCurrentState.text = "Player End";
+        StartCoroutine(CycleTurnThisIsTemp());
     }
 
     void AIDraw()
     {
         displayCurrentState.text = "AI Draw";
+        StartCoroutine(CycleTurnThisIsTemp());
     }
 
     void AISet()
     {
         displayCurrentState.text = "AI Set";
+        StartCoroutine(CycleTurnThisIsTemp());
     }
 
     void AIAttack()
     {
         displayCurrentState.text = "AI Attack";
+        StartCoroutine(CycleTurnThisIsTemp());
     }
 
     void AIEnd()
     {
         displayCurrentState.text = "AI End";
+        StartCoroutine(CycleTurnThisIsTemp());
     }
 
+    IEnumerator CycleTurnThisIsTemp()
+    {
+        yield return new WaitForSeconds(2f);
+        gamePhase++;
+        DetermineTurn();
+    }
+
+    //UI Buttons to advance Player Turns
+    public void EndSet()
+    {       
+        gamePhase++;
+        DetermineTurn();
+        playerEndSetButton.SetActive(false);
+    }
+
+    public void EndAttack()
+    {
+        gamePhase++;
+        DetermineTurn();
+        playerEndAttackButton.SetActive(false);
+    }
+    //
 }
