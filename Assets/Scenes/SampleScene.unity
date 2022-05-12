@@ -209,7 +209,6 @@ GameObject:
   - component: {fileID: 9376882}
   - component: {fileID: 9376881}
   - component: {fileID: 9376880}
-  - component: {fileID: 9376883}
   m_Layer: 0
   m_Name: PlaceMat
   m_TagString: Untagged
@@ -282,25 +281,6 @@ Transform:
   m_Father: {fileID: 814905427}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9376883
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9376878}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba19d2b29bef9b248855e9a1e6d45c3e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playableSpots:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1 &47672630
 GameObject:
   m_ObjectHideFlags: 0
@@ -9232,7 +9212,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 20
+  m_Text: 
 --- !u!222 &1674471593
 CanvasRenderer:
   m_ObjectHideFlags: 0

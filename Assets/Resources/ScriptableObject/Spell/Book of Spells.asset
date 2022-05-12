@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f2c57813b9612524fb29ccdc7a78d924, type: 3}
-  m_Name: SpellBookOfSpells
+  m_Name: Book of Spells
   m_EditorClassIdentifier: 
   name: Book of Spells
   effect: Increase all Spellcaster Attack by 2

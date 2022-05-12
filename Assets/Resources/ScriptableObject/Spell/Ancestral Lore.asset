@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2c57813b9612524fb29ccdc7a78d924, type: 3}
   m_Name: Ancestral Lore
   m_EditorClassIdentifier: 
-  name: 'Ancestral Lore '
+  name: Ancestral Lore
   effect: Increase one Lore type attack by 2
   type: Quick
   artwork: {fileID: 0}

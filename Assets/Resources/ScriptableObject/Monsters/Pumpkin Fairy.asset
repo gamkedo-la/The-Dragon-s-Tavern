@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d18519c36ab49d3439c5630dc1ee5001, type: 3}
-  m_Name: PumpkinFairy
+  m_Name: Pumpkin Fairy
   m_EditorClassIdentifier: 
   name: Pumpkin Fairy
   description: If you need a pumpkin she is your gal
