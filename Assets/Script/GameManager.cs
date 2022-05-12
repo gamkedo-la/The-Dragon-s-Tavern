@@ -22,4 +22,7 @@ public class GameManager : MonoBehaviour
     public static string effect;
     public static string spellType;
     public static Sprite spellArtwork;
+
+    //Play Card from Hand
+    public static bool cardPlayed;
 }

@@ -116,11 +116,17 @@ public class CardDisplay : MonoBehaviour
         if (Input.GetMouseButtonDown(1) && hasEntered && hasBeenPulled)
         {
             this.gameObject.transform.localPosition += pullFromHand;
-            GameObject.Find("PlayerHand").transform.localPosition -= pullFromHand;
-            hasBeenPulled = false;
-            ClearGameManager();
+            PutCardBackInHand();
         }
         //
+
+        //checking if Card has been played (referenced in PlayableSpot.cs
+        if (hasBeenPulled && GameManager.cardPlayed)
+        {
+            PutCardBackInHand();
+            GameManager.cardPlayed = false;
+            Destroy(transform.parent.gameObject);
+        }
     }
 
     public void CardHoverEnter()
@@ -188,5 +194,12 @@ public class CardDisplay : MonoBehaviour
         GameManager.effect = null;
         GameManager.spellType = null;
         GameManager.spellArtwork = null;
+    }
+
+    void PutCardBackInHand()
+    {
+        GameObject.Find("PlayerHand").transform.localPosition -= pullFromHand;
+        hasBeenPulled = false;
+        ClearGameManager();
     }
 }
