@@ -37,7 +37,7 @@ public class CardDisplay : MonoBehaviour
     bool hasBeenPulled;
     //
 
-    void Start()
+    public void ReadyToInit()
     {
         //Initial display of information
         if (isMonster)

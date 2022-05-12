@@ -44,9 +44,14 @@ public class PlayableSpot : MonoBehaviour
                 //Recalling the correct card
                 cardToRecall = GameManager.cardToBePlayed.ToString();
                 cardToRecall.Replace(" (SpellCard)", "");
+
+                print(cardToRecall);
+
                 cardCreated.GetComponentInChildren<CardDisplay>().spellCard = Resources.Load<SpellCard>("ScriptableObject/Spell/" + cardToRecall) as SpellCard;
 
-                GameManager.spellPulled = false;
+                cardCreated.GetComponentInChildren<CardDisplay>().ReadyToInit();
+
+               GameManager.spellPulled = false;
             }
             if (GameManager.monsterPulled)
             {
@@ -55,7 +60,12 @@ public class PlayableSpot : MonoBehaviour
                 //Recalling the correct card
                 cardToRecall = GameManager.cardToBePlayed.ToString();
                 cardToRecall.Replace(" (Card)", "");
+
+                print(cardToRecall);
+
                 cardCreated.GetComponentInChildren<CardDisplay>().card = Resources.Load<Card>("ScriptableObject/Monsters/" + cardToRecall) as Card;
+
+                cardCreated.GetComponentInChildren<CardDisplay>().ReadyToInit();
 
                 GameManager.monsterPulled = false;
             }

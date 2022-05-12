@@ -53,7 +53,12 @@ public class DrawACard : MonoBehaviour
 
             //Making the card name match the card that is drawn
             cardNameToSave = cardNameToSave.Replace(" (Card)", "");
-            newCard.GetComponentInChildren<CardDisplay>().card = Resources.Load<Card>("ScriptableObject/Monsters/" +cardNameToSave) as Card;
+
+            Card tempCard = Resources.Load<Card>("ScriptableObject/Monsters/" + cardNameToSave) as Card;
+
+            newCard.GetComponentInChildren<CardDisplay>().card = tempCard;
+
+            newCard.GetComponentInChildren<CardDisplay>().ReadyToInit();
 
             //Remove Monster Card from List
             monsterCards.Remove(monsterCards[monsterCardToMake]);
@@ -67,7 +72,12 @@ public class DrawACard : MonoBehaviour
 
             //Making the card name match the card that is drawn
             cardNameToSave = cardNameToSave.Replace(" (SpellCard)", "");
-            newCard.GetComponentInChildren<CardDisplay>().spellCard = Resources.Load<SpellCard>("ScriptableObject/Spell/" + cardNameToSave) as SpellCard;
+
+            SpellCard tempCard = Resources.Load<SpellCard>("ScriptableObject/Spell/" + cardNameToSave) as SpellCard;
+
+            newCard.GetComponentInChildren<CardDisplay>().spellCard = tempCard;
+
+            newCard.GetComponentInChildren<CardDisplay>().ReadyToInit();
 
             //Remove Spell card from list
             spellCards.Remove(spellCards[randomCardFromDeck]);
