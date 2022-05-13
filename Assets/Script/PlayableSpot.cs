@@ -7,6 +7,7 @@ public class PlayableSpot : MonoBehaviour
 {
     bool isOpen;
     public GameObject monsterCard, spellCard;
+    public GameObject spellPulledFX, monsterPulledFX, occupiedFX;
     string cardToRecall;
     GameObject cardCreated;
 
@@ -40,6 +41,7 @@ public class PlayableSpot : MonoBehaviour
             if (GameManager.spellPulled)
             {
                 cardCreated = Instantiate(spellCard, transform.position, Quaternion.identity) as GameObject;
+                if (spellPulledFX) Instantiate(spellPulledFX, transform.position, Quaternion.identity);
 
                 //Recalling the correct card
                 cardToRecall = GameManager.cardToBePlayed.ToString();
@@ -56,6 +58,7 @@ public class PlayableSpot : MonoBehaviour
             if (GameManager.monsterPulled)
             {
                 cardCreated = Instantiate(monsterCard, transform.position, Quaternion.identity) as GameObject;
+                if (monsterPulledFX) Instantiate(monsterPulledFX, transform.position, Quaternion.identity);
 
                 //Recalling the correct card
                 cardToRecall = GameManager.cardToBePlayed.ToString();
@@ -79,7 +82,7 @@ public class PlayableSpot : MonoBehaviour
 
             //remove card from hand
             GameManager.cardPlayed = true;
-                //See CardDisplay.cs, if cardPlayed = true, CardDisplay will destroy the card
+            //See CardDisplay.cs, if cardPlayed = true, CardDisplay will destroy the card
 
             //update status of playable spot
             isOpen = false;
@@ -89,9 +92,14 @@ public class PlayableSpot : MonoBehaviour
         if (GameManager.hasBeenPulled && !isOpen)
         {
             //UI - do you want to tribute?
+
+            if (occupiedFX) Instantiate(occupiedFX, transform.position, Quaternion.identity);
+
         }
 
         //if space occupied by spell
+        //if (occupiedFX) Instantiate(occupiedFX, transform.position, Quaternion.identity);
+
     }
 
     private void OnMouseOver()
