@@ -11983,10 +11983,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: monsterPulledFX
       objectReference: {fileID: 0}
-    - target: {fileID: 5837779061678490072, guid: 9d0a0c23ae83ce5468e6870b3c9fe59c, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d0a0c23ae83ce5468e6870b3c9fe59c, type: 3}
 --- !u!224 &7132711001989310955 stripped
@@ -12004,10 +12000,6 @@ PrefabInstance:
     - target: {fileID: 5386412303645593696, guid: dd7757354c927434fac4a6957dfc7707, type: 3}
       propertyPath: m_Name
       value: occupiedFX
-      objectReference: {fileID: 0}
-    - target: {fileID: 5386412303645593696, guid: dd7757354c927434fac4a6957dfc7707, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6510093815454836493, guid: dd7757354c927434fac4a6957dfc7707, type: 3}
       propertyPath: m_RootOrder
