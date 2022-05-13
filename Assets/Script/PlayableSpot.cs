@@ -41,7 +41,7 @@ public class PlayableSpot : MonoBehaviour
             if (GameManager.spellPulled)
             {
                 cardCreated = Instantiate(spellCard, transform.position, Quaternion.identity) as GameObject;
-                if (spellPulledFX) Instantiate(spellPulledFX, transform.position, Quaternion.identity);
+                if (spellPulledFX) Instantiate(spellPulledFX, transform.position, transform.rotation);
 
                 //Recalling the correct card
                 cardToRecall = GameManager.cardToBePlayed.ToString();
@@ -58,7 +58,7 @@ public class PlayableSpot : MonoBehaviour
             if (GameManager.monsterPulled)
             {
                 cardCreated = Instantiate(monsterCard, transform.position, Quaternion.identity) as GameObject;
-                if (monsterPulledFX) Instantiate(monsterPulledFX, transform.position, Quaternion.identity);
+                if (monsterPulledFX) Instantiate(monsterPulledFX, transform.position, transform.rotation);
 
                 //Recalling the correct card
                 cardToRecall = GameManager.cardToBePlayed.ToString();
@@ -93,7 +93,7 @@ public class PlayableSpot : MonoBehaviour
         {
             //UI - do you want to tribute?
 
-            if (occupiedFX) Instantiate(occupiedFX, transform.position, Quaternion.identity);
+            if (occupiedFX) Instantiate(occupiedFX, transform.position, transform.rotation);
 
         }
 
