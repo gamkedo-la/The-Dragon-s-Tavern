@@ -30,6 +30,8 @@ public class PlayableSpot : MonoBehaviour
 
     private void OnMouseDown()
     {
+        bool justPulledACard = false;
+
         //if space is unoccupied
         if (GameManager.hasBeenPulled && isOpen)
         {
@@ -54,6 +56,7 @@ public class PlayableSpot : MonoBehaviour
                 cardCreated.GetComponentInChildren<CardDisplay>().ReadyToInit();
 
                GameManager.spellPulled = false;
+               justPulledACard = true;
             }
             if (GameManager.monsterPulled)
             {
@@ -71,6 +74,7 @@ public class PlayableSpot : MonoBehaviour
                 cardCreated.GetComponentInChildren<CardDisplay>().ReadyToInit();
 
                 GameManager.monsterPulled = false;
+                justPulledACard = true;
             }
             
             cardCreated.transform.parent = this.gameObject.transform;
@@ -88,16 +92,15 @@ public class PlayableSpot : MonoBehaviour
             isOpen = false;
         }
 
+        // this would fire if we JUST placed a card above without the extra bool
         //if space occupied by monster
-        if (GameManager.hasBeenPulled && !isOpen)
+        if (GameManager.hasBeenPulled && !isOpen && !justPulledACard)
         {
             //UI - do you want to tribute?
-
             if (occupiedFX) Instantiate(occupiedFX, transform.position, transform.rotation);
-
         }
 
-        //if space occupied by spell
+        //if space occupied by spell - FIXME - implement as above
         //if (occupiedFX) Instantiate(occupiedFX, transform.position, Quaternion.identity);
 
     }
