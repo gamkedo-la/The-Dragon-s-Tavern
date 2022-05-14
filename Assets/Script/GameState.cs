@@ -21,6 +21,17 @@ public class GameState : MonoBehaviour
     //This is checking the players/enemies cards on table
     public Transform playerCardPlacementOnTableParent;
     public Transform enemyCardPlacementOnTableParent;
+    //
+
+    //Checking player currency per turn 
+    public static int CurrencyThisTurn;
+    public static GameObject playerPointsDisplay;
+    public GameObject playerPointsImage;
+
+    public Color startingColor = Color.yellow;
+    public Image currencyBackground;
+    public Color notEnoughCurrencyColor = Color.red;
+    //
 
     private void Start()
     {
@@ -112,10 +123,17 @@ public class GameState : MonoBehaviour
     {
         displayCurrentState.text = "Player Set";
         playerEndSetButton.SetActive(true);
+
+        playerPointsImage.SetActive(true);
+        CurrencyThisTurn = 4;
+        playerPointsDisplay = GameObject.Find("PlayerCurrencyThisTurnText");
+        playerPointsDisplay.GetComponent<Text>().text = CurrencyThisTurn.ToString();
     }
 
     void PlayerAttack()
     {
+        playerPointsImage.SetActive(false);
+
         //Scoop up cards in the parent
         CardDisplay[] cardsOnTable = playerCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
        

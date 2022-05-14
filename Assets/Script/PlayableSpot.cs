@@ -61,7 +61,6 @@ public class PlayableSpot : MonoBehaviour
             if (GameManager.monsterPulled)
             {
                 cardCreated = Instantiate(monsterCard, transform.position, Quaternion.identity) as GameObject;
-                if (monsterPulledFX) Instantiate(monsterPulledFX, transform.position, transform.rotation);
 
                 //Recalling the correct card
                 cardToRecall = GameManager.cardToBePlayed.ToString();
@@ -73,23 +72,43 @@ public class PlayableSpot : MonoBehaviour
 
                 cardCreated.GetComponentInChildren<CardDisplay>().ReadyToInit();
 
-                GameManager.monsterPulled = false;
-                justPulledACard = true;
+                if (GameState.CurrencyThisTurn >= cardCreated.GetComponentInChildren<CardDisplay>().card.cost)
+                {
+                    print(cardCreated.GetComponentInChildren<CardDisplay>().card.name + " " + cardCreated.GetComponentInChildren<CardDisplay>().card.cost);
+                    GameState.CurrencyThisTurn -= cardCreated.GetComponentInChildren<CardDisplay>().card.cost;
+                    GameState.playerPointsDisplay.GetComponent<Text>().text = GameState.CurrencyThisTurn.ToString();
+
+
+                    if (monsterPulledFX) Instantiate(monsterPulledFX, transform.position, transform.rotation);
+
+                    GameManager.monsterPulled = false;
+                    justPulledACard = true;
+
+                    cardCreated.transform.parent = this.gameObject.transform;
+                    cardCreated.transform.localScale = new Vector3(.7f, .45f, .8f);
+                    cardCreated.transform.localRotation = Quaternion.identity;
+                    cardCreated.transform.localPosition = new Vector3(35, 0, 0);
+
+                    GameManager.cardToBePlayed = "";
+
+                    //remove card from hand
+                    GameManager.cardPlayed = true;
+                    //See CardDisplay.cs, if cardPlayed = true, CardDisplay will destroy the card
+
+                    //update status of playable spot
+                    isOpen = false;
+                }
+
+                //not enough points to play card
+                else
+                {
+                    Debug.Log("Not enough currency");
+
+                    //Prevent Card From Playing
+
+                    //Change Color to Red then back to yellow 
+                }
             }
-            
-            cardCreated.transform.parent = this.gameObject.transform;
-            cardCreated.transform.localScale = new Vector3(.7f, .45f, .8f);
-            cardCreated.transform.localRotation = Quaternion.identity;
-            cardCreated.transform.localPosition = new Vector3(35, 0, 0);
-
-            GameManager.cardToBePlayed = "";
-
-            //remove card from hand
-            GameManager.cardPlayed = true;
-            //See CardDisplay.cs, if cardPlayed = true, CardDisplay will destroy the card
-
-            //update status of playable spot
-            isOpen = false;
         }
 
         // this would fire if we JUST placed a card above without the extra bool

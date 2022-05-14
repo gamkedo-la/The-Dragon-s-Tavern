@@ -177,7 +177,7 @@ public class CardDisplay : MonoBehaviour
         GameManager.hasBeenPulled = false;
     }
 
-    void PutCardBackInHand()
+    public void PutCardBackInHand()
     {
         GameObject.Find("PlayerHand").transform.localPosition -= pullFromHand;
         hasBeenPulled = false;

@@ -177,7 +177,7 @@ MonoBehaviour:
   backOfCard: {fileID: 6893300768465468075}
   rotationSpeed: 10
   isMonster: 1
-  card: {fileID: 11400000, guid: 7b385161c18d1d84cac1b64156398bfc, type: 2}
+  card: {fileID: 0}
   spellCard: {fileID: 0}
   background: {fileID: 63669640247843319}
   title: {fileID: 63669639934984854}
