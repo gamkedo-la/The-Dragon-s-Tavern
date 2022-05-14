@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2c57813b9612524fb29ccdc7a78d924, type: 3}
   m_Name: Charasmatic Speech
   m_EditorClassIdentifier: 
-  name: Charastmatic Speech
+  name: Charasmatic Speech
   effect: Decrease all opponents' monsters' attack by 1
   type: Quick
   artwork: {fileID: 0}
