@@ -31,6 +31,8 @@ public class GameState : MonoBehaviour
     public Color startingColor = Color.yellow;
     public Image currencyBackground;
     public Color notEnoughCurrencyColor = Color.red;
+    float tooLowOfCurrency = .25f;
+    bool tooLowOfCurrencyTrigger;
     //
 
     private void Start()
@@ -55,6 +57,18 @@ public class GameState : MonoBehaviour
             gamePhase++;
             
             DetermineTurn();
+        }
+
+        if (tooLowOfCurrencyTrigger)
+        {
+            tooLowOfCurrency -= Time.deltaTime;
+            currencyBackground.color = Color.Lerp(notEnoughCurrencyColor, startingColor, Mathf.PingPong(Time.time * 10, 1));
+            if (tooLowOfCurrency <= 0)
+            {
+                currencyBackground.color = startingColor;
+                tooLowOfCurrencyTrigger = false;
+                tooLowOfCurrency = .25f;
+            }
         }
     }
 
@@ -201,4 +215,11 @@ public class GameState : MonoBehaviour
         playerEndAttackButton.SetActive(false);
     }
     //
+
+    //Change Color if not enough Currency
+    public void ChangeColor()
+    {
+        currencyBackground.color = notEnoughCurrencyColor;
+        tooLowOfCurrencyTrigger = true;
+    }
 }

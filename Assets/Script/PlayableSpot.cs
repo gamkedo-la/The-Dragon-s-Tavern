@@ -66,7 +66,7 @@ public class PlayableSpot : MonoBehaviour
                 cardToRecall = GameManager.cardToBePlayed.ToString();
                 cardToRecall.Replace(" (Card)", "");
 
-                print(cardToRecall);
+                     //print(cardToRecall);
 
                 cardCreated.GetComponentInChildren<CardDisplay>().card = Resources.Load<Card>("ScriptableObject/Monsters/" + cardToRecall) as Card;
 
@@ -103,10 +103,12 @@ public class PlayableSpot : MonoBehaviour
                 else
                 {
                     Debug.Log("Not enough currency");
+                    //Destroy Temp Created Card
 
-                    //Prevent Card From Playing
+                    Destroy(cardCreated);
 
                     //Change Color to Red then back to yellow 
+                    GameObject.Find("GameState").GetComponent<GameState>().ChangeColor();
                 }
             }
         }
