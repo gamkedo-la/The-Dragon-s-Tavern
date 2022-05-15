@@ -37,6 +37,11 @@ public class CardDisplay : MonoBehaviour
     bool hasBeenPulled;
     //
 
+    //Once it is on the table
+    public bool hasBeenPlayed;
+    bool inDefense;
+    //
+
     public string NameOfCard()
     {
         if (isMonster)
@@ -162,6 +167,17 @@ public class CardDisplay : MonoBehaviour
         }
     }
 
+    public void OnMouseDown()
+    {
+        print("here");
+        if (Input.GetMouseButtonDown(1) && isMonster && hasBeenPlayed)
+        {
+            print("here 2");
+            FlipCardPosition();
+        }
+    }
+
+
     public void OnMouseOver()
     {
         if (hasBeenPulled)
@@ -182,5 +198,19 @@ public class CardDisplay : MonoBehaviour
         GameObject.Find("PlayerHand").transform.localPosition -= pullFromHand;
         hasBeenPulled = false;
         ClearGameManager();
+    }
+
+    public void FlipCardPosition()
+    {
+        inDefense = !inDefense;
+
+        if (inDefense)
+        {
+            print("Im in defense!");
+        }
+        else
+        {
+            print("Im in attack!");
+        }
     }
 }

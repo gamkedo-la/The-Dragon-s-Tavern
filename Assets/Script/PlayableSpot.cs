@@ -57,6 +57,20 @@ public class PlayableSpot : MonoBehaviour
 
                GameManager.spellPulled = false;
                justPulledACard = true;
+
+                cardCreated.transform.parent = this.gameObject.transform;
+                cardCreated.transform.localScale = new Vector3(.7f, .45f, .8f);
+                cardCreated.transform.localRotation = Quaternion.identity;
+                cardCreated.transform.localPosition = new Vector3(35, 0, 0);
+
+                GameManager.cardToBePlayed = "";
+
+                //remove card from hand
+                GameManager.cardPlayed = true;
+                //See CardDisplay.cs, if cardPlayed = true, CardDisplay will destroy the card
+
+                //update status of playable spot
+                isOpen = false;
             }
             if (GameManager.monsterPulled)
             {
@@ -94,6 +108,9 @@ public class PlayableSpot : MonoBehaviour
                     //remove card from hand
                     GameManager.cardPlayed = true;
                     //See CardDisplay.cs, if cardPlayed = true, CardDisplay will destroy the card
+
+                    //Setting that it has been played
+                    cardCreated.GetComponentInChildren<CardDisplay>().hasBeenPlayed = true;
 
                     //update status of playable spot
                     isOpen = false;
