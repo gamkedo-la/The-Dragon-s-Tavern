@@ -39,7 +39,7 @@ public class CardDisplay : MonoBehaviour
 
     //Once it is on the table
     public bool hasBeenPlayed;
-    bool inDefense;
+    public bool inDefense;
     //
 
     public string NameOfCard()
@@ -148,7 +148,7 @@ public class CardDisplay : MonoBehaviour
             Destroy(transform.parent.gameObject);
         }
 
-        if (Input.GetMouseButtonDown(1) && isMonster && hasBeenPlayed)
+        if (Input.GetMouseButtonDown(1) && isMonster && hasBeenPlayed && GameObject.Find("GameState").GetComponent<GameState>().gamePhase == 2)
         {
             inDefense = !inDefense;
             FlipCardPosition();
