@@ -147,6 +147,12 @@ public class CardDisplay : MonoBehaviour
             GameManager.cardPlayed = false;
             Destroy(transform.parent.gameObject);
         }
+
+        if (Input.GetMouseButtonDown(1) && isMonster && hasBeenPlayed)
+        {
+            inDefense = !inDefense;
+            FlipCardPosition();
+        }
     }
 
     public void CardHoverEnter()
@@ -167,26 +173,7 @@ public class CardDisplay : MonoBehaviour
         }
     }
 
-    public void OnMouseDown()
-    {
-        print("here");
-        if (Input.GetMouseButtonDown(1) && isMonster && hasBeenPlayed)
-        {
-            print("here 2");
-            FlipCardPosition();
-        }
-    }
-
-
-    public void OnMouseOver()
-    {
-        if (hasBeenPulled)
-        {
-            print(gameObject.name);
-        }
-    }
-
-    void ClearGameManager()
+        void ClearGameManager()
     {
         GameManager.monsterSelected = false;
         GameManager.spellSelected = false;
@@ -202,15 +189,15 @@ public class CardDisplay : MonoBehaviour
 
     public void FlipCardPosition()
     {
-        inDefense = !inDefense;
-
         if (inDefense)
         {
             print("Im in defense!");
+            this.transform.eulerAngles = new Vector3(90, 0, 90); 
         }
         else
         {
             print("Im in attack!");
+            this.transform.eulerAngles = new Vector3(90, 0, 0);
         }
     }
 }
