@@ -49,7 +49,7 @@ public class PlayableSpot : MonoBehaviour
                 cardToRecall = GameManager.cardToBePlayed.ToString();
                 cardToRecall.Replace(" (SpellCard)", "");
 
-                //print(cardToRecall);
+                print(cardToRecall);
 
                 cardCreated.GetComponentInChildren<CardDisplay>().spellCard = Resources.Load<SpellCard>("ScriptableObject/Spell/" + cardToRecall) as SpellCard;
 

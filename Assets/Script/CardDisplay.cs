@@ -45,6 +45,9 @@ public class CardDisplay : MonoBehaviour
     Transform playerCardPlacementOnTableParent;
     Transform enemyCardPlacementOnTableParent;
 
+    //Finish Turn Elements
+    bool cardResolutionNeeded;
+
     private void Start()
     {
 
@@ -100,66 +103,69 @@ public class CardDisplay : MonoBehaviour
 
     private void Update()
     {
-        //Rotating the cards once they are drawn
-        if (rotation)
+        if (!cardResolutionNeeded)
         {
-            rotatedAngle -= rotationSpeed;
-            this.gameObject.transform.localRotation = Quaternion.Euler(0, rotatedAngle, 0);
-            if (rotatedAngle <= 90)
+            //Rotating the cards once they are drawn
+            if (rotation)
             {
-                backOfCard.SetActive(false);
+                rotatedAngle -= rotationSpeed;
+                this.gameObject.transform.localRotation = Quaternion.Euler(0, rotatedAngle, 0);
+                if (rotatedAngle <= 90)
+                {
+                    backOfCard.SetActive(false);
+                }
+                if (rotatedAngle <= 0)
+                {
+                    rotatedAngle = 0;
+                    rotation = false;
+                    skipCardFlip = false;
+                }
             }
-            if (rotatedAngle <= 0)
+            //
+
+            // pull card from hand
+            if (Input.GetMouseButtonDown(0) && hasEntered && !hasBeenPulled)
             {
-                rotatedAngle = 0;
-                rotation = false;
-                skipCardFlip = false;
+                this.gameObject.transform.localPosition -= pullFromHand;
+                GameObject.Find("PlayerHand").transform.localPosition += pullFromHand;
+                hasBeenPulled = true;
+                GameManager.hasBeenPulled = true;
+                if (isMonster)
+                {
+                    GameManager.monsterPulled = true;
+                    GameManager.cardToBePlayed = card.name;
+                    GameManager.monsterSelected = true;
+                }
+                else
+                {
+                    GameManager.spellPulled = true;
+                    GameManager.cardToBePlayed = spellCard.name;
+                    GameManager.spellSelected = true;
+                }
             }
-        }
-        //
+            //
 
-        // pull card from hand
-        if (Input.GetMouseButtonDown(0) && hasEntered && !hasBeenPulled)
-        {
-            this.gameObject.transform.localPosition -= pullFromHand;
-            GameObject.Find("PlayerHand").transform.localPosition += pullFromHand;
-            hasBeenPulled = true;
-            GameManager.hasBeenPulled = true;
-            if (isMonster)
+            //putting card back into hand
+            if (Input.GetMouseButtonDown(1) && hasEntered && hasBeenPulled)
             {
-                GameManager.monsterPulled = true;
-                GameManager.cardToBePlayed = card.name;
-                GameManager.monsterSelected = true;
+                this.gameObject.transform.localPosition += pullFromHand;
+                PutCardBackInHand();
             }
-            else
+            //
+
+            //checking if Card has been played (referenced in PlayableSpot.cs
+            if (hasBeenPulled && GameManager.cardPlayed)
             {
-                GameManager.spellPulled = true;
-                GameManager.cardToBePlayed = spellCard.name;
-                GameManager.spellSelected = true;
+                PutCardBackInHand();
+                GameManager.cardPlayed = false;
+                Destroy(transform.parent.gameObject);
             }
-        }
-        //
 
-        //putting card back into hand
-        if (Input.GetMouseButtonDown(1) && hasEntered && hasBeenPulled)
-        {
-            this.gameObject.transform.localPosition += pullFromHand;
-            PutCardBackInHand();
-        }
-        //
-
-        //checking if Card has been played (referenced in PlayableSpot.cs
-        if (hasBeenPulled && GameManager.cardPlayed)
-        {
-            PutCardBackInHand();
-            GameManager.cardPlayed = false;
-            Destroy(transform.parent.gameObject);
-        }
-
-        if (Input.GetMouseButtonDown(1) && isMonster && hasBeenPlayed && GameObject.Find("GameState").GetComponent<GameState>().gamePhase == 2)
-        {
-            inDefense = !inDefense;
-            FlipCardPosition();
+            if (Input.GetMouseButtonDown(1) && isMonster && hasBeenPlayed && GameObject.Find("GameState").GetComponent<GameState>().gamePhase == 2)
+            {
+                inDefense = !inDefense;
+                FlipCardPosition();
+            }
         }
     }
 
@@ -220,6 +226,50 @@ public class CardDisplay : MonoBehaviour
         {
             BookOfSpells();
         }
+        else if (spellCard.name == "Charasmatic Speech")
+        {
+            CharasmaticSpeech();
+        }
+        else if (spellCard.name == "Ancestral Lore")
+        {
+            AncestralLore();
+        }
+    }
+
+    public void AncestralLore()
+    {
+        //Scoop up cards in the parent
+        playerCardPlacementOnTableParent = GameObject.Find("Player's Play Area").transform;
+        enemyCardPlacementOnTableParent = GameObject.Find("Opponent's Play Area").transform;
+        CardDisplay[] cardsOnTable = playerCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
+
+        for (int i = 0; i < cardsOnTable.Length; i++)
+        {
+            if (cardsOnTable[i].card.type.ToString() == "Lore")
+            {
+                print(cardsOnTable[i]);
+                cardsOnTable[i].GetComponent<Image>().color = Color.cyan;
+                //player needs to click on a card before card action is resolved
+                cardResolutionNeeded = true;
+            }
+        }
+    }
+
+    public void CharasmaticSpeech()
+    {
+        //Scoop up cards in the parent
+        playerCardPlacementOnTableParent = GameObject.Find("Player's Play Area").transform;
+        enemyCardPlacementOnTableParent = GameObject.Find("Opponent's Play Area").transform;
+        CardDisplay[] cardsOnTable = enemyCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
+
+        for (int i = 0; i < cardsOnTable.Length; i++)
+        {
+            print(cardsOnTable[i]);
+            cardsOnTable[i].card.attack -= 1;
+            cardsOnTable[i].att.text = cardsOnTable[i].card.attack.ToString();
+            print(cardsOnTable[i].card.attack);
+        }
+        StartCoroutine(RemovePlayedCard());
     }
 
 
@@ -265,6 +315,27 @@ public class CardDisplay : MonoBehaviour
 
         //For now, just destroy it
         Destroy(transform.parent.gameObject);
+    }
+
+    public void ClearAncestralLore()
+    {
+        this.card.attack += 2;
+        this.att.text = this.card.attack.ToString();
+
+        cardResolutionNeeded = false;
+
+        //Scoop up cards in the parent
+        playerCardPlacementOnTableParent = GameObject.Find("Player's Play Area").transform;
+        enemyCardPlacementOnTableParent = GameObject.Find("Opponent's Play Area").transform;
+        CardDisplay[] cardsOnTable = playerCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
+
+        for (int i = 0; i < cardsOnTable.Length; i++)
+        {
+            if (cardsOnTable[i].card.type.ToString() == "Lore")
+            {
+                cardsOnTable[i].GetComponent<Image>().color = Color.white;
+            }
+        }
     }
     #endregion
 }
