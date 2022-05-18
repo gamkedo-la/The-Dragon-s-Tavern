@@ -200,4 +200,29 @@ public class CardDisplay : MonoBehaviour
             this.transform.eulerAngles = new Vector3(90, 0, 0);
         }
     }
+
+    public void ActivateQuickSpell()
+    {
+        if (spellCard.name == "Diamond of Gold")
+        {
+            DiamondOfGold();
+        }
+    }
+
+    public void DiamondOfGold()
+    {
+        GameState.CurrencyThisTurn += 3;
+        GameObject.Find("GameState").GetComponent<GameState>().UpdateCardValueUI();
+        RemovePlayedCard();
+    }
+
+    void RemovePlayedCard()
+    {
+        //Unparent card
+
+        //Move card to graveyard
+
+        //For now, just destroy it
+        Destroy(this.gameObject);
+    }
 }

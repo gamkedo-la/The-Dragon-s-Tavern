@@ -9601,7 +9601,10 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'CHEATS - turn off before final build
 
-    A - Advance Game State'
+    A - Advance Game State
+
+    Click
+    Deck to draw card'
 --- !u!222 &1979306482
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11499,7 +11502,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8518458848115311098, guid: 74e4ca38baf1f61409f52d6a1dd2cdb2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnMouseDown
+      value: CardHoverEnter
       objectReference: {fileID: 0}
     - target: {fileID: 8518458848115311098, guid: 74e4ca38baf1f61409f52d6a1dd2cdb2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName

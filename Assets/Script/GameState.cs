@@ -140,6 +140,11 @@ public class GameState : MonoBehaviour
 
         playerPointsImage.SetActive(true);
         CurrencyThisTurn = 4;
+        UpdateCardValueUI();
+    }
+
+    public void UpdateCardValueUI()
+    {
         playerPointsDisplay = GameObject.Find("PlayerCurrencyThisTurnText");
         playerPointsDisplay.GetComponent<Text>().text = CurrencyThisTurn.ToString();
     }

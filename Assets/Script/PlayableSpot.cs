@@ -55,7 +55,15 @@ public class PlayableSpot : MonoBehaviour
 
                 cardCreated.GetComponentInChildren<CardDisplay>().ReadyToInit();
 
-               GameManager.spellPulled = false;
+                //Do the spell mechanic
+                if (cardCreated.GetComponentInChildren<CardDisplay>().spellCard.type == "Quick")
+                {
+                    cardCreated.GetComponentInChildren<CardDisplay>().ActivateQuickSpell();
+                    //update status of playable spot
+                    isOpen = true;
+                }
+
+                GameManager.spellPulled = false;
                justPulledACard = true;
 
                 cardCreated.transform.parent = this.gameObject.transform;
@@ -69,8 +77,7 @@ public class PlayableSpot : MonoBehaviour
                 GameManager.cardPlayed = true;
                 //See CardDisplay.cs, if cardPlayed = true, CardDisplay will destroy the card
 
-                //update status of playable spot
-                isOpen = false;
+                
             }
             if (GameManager.monsterPulled)
             {
