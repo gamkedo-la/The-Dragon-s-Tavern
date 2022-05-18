@@ -49,7 +49,7 @@ public class PlayableSpot : MonoBehaviour
                 cardToRecall = GameManager.cardToBePlayed.ToString();
                 cardToRecall.Replace(" (SpellCard)", "");
 
-                print(cardToRecall);
+                //print(cardToRecall);
 
                 cardCreated.GetComponentInChildren<CardDisplay>().spellCard = Resources.Load<SpellCard>("ScriptableObject/Spell/" + cardToRecall) as SpellCard;
 
@@ -95,7 +95,7 @@ public class PlayableSpot : MonoBehaviour
 
                 if (GameState.CurrencyThisTurn >= cardCreated.GetComponentInChildren<CardDisplay>().card.cost)
                 {
-                    print(cardCreated.GetComponentInChildren<CardDisplay>().card.name + " " + cardCreated.GetComponentInChildren<CardDisplay>().card.cost);
+                   // print(cardCreated.GetComponentInChildren<CardDisplay>().card.name + " " + cardCreated.GetComponentInChildren<CardDisplay>().card.cost);
                     GameState.CurrencyThisTurn -= cardCreated.GetComponentInChildren<CardDisplay>().card.cost;
                     GameState.playerPointsDisplay.GetComponent<Text>().text = GameState.CurrencyThisTurn.ToString();
 

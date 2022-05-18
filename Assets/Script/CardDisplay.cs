@@ -42,6 +42,14 @@ public class CardDisplay : MonoBehaviour
     public bool inDefense;
     //
 
+    Transform playerCardPlacementOnTableParent;
+    Transform enemyCardPlacementOnTableParent;
+
+    private void Start()
+    {
+
+    }
+
     public string NameOfCard()
     {
         if (isMonster)
@@ -201,28 +209,62 @@ public class CardDisplay : MonoBehaviour
         }
     }
 
+    #region SpellCards
     public void ActivateQuickSpell()
     {
         if (spellCard.name == "Diamond of Gold")
         {
             DiamondOfGold();
         }
+        else if (spellCard.name == "Book of Spells")
+        {
+            BookOfSpells();
+        }
+    }
+
+
+    public void BookOfSpells()
+    {
+        //Scoop up cards in the parent
+        playerCardPlacementOnTableParent = GameObject.Find("Player's Play Area").transform;
+        enemyCardPlacementOnTableParent = GameObject.Find("Opponent's Play Area").transform;
+
+        CardDisplay[] cardsOnTable = playerCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
+
+         for (int i = 0; i < cardsOnTable.Length; i++)
+         {
+             if (cardsOnTable[i].type.ToString() == "Spellcaster")
+             {
+                print(cardsOnTable[i]);
+                cardsOnTable[i].card.attack += 2;
+                 cardsOnTable[i].att.text = cardsOnTable[i].card.attack.ToString();
+                print(cardsOnTable[i].card.attack);
+             }
+         }
+        StartCoroutine(RemovePlayedCard());
     }
 
     public void DiamondOfGold()
     {
         GameState.CurrencyThisTurn += 3;
         GameObject.Find("GameState").GetComponent<GameState>().UpdateCardValueUI();
-        RemovePlayedCard();
+        StartCoroutine(RemovePlayedCard());
     }
 
-    void RemovePlayedCard()
+    IEnumerator RemovePlayedCard()
     {
+        yield return new WaitForSeconds(2f);
+        //Wait after card has been placed on table
+
+        yield return new WaitForSeconds(1f);
+        //Enhance card to show 1) what card 2) card description
+
         //Unparent card
 
         //Move card to graveyard
 
         //For now, just destroy it
-        Destroy(this.gameObject);
+        Destroy(transform.parent.gameObject);
     }
+    #endregion
 }
