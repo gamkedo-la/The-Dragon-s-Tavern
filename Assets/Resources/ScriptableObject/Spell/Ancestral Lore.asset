@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Ancestral Lore
   m_EditorClassIdentifier: 
   name: Ancestral Lore
-  effect: Increase one Lore type attack by 2
+  effect: For each Lore monster, increase defence by 1
   type: Quick
   artwork: {fileID: 0}
