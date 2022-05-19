@@ -10,6 +10,7 @@ public class PlayableSpot : MonoBehaviour
     public GameObject spellPulledFX, monsterPulledFX, occupiedFX;
     string cardToRecall;
     GameObject cardCreated;
+    ScriptableObject scriptableCardCreated;
 
     private void Start()
     {
@@ -81,6 +82,11 @@ public class PlayableSpot : MonoBehaviour
             }
             if (GameManager.monsterPulled)
             {
+                //Creating an instance
+                scriptableCardCreated = ScriptableObject.CreateInstance<SpellCard>();
+
+                print(scriptableCardCreated.name);
+                //
                 cardCreated = Instantiate(monsterCard, transform.position, Quaternion.identity) as GameObject;
 
                 //Recalling the correct card

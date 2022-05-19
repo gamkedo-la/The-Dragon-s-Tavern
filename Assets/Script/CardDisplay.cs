@@ -13,6 +13,14 @@ public class CardDisplay : MonoBehaviour
     public float rotationSpeed;
     //
 
+    //for Battle
+    public bool isEnemyCard;
+    int playerAttack;
+    int playerDefense;
+    int enemyAttack;
+    int enemyDefense;
+    //
+
     //Determines if it is a spell or a monster
     public bool isMonster;
     public Card card;
@@ -44,6 +52,8 @@ public class CardDisplay : MonoBehaviour
 
     Transform playerCardPlacementOnTableParent;
     Transform enemyCardPlacementOnTableParent;
+
+    bool monsterTargeted;
 
     public string NameOfCard()
     {
@@ -306,6 +316,68 @@ public class CardDisplay : MonoBehaviour
 
         //For now, just destroy it
         Destroy(transform.parent.gameObject);
+    }
+
+    #endregion
+
+    #region Monster Attack
+
+    public void CardClicked()
+    {
+        if (isMonster && hasBeenPlayed && GameObject.Find("GameState").GetComponent<GameState>().gamePhase == 2)
+        {
+            monsterTargeted = true;
+
+            UpdateCardColors();
+        }
+    }
+
+    public void CardAttackingOtherCard(Button buttonName)
+    {
+        if (monsterTargeted)
+        {
+            playerAttack = this.card.attack;
+
+            print(buttonName.GetComponent<CardDisplay>().card.defense);
+
+            if (isEnemyCard)
+            {
+                if (inDefense)
+                {
+                    print(buttonName.GetComponent<CardDisplay>().card.defense);
+                }
+                else
+                {
+                    print(buttonName.GetComponent<CardDisplay>().card.attack);
+                }
+                
+            }
+            monsterTargeted = false;
+            UpdateCardColors();
+        }
+    }
+
+    void UpdateCardColors()
+    {
+        playerCardPlacementOnTableParent = GameObject.Find("Player's Play Area").transform;
+        enemyCardPlacementOnTableParent = GameObject.Find("Opponent's Play Area").transform;
+
+        CardDisplay[] cardsOnTable = enemyCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
+
+        for (int i = 0; i < cardsOnTable.Length; i++)
+        {
+            if (cardsOnTable[i].GetComponent<CardDisplay>().isMonster)
+            {
+                if (monsterTargeted)
+                {
+                    cardsOnTable[i].GetComponent<Image>().color = Color.cyan;
+                }
+                else
+                {
+                    cardsOnTable[i].GetComponent<Image>().color = Color.white;
+                }
+            }
+        }
     }
 
     #endregion
