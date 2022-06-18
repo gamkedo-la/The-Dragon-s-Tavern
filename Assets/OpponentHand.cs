@@ -12,18 +12,25 @@ public class OpponentHand : MonoBehaviour
     public List<SpellCard> spellCards = new List<SpellCard>();
     public List<string> cardsInHand = new List<string>();
 
+    public GameObject[] playableAreas;
+
     int totalCardsInDeck;
 
     string cardNameToSave;
 
+    GameObject newCard;
+    public GameObject[] cards;
+    int randomOpenPlayableSpot;
+    int cardToChoose;
+
+    public GameObject monsterCard, spellCard;
+    GameObject cardCreated;
+
     private void Start()
     {
         //draw initial hand
-
-        
         StartCoroutine(WaitToDrawCard());
-        totalCardsInDeck = monsterCards.Count + spellCards.Count;
-        
+        totalCardsInDeck = monsterCards.Count /*+ spellCards.Count*/;      
     }
 
     public void DrawCard()
@@ -43,7 +50,7 @@ public class OpponentHand : MonoBehaviour
             cardNameToSave = cardNameToSave.Replace(" (Card)", "");
 
             cardsInHand.Add(cardNameToSave);
-            Printing(cardNameToSave);
+           // Printing(cardNameToSave);
 
             Card tempCard = Resources.Load<Card>("ScriptableObject/Monsters/" + cardNameToSave) as Card;
 
@@ -59,7 +66,7 @@ public class OpponentHand : MonoBehaviour
             cardNameToSave = cardNameToSave.Replace(" (SpellCard)", "");
 
             cardsInHand.Add(cardNameToSave);
-            Printing(cardNameToSave);
+          //  Printing(cardNameToSave);
 
             SpellCard tempCard = Resources.Load<SpellCard>("ScriptableObject/Spell/" + cardNameToSave) as SpellCard;
 
@@ -88,7 +95,7 @@ public class OpponentHand : MonoBehaviour
     }
     public void DrawACard()
     {
-        Printing("card is drawn");
+       // Printing("card is drawn");
         DrawCard();
     }
 
@@ -97,8 +104,14 @@ public class OpponentHand : MonoBehaviour
         Printing("card is being played");
         Printing(cardsInHand.Count.ToString());
         //Choose a random card to play
-        int cardToChoose = Random.Range(0, cardsInHand.Count);
+        cardToChoose = Random.Range(0, cardsInHand.Count);
         Printing(cardsInHand[cardToChoose]);
+        //Play an instantiated card on the table
+        Printing(cardsInHand[cardToChoose] + " played on the table");
+
+        // Choose a random spot to create the card
+        ChooseWhereToPlayCard();
+
         //Remove card from list
         Printing(cardsInHand[cardToChoose] + " has been removed from the hand");
         cardsInHand.Remove(cardsInHand[cardToChoose]);
@@ -107,4 +120,23 @@ public class OpponentHand : MonoBehaviour
         //Work on this, this is just a placeholder
         gameState.AdvanceTurnFromAnotherScript();
     }
+
+    void ChooseWhereToPlayCard()
+    {
+        randomOpenPlayableSpot = Random.Range(0, playableAreas.Length);
+        if (playableAreas[randomOpenPlayableSpot].transform.childCount != 0)
+        {
+            ChooseWhereToPlayCard();
+        }
+        else
+        {
+            //this is a valid location
+
+            GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            cube.transform.parent = playableAreas[randomOpenPlayableSpot].transform;
+            cube.transform.localPosition = new Vector3(0, 0, 0);
+            cube.transform.localScale = new Vector3(100f, 100f, 100f);
+        }
+    }
+
 }
