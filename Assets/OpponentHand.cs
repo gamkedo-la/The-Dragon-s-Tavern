@@ -31,6 +31,8 @@ public class OpponentHand : MonoBehaviour
     public Transform opponentHand;
     GameObject toBeDestroyed;
 
+    public Animator opponentArm;
+
     private void Start()
     {
         //draw initial hand
@@ -40,6 +42,8 @@ public class OpponentHand : MonoBehaviour
 
     public void DrawCard()
     {
+        opponentArm.SetTrigger("DrawCard");
+
         newCard = Instantiate(opponentVisualCard, transform.position, transform.rotation) as GameObject;
         newCard.transform.parent = opponentHand.transform;
         newCard.transform.position = new Vector3(0, 0, 0);
