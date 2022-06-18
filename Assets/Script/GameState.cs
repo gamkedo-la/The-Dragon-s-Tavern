@@ -35,6 +35,9 @@ public class GameState : MonoBehaviour
     bool tooLowOfCurrencyTrigger;
     //
 
+    //Opponent Hand
+    public OpponentHand opponentHand;
+
     private void Start()
     {
         //The initial Wait After Player draws their hand to draw a 6th card
@@ -177,6 +180,7 @@ public class GameState : MonoBehaviour
     void AIDraw()
     {
         displayCurrentState.text = "AI Draw";
+        opponentHand.DrawACard();
         StartCoroutine(CycleTurnThisIsTemp());
     }
 

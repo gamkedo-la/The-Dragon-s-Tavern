@@ -5632,6 +5632,7 @@ GameObject:
   m_Component:
   - component: {fileID: 915405345}
   - component: {fileID: 915405344}
+  - component: {fileID: 915405346}
   m_Layer: 0
   m_Name: CardDeck - Opponent
   m_TagString: Untagged
@@ -5676,6 +5677,42 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &915405346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 915405343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c99503071c54a574caa4e7a7f9cb708e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialCardsToDraw: 5
+  monsterCards:
+  - {fileID: 11400000, guid: 3a8777e39da5e2841b8fdb589836e5e8, type: 2}
+  - {fileID: 11400000, guid: 86f794b6eb776744c99a979e59be8dfd, type: 2}
+  - {fileID: 11400000, guid: e0e55f9d7124eea4fa826fef0e0155fe, type: 2}
+  - {fileID: 11400000, guid: 937e2699855a7f942a204582415c5a5e, type: 2}
+  - {fileID: 11400000, guid: e5075d3d6f541cc4b8d98c5bebfc7295, type: 2}
+  - {fileID: 11400000, guid: 5f8017a43e8855b42bd15b3493de10f6, type: 2}
+  - {fileID: 11400000, guid: 7b385161c18d1d84cac1b64156398bfc, type: 2}
+  - {fileID: 11400000, guid: a977ec0cbd408df4da1cc96f4fa4fd6f, type: 2}
+  - {fileID: 11400000, guid: 972a87b0e17414f42bb110e1f1424330, type: 2}
+  - {fileID: 11400000, guid: 9f10078e3adeda04fb8650798ec8e9e6, type: 2}
+  - {fileID: 11400000, guid: bbfa531222b7d9f40881afdc35aad9ee, type: 2}
+  - {fileID: 11400000, guid: c4bd62bf71dd4104ea5fe17803290b56, type: 2}
+  - {fileID: 11400000, guid: 85542a59dd54c294f80714c7aaa43097, type: 2}
+  spellCards:
+  - {fileID: 11400000, guid: afb1de2208d02064cb612355c9556784, type: 2}
+  - {fileID: 11400000, guid: 037c0dbe329ed8d47998f4b3ba1c6a0a, type: 2}
+  - {fileID: 11400000, guid: bd08f2420c77484468fa1d2fba1677db, type: 2}
+  - {fileID: 11400000, guid: 2bd14efeca58dd64ea26fbac312b06f5, type: 2}
+  - {fileID: 11400000, guid: 50c53826916f8fa4389168c71009aa6c, type: 2}
+  - {fileID: 11400000, guid: 8f6885d5cd0c35444870c63e77f41f7c, type: 2}
+  - {fileID: 11400000, guid: 84c0619525b59894eb688005ce9e1fbb, type: 2}
+  - {fileID: 11400000, guid: c7b8009921ae1064c8c716c745d4b788, type: 2}
 --- !u!1 &937462079
 GameObject:
   m_ObjectHideFlags: 0
@@ -10901,6 +10938,7 @@ MonoBehaviour:
   startingColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   currencyBackground: {fileID: 215519501}
   notEnoughCurrencyColor: {r: 1, g: 0, b: 0, a: 1}
+  opponentHand: {fileID: 915405346}
 --- !u!4 &1784273361
 Transform:
   m_ObjectHideFlags: 0
