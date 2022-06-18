@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class OpponentHand : MonoBehaviour
 {
+    public GameState gameState;
     public int initialCardsToDraw = 5;
 
     //Player Hand - remove this later to a more accessible place
     public List<Card> monsterCards = new List<Card>();
     public List<SpellCard> spellCards = new List<SpellCard>();
+    public List<string> cardsInHand = new List<string>();
 
     int totalCardsInDeck;
 
@@ -40,9 +42,11 @@ public class OpponentHand : MonoBehaviour
             //Making the card name match the card that is drawn
             cardNameToSave = cardNameToSave.Replace(" (Card)", "");
 
+            cardsInHand.Add(cardNameToSave);
+            Printing(cardNameToSave);
+
             Card tempCard = Resources.Load<Card>("ScriptableObject/Monsters/" + cardNameToSave) as Card;
 
-            Printing(cardNameToSave);
             //Remove Monster Card from List
             monsterCards.Remove(monsterCards[monsterCardToMake]);
         }
@@ -54,9 +58,12 @@ public class OpponentHand : MonoBehaviour
             //Making the card name match the card that is drawn
             cardNameToSave = cardNameToSave.Replace(" (SpellCard)", "");
 
+            cardsInHand.Add(cardNameToSave);
+            Printing(cardNameToSave);
+
             SpellCard tempCard = Resources.Load<SpellCard>("ScriptableObject/Spell/" + cardNameToSave) as SpellCard;
 
-            Printing(cardNameToSave);
+
 
             //Remove Spell card from list
             spellCards.Remove(spellCards[randomCardFromDeck]);
@@ -83,5 +90,21 @@ public class OpponentHand : MonoBehaviour
     {
         Printing("card is drawn");
         DrawCard();
+    }
+
+    public void PlayHand()
+    {
+        Printing("card is being played");
+        Printing(cardsInHand.Count.ToString());
+        //Choose a random card to play
+        int cardToChoose = Random.Range(0, cardsInHand.Count);
+        Printing(cardsInHand[cardToChoose]);
+        //Remove card from list
+        Printing(cardsInHand[cardToChoose] + " has been removed from the hand");
+        cardsInHand.Remove(cardsInHand[cardToChoose]);
+        Printing(cardsInHand.Count.ToString());
+
+        //Work on this, this is just a placeholder
+        gameState.AdvanceTurnFromAnotherScript();
     }
 }

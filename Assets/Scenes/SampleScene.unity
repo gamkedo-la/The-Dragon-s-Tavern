@@ -5689,6 +5689,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c99503071c54a574caa4e7a7f9cb708e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameState: {fileID: 1784273360}
   initialCardsToDraw: 5
   monsterCards:
   - {fileID: 11400000, guid: 3a8777e39da5e2841b8fdb589836e5e8, type: 2}
@@ -5713,6 +5714,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8f6885d5cd0c35444870c63e77f41f7c, type: 2}
   - {fileID: 11400000, guid: 84c0619525b59894eb688005ce9e1fbb, type: 2}
   - {fileID: 11400000, guid: c7b8009921ae1064c8c716c745d4b788, type: 2}
+  cardsInHand: []
 --- !u!1 &937462079
 GameObject:
   m_ObjectHideFlags: 0

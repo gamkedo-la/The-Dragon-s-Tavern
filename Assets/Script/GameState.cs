@@ -187,7 +187,8 @@ public class GameState : MonoBehaviour
     void AISet()
     {
         displayCurrentState.text = "AI Set";
-        StartCoroutine(CycleTurnThisIsTemp());
+        opponentHand.PlayHand();
+        //StartCoroutine(CycleTurnThisIsTemp());
     }
 
     void AIAttack()
@@ -205,6 +206,12 @@ public class GameState : MonoBehaviour
     IEnumerator CycleTurnThisIsTemp()
     {
         yield return new WaitForSeconds(2f);
+        gamePhase++;
+        DetermineTurn();
+    }
+
+    public void AdvanceTurnFromAnotherScript()
+    {
         gamePhase++;
         DetermineTurn();
     }
