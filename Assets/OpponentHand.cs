@@ -26,8 +26,10 @@ public class OpponentHand : MonoBehaviour
     public GameObject monsterCard, spellCard;
     GameObject cardCreated;
 
+    public List<GameObject> opponentsVisualCardsInHand;
     public GameObject opponentVisualCard;
     public Transform opponentHand;
+    GameObject toBeDestroyed;
 
     private void Start()
     {
@@ -42,6 +44,7 @@ public class OpponentHand : MonoBehaviour
         newCard.transform.parent = opponentHand.transform;
         newCard.transform.position = new Vector3(0, 0, 0);
         newCard.transform.localScale = new Vector3(1, 30, 20);
+        opponentsVisualCardsInHand.Add(newCard);
 
         //List of Monster Cards and Spell cards are public right now. May want to hide that eventually.
 
@@ -131,6 +134,7 @@ public class OpponentHand : MonoBehaviour
 
     void ChooseWhereToPlayCard()
     {
+        //play card on table
         randomOpenPlayableSpot = Random.Range(0, playableAreas.Length);
         if (playableAreas[randomOpenPlayableSpot].transform.childCount != 0)
         {
@@ -138,6 +142,12 @@ public class OpponentHand : MonoBehaviour
         }
         else
         {
+            //visually pick random card from hand and put on table
+            int pulledCardVisual = Random.Range(0, opponentsVisualCardsInHand.Count);
+            toBeDestroyed = opponentsVisualCardsInHand[pulledCardVisual];
+            opponentsVisualCardsInHand.Remove(opponentsVisualCardsInHand[pulledCardVisual]);
+            Destroy(toBeDestroyed);
+
             Printing(cardsInHand[cardToChoose]);
             //this is a valid location
             cardCreated = Instantiate(monsterCard, playableAreas[randomOpenPlayableSpot].transform.position, Quaternion.identity) as GameObject;
