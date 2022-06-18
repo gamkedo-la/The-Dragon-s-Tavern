@@ -26,6 +26,9 @@ public class OpponentHand : MonoBehaviour
     public GameObject monsterCard, spellCard;
     GameObject cardCreated;
 
+    public GameObject opponentVisualCard;
+    public Transform opponentHand;
+
     private void Start()
     {
         //draw initial hand
@@ -35,6 +38,11 @@ public class OpponentHand : MonoBehaviour
 
     public void DrawCard()
     {
+        newCard = Instantiate(opponentVisualCard, transform.position, transform.rotation) as GameObject;
+        newCard.transform.parent = opponentHand.transform;
+        newCard.transform.position = new Vector3(0, 0, 0);
+        newCard.transform.localScale = new Vector3(1, 30, 20);
+
         //List of Monster Cards and Spell cards are public right now. May want to hide that eventually.
 
         //run a deck random number counter
@@ -142,5 +150,4 @@ public class OpponentHand : MonoBehaviour
             cardCreated.GetComponentInChildren<CardDisplay>().ReadyToInit();
         }
     }
-
 }
