@@ -50,7 +50,7 @@ public class OpponentHand : MonoBehaviour
             cardNameToSave = cardNameToSave.Replace(" (Card)", "");
 
             cardsInHand.Add(cardNameToSave);
-           // Printing(cardNameToSave);
+            Printing(cardNameToSave);
 
             Card tempCard = Resources.Load<Card>("ScriptableObject/Monsters/" + cardNameToSave) as Card;
 
@@ -66,7 +66,7 @@ public class OpponentHand : MonoBehaviour
             cardNameToSave = cardNameToSave.Replace(" (SpellCard)", "");
 
             cardsInHand.Add(cardNameToSave);
-          //  Printing(cardNameToSave);
+            Printing(cardNameToSave);
 
             SpellCard tempCard = Resources.Load<SpellCard>("ScriptableObject/Spell/" + cardNameToSave) as SpellCard;
 
@@ -95,7 +95,7 @@ public class OpponentHand : MonoBehaviour
     }
     public void DrawACard()
     {
-       // Printing("card is drawn");
+        Printing("card is drawn");
         DrawCard();
     }
 
@@ -130,12 +130,16 @@ public class OpponentHand : MonoBehaviour
         }
         else
         {
+            Printing(cardsInHand[cardToChoose]);
             //this is a valid location
+            cardCreated = Instantiate(monsterCard, playableAreas[randomOpenPlayableSpot].transform.position, Quaternion.identity) as GameObject;
+            cardCreated.transform.parent = playableAreas[randomOpenPlayableSpot].transform;
+            cardCreated.transform.localScale = new Vector3(.7f, .45f, .8f);
+            cardCreated.transform.localRotation = Quaternion.identity;
+            cardCreated.transform.localPosition = new Vector3(35, 0, 0);
 
-            GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            cube.transform.parent = playableAreas[randomOpenPlayableSpot].transform;
-            cube.transform.localPosition = new Vector3(0, 0, 0);
-            cube.transform.localScale = new Vector3(100f, 100f, 100f);
+            cardCreated.GetComponentInChildren<CardDisplay>().card = Resources.Load<Card>("ScriptableObject/Monsters/" + cardsInHand[cardToChoose]) as Card;
+            cardCreated.GetComponentInChildren<CardDisplay>().ReadyToInit();
         }
     }
 

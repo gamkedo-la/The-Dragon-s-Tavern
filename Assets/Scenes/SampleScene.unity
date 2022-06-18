@@ -4559,15 +4559,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bbfa531222b7d9f40881afdc35aad9ee, type: 2}
   - {fileID: 11400000, guid: c4bd62bf71dd4104ea5fe17803290b56, type: 2}
   - {fileID: 11400000, guid: 85542a59dd54c294f80714c7aaa43097, type: 2}
-  spellCards:
-  - {fileID: 11400000, guid: afb1de2208d02064cb612355c9556784, type: 2}
-  - {fileID: 11400000, guid: 037c0dbe329ed8d47998f4b3ba1c6a0a, type: 2}
-  - {fileID: 11400000, guid: bd08f2420c77484468fa1d2fba1677db, type: 2}
-  - {fileID: 11400000, guid: 2bd14efeca58dd64ea26fbac312b06f5, type: 2}
-  - {fileID: 11400000, guid: 50c53826916f8fa4389168c71009aa6c, type: 2}
-  - {fileID: 11400000, guid: 8f6885d5cd0c35444870c63e77f41f7c, type: 2}
-  - {fileID: 11400000, guid: 84c0619525b59894eb688005ce9e1fbb, type: 2}
-  - {fileID: 11400000, guid: c7b8009921ae1064c8c716c745d4b788, type: 2}
+  spellCards: []
   cardsInHand: []
   playableAreas:
   - {fileID: 1535898748}
