@@ -363,6 +363,8 @@ public class CardDisplay : MonoBehaviour
                 if (cardsOnTable[i].GetComponent<CardDisplay>().card.attack <= 0)
                 {
                     print("Remove from field");
+                    //we need to reget the cards on the table (don't loop through this)
+                    Destroy(cardsOnTable[i].transform.parent.gameObject);
                 }
             }
          /*   if (isEnemyCard)
