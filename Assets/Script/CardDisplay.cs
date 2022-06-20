@@ -23,8 +23,10 @@ public class CardDisplay : MonoBehaviour
 
     //Determines if it is a spell or a monster
     public bool isMonster;
-    public Card card;
+    public Card card; //mmonster card
     public SpellCard spellCard;
+
+    public int attackBonus = 0, defenseBonus = 0;
     //
 
     //Needed to display the card info on the card itself
@@ -247,10 +249,16 @@ public class CardDisplay : MonoBehaviour
         {
             if (cardsOnTable[i].card.type.ToString() == "Lore")
             {
+                //for each Lore card, you're adding one so 3 cards would be 3 bonus
+                /*
                 int totalCards = cardsOnTable.Length;
+                cardsOnTable[i].defenseBonus += totalCards;*/
+                //
 
-                cardsOnTable[i].card.defense += totalCards;
-                cardsOnTable[i].def.text = cardsOnTable[i].card.defense.ToString();
+                //this is increasing it by 1 regardless of the card count on the table
+                cardsOnTable[i].defenseBonus += 1;
+
+                cardsOnTable[i].def.text = (cardsOnTable[i].card.defense + cardsOnTable[i].defenseBonus).ToString();
             }
         }
         StartCoroutine(RemovePlayedCard());
