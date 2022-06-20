@@ -235,8 +235,20 @@ public class CardDisplay : MonoBehaviour
         {
             AncestralLore();
         }
+        else if (spellCard.name == "Inverted Tarot")
+        {
+            InvertedTarot();
+        }
+        else if (spellCard.name == "Lost Collar")
+        {
+            LostCollar();
+        }
+        else if (spellCard.name == "Lost In Quicksand")
+        {
+            Quicksand();
+        }
     }
-
+    #region Spells
     public void AncestralLore()
     {
         //Scoop up cards in the parent
@@ -250,13 +262,13 @@ public class CardDisplay : MonoBehaviour
             if (cardsOnTable[i].card.type.ToString() == "Lore")
             {
                 //for each Lore card, you're adding one so 3 cards would be 3 bonus
-                /*
+                
                 int totalCards = cardsOnTable.Length;
-                cardsOnTable[i].defenseOffset += totalCards;*/
+                cardsOnTable[i].defenseOffset += totalCards;
                 //
 
                 //this is increasing it by 1 regardless of the card count on the table
-                cardsOnTable[i].defenseOffset += 1;
+               // cardsOnTable[i].defenseOffset += 1;
 
                 cardsOnTable[i].def.text = (cardsOnTable[i].card.defense + cardsOnTable[i].defenseOffset).ToString();
             }
@@ -266,9 +278,8 @@ public class CardDisplay : MonoBehaviour
 
     public void CharasmaticSpeech()
     {
-        //Scoop up cards in the parent
-        playerCardPlacementOnTableParent = GameObject.Find("Player's Play Area").transform;
         enemyCardPlacementOnTableParent = GameObject.Find("Opponent's Play Area").transform;
+
         CardDisplay[] cardsOnTable = enemyCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
 
         for (int i = 0; i < cardsOnTable.Length; i++)
@@ -278,6 +289,7 @@ public class CardDisplay : MonoBehaviour
             cardsOnTable[i].att.text = cardsOnTable[i].card.attack.ToString();
             print(cardsOnTable[i].card.attack);
         }
+
         StartCoroutine(RemovePlayedCard());
     }
 
@@ -310,6 +322,62 @@ public class CardDisplay : MonoBehaviour
         StartCoroutine(RemovePlayedCard());
     }
 
+    public void InvertedTarot()
+    {
+        //Scoop up cards in the parent
+        playerCardPlacementOnTableParent = GameObject.Find("Player's Play Area").transform;
+        enemyCardPlacementOnTableParent = GameObject.Find("Opponent's Play Area").transform;
+
+        CardDisplay[] cardsOnTable = playerCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
+
+        for (int i = 0; i < cardsOnTable.Length; i++)
+        {
+            if (cardsOnTable[i].card.type.ToString() == "Tarot")
+            {
+                cardsOnTable[i].attackOffset += 1;
+
+                cardsOnTable[i].att.text = (cardsOnTable[i].card.attack + cardsOnTable[i].attackOffset).ToString();
+            }
+        }
+        StartCoroutine(RemovePlayedCard());
+    }
+
+    public void LostCollar()
+    {
+        //Scoop up cards in the parent
+        playerCardPlacementOnTableParent = GameObject.Find("Player's Play Area").transform;
+        enemyCardPlacementOnTableParent = GameObject.Find("Opponent's Play Area").transform;
+
+        CardDisplay[] cardsOnTable = playerCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
+
+        for (int i = 0; i < cardsOnTable.Length; i++)
+        {
+            if (cardsOnTable[i].card.type.ToString() == "Pet")
+            {
+                cardsOnTable[i].attackOffset -= 1;
+                cardsOnTable[i].defenseOffset += 2;
+
+                cardsOnTable[i].att.text = (cardsOnTable[i].card.attack + cardsOnTable[i].attackOffset).ToString();
+                cardsOnTable[i].def.text = (cardsOnTable[i].card.defense + cardsOnTable[i].defenseOffset).ToString();
+            }
+        }
+        StartCoroutine(RemovePlayedCard());
+    }
+
+    public void Quicksand()
+    {
+        enemyCardPlacementOnTableParent = GameObject.Find("Opponent's Play Area").transform;
+
+        CardDisplay[] cardsOnTable = enemyCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
+
+        print(cardsOnTable[0].name);
+
+        int randomDestroy = Random.Range(0, cardsOnTable.Length);
+        Destroy(cardsOnTable[randomDestroy].transform.parent.gameObject);
+
+        StartCoroutine(RemovePlayedCard());
+    }
+    #endregion
     IEnumerator RemovePlayedCard()
     {
         yield return new WaitForSeconds(2f);
