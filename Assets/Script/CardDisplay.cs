@@ -340,7 +340,19 @@ public class CardDisplay : MonoBehaviour
 
             print(buttonName.GetComponent<CardDisplay>().card.defense);
 
-            if (isEnemyCard)
+            CardDisplay[] cardsOnTable = enemyCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
+
+            for (int i = 0; i < cardsOnTable.Length; i++)
+            {
+                cardsOnTable[i].GetComponent<CardDisplay>().card.attack -= playerAttack = this.card.attack;
+                print(cardsOnTable[i].card.attack);
+                cardsOnTable[i].att.text = cardsOnTable[i].card.attack.ToString();
+                if (cardsOnTable[i].GetComponent<CardDisplay>().card.attack <= 0)
+                {
+                    print("Remove from field");
+                }
+            }
+         /*   if (isEnemyCard)
             {
                 if (inDefense)
                 {
@@ -351,7 +363,7 @@ public class CardDisplay : MonoBehaviour
                     print(buttonName.GetComponent<CardDisplay>().card.attack);
                 }
                 
-            }
+            }*/
             monsterTargeted = false;
             UpdateCardColors();
         }
@@ -370,7 +382,7 @@ public class CardDisplay : MonoBehaviour
             {
                 if (monsterTargeted)
                 {
-                    cardsOnTable[i].GetComponent<Image>().color = Color.cyan;
+                    cardsOnTable[i].GetComponent<Image>().color = Color.red;
                 }
                 else
                 {

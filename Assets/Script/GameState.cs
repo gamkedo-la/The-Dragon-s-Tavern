@@ -142,7 +142,9 @@ public class GameState : MonoBehaviour
         playerEndSetButton.SetActive(true);
 
         playerPointsImage.SetActive(true);
-        CurrencyThisTurn = 4;
+
+        //change this back to 4
+        CurrencyThisTurn = 10;
         UpdateCardValueUI();
     }
 
