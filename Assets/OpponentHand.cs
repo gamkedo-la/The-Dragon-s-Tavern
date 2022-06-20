@@ -133,7 +133,7 @@ public class OpponentHand : MonoBehaviour
         Printing(cardsInHand.Count.ToString());
 
         //Work on this, this is just a placeholder
-        gameState.AdvanceTurnFromAnotherScript();
+  //      gameState.AdvanceTurnFromAnotherScript();
     }
 
     void ChooseWhereToPlayCard()

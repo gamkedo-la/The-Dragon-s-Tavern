@@ -190,7 +190,10 @@ public class GameState : MonoBehaviour
     {
         displayCurrentState.text = "AI Set";
         opponentHand.PlayHand();
-        //StartCoroutine(CycleTurnThisIsTemp());
+        opponentHand.PlayHand();
+
+        //this is only temporary for the opponent to play two cards in one turn;
+        AdvanceTurnFromAnotherScript();
     }
 
     void AIAttack()

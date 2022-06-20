@@ -26,7 +26,7 @@ public class CardDisplay : MonoBehaviour
     public Card card; //mmonster card
     public SpellCard spellCard;
 
-    public int attackBonus = 0, defenseBonus = 0;
+    public int attackOffset = 0, defenseOffset = 0;
     //
 
     //Needed to display the card info on the card itself
@@ -252,13 +252,13 @@ public class CardDisplay : MonoBehaviour
                 //for each Lore card, you're adding one so 3 cards would be 3 bonus
                 /*
                 int totalCards = cardsOnTable.Length;
-                cardsOnTable[i].defenseBonus += totalCards;*/
+                cardsOnTable[i].defenseOffset += totalCards;*/
                 //
 
                 //this is increasing it by 1 regardless of the card count on the table
-                cardsOnTable[i].defenseBonus += 1;
+                cardsOnTable[i].defenseOffset += 1;
 
-                cardsOnTable[i].def.text = (cardsOnTable[i].card.defense + cardsOnTable[i].defenseBonus).ToString();
+                cardsOnTable[i].def.text = (cardsOnTable[i].card.defense + cardsOnTable[i].defenseOffset).ToString();
             }
         }
         StartCoroutine(RemovePlayedCard());
@@ -344,7 +344,12 @@ public class CardDisplay : MonoBehaviour
     {
         if (monsterTargeted)
         {
-            playerAttack = this.card.attack;
+            playerAttack = (this.card.attack + attackOffset);
+            print(playerAttack + "total attack");
+            if (this.card.attack <= 0)
+            {
+                Debug.LogWarning("Player attack is negative - did a sign get flipped? This card: " + this.card.name + " has an attack of: " + this.card.attack);
+            }
 
             print(buttonName.GetComponent<CardDisplay>().card.defense);
 
@@ -352,7 +357,7 @@ public class CardDisplay : MonoBehaviour
 
             for (int i = 0; i < cardsOnTable.Length; i++)
             {
-                cardsOnTable[i].GetComponent<CardDisplay>().card.attack -= playerAttack = this.card.attack;
+                cardsOnTable[i].GetComponent<CardDisplay>().card.attack -= playerAttack;
                 print(cardsOnTable[i].card.attack);
                 cardsOnTable[i].att.text = cardsOnTable[i].card.attack.ToString();
                 if (cardsOnTable[i].GetComponent<CardDisplay>().card.attack <= 0)
