@@ -156,15 +156,10 @@ public class OpponentHand : MonoBehaviour
             //this is a valid location
             cardCreated = Instantiate(monsterCard, playableAreas[randomOpenPlayableSpot].transform.position, Quaternion.identity) as GameObject;
             cardCreated.transform.parent = playableAreas[randomOpenPlayableSpot].transform;
-            cardCreated.transform.localScale = new Vector3(.7f, .45f, .8f);
-            cardCreated.transform.localRotation = Quaternion.identity;
-            cardCreated.transform.localPosition = new Vector3(35, 0, 0);
 
-            cardCreated.GetComponentInChildren<CardDisplay>().card = Resources.Load<Card>("ScriptableObject/Monsters/" + cardsInHand[cardToChoose]) as Card;
-            cardCreated.GetComponentInChildren<CardDisplay>().ReadyToInit();
-
-            //chooseAttackOrDefense
             int choosePosition = Random.Range(0, 2);
+
+            //Defense
             if (choosePosition == 1)
             {
                 cardCreated.GetComponentInChildren<CardDisplay>().inDefense = true;
@@ -172,6 +167,21 @@ public class OpponentHand : MonoBehaviour
                 cardCreated.transform.localRotation = Quaternion.Euler(0, 0, 90);
                 cardCreated.transform.localPosition = new Vector3(0, 20, 0);
             }
+            //Attack
+            else
+            {
+                cardCreated.transform.localScale = new Vector3(.7f, .45f, .8f);
+                cardCreated.transform.localRotation = Quaternion.identity;
+                cardCreated.transform.localPosition = new Vector3(35, 0, 0);
+            }
+
+            print(cardCreated.GetComponentInChildren<CardDisplay>().inDefense);
+
+            cardCreated.GetComponentInChildren<CardDisplay>().card = Resources.Load<Card>("ScriptableObject/Monsters/" + cardsInHand[cardToChoose]) as Card;
+            cardCreated.GetComponentInChildren<CardDisplay>().ReadyToInit();
+
+            //chooseAttackOrDefense
+            
         }
     }
 }

@@ -425,15 +425,33 @@ public class CardDisplay : MonoBehaviour
 
             for (int i = 0; i < cardsOnTable.Length; i++)
             {
-                cardsOnTable[i].GetComponent<CardDisplay>().card.attack -= playerAttack;
-                print(cardsOnTable[i].card.attack);
-                cardsOnTable[i].att.text = cardsOnTable[i].card.attack.ToString();
-                if (cardsOnTable[i].GetComponent<CardDisplay>().card.attack <= 0)
+                print(cardsOnTable[i].GetComponent<CardDisplay>().card.inDefense);
+
+                if (cardsOnTable[i].GetComponent<CardDisplay>().card.inDefense)
                 {
-                    print("Remove from field");
-                    //we need to reget the cards on the table (don't loop through this)
-                    Destroy(cardsOnTable[i].transform.parent.gameObject);
+                    cardsOnTable[i].GetComponent<CardDisplay>().card.defense -= playerAttack;
+                    //print(cardsOnTable[i].card.defense);
+                    cardsOnTable[i].def.text = cardsOnTable[i].card.defense.ToString();
+                    if (cardsOnTable[i].GetComponent<CardDisplay>().card.defense <= 0)
+                    {
+                        print("Remove from field");
+                        //we need to reget the cards on the table (don't loop through this)
+                        Destroy(cardsOnTable[i].transform.parent.gameObject);
+                    }
                 }
+                else
+                {
+                    cardsOnTable[i].GetComponent<CardDisplay>().card.attack -= playerAttack;
+                   // print(cardsOnTable[i].card.attack);
+                    cardsOnTable[i].att.text = cardsOnTable[i].card.attack.ToString();
+                    if (cardsOnTable[i].GetComponent<CardDisplay>().card.attack <= 0)
+                    {
+                        print("Remove from field");
+                        //we need to reget the cards on the table (don't loop through this)
+                        Destroy(cardsOnTable[i].transform.parent.gameObject);
+                    }
+                }
+                
             }
          /*   if (isEnemyCard)
             {
