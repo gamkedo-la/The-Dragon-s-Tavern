@@ -163,7 +163,7 @@ public class GameState : MonoBehaviour
        
         for (int i = 0; i < cardsOnTable.Length; i++)
         {
-            Debug.Log(cardsOnTable[i].NameOfCard());
+           // Debug.Log(cardsOnTable[i].NameOfCard());
         }
 
         //this should check the rules between the cards, may reference functions from other cards
@@ -189,6 +189,8 @@ public class GameState : MonoBehaviour
     void AISet()
     {
         displayCurrentState.text = "AI Set";
+        opponentHand.PlayHand();
+        opponentHand.PlayHand();
         opponentHand.PlayHand();
         opponentHand.PlayHand();
 

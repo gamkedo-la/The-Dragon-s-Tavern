@@ -17,5 +17,6 @@ MonoBehaviour:
   type: Human
   artwork: {fileID: 0}
   cost: 2
-  attack: 1
-  defense: 3
+  attack: 8
+  defense: 8
+  inDefense: 0

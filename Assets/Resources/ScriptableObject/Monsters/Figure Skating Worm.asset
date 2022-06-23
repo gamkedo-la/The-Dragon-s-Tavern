@@ -17,5 +17,6 @@ MonoBehaviour:
   type: Creature
   artwork: {fileID: 0}
   cost: 1
-  attack: 2
-  defense: 2
+  attack: 8
+  defense: 8
+  inDefense: 0

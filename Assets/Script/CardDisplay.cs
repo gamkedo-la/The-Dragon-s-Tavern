@@ -410,24 +410,26 @@ public class CardDisplay : MonoBehaviour
 
     public void CardAttackingOtherCard(Button buttonName)
     {
+        enemyCardPlacementOnTableParent = GameObject.Find("Opponent's Play Area").transform;
+
         if (monsterTargeted)
         {
             playerAttack = (this.card.attack + attackOffset);
-            print(playerAttack + "total attack");
+           // print(playerAttack + "total attack");
             if (this.card.attack <= 0)
             {
                 Debug.LogWarning("Player attack is negative - did a sign get flipped? This card: " + this.card.name + " has an attack of: " + this.card.attack);
             }
 
-            print(buttonName.GetComponent<CardDisplay>().card.defense);
+           // print(buttonName.GetComponent<CardDisplay>().card.defense);
 
             CardDisplay[] cardsOnTable = enemyCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
 
             for (int i = 0; i < cardsOnTable.Length; i++)
             {
-                print(cardsOnTable[i].GetComponent<CardDisplay>().card.inDefense);
+       //         print(cardsOnTable[i].GetComponent<CardDisplay>().card.name + " " + cardsOnTable[i].GetComponent<CardDisplay>().card.inDefense);
 
-                if (cardsOnTable[i].GetComponent<CardDisplay>().card.inDefense)
+                if (cardsOnTable[i].GetComponent<CardDisplay>().card.inDefense == true)
                 {
                     cardsOnTable[i].GetComponent<CardDisplay>().card.defense -= playerAttack;
                     //print(cardsOnTable[i].card.defense);
@@ -436,7 +438,7 @@ public class CardDisplay : MonoBehaviour
                     {
                         print("Remove from field");
                         //we need to reget the cards on the table (don't loop through this)
-                        Destroy(cardsOnTable[i].transform.parent.gameObject);
+                    //    Destroy(cardsOnTable[i].transform.parent.gameObject);
                     }
                 }
                 else
@@ -446,25 +448,15 @@ public class CardDisplay : MonoBehaviour
                     cardsOnTable[i].att.text = cardsOnTable[i].card.attack.ToString();
                     if (cardsOnTable[i].GetComponent<CardDisplay>().card.attack <= 0)
                     {
-                        print("Remove from field");
-                        //we need to reget the cards on the table (don't loop through this)
+                        //Calculate life point damage
+
+                        //Remove from field
                         Destroy(cardsOnTable[i].transform.parent.gameObject);
                     }
                 }
                 
             }
-         /*   if (isEnemyCard)
-            {
-                if (inDefense)
-                {
-                    print(buttonName.GetComponent<CardDisplay>().card.defense);
-                }
-                else
-                {
-                    print(buttonName.GetComponent<CardDisplay>().card.attack);
-                }
-                
-            }*/
+
             monsterTargeted = false;
             UpdateCardColors();
         }

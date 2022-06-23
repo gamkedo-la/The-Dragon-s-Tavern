@@ -65,7 +65,7 @@ public class OpponentHand : MonoBehaviour
             cardNameToSave = cardNameToSave.Replace(" (Card)", "");
 
             cardsInHand.Add(cardNameToSave);
-            Printing(cardNameToSave);
+          //  Printing(cardNameToSave);
 
             Card tempCard = Resources.Load<Card>("ScriptableObject/Monsters/" + cardNameToSave) as Card;
 
@@ -81,7 +81,7 @@ public class OpponentHand : MonoBehaviour
             cardNameToSave = cardNameToSave.Replace(" (SpellCard)", "");
 
             cardsInHand.Add(cardNameToSave);
-            Printing(cardNameToSave);
+          //  Printing(cardNameToSave);
 
             SpellCard tempCard = Resources.Load<SpellCard>("ScriptableObject/Spell/" + cardNameToSave) as SpellCard;
 
@@ -110,27 +110,27 @@ public class OpponentHand : MonoBehaviour
     }
     public void DrawACard()
     {
-        Printing("card is drawn");
+      //  Printing("card is drawn");
         DrawCard();
     }
 
     public void PlayHand()
     {
-        Printing("card is being played");
-        Printing(cardsInHand.Count.ToString());
+       // Printing("card is being played");
+       // Printing(cardsInHand.Count.ToString());
         //Choose a random card to play
         cardToChoose = Random.Range(0, cardsInHand.Count);
-        Printing(cardsInHand[cardToChoose]);
+       // Printing(cardsInHand[cardToChoose]);
         //Play an instantiated card on the table
-        Printing(cardsInHand[cardToChoose] + " played on the table");
+       // Printing(cardsInHand[cardToChoose] + " played on the table");
 
         // Choose a random spot to create the card
         ChooseWhereToPlayCard();
 
         //Remove card from list
-        Printing(cardsInHand[cardToChoose] + " has been removed from the hand");
+       // Printing(cardsInHand[cardToChoose] + " has been removed from the hand");
         cardsInHand.Remove(cardsInHand[cardToChoose]);
-        Printing(cardsInHand.Count.ToString());
+       // Printing(cardsInHand.Count.ToString());
 
         //Work on this, this is just a placeholder
   //      gameState.AdvanceTurnFromAnotherScript();
@@ -152,17 +152,22 @@ public class OpponentHand : MonoBehaviour
             opponentsVisualCardsInHand.Remove(opponentsVisualCardsInHand[pulledCardVisual]);
             Destroy(toBeDestroyed);
 
-            Printing(cardsInHand[cardToChoose]);
+           // Printing(cardsInHand[cardToChoose]);
             //this is a valid location
             cardCreated = Instantiate(monsterCard, playableAreas[randomOpenPlayableSpot].transform.position, Quaternion.identity) as GameObject;
             cardCreated.transform.parent = playableAreas[randomOpenPlayableSpot].transform;
 
+            cardCreated.GetComponentInChildren<CardDisplay>().card = Resources.Load<Card>("ScriptableObject/Monsters/" + cardsInHand[cardToChoose]) as Card;
+            cardCreated.GetComponentInChildren<CardDisplay>().ReadyToInit();
+
+            //chooseAttackOrDefense
+
             int choosePosition = Random.Range(0, 2);
 
             //Defense
-            if (choosePosition == 1)
+            if (choosePosition == 0)
             {
-                cardCreated.GetComponentInChildren<CardDisplay>().inDefense = true;
+                cardCreated.GetComponentInChildren<CardDisplay>().card.inDefense = true;
                 cardCreated.transform.localScale = new Vector3(.45f, .7f, .8f);
                 cardCreated.transform.localRotation = Quaternion.Euler(0, 0, 90);
                 cardCreated.transform.localPosition = new Vector3(0, 20, 0);
@@ -175,12 +180,7 @@ public class OpponentHand : MonoBehaviour
                 cardCreated.transform.localPosition = new Vector3(35, 0, 0);
             }
 
-            print(cardCreated.GetComponentInChildren<CardDisplay>().inDefense);
-
-            cardCreated.GetComponentInChildren<CardDisplay>().card = Resources.Load<Card>("ScriptableObject/Monsters/" + cardsInHand[cardToChoose]) as Card;
-            cardCreated.GetComponentInChildren<CardDisplay>().ReadyToInit();
-
-            //chooseAttackOrDefense
+            print(cardCreated.GetComponentInChildren<CardDisplay>().card.name + " " + cardCreated.GetComponentInChildren<CardDisplay>().card.inDefense);
             
         }
     }
