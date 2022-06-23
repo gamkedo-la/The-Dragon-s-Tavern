@@ -14,4 +14,6 @@ public class Card : ScriptableObject
     public int attack;
     public int defense;
 
+    public bool inDefense;
+
 }

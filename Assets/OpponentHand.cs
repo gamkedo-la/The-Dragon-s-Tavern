@@ -162,6 +162,16 @@ public class OpponentHand : MonoBehaviour
 
             cardCreated.GetComponentInChildren<CardDisplay>().card = Resources.Load<Card>("ScriptableObject/Monsters/" + cardsInHand[cardToChoose]) as Card;
             cardCreated.GetComponentInChildren<CardDisplay>().ReadyToInit();
+
+            //chooseAttackOrDefense
+            int choosePosition = Random.Range(0, 2);
+            if (choosePosition == 1)
+            {
+                cardCreated.GetComponentInChildren<CardDisplay>().inDefense = true;
+                cardCreated.transform.localScale = new Vector3(.45f, .7f, .8f);
+                cardCreated.transform.localRotation = Quaternion.Euler(0, 0, 90);
+                cardCreated.transform.localPosition = new Vector3(0, 20, 0);
+            }
         }
     }
 }
