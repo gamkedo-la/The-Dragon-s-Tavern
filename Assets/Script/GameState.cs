@@ -41,6 +41,8 @@ public class GameState : MonoBehaviour
     //Opponent Hand
     public OpponentHand opponentHand;
 
+    CardDisplay cardDisplay;
+
     private void Start()
     {
         //The initial Wait After Player draws their hand to draw a 6th card
@@ -99,8 +101,6 @@ public class GameState : MonoBehaviour
                 break;
             case 2:
                 state = GamePhases.PlayerAttack;
-                playerCamera.SetTrigger("Inward");
-                playerHandUI.SetActive(false);
                 PlayerAttack();
                 break;
             case 3:
@@ -122,8 +122,6 @@ public class GameState : MonoBehaviour
             case 7:
                 state = GamePhases.AIEnd;
                 AIEnd();
-                playerCamera.SetTrigger("Outward");
-                playerHandUI.SetActive(true);
                 break;
         }
     }
@@ -163,6 +161,9 @@ public class GameState : MonoBehaviour
 
     void PlayerAttack()
     {
+        playerCamera.SetTrigger("Inward");
+        playerHandUI.SetActive(false);
+
         playerPointsImage.SetActive(false);
 
         //Scoop up cards in the parent
@@ -170,7 +171,8 @@ public class GameState : MonoBehaviour
        
         for (int i = 0; i < cardsOnTable.Length; i++)
         {
-           // Debug.Log(cardsOnTable[i].NameOfCard());
+            cardsOnTable[i].TurnPlayerInteractableCardsOn();
+            // Debug.Log(ciardsOnTable[i].NameOfCard());
         }
 
         //this should check the rules between the cards, may reference functions from other cards
@@ -182,6 +184,14 @@ public class GameState : MonoBehaviour
 
     void PlayerEnd()
     {
+        //Scoop up cards in the parent
+        CardDisplay[] cardsOnTable = playerCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
+
+        for (int i = 0; i < cardsOnTable.Length; i++)
+        {
+            cardsOnTable[i].TurnPlayerInteractableCardsOff();
+        }
+
         displayCurrentState.text = "Player End";
         StartCoroutine(CycleTurnThisIsTemp());
     }
@@ -213,6 +223,8 @@ public class GameState : MonoBehaviour
 
     void AIEnd()
     {
+        playerCamera.SetTrigger("Outward");
+        playerHandUI.SetActive(true);
         displayCurrentState.text = "AI End";
         StartCoroutine(CycleTurnThisIsTemp());
     }

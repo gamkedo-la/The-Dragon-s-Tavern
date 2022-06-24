@@ -953,6 +953,8 @@ MonoBehaviour:
   isMonster: 1
   card: {fileID: 11400000, guid: 7b385161c18d1d84cac1b64156398bfc, type: 2}
   spellCard: {fileID: 0}
+  attackOffset: 0
+  defenseOffset: 0
   background: {fileID: 7012178180046189779}
   title: {fileID: 7012178181832290226}
   desc: {fileID: 7012178181586897100}
@@ -1016,7 +1018,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 7012178180969407014}
   m_OnClick:
     m_PersistentCalls:

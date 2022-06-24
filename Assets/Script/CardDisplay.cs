@@ -398,6 +398,25 @@ public class CardDisplay : MonoBehaviour
 
     #region Monster Attack
 
+    public void TurnPlayerInteractableCardsOn()
+    {
+        playerCardPlacementOnTableParent = GameObject.Find("Player's Play Area").transform;
+        Button[] playerCardsOnTable = playerCardPlacementOnTableParent.GetComponentsInChildren<Button>();
+        for (int i = 0; i < playerCardsOnTable.Length; i++)
+        {
+            playerCardsOnTable[i].interactable = true;
+        }
+    }
+    public void TurnPlayerInteractableCardsOff()
+    {
+        playerCardPlacementOnTableParent = GameObject.Find("Player's Play Area").transform;
+        Button[] playerCardsOnTable = playerCardPlacementOnTableParent.GetComponentsInChildren<Button>();
+        for (int i = 0; i < playerCardsOnTable.Length; i++)
+        {
+            playerCardsOnTable[i].interactable = false;
+        }
+    }
+
     public void CardClicked()
     {
         if (isMonster && hasBeenPlayed && GameObject.Find("GameState").GetComponent<GameState>().gamePhase == 2)
@@ -410,6 +429,11 @@ public class CardDisplay : MonoBehaviour
 
     public void CardAttackingOtherCard(Button buttonName)
     {
+        
+
+        //Attack All Cards
+
+        /*
         enemyCardPlacementOnTableParent = GameObject.Find("Opponent's Play Area").transform;
 
         if (monsterTargeted)
@@ -459,7 +483,9 @@ public class CardDisplay : MonoBehaviour
 
             monsterTargeted = false;
             UpdateCardColors();
+        
         }
+        */
     }
 
     void UpdateCardColors()
