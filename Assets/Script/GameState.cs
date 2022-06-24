@@ -35,6 +35,9 @@ public class GameState : MonoBehaviour
     bool tooLowOfCurrencyTrigger;
     //
 
+    public Animator playerCamera;
+    public GameObject playerHandUI;
+
     //Opponent Hand
     public OpponentHand opponentHand;
 
@@ -96,6 +99,8 @@ public class GameState : MonoBehaviour
                 break;
             case 2:
                 state = GamePhases.PlayerAttack;
+                playerCamera.SetTrigger("Inward");
+                playerHandUI.SetActive(false);
                 PlayerAttack();
                 break;
             case 3:
@@ -117,6 +122,8 @@ public class GameState : MonoBehaviour
             case 7:
                 state = GamePhases.AIEnd;
                 AIEnd();
+                playerCamera.SetTrigger("Outward");
+                playerHandUI.SetActive(true);
                 break;
         }
     }
