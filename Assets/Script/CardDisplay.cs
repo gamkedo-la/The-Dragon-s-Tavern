@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-public class CardDisplay : MonoBehaviour, IPointerClickHandler
+public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     //This section is to determine the card flip speed with a bool to skip it if it is annoying
     public bool skipCardFlip;
@@ -60,6 +60,9 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler
     bool monsterTargeted;
 
     public GameObject directAttackAgainstOpponent;
+
+    GameObject cardPreview;
+    GameObject previewCard;
 
     public string NameOfCard()
     {
@@ -549,6 +552,54 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler
         {
             inDefense = !inDefense;
             FlipCardPosition();
+        }
+    }
+
+    public void OnPointerEnter(PointerEventData pointerEventData)
+    {
+        #region Preview Card
+        cardPreview = GameObject.Find("CardPreview");
+        for (int i = 0; i < cardPreview.transform.childCount; i++)
+        {
+            cardPreview.transform.GetChild(i).gameObject.SetActive(true);
+        }
+        previewCard = GameObject.Find("PreviewCard");
+
+        if (this.isMonster)
+        {
+            previewCard.GetComponent<CardDisplay>().title.text = card.name;
+            previewCard.GetComponent<CardDisplay>().desc.text = card.description;
+            previewCard.GetComponent<CardDisplay>().def.text = card.defense.ToString();
+            previewCard.GetComponent<CardDisplay>().att.text = card.attack.ToString();
+            previewCard.GetComponent<CardDisplay>().cost.text = card.cost.ToString();
+            previewCard.GetComponent<CardDisplay>().type.text = card.type;
+            previewCard.GetComponent<CardDisplay>().background.sprite = card.artwork;
+            previewCard.GetComponent<Image>().color = new Color32(255, 142, 109, 255);
+
+            previewCard.transform.Find("Attack").gameObject.SetActive(true);
+            previewCard.transform.Find("Defense").gameObject.SetActive(true);
+        }
+        else
+        {
+            previewCard.GetComponent<CardDisplay>().title.text = spellCard.name;
+            previewCard.GetComponent<CardDisplay>().desc.text = spellCard.effect;
+            previewCard.GetComponent<CardDisplay>().type.text = spellCard.type;
+            previewCard.GetComponent<CardDisplay>().background.sprite = spellCard.artwork;
+            previewCard.GetComponent<Image>().color = new Color32(109, 192, 255, 255);
+
+            previewCard.transform.Find("Attack").gameObject.SetActive(false);
+            previewCard.transform.Find("Defense").gameObject.SetActive(false);
+        }
+        #endregion
+    }
+
+    //Detect when Cursor leaves the GameObject
+    public void OnPointerExit(PointerEventData pointerEventData)
+    {
+        cardPreview = GameObject.Find("CardPreview");
+        for (int i = 0; i < cardPreview.transform.childCount; i++)
+        {
+            cardPreview.transform.GetChild(i).gameObject.SetActive(false);
         }
     }
 }

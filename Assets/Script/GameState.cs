@@ -286,7 +286,7 @@ public class GameState : MonoBehaviour
         {
             print("Player Wins!");
         }
-        else if (opponentHealth >= 0)
+        else if (playerHealth <= 0)
         {
             print("Opponent Wins!");
         }
