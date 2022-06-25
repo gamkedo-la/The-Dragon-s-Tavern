@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
-public class CardDisplay : MonoBehaviour
+public class CardDisplay : MonoBehaviour, IPointerClickHandler
 {
     //This section is to determine the card flip speed with a bool to skip it if it is annoying
     public bool skipCardFlip;
@@ -162,12 +164,12 @@ public class CardDisplay : MonoBehaviour
             GameManager.cardPlayed = false;
             Destroy(transform.parent.gameObject);
         }
-
+        /*
         if (Input.GetMouseButtonDown(1) && isMonster && hasBeenPlayed && GameObject.Find("GameState").GetComponent<GameState>().gamePhase == 2)
         {
             inDefense = !inDefense;
             FlipCardPosition();
-        }
+        }*/
     }
 
     public void CardHoverEnter()
@@ -204,15 +206,22 @@ public class CardDisplay : MonoBehaviour
 
     public void FlipCardPosition()
     {
-        if (inDefense)
+        if (this.GetComponentInChildren<Button>().interactable)
         {
-            print("Im in defense!");
-            this.transform.eulerAngles = new Vector3(90, 0, 90); 
-        }
-        else
-        {
-            print("Im in attack!");
-            this.transform.eulerAngles = new Vector3(90, 0, 0);
+            if (inDefense)
+            {
+                this.GetComponentInChildren<CardDisplay>().card.inDefense = true;
+                print("Im in defense!");
+                this.transform.eulerAngles = new Vector3(90, 0, 90);
+                this.GetComponentInChildren<Button>().interactable = false;
+            }
+            else
+            {
+                this.GetComponentInChildren<CardDisplay>().card.inDefense = false;
+                print("Im in attack!");
+                this.transform.eulerAngles = new Vector3(90, 0, 0);
+                this.GetComponentInChildren<Button>().interactable = false;
+            }
         }
     }
 
@@ -429,8 +438,6 @@ public class CardDisplay : MonoBehaviour
 
     public void CardAttackingOtherCard(Button buttonName)
     {
-        
-
         //Attack All Cards
 
         /*
@@ -512,4 +519,13 @@ public class CardDisplay : MonoBehaviour
     }
 
     #endregion
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (eventData.button == PointerEventData.InputButton.Right && isMonster && hasBeenPlayed && GameObject.Find("GameState").GetComponent<GameState>().gamePhase == 2)
+        {
+            inDefense = !inDefense;
+            FlipCardPosition();
+        }
+    }
 }

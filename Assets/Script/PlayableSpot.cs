@@ -85,7 +85,7 @@ public class PlayableSpot : MonoBehaviour
                 //Creating an instance
                 scriptableCardCreated = ScriptableObject.CreateInstance<SpellCard>();
 
-                print(scriptableCardCreated.name);
+                //print(scriptableCardCreated.name);
                 //
                 cardCreated = Instantiate(monsterCard, transform.position, Quaternion.identity) as GameObject;
 
