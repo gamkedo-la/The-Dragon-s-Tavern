@@ -12,4 +12,7 @@ public class GameManager : MonoBehaviour
     public static bool monsterPulled, spellPulled;
     public static bool cardPlayed;
     public static string cardToBePlayed;
+
+    //Store damage dealt
+    public static int directDamage;
 }

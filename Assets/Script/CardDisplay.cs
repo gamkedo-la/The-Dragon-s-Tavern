@@ -59,6 +59,8 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler
 
     bool monsterTargeted;
 
+    public GameObject directAttackAgainstOpponent;
+
     public string NameOfCard()
     {
         if (isMonster)
@@ -438,10 +440,31 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler
 
     public void CardAttackingOtherCard(Button buttonName)
     {
+        enemyCardPlacementOnTableParent = GameObject.Find("Opponent's Play Area").transform;
+
+        CardDisplay[] cardsOnTable = enemyCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
+
+        //Direct attack (no monsters left on the field
+        if (cardsOnTable.Length <= 0)
+        {
+            directAttackAgainstOpponent = GameObject.Find("DirectAttack");
+            directAttackAgainstOpponent.GetComponent<Image>().enabled = true;
+            for (int i = 0; i < directAttackAgainstOpponent.transform.childCount; i++)
+            {
+                directAttackAgainstOpponent.transform.GetChild(i).gameObject.SetActive(true);
+            }
+            directAttackAgainstOpponent.SetActive(true);
+
+            playerAttack = (this.card.attack + attackOffset);
+            GameManager.directDamage = playerAttack;
+            print("attack directly");
+
+            this.GetComponentInChildren<Button>().interactable = false;
+        }
+
         //Attack All Cards
 
         /*
-        enemyCardPlacementOnTableParent = GameObject.Find("Opponent's Play Area").transform;
 
         if (monsterTargeted)
         {

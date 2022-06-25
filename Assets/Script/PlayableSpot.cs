@@ -12,6 +12,10 @@ public class PlayableSpot : MonoBehaviour
     GameObject cardCreated;
     ScriptableObject scriptableCardCreated;
 
+    public bool isDirectAttack;
+
+    public GameState gameState;
+
     private void Start()
     {
         isOpen = true;
@@ -154,6 +158,16 @@ public class PlayableSpot : MonoBehaviour
         //if space occupied by spell - FIXME - implement as above
         //if (occupiedFX) Instantiate(occupiedFX, transform.position, Quaternion.identity);
 
+        if (isDirectAttack)
+        {
+            if (GameObject.Find("GameState").GetComponent<GameState>().gamePhase == 2)
+            {
+                print("lower LP");
+                GameState.opponentHealth -= GameManager.directDamage;
+                GameManager.directDamage = 0;
+                gameState.UpdateHealthUI();
+            }
+        }
     }
 
     private void OnMouseOver()

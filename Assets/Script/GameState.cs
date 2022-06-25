@@ -43,10 +43,20 @@ public class GameState : MonoBehaviour
 
     CardDisplay cardDisplay;
 
+    //Life Points
+    public Text playerHealthUI, opponentHealthUI;
+    public static int playerHealth, opponentHealth; 
+
+    public static int turnCount;
+
     private void Start()
     {
         //The initial Wait After Player draws their hand to draw a 6th card
         StartCoroutine(InitialWait());
+
+        playerHealth = opponentHealth = 10;
+        UpdateHealthUI();
+        turnCount = 0;
     }
     IEnumerator InitialWait()
     {
@@ -129,6 +139,8 @@ public class GameState : MonoBehaviour
     void PlayerDraw()
     {
         displayCurrentState.text = "Player Draw";
+
+        turnCount++;
 
         gamePhase++;
         StartCoroutine(WaitForPlayerDraw());
@@ -263,5 +275,20 @@ public class GameState : MonoBehaviour
     {
         currencyBackground.color = notEnoughCurrencyColor;
         tooLowOfCurrencyTrigger = true;
+    }
+
+    public void UpdateHealthUI()
+    {
+        playerHealthUI.text = playerHealth.ToString();
+        opponentHealthUI.text = opponentHealth.ToString();
+
+        if (opponentHealth <= 0)
+        {
+            print("Player Wins!");
+        }
+        else if (opponentHealth >= 0)
+        {
+            print("Opponent Wins!");
+        }
     }
 }
