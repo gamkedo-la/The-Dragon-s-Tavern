@@ -15,4 +15,6 @@ public class GameManager : MonoBehaviour
 
     //Store damage dealt
     public static int directDamage;
+    public static int attackDamage;
+    public static bool playerAttacking;
 }

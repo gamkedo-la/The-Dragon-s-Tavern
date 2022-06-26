@@ -443,6 +443,8 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         if (isMonster && !inDefense && hasBeenPlayed && GameObject.Find("GameState").GetComponent<GameState>().gamePhase == 2)
         {
             monsterTargeted = true;
+            GameManager.attackDamage = this.card.attack + attackOffset;
+            GameManager.playerAttacking = true;
 
             UpdateCardColors();
         }
@@ -561,11 +563,23 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             FlipCardPosition();
         }
 
-        if (this.gameObject.GetComponent<CardDisplay>().card.playedByAI && monsterTargeted && eventData.button == PointerEventData.InputButton.Left)
+        if (this.gameObject.GetComponent<CardDisplay>().card.playedByAI && GameManager.playerAttacking && eventData.button == PointerEventData.InputButton.Left)
         {
             print(this.gameObject.GetComponent<CardDisplay>().card.name);
-            print("calculate damage");
+
+            if (!this.gameObject.GetComponent<CardDisplay>().card.inDefense)
+            {
+                print("calculate attack v defense:" + GameManager.attackDamage + " " + this.gameObject.GetComponent<CardDisplay>().card.defense);
+            }
+            else
+            {
+                print("calculate attack v attack:" + GameManager.attackDamage + " " + this.gameObject.GetComponent<CardDisplay>().card.attack);
+            }
+
             monsterTargeted = false;
+
+            GameManager.attackDamage = 0;
+            GameManager.playerAttacking = false;
         }
     }
 
