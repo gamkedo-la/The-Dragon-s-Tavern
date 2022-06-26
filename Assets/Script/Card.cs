@@ -15,5 +15,6 @@ public class Card : ScriptableObject
     public int defense;
 
     public bool inDefense;
+    public bool playedByAI;
 
 }

@@ -420,6 +420,13 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         {
             playerCardsOnTable[i].interactable = true;
         }
+
+        enemyCardPlacementOnTableParent = GameObject.Find("Opponent's Play Area").transform;
+        Button[] opponentCardsOnTable = enemyCardPlacementOnTableParent.GetComponentsInChildren<Button>();
+        for (int i = 0; i < opponentCardsOnTable.Length; i++)
+        {
+            opponentCardsOnTable[i].interactable = true;
+        }
     }
     public void TurnPlayerInteractableCardsOff()
     {
@@ -433,7 +440,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     public void CardClicked()
     {
-        if (isMonster && hasBeenPlayed && GameObject.Find("GameState").GetComponent<GameState>().gamePhase == 2)
+        if (isMonster && !inDefense && hasBeenPlayed && GameObject.Find("GameState").GetComponent<GameState>().gamePhase == 2)
         {
             monsterTargeted = true;
 
@@ -552,6 +559,13 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         {
             inDefense = !inDefense;
             FlipCardPosition();
+        }
+
+        if (this.gameObject.GetComponent<CardDisplay>().card.playedByAI && monsterTargeted && eventData.button == PointerEventData.InputButton.Left)
+        {
+            print(this.gameObject.GetComponent<CardDisplay>().card.name);
+            print("calculate damage");
+            monsterTargeted = false;
         }
     }
 

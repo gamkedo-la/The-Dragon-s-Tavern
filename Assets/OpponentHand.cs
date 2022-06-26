@@ -160,6 +160,8 @@ public class OpponentHand : MonoBehaviour
             cardCreated.GetComponentInChildren<CardDisplay>().card = Resources.Load<Card>("ScriptableObject/Monsters/" + cardsInHand[cardToChoose]) as Card;
             cardCreated.GetComponentInChildren<CardDisplay>().ReadyToInit();
 
+            cardCreated.GetComponentInChildren<CardDisplay>().card.playedByAI = true;
+
             //chooseAttackOrDefense
 
             int choosePosition = Random.Range(0, 2);
@@ -181,7 +183,7 @@ public class OpponentHand : MonoBehaviour
             }
 
             print(cardCreated.GetComponentInChildren<CardDisplay>().card.name + " " + cardCreated.GetComponentInChildren<CardDisplay>().card.inDefense);
-            
+
         }
     }
 }
