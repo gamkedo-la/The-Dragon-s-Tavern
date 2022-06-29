@@ -3491,6 +3491,8 @@ MonoBehaviour:
   hasBeenPlayed: 0
   inDefense: 0
   directAttackAgainstOpponent: {fileID: 0}
+  tributeButton: {fileID: 0}
+  tributeNo: {fileID: 0}
 --- !u!114 &631941413
 MonoBehaviour:
   m_ObjectHideFlags: 0

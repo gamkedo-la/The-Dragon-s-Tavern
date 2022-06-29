@@ -160,6 +160,14 @@ public class GameState : MonoBehaviour
 
         playerPointsImage.SetActive(true);
 
+        //Turn interaction of cards on for cards that were on the table at the start of the turn (tributable)
+        CardDisplay[] cardsOnTable = playerCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
+
+        for (int i = 0; i < cardsOnTable.Length; i++)
+        {
+            cardsOnTable[i].TurnPlayerInteractableCardsOn();
+        }
+
         //change this back to 4
         CurrencyThisTurn = 10;
         UpdateCardValueUI();
@@ -184,13 +192,19 @@ public class GameState : MonoBehaviour
         for (int i = 0; i < cardsOnTable.Length; i++)
         {
             cardsOnTable[i].TurnPlayerInteractableCardsOn();
-            // Debug.Log(ciardsOnTable[i].NameOfCard());
+        }
+
+        CardDisplay[] opponentCardsOnTable = enemyCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
+        for (int i = 0; i < opponentCardsOnTable.Length; i++)
+        {
+            opponentCardsOnTable[i].TurnEnemyInteractableCardsOn();
         }
 
         //this should check the rules between the cards, may reference functions from other cards
         //the actual doing of the stuff should be on the card display (updating HP or functions)
 
         displayCurrentState.text = "Player Attack";
+        playerEndAttackButton.GetComponent<Button>().interactable = true;
         playerEndAttackButton.SetActive(true);
     }
 

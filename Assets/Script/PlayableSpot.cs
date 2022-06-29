@@ -31,6 +31,11 @@ public class PlayableSpot : MonoBehaviour
         {
             this.GetComponent<Image>().color = Color.white;
         }
+
+        if (this.transform.childCount <= 0)
+        {
+            isOpen = true;
+        }
     }
 
     private void OnMouseDown()

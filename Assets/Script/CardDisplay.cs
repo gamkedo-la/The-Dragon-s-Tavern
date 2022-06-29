@@ -64,6 +64,9 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     GameObject cardPreview;
     GameObject previewCard;
 
+
+    public GameObject tributeButton, tributeNo;
+
     public string NameOfCard()
     {
         if (isMonster)
@@ -420,7 +423,10 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         {
             playerCardsOnTable[i].interactable = true;
         }
+    }
 
+    public void TurnEnemyInteractableCardsOn()
+    {
         enemyCardPlacementOnTableParent = GameObject.Find("Opponent's Play Area").transform;
         Button[] opponentCardsOnTable = enemyCardPlacementOnTableParent.GetComponentsInChildren<Button>();
         for (int i = 0; i < opponentCardsOnTable.Length; i++)
@@ -428,6 +434,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             opponentCardsOnTable[i].interactable = true;
         }
     }
+
     public void TurnPlayerInteractableCardsOff()
     {
         playerCardPlacementOnTableParent = GameObject.Find("Player's Play Area").transform;
@@ -440,6 +447,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     public void CardClicked()
     {
+        //Selecting Monster to attack
         if (isMonster && !inDefense && hasBeenPlayed && GameObject.Find("GameState").GetComponent<GameState>().gamePhase == 2)
         {
             monsterTargeted = true;
@@ -447,6 +455,16 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             GameManager.playerAttacking = true;
 
             UpdateCardColors();
+        }
+
+        //Selecting Monster to Tribute
+        if (isMonster && hasBeenPlayed && GameObject.Find("GameState").GetComponent<GameState>().gamePhase == 1)
+        {
+            print("Tribute? Y/N");
+            tributeButton.SetActive(true);
+            tributeNo.SetActive(true);
+
+            //UpdateCardColors();
         }
     }
 
@@ -629,5 +647,19 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         {
             cardPreview.transform.GetChild(i).gameObject.SetActive(false);
         }
+    }
+
+    public void Tribute()
+    {
+        GameState.CurrencyThisTurn += this.GetComponent<CardDisplay>().card.cost;
+        GameObject.Find("GameState").GetComponent<GameState>().UpdateCardValueUI();
+        //Add particle system and a little time delay
+        Destroy(this.transform.parent.gameObject);
+    }
+
+    public void NoTribute()
+    {
+        tributeButton.SetActive(false);
+        tributeNo.SetActive(false);
     }
 }
