@@ -170,6 +170,7 @@ public class OpponentHand : MonoBehaviour
             if (choosePosition == 0)
             {
                 cardCreated.GetComponentInChildren<CardDisplay>().card.inDefense = true;
+                print(cardCreated.GetComponentInChildren<CardDisplay>().card.name + " " + cardCreated.GetComponentInChildren<CardDisplay>().card.inDefense);
                 cardCreated.transform.localScale = new Vector3(.45f, .7f, .8f);
                 cardCreated.transform.localRotation = Quaternion.Euler(0, 0, 90);
                 cardCreated.transform.localPosition = new Vector3(0, 20, 0);

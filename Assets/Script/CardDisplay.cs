@@ -583,21 +583,23 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
         if (this.gameObject.GetComponent<CardDisplay>().card.playedByAI && GameManager.playerAttacking && eventData.button == PointerEventData.InputButton.Left)
         {
-            print(this.gameObject.GetComponent<CardDisplay>().card.name);
-
-            if (!this.gameObject.GetComponent<CardDisplay>().card.inDefense)
+            if (!this.gameObject.GetComponentInChildren<CardDisplay>().card.inDefense)
             {
-                print("calculate attack v defense:" + GameManager.attackDamage + " " + this.gameObject.GetComponent<CardDisplay>().card.defense);
+                print(this.gameObject.GetComponent<CardDisplay>().card.name);
+                print("calculate attack v defense:" + GameManager.attackDamage + " " + this.gameObject.GetComponentInChildren<CardDisplay>().card.defense);
             }
             else
             {
-                print("calculate attack v attack:" + GameManager.attackDamage + " " + this.gameObject.GetComponent<CardDisplay>().card.attack);
+                print(this.gameObject.GetComponent<CardDisplay>().card.name);
+                print("calculate attack v attack:" + GameManager.attackDamage + " " + this.gameObject.GetComponentInChildren<CardDisplay>().card.attack);
             }
 
             monsterTargeted = false;
 
             GameManager.attackDamage = 0;
             GameManager.playerAttacking = false;
+
+            //card interactable is turned off
         }
     }
 

@@ -20,3 +20,4 @@ MonoBehaviour:
   attack: 5
   defense: 4
   inDefense: 1
+  playedByAI: 1

@@ -17,6 +17,7 @@ MonoBehaviour:
   type: Spellcaster
   artwork: {fileID: 21300000, guid: bd1409c6a2b5b064ab85d950381cad26, type: 3}
   cost: 1
-  attack: 8
+  attack: 2
   defense: 8
-  inDefense: 0
+  inDefense: 1
+  playedByAI: 1
