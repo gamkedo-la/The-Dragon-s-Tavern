@@ -8,6 +8,7 @@ using UnityEngine.EventSystems;
 public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     //This section is to determine the card flip speed with a bool to skip it if it is annoying
+    public bool isInitializedFromStart = false;
     public bool skipCardFlip;
     public GameObject backOfCard;
     float rotatedAngle = 180;
@@ -66,6 +67,11 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
 
     public GameObject tributeButton, tributeNo;
+
+    private void Start()
+    {
+        if(isInitializedFromStart) ReadyToInit();
+    }
 
     public string NameOfCard()
     {
