@@ -12,6 +12,6 @@ public class MainMenu : MonoBehaviour
     }
     public void StartGame() // start the game by pressing the play button on the main menu
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("HubArea");
     }
 }
