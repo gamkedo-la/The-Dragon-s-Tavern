@@ -68,9 +68,12 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     public GameObject tributeButton, tributeNo;
 
+    public bool thisCardInDefense;
+
     private void Start()
     {
-        if(isInitializedFromStart) ReadyToInit();
+        thisCardInDefense = false;
+        if (isInitializedFromStart) ReadyToInit();
     }
 
     public string NameOfCard()
@@ -224,14 +227,14 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         {
             if (inDefense)
             {
-                this.GetComponentInChildren<CardDisplay>().card.inDefense = true;
+                this.GetComponentInChildren<CardDisplay>().thisCardInDefense = true;
                 print("Im in defense!");
                 this.transform.eulerAngles = new Vector3(90, 0, 90);
                 this.GetComponentInChildren<Button>().interactable = false;
             }
             else
             {
-                this.GetComponentInChildren<CardDisplay>().card.inDefense = false;
+                this.GetComponentInChildren<CardDisplay>().thisCardInDefense = false;
                 print("Im in attack!");
                 this.transform.eulerAngles = new Vector3(90, 0, 0);
                 this.GetComponentInChildren<Button>().interactable = false;
@@ -589,7 +592,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
         if (this.gameObject.GetComponent<CardDisplay>().card.playedByAI && GameManager.playerAttacking && eventData.button == PointerEventData.InputButton.Left)
         {
-            if (!this.gameObject.GetComponentInChildren<CardDisplay>().card.inDefense)
+            if (!this.gameObject.GetComponentInChildren<CardDisplay>().thisCardInDefense)
             {
                 print(this.gameObject.GetComponent<CardDisplay>().card.name);
                 print("calculate attack v defense:" + GameManager.attackDamage + " " + this.gameObject.GetComponentInChildren<CardDisplay>().card.defense);

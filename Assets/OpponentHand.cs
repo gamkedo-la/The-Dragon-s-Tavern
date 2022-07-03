@@ -24,7 +24,6 @@ public class OpponentHand : MonoBehaviour
     int cardToChoose;
 
     public GameObject monsterCard, spellCard;
-    GameObject cardCreated;
 
     public List<GameObject> opponentsVisualCardsInHand;
     public GameObject opponentVisualCard;
@@ -33,8 +32,11 @@ public class OpponentHand : MonoBehaviour
 
     public Animator opponentArm;
 
+    public bool thisCardInDefense;
+
     private void Start()
     {
+        thisCardInDefense = false;
         //draw initial hand
         StartCoroutine(WaitToDrawCard());
         totalCardsInDeck = monsterCards.Count /*+ spellCards.Count*/;      
@@ -138,6 +140,7 @@ public class OpponentHand : MonoBehaviour
 
     void ChooseWhereToPlayCard()
     {
+        GameObject cardCreated;
         //play card on table
         randomOpenPlayableSpot = Random.Range(0, playableAreas.Length);
         if (playableAreas[randomOpenPlayableSpot].transform.childCount != 0)
@@ -165,12 +168,12 @@ public class OpponentHand : MonoBehaviour
             //chooseAttackOrDefense
 
             int choosePosition = Random.Range(0, 2);
-
+            print(choosePosition);
             //Defense
             if (choosePosition == 0)
             {
-                cardCreated.GetComponentInChildren<CardDisplay>().card.inDefense = true;
-                print(cardCreated.GetComponentInChildren<CardDisplay>().card.name + " " + cardCreated.GetComponentInChildren<CardDisplay>().card.inDefense);
+                cardCreated.GetComponentInChildren<CardDisplay>().thisCardInDefense = true;
+             //   print(cardCreated.GetComponentInChildren<CardDisplay>().card.name + " " + cardCreated.GetComponentInChildren<CardDisplay>().card.inDefense);
                 cardCreated.transform.localScale = new Vector3(.45f, .7f, .8f);
                 cardCreated.transform.localRotation = Quaternion.Euler(0, 0, 90);
                 cardCreated.transform.localPosition = new Vector3(0, 20, 0);
@@ -183,7 +186,7 @@ public class OpponentHand : MonoBehaviour
                 cardCreated.transform.localPosition = new Vector3(35, 0, 0);
             }
 
-            print(cardCreated.GetComponentInChildren<CardDisplay>().card.name + " " + cardCreated.GetComponentInChildren<CardDisplay>().card.inDefense);
+            print(cardCreated.GetComponentInChildren<CardDisplay>().card.name + " " + cardCreated.GetComponentInChildren<CardDisplay>().thisCardInDefense);
 
         }
     }
