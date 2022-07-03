@@ -18,10 +18,6 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     //for Battle
     public bool isEnemyCard;
-    int playerAttack;
-    int playerDefense;
-    int enemyAttack;
-    int enemyDefense;
     //
 
     //Determines if it is a spell or a monster
@@ -30,6 +26,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     public SpellCard spellCard;
 
     public int attackOffset = 0, defenseOffset = 0;
+    public int totalAttack = 0, totalDefense = 0; //(this is the true value + offsets) 
     //
 
     //Needed to display the card info on the card itself
@@ -293,9 +290,11 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
                 //
 
                 //this is increasing it by 1 regardless of the card count on the table
-               // cardsOnTable[i].defenseOffset += 1;
+                // cardsOnTable[i].defenseOffset += 1;
 
-                cardsOnTable[i].def.text = (cardsOnTable[i].card.defense + cardsOnTable[i].defenseOffset).ToString();
+                totalDefense = cardsOnTable[i].card.defense + cardsOnTable[i].defenseOffset;
+
+                cardsOnTable[i].def.text = totalDefense.ToString();
             }
         }
         StartCoroutine(RemovePlayedCard());
@@ -459,7 +458,14 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         if (isMonster && !inDefense && hasBeenPlayed && GameObject.Find("GameState").GetComponent<GameState>().gamePhase == 2)
         {
             monsterTargeted = true;
-            GameManager.attackDamage = this.card.attack + attackOffset;
+            totalAttack = this.card.attack + attackOffset;
+            GameManager.InitiatorCard = this;
+            //sepearate check - if the gamemanager is not null, then player can't click another card
+
+            //game manager public display the card
+            //set game manager to the values of the player's card
+            //once the attack is over, set the player's card to the gamemanager's values
+            //clear the game manager's values
             GameManager.playerAttacking = true;
 
             UpdateCardColors();
@@ -493,8 +499,8 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             }
             directAttackAgainstOpponent.SetActive(true);
 
-            playerAttack = (this.card.attack + attackOffset);
-            GameManager.directDamage = playerAttack;
+            totalAttack = (this.card.attack + attackOffset);
+            GameManager.directDamage = totalAttack;
             print("attack directly");
 
             this.GetComponentInChildren<Button>().interactable = false;
@@ -592,10 +598,15 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         if (this.gameObject.GetComponentInChildren<CardDisplay>().card.playedByAI && GameManager.playerAttacking && eventData.button == PointerEventData.InputButton.Left)
         {
             print(this.gameObject.GetComponentInChildren<CardDisplay>().card.name);
+            GameManager.ReceivingCard = this;
 
             if (this.gameObject.GetComponentInChildren<CardDisplay>().thisCardInDefense)
             { 
                 print("calculate attack v defense:" + GameManager.attackDamage + " " + this.gameObject.GetComponentInChildren<CardDisplay>().card.defense);
+
+                //MAKE SURE YOU CHANGE THE .CARD - THAT IS THE BASE CARD
+                //only have a single function to update attacks or defenses of a card, poke the function rather than scattered through the script
+                print("calculate attack v defense:" + GameManager.InitiatorCard.totalAttack + " " + GameManager.InitiatorCard.totalDefense);
             }
             else
             {
@@ -606,6 +617,9 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
             GameManager.attackDamage = 0;
             GameManager.playerAttacking = false;
+
+            GameManager.InitiatorCard = null;
+            GameManager.ReceivingCard = null; 
 
             //card interactable is turned off
         }

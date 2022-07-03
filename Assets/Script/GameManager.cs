@@ -17,4 +17,7 @@ public class GameManager : MonoBehaviour
     public static int directDamage;
     public static int attackDamage;
     public static bool playerAttacking;
+
+    public static CardDisplay InitiatorCard;
+    public static CardDisplay ReceivingCard; 
 }
