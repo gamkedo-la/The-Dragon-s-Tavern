@@ -68,11 +68,10 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     public GameObject tributeButton, tributeNo;
 
-    public bool thisCardInDefense;
+    public bool thisCardInDefense = false;
 
     private void Start()
     {
-        thisCardInDefense = false;
         if (isInitializedFromStart) ReadyToInit();
     }
 
@@ -590,16 +589,16 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             FlipCardPosition();
         }
 
-        if (this.gameObject.GetComponent<CardDisplay>().card.playedByAI && GameManager.playerAttacking && eventData.button == PointerEventData.InputButton.Left)
+        if (this.gameObject.GetComponentInChildren<CardDisplay>().card.playedByAI && GameManager.playerAttacking && eventData.button == PointerEventData.InputButton.Left)
         {
-            if (!this.gameObject.GetComponentInChildren<CardDisplay>().thisCardInDefense)
-            {
-                print(this.gameObject.GetComponent<CardDisplay>().card.name);
+            print(this.gameObject.GetComponentInChildren<CardDisplay>().card.name);
+
+            if (this.gameObject.GetComponentInChildren<CardDisplay>().thisCardInDefense)
+            { 
                 print("calculate attack v defense:" + GameManager.attackDamage + " " + this.gameObject.GetComponentInChildren<CardDisplay>().card.defense);
             }
             else
             {
-                print(this.gameObject.GetComponent<CardDisplay>().card.name);
                 print("calculate attack v attack:" + GameManager.attackDamage + " " + this.gameObject.GetComponentInChildren<CardDisplay>().card.attack);
             }
 

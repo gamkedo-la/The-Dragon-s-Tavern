@@ -32,11 +32,8 @@ public class OpponentHand : MonoBehaviour
 
     public Animator opponentArm;
 
-    public bool thisCardInDefense;
-
     private void Start()
     {
-        thisCardInDefense = false;
         //draw initial hand
         StartCoroutine(WaitToDrawCard());
         totalCardsInDeck = monsterCards.Count /*+ spellCards.Count*/;      
@@ -168,11 +165,12 @@ public class OpponentHand : MonoBehaviour
             //chooseAttackOrDefense
 
             int choosePosition = Random.Range(0, 2);
-            print(choosePosition);
+           // print(choosePosition);
             //Defense
             if (choosePosition == 0)
             {
                 cardCreated.GetComponentInChildren<CardDisplay>().thisCardInDefense = true;
+             //   Debug.Log(cardCreated.GetComponentInChildren<CardDisplay>().thisCardInDefense);
              //   print(cardCreated.GetComponentInChildren<CardDisplay>().card.name + " " + cardCreated.GetComponentInChildren<CardDisplay>().card.inDefense);
                 cardCreated.transform.localScale = new Vector3(.45f, .7f, .8f);
                 cardCreated.transform.localRotation = Quaternion.Euler(0, 0, 90);
@@ -186,7 +184,7 @@ public class OpponentHand : MonoBehaviour
                 cardCreated.transform.localPosition = new Vector3(35, 0, 0);
             }
 
-            print(cardCreated.GetComponentInChildren<CardDisplay>().card.name + " " + cardCreated.GetComponentInChildren<CardDisplay>().thisCardInDefense);
+           // print(cardCreated.GetComponentInChildren<CardDisplay>().card.name + " " + cardCreated.GetComponentInChildren<CardDisplay>().thisCardInDefense);
 
         }
     }
