@@ -598,19 +598,22 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         if (this.gameObject.GetComponentInChildren<CardDisplay>().card.playedByAI && GameManager.playerAttacking && eventData.button == PointerEventData.InputButton.Left)
         {
             print(this.gameObject.GetComponentInChildren<CardDisplay>().card.name);
-            GameManager.ReceivingCard = this;
 
             if (this.gameObject.GetComponentInChildren<CardDisplay>().thisCardInDefense)
-            { 
-                print("calculate attack v defense:" + GameManager.attackDamage + " " + this.gameObject.GetComponentInChildren<CardDisplay>().card.defense);
+            {
+                totalDefense = this.card.defense + defenseOffset;
+                GameManager.ReceivingCard = this;
 
                 //MAKE SURE YOU CHANGE THE .CARD - THAT IS THE BASE CARD
                 //only have a single function to update attacks or defenses of a card, poke the function rather than scattered through the script
-                print("calculate attack v defense:" + GameManager.InitiatorCard.totalAttack + " " + GameManager.InitiatorCard.totalDefense);
+                print("calculate attack v defense:" + GameManager.InitiatorCard.totalAttack + " " + GameManager.ReceivingCard.totalDefense);
             }
             else
             {
-                print("calculate attack v attack:" + GameManager.attackDamage + " " + this.gameObject.GetComponentInChildren<CardDisplay>().card.attack);
+                totalAttack = this.card.attack + attackOffset;
+                GameManager.ReceivingCard = this;
+
+                print("calculate attack v defense:" + GameManager.InitiatorCard.totalAttack + " " + GameManager.ReceivingCard.totalAttack);
             }
 
             monsterTargeted = false;
