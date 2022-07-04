@@ -308,10 +308,11 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
         for (int i = 0; i < cardsOnTable.Length; i++)
         {
-            print(cardsOnTable[i]);
-            cardsOnTable[i].card.attack -= 1;
-            cardsOnTable[i].att.text = cardsOnTable[i].card.attack.ToString();
-            print(cardsOnTable[i].card.attack);
+            //print(cardsOnTable[i]);
+
+            totalAttack = (cardsOnTable[i].card.attack + cardsOnTable[i].attackOffset) - 1;
+            cardsOnTable[i].att.text = cardsOnTable[i].totalAttack.ToString();
+           // print(cardsOnTable[i].card.attack);
         }
 
         StartCoroutine(RemovePlayedCard());
@@ -330,10 +331,10 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
          {
              if (cardsOnTable[i].type.ToString() == "Spellcaster")
              {
-                print(cardsOnTable[i]);
-                cardsOnTable[i].card.attack += 2;
-                 cardsOnTable[i].att.text = cardsOnTable[i].card.attack.ToString();
-                print(cardsOnTable[i].card.attack);
+               // print(cardsOnTable[i]);
+                totalAttack = (cardsOnTable[i].card.attack + cardsOnTable[i].attackOffset) +2;
+                cardsOnTable[i].att.text = cardsOnTable[i].totalAttack.ToString();
+               // print(cardsOnTable[i].card.attack);
              }
          }
         StartCoroutine(RemovePlayedCard());
@@ -358,9 +359,10 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         {
             if (cardsOnTable[i].card.type.ToString() == "Tarot")
             {
-                cardsOnTable[i].attackOffset += 1;
+                totalAttack = (cardsOnTable[i].card.attack + cardsOnTable[i].attackOffset) + 2;
+                cardsOnTable[i].totalAttack += 1;
 
-                cardsOnTable[i].att.text = (cardsOnTable[i].card.attack + cardsOnTable[i].attackOffset).ToString();
+                cardsOnTable[i].att.text = totalAttack.ToString();
             }
         }
         StartCoroutine(RemovePlayedCard());
@@ -378,11 +380,14 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         {
             if (cardsOnTable[i].card.type.ToString() == "Pet")
             {
+                totalAttack = (cardsOnTable[i].card.attack + cardsOnTable[i].attackOffset);
+                totalDefense = (cardsOnTable[i].card.defense + cardsOnTable[i].defenseOffset);
+
                 cardsOnTable[i].attackOffset -= 1;
                 cardsOnTable[i].defenseOffset += 2;
 
-                cardsOnTable[i].att.text = (cardsOnTable[i].card.attack + cardsOnTable[i].attackOffset).ToString();
-                cardsOnTable[i].def.text = (cardsOnTable[i].card.defense + cardsOnTable[i].defenseOffset).ToString();
+                cardsOnTable[i].att.text = totalAttack.ToString();
+                cardsOnTable[i].def.text = totalDefense.ToString();
             }
         }
         StartCoroutine(RemovePlayedCard());
@@ -595,7 +600,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             FlipCardPosition();
         }
 
-        if (this.gameObject.GetComponentInChildren<CardDisplay>().card.playedByAI && GameManager.playerAttacking && eventData.button == PointerEventData.InputButton.Left)
+        if (isMonster && this.gameObject.GetComponentInChildren<CardDisplay>().card.playedByAI && GameManager.playerAttacking && eventData.button == PointerEventData.InputButton.Left && GameObject.Find("GameState").GetComponent<GameState>().gamePhase == 2)
         {
             print(this.gameObject.GetComponentInChildren<CardDisplay>().card.name);
 

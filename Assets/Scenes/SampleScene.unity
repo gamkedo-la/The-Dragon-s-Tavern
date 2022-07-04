@@ -1333,17 +1333,15 @@ MonoBehaviour:
   deckCountRemainingUI: {fileID: 1674471592}
   initialCardsToDraw: 5
   monsterCards:
-  - {fileID: 11400000, guid: 85542a59dd54c294f80714c7aaa43097, type: 2}
-  - {fileID: 11400000, guid: 85542a59dd54c294f80714c7aaa43097, type: 2}
-  - {fileID: 11400000, guid: 85542a59dd54c294f80714c7aaa43097, type: 2}
-  - {fileID: 11400000, guid: 85542a59dd54c294f80714c7aaa43097, type: 2}
-  - {fileID: 11400000, guid: 85542a59dd54c294f80714c7aaa43097, type: 2}
-  - {fileID: 11400000, guid: 85542a59dd54c294f80714c7aaa43097, type: 2}
+  - {fileID: 11400000, guid: 86f794b6eb776744c99a979e59be8dfd, type: 2}
+  - {fileID: 11400000, guid: 5f8017a43e8855b42bd15b3493de10f6, type: 2}
+  - {fileID: 11400000, guid: a977ec0cbd408df4da1cc96f4fa4fd6f, type: 2}
+  - {fileID: 11400000, guid: 972a87b0e17414f42bb110e1f1424330, type: 2}
   spellCards:
-  - {fileID: 11400000, guid: bd08f2420c77484468fa1d2fba1677db, type: 2}
-  - {fileID: 11400000, guid: bd08f2420c77484468fa1d2fba1677db, type: 2}
-  - {fileID: 11400000, guid: bd08f2420c77484468fa1d2fba1677db, type: 2}
-  - {fileID: 11400000, guid: bd08f2420c77484468fa1d2fba1677db, type: 2}
+  - {fileID: 11400000, guid: afb1de2208d02064cb612355c9556784, type: 2}
+  - {fileID: 11400000, guid: afb1de2208d02064cb612355c9556784, type: 2}
+  - {fileID: 11400000, guid: afb1de2208d02064cb612355c9556784, type: 2}
+  - {fileID: 11400000, guid: afb1de2208d02064cb612355c9556784, type: 2}
 --- !u!65 &242015179
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3568,6 +3566,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 735d258472ea65e499a002f0cbe944f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInitializedFromStart: 0
   skipCardFlip: 0
   backOfCard: {fileID: 535418115}
   rotationSpeed: 10
@@ -3577,6 +3576,8 @@ MonoBehaviour:
   spellCard: {fileID: 0}
   attackOffset: 0
   defenseOffset: 0
+  totalAttack: 0
+  totalDefense: 0
   background: {fileID: 897498737}
   title: {fileID: 489131495}
   desc: {fileID: 541043055}
@@ -3591,6 +3592,7 @@ MonoBehaviour:
   directAttackAgainstOpponent: {fileID: 0}
   tributeButton: {fileID: 0}
   tributeNo: {fileID: 0}
+  thisCardInDefense: 0
 --- !u!114 &631941413
 MonoBehaviour:
   m_ObjectHideFlags: 0
