@@ -67,8 +67,12 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     public bool thisCardInDefense = false;
 
+    GameState gameState;
+
     private void Start()
     {
+        gameState = GameObject.Find("GameState").GetComponent<GameState>();
+
         if (isInitializedFromStart) ReadyToInit();
     }
 
@@ -615,7 +619,15 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
                 if (GameManager.InitiatorCard.totalAttack < GameManager.ReceivingCard.totalDefense)
                 {
                     print("Player loses life points: " + (GameManager.InitiatorCard.totalAttack - GameManager.ReceivingCard.totalDefense));
+
+                    GameState.playerHealth += (GameManager.InitiatorCard.totalAttack - GameManager.ReceivingCard.totalDefense);
+
+                    gameState.UpdateHealthUI();
+
                     GameManager.ReceivingCard.totalDefense -= GameManager.InitiatorCard.totalAttack;
+
+                    GameManager.ReceivingCard.def.text = GameManager.ReceivingCard.totalDefense.ToString();
+
                     Destroy(GameManager.InitiatorCard.transform.parent.gameObject);
                 }
 
@@ -628,6 +640,11 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
                 else if (GameManager.InitiatorCard.totalAttack > GameManager.ReceivingCard.totalDefense)
                 {
                     GameManager.InitiatorCard.totalAttack -= GameManager.ReceivingCard.totalDefense;
+
+                    GameManager.InitiatorCard.att.text = GameManager.InitiatorCard.totalAttack.ToString();
+
+                    print(GameManager.InitiatorCard.totalAttack);
+
                     Destroy(GameManager.ReceivingCard.transform.parent.gameObject);
                 }
             }
@@ -640,6 +657,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             }
 
             //need to update UI's of cards
+            //update life points
 
             monsterTargeted = false;
 

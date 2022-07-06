@@ -18,5 +18,5 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: 410a08ccd15552a4e8fcadbe25e1a2c0, type: 3}
   cost: 2
   attack: 2
-  defense: 2
-  playedByAI: 1
+  defense: 6
+  playedByAI: 0
