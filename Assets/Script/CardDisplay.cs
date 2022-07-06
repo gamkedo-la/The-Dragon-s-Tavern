@@ -612,6 +612,24 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
                 //MAKE SURE YOU CHANGE THE .CARD - THAT IS THE BASE CARD
                 //only have a single function to update attacks or defenses of a card, poke the function rather than scattered through the script
                 print("calculate attack v defense:" + GameManager.InitiatorCard.totalAttack + " " + GameManager.ReceivingCard.totalDefense);
+                if (GameManager.InitiatorCard.totalAttack < GameManager.ReceivingCard.totalDefense)
+                {
+                    print("Player loses life points: " + (GameManager.InitiatorCard.totalAttack - GameManager.ReceivingCard.totalDefense));
+                    GameManager.ReceivingCard.totalDefense -= GameManager.InitiatorCard.totalAttack;
+                    Destroy(GameManager.InitiatorCard.transform.parent.gameObject);
+                }
+
+                else if (GameManager.InitiatorCard.totalAttack == GameManager.ReceivingCard.totalDefense)
+                {
+                    Destroy(GameManager.InitiatorCard.transform.parent.gameObject);
+                    Destroy(GameManager.ReceivingCard.transform.parent.gameObject);
+                }
+
+                else if (GameManager.InitiatorCard.totalAttack > GameManager.ReceivingCard.totalDefense)
+                {
+                    GameManager.InitiatorCard.totalAttack -= GameManager.ReceivingCard.totalDefense;
+                    Destroy(GameManager.ReceivingCard.transform.parent.gameObject);
+                }
             }
             else
             {
@@ -620,6 +638,8 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
                 print("calculate attack v defense:" + GameManager.InitiatorCard.totalAttack + " " + GameManager.ReceivingCard.totalAttack);
             }
+
+            //need to update UI's of cards
 
             monsterTargeted = false;
 

@@ -15,4 +15,4 @@ MonoBehaviour:
   name: Ancestral Lore
   effect: For each Lore monster, increase defence by 1
   type: Quick
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: af72f0d3f4dc106449a30fcc93eae549, type: 3}

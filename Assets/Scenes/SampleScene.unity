@@ -1333,7 +1333,7 @@ MonoBehaviour:
   deckCountRemainingUI: {fileID: 1674471592}
   initialCardsToDraw: 5
   monsterCards:
-  - {fileID: 11400000, guid: 86f794b6eb776744c99a979e59be8dfd, type: 2}
+  - {fileID: 11400000, guid: 3a8777e39da5e2841b8fdb589836e5e8, type: 2}
   - {fileID: 11400000, guid: 5f8017a43e8855b42bd15b3493de10f6, type: 2}
   - {fileID: 11400000, guid: a977ec0cbd408df4da1cc96f4fa4fd6f, type: 2}
   - {fileID: 11400000, guid: 972a87b0e17414f42bb110e1f1424330, type: 2}
