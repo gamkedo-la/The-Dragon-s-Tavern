@@ -15,4 +15,4 @@ MonoBehaviour:
   name: Charasmatic Speech
   effect: Decrease all opponents' monsters' attack by 1
   type: Quick
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 7f5e24c03fad38747a4675135e3504c9, type: 3}
