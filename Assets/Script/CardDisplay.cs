@@ -27,6 +27,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     public int attackOffset = 0, defenseOffset = 0;
     public int totalAttack = 0, totalDefense = 0; //(this is the true value + offsets) 
+    public int attackDamageTaken, defenseDamageTaken;
     //
 
     //Needed to display the card info on the card itself
@@ -466,8 +467,9 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         //Selecting Monster to attack
         if (isMonster && !inDefense && hasBeenPlayed && GameObject.Find("GameState").GetComponent<GameState>().gamePhase == 2)
         {
+            print(attackOffset);
             monsterTargeted = true;
-            totalAttack = this.card.attack + attackOffset;
+            totalAttack = this.card.attack + attackOffset + attackDamageTaken;
             GameManager.InitiatorCard = this;
             //sepearate check - if the gamemanager is not null, then player can't click another card
 
@@ -508,7 +510,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             }
             directAttackAgainstOpponent.SetActive(true);
 
-            totalAttack = (this.card.attack + attackOffset);
+            totalAttack = (this.card.attack + attackOffset - attackDamageTaken);
             GameManager.directDamage = totalAttack;
             print("attack directly");
 
@@ -643,17 +645,22 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
                     GameManager.InitiatorCard.att.text = GameManager.InitiatorCard.totalAttack.ToString();
 
-                    print(GameManager.InitiatorCard.totalAttack);
+                //    print(GameManager.InitiatorCard.totalAttack);
 
                     Destroy(GameManager.ReceivingCard.transform.parent.gameObject);
                 }
+/*
+                attackDamageTaken = (GameManager.InitiatorCard.totalAttack - attackOffset - card.attack);
+                print(attackDamageTaken);
+
+                */
             }
             else
             {
-                totalAttack = this.card.attack + attackOffset;
+                totalAttack = this.card.attack + attackOffset - attackDamageTaken;
                 GameManager.ReceivingCard = this;
 
-                print("calculate attack v defense:" + GameManager.InitiatorCard.totalAttack + " " + GameManager.ReceivingCard.totalAttack);
+              //  print("calculate attack v attack :" + GameManager.InitiatorCard.totalAttack + " " + GameManager.ReceivingCard.totalAttack);
             }
 
             //need to update UI's of cards
