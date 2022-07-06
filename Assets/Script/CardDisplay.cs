@@ -588,7 +588,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
                 }
                 else
                 {
-                    cardsOnTable[i].GetComponent<Image>().color = Color.white;
+                    cardsOnTable[i].GetComponent<Image>().color = new Color32(255, 142, 109, 255);
                 }
             }
         }
@@ -660,6 +660,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             //update life points
 
             monsterTargeted = false;
+            UpdateCardColors();
 
             GameManager.attackDamage = 0;
             GameManager.playerAttacking = false;
