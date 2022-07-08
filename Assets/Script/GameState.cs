@@ -234,8 +234,6 @@ public class GameState : MonoBehaviour
         displayCurrentState.text = "AI Set";
         opponentHand.PlayHand();
         opponentHand.PlayHand();
-        opponentHand.PlayHand();
-        opponentHand.PlayHand();
 
         //this is only temporary for the opponent to play two cards in one turn;
         AdvanceTurnFromAnotherScript();
@@ -250,7 +248,7 @@ public class GameState : MonoBehaviour
     void AIEnd()
     {
         playerCamera.SetTrigger("Outward");
-        playerHandUI.SetActive(true);
+        StartCoroutine(WaitForSeconds(1f));
         displayCurrentState.text = "AI End";
         StartCoroutine(CycleTurnThisIsTemp());
     }
@@ -304,5 +302,11 @@ public class GameState : MonoBehaviour
         {
             print("Opponent Wins!");
         }
+    }
+
+    IEnumerator WaitForSeconds(float seconds)
+    { 
+        yield return new WaitForSeconds(seconds);
+        playerHandUI.SetActive(true);
     }
 }
