@@ -646,11 +646,44 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             {
                 GameManager.ReceivingCard = this;
 
-              //  print("calculate attack v attack :" + GameManager.InitiatorCard.totalAttack + " " + GameManager.ReceivingCard.totalAttack);
+                print("calculate attack v attack :" + GameManager.InitiatorCard.thisCardsAttack + " " + GameManager.ReceivingCard.thisCardsAttack);
+
+                if (GameManager.InitiatorCard.thisCardsAttack > GameManager.ReceivingCard.thisCardsAttack)
+                {
+                    int difference = GameManager.InitiatorCard.thisCardsAttack - GameManager.ReceivingCard.thisCardsAttack;
+
+                    GameState.opponentHealth -= difference;
+
+                    gameState.UpdateHealthUI();
+
+                    GameManager.InitiatorCard.thisCardsAttack -= GameManager.ReceivingCard.thisCardsAttack;
+                    GameManager.InitiatorCard.att.text = GameManager.InitiatorCard.thisCardsAttack.ToString();
+
+                    Destroy(GameManager.ReceivingCard.transform.parent.gameObject);
+                }
+
+                else if (GameManager.InitiatorCard.thisCardsAttack < GameManager.ReceivingCard.thisCardsAttack)
+                {
+                    int difference = GameManager.ReceivingCard.thisCardsAttack - GameManager.InitiatorCard.thisCardsAttack;
+
+                    GameState.playerHealth -= difference;
+
+                    gameState.UpdateHealthUI();
+
+                    GameManager.ReceivingCard.thisCardsAttack -= GameManager.InitiatorCard.thisCardsAttack;
+                    GameManager.ReceivingCard.att.text = GameManager.ReceivingCard.thisCardsAttack.ToString();
+
+                    Destroy(GameManager.InitiatorCard.transform.parent.gameObject);
+                }
+
+                else if (GameManager.InitiatorCard.thisCardsAttack == GameManager.ReceivingCard.thisCardsAttack)
+                {
+                    Destroy(GameManager.InitiatorCard.transform.parent.gameObject);
+                    Destroy(GameManager.ReceivingCard.transform.parent.gameObject);
+                }
             }
 
-            //need to update UI's of cards
-            //update life points
+            GameManager.InitiatorCard.GetComponent<Button>().interactable = false;
 
             monsterTargeted = false;
             UpdateCardColors();

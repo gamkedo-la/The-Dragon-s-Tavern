@@ -1333,9 +1333,9 @@ MonoBehaviour:
   deckCountRemainingUI: {fileID: 1674471592}
   initialCardsToDraw: 5
   monsterCards:
-  - {fileID: 11400000, guid: 3a8777e39da5e2841b8fdb589836e5e8, type: 2}
-  - {fileID: 11400000, guid: 5f8017a43e8855b42bd15b3493de10f6, type: 2}
-  - {fileID: 11400000, guid: a977ec0cbd408df4da1cc96f4fa4fd6f, type: 2}
+  - {fileID: 11400000, guid: 972a87b0e17414f42bb110e1f1424330, type: 2}
+  - {fileID: 11400000, guid: 972a87b0e17414f42bb110e1f1424330, type: 2}
+  - {fileID: 11400000, guid: 972a87b0e17414f42bb110e1f1424330, type: 2}
   - {fileID: 11400000, guid: 972a87b0e17414f42bb110e1f1424330, type: 2}
   - {fileID: 11400000, guid: 972a87b0e17414f42bb110e1f1424330, type: 2}
   spellCards:
@@ -3576,12 +3576,6 @@ MonoBehaviour:
   isMonster: 1
   card: {fileID: 11400000, guid: 7b385161c18d1d84cac1b64156398bfc, type: 2}
   spellCard: {fileID: 0}
-  attackOffset: 0
-  defenseOffset: 0
-  totalAttack: 0
-  totalDefense: 0
-  attackDamageTaken: 0
-  defenseDamageTaken: 0
   background: {fileID: 897498737}
   title: {fileID: 489131495}
   desc: {fileID: 541043055}
