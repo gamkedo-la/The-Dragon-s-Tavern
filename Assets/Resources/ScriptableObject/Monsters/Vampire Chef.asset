@@ -17,6 +17,6 @@ MonoBehaviour:
   type: Ghoul
   artwork: {fileID: 21300000, guid: 84c3aca53208cb44caa59b40716a1769, type: 3}
   cost: 4
-  attack: 2
-  defense: 1
-  playedByAI: 1
+  attack: 4
+  defense: 4
+  playedByAI: 0

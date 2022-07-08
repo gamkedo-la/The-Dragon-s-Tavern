@@ -19,4 +19,4 @@ MonoBehaviour:
   cost: 1
   attack: 2
   defense: 1
-  playedByAI: 1
+  playedByAI: 0
