@@ -24,10 +24,6 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     public bool isMonster;
     public Card card; //mmonster card
     public SpellCard spellCard;
-
-    public int attackOffset = 0, defenseOffset = 0;
-    public int totalAttack = 0, totalDefense = 0; //(this is the true value + offsets) 
-    public int attackDamageTaken, defenseDamageTaken;
     //
 
     //Needed to display the card info on the card itself
@@ -70,6 +66,9 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     GameState gameState;
 
+    int thisCardsAttack;
+    int thisCardsDefense;
+
     private void Start()
     {
         gameState = GameObject.Find("GameState").GetComponent<GameState>();
@@ -96,11 +95,15 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         {
             title.text = card.name;
             desc.text = card.description;
-            def.text = card.defense.ToString();
-            att.text = card.attack.ToString();
+           
             cost.text = card.cost.ToString();
             type.text = card.type;
             background.sprite = card.artwork;
+
+            thisCardsAttack = card.attack;
+            thisCardsDefense = card.defense;
+
+            UpdateUI();
         }
         else
         {
@@ -291,15 +294,13 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
                 //for each Lore card, you're adding one so 3 cards would be 3 bonus
                 
                 int totalCards = cardsOnTable.Length;
-                cardsOnTable[i].defenseOffset += totalCards;
+                cardsOnTable[i].thisCardsDefense += totalCards;
                 //
 
                 //this is increasing it by 1 regardless of the card count on the table
                 // cardsOnTable[i].defenseOffset += 1;
 
-                totalDefense = cardsOnTable[i].card.defense + cardsOnTable[i].defenseOffset;
-
-                cardsOnTable[i].def.text = totalDefense.ToString();
+                cardsOnTable[i].def.text = thisCardsDefense.ToString();
             }
         }
         StartCoroutine(RemovePlayedCard());
@@ -315,8 +316,8 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         {
             //print(cardsOnTable[i]);
 
-            totalAttack = (cardsOnTable[i].card.attack + cardsOnTable[i].attackOffset) - 1;
-            cardsOnTable[i].att.text = cardsOnTable[i].totalAttack.ToString();
+            cardsOnTable[i].thisCardsAttack -= 1;
+            cardsOnTable[i].att.text = cardsOnTable[i].thisCardsAttack.ToString();
            // print(cardsOnTable[i].card.attack);
         }
 
@@ -337,8 +338,8 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
              if (cardsOnTable[i].type.ToString() == "Spellcaster")
              {
                // print(cardsOnTable[i]);
-                totalAttack = (cardsOnTable[i].card.attack + cardsOnTable[i].attackOffset) +2;
-                cardsOnTable[i].att.text = cardsOnTable[i].totalAttack.ToString();
+                cardsOnTable[i].thisCardsAttack += 2;
+                cardsOnTable[i].att.text = cardsOnTable[i].thisCardsAttack.ToString();
                // print(cardsOnTable[i].card.attack);
              }
          }
@@ -364,10 +365,11 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         {
             if (cardsOnTable[i].card.type.ToString() == "Tarot")
             {
-                totalAttack = (cardsOnTable[i].card.attack + cardsOnTable[i].attackOffset) + 2;
-                cardsOnTable[i].totalAttack += 1;
+                cardsOnTable[i].thisCardsDefense += 2;
+                cardsOnTable[i].thisCardsAttack += 1;
 
-                cardsOnTable[i].att.text = totalAttack.ToString();
+                cardsOnTable[i].att.text = thisCardsAttack.ToString();
+                cardsOnTable[i].def.text = thisCardsDefense.ToString();
             }
         }
         StartCoroutine(RemovePlayedCard());
@@ -385,14 +387,10 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         {
             if (cardsOnTable[i].card.type.ToString() == "Pet")
             {
-                totalAttack = (cardsOnTable[i].card.attack + cardsOnTable[i].attackOffset);
-                totalDefense = (cardsOnTable[i].card.defense + cardsOnTable[i].defenseOffset);
+                cardsOnTable[i].thisCardsAttack -= 1;
+                cardsOnTable[i].thisCardsDefense += 2;
 
-                cardsOnTable[i].attackOffset -= 1;
-                cardsOnTable[i].defenseOffset += 2;
-
-                cardsOnTable[i].att.text = totalAttack.ToString();
-                cardsOnTable[i].def.text = totalDefense.ToString();
+                cardsOnTable[i].UpdateUI();
             }
         }
         StartCoroutine(RemovePlayedCard());
@@ -467,19 +465,16 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         //Selecting Monster to attack
         if (isMonster && !inDefense && hasBeenPlayed && GameObject.Find("GameState").GetComponent<GameState>().gamePhase == 2)
         {
-            print(attackOffset);
             monsterTargeted = true;
-            totalAttack = this.card.attack + attackOffset + attackDamageTaken;
-            GameManager.InitiatorCard = this;
-            //sepearate check - if the gamemanager is not null, then player can't click another card
 
-            //game manager public display the card
-            //set game manager to the values of the player's card
-            //once the attack is over, set the player's card to the gamemanager's values
-            //clear the game manager's values
+            //need a check to make sure a different card is not already selected
+           
+            GameManager.InitiatorCard = this;
+
             GameManager.playerAttacking = true;
 
             UpdateCardColors();
+
         }
 
         //Selecting Monster to Tribute
@@ -510,13 +505,12 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             }
             directAttackAgainstOpponent.SetActive(true);
 
-            totalAttack = (this.card.attack + attackOffset - attackDamageTaken);
-            GameManager.directDamage = totalAttack;
+            GameManager.directDamage = thisCardsAttack;
             print("attack directly");
 
             this.GetComponentInChildren<Button>().interactable = false;
         }
-
+        #region Attack All Cards
         //Attack All Cards
 
         /*
@@ -571,6 +565,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         
         }
         */
+        #endregion
     }
 
     void UpdateCardColors()
@@ -612,52 +607,43 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
             if (this.gameObject.GetComponentInChildren<CardDisplay>().thisCardInDefense)
             {
-                totalDefense = this.card.defense + defenseOffset;
                 GameManager.ReceivingCard = this;
 
-                //MAKE SURE YOU CHANGE THE .CARD - THAT IS THE BASE CARD
                 //only have a single function to update attacks or defenses of a card, poke the function rather than scattered through the script
-                print("calculate attack v defense:" + GameManager.InitiatorCard.totalAttack + " " + GameManager.ReceivingCard.totalDefense);
-                if (GameManager.InitiatorCard.totalAttack < GameManager.ReceivingCard.totalDefense)
+                print("calculate attack v defense:" + GameManager.InitiatorCard.thisCardsAttack + " " + GameManager.ReceivingCard.thisCardsDefense);
+                if (GameManager.InitiatorCard.thisCardsAttack < GameManager.ReceivingCard.thisCardsDefense)
                 {
-                    print("Player loses life points: " + (GameManager.InitiatorCard.totalAttack - GameManager.ReceivingCard.totalDefense));
+                    print("Player loses life points: " + (GameManager.InitiatorCard.thisCardsAttack - GameManager.ReceivingCard.thisCardsDefense));
 
-                    GameState.playerHealth += (GameManager.InitiatorCard.totalAttack - GameManager.ReceivingCard.totalDefense);
+                    GameState.playerHealth += (GameManager.InitiatorCard.thisCardsAttack - GameManager.ReceivingCard.thisCardsDefense);
 
                     gameState.UpdateHealthUI();
 
-                    GameManager.ReceivingCard.totalDefense -= GameManager.InitiatorCard.totalAttack;
+                    GameManager.ReceivingCard.thisCardsDefense -= GameManager.InitiatorCard.thisCardsAttack;
 
-                    GameManager.ReceivingCard.def.text = GameManager.ReceivingCard.totalDefense.ToString();
+                    GameManager.ReceivingCard.def.text = GameManager.ReceivingCard.thisCardsDefense.ToString();
 
                     Destroy(GameManager.InitiatorCard.transform.parent.gameObject);
                 }
 
-                else if (GameManager.InitiatorCard.totalAttack == GameManager.ReceivingCard.totalDefense)
+                else if (GameManager.InitiatorCard.thisCardsAttack == GameManager.ReceivingCard.thisCardsDefense)
                 {
                     Destroy(GameManager.InitiatorCard.transform.parent.gameObject);
                     Destroy(GameManager.ReceivingCard.transform.parent.gameObject);
                 }
 
-                else if (GameManager.InitiatorCard.totalAttack > GameManager.ReceivingCard.totalDefense)
+                else if (GameManager.InitiatorCard.thisCardsAttack > GameManager.ReceivingCard.thisCardsDefense)
                 {
-                    GameManager.InitiatorCard.totalAttack -= GameManager.ReceivingCard.totalDefense;
+                    GameManager.InitiatorCard.thisCardsAttack -= GameManager.ReceivingCard.thisCardsDefense;
 
-                    GameManager.InitiatorCard.att.text = GameManager.InitiatorCard.totalAttack.ToString();
-
-                //    print(GameManager.InitiatorCard.totalAttack);
+                    GameManager.InitiatorCard.att.text = GameManager.InitiatorCard.thisCardsAttack.ToString();
 
                     Destroy(GameManager.ReceivingCard.transform.parent.gameObject);
                 }
-/*
-                attackDamageTaken = (GameManager.InitiatorCard.totalAttack - attackOffset - card.attack);
-                print(attackDamageTaken);
 
-                */
             }
             else
             {
-                totalAttack = this.card.attack + attackOffset - attackDamageTaken;
                 GameManager.ReceivingCard = this;
 
               //  print("calculate attack v attack :" + GameManager.InitiatorCard.totalAttack + " " + GameManager.ReceivingCard.totalAttack);
@@ -693,8 +679,8 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         {
             previewCard.GetComponent<CardDisplay>().title.text = card.name;
             previewCard.GetComponent<CardDisplay>().desc.text = card.description;
-            previewCard.GetComponent<CardDisplay>().def.text = card.defense.ToString();
-            previewCard.GetComponent<CardDisplay>().att.text = card.attack.ToString();
+            previewCard.GetComponent<CardDisplay>().def.text = thisCardsDefense.ToString();
+            previewCard.GetComponent<CardDisplay>().att.text = thisCardsAttack.ToString();
             previewCard.GetComponent<CardDisplay>().cost.text = card.cost.ToString();
             previewCard.GetComponent<CardDisplay>().type.text = card.type;
             previewCard.GetComponent<CardDisplay>().background.sprite = card.artwork;
@@ -739,5 +725,11 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     {
         tributeButton.SetActive(false);
         tributeNo.SetActive(false);
+    }
+
+    public void UpdateUI()
+    {
+        att.text = thisCardsAttack.ToString();
+        def.text = thisCardsDefense.ToString();
     }
 }
