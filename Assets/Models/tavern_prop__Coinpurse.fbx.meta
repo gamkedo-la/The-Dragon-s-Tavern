@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: 2af37dddb78d0ae4f9fc748000de16aa
+guid: 04ef7cf76ec0011438e02c08cfb930d3
 ModelImporter:
   serializedVersion: 21100
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Purse
+    second: {fileID: 2100000, guid: 0a4fb28e26b6dab47a1da83d4d8f926d, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -45,7 +50,7 @@ ModelImporter:
     importLights: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
     keepQuads: 0
     weldVertices: 1
