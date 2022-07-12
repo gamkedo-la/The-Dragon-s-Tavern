@@ -1404,6 +1404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 735d258472ea65e499a002f0cbe944f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInitializedFromStart: 0
   skipCardFlip: 0
   backOfCard: {fileID: 4475343632665761679}
   rotationSpeed: 10
@@ -1411,8 +1412,6 @@ MonoBehaviour:
   isMonster: 1
   card: {fileID: 11400000, guid: 7b385161c18d1d84cac1b64156398bfc, type: 2}
   spellCard: {fileID: 0}
-  attackOffset: 0
-  defenseOffset: 0
   background: {fileID: 7012178180046189779}
   title: {fileID: 7012178181832290226}
   desc: {fileID: 7012178181586897100}
@@ -1427,6 +1426,7 @@ MonoBehaviour:
   directAttackAgainstOpponent: {fileID: 0}
   tributeButton: {fileID: 6030233205888592690}
   tributeNo: {fileID: 3608980540102771266}
+  thisCardInDefense: 0
 --- !u!114 &7039814323314807372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1577,7 +1577,7 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 1cf6cd7a195e26c409a486f4994a9088, type: 3}
     m_FontSize: 20
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 0
     m_MaxSize: 60
     m_Alignment: 0
@@ -1656,7 +1656,7 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: a31b1c5555342a54c8ed9f1f7883072e, type: 3}
     m_FontSize: 20
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 0
     m_MaxSize: 80
     m_Alignment: 4

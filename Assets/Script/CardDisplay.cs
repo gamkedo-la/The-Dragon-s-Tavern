@@ -860,7 +860,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             previewCard.GetComponent<CardDisplay>().desc.text = card.description;
             previewCard.GetComponent<CardDisplay>().def.text = thisCardsDefense.ToString();
             previewCard.GetComponent<CardDisplay>().att.text = thisCardsAttack.ToString();
-            previewCard.GetComponent<CardDisplay>().cost.text = card.cost.ToString();
+            previewCard.GetComponent<CardDisplay>().cost.text = thisCardCost.ToString();
             previewCard.GetComponent<CardDisplay>().type.text = card.type;
             previewCard.GetComponent<CardDisplay>().background.sprite = card.artwork;
             previewCard.GetComponent<Image>().color = new Color32(255, 142, 109, 255);
