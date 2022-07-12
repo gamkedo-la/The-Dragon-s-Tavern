@@ -1333,16 +1333,16 @@ MonoBehaviour:
   deckCountRemainingUI: {fileID: 1674471592}
   initialCardsToDraw: 5
   monsterCards:
-  - {fileID: 11400000, guid: 972a87b0e17414f42bb110e1f1424330, type: 2}
-  - {fileID: 11400000, guid: 972a87b0e17414f42bb110e1f1424330, type: 2}
-  - {fileID: 11400000, guid: 972a87b0e17414f42bb110e1f1424330, type: 2}
-  - {fileID: 11400000, guid: 972a87b0e17414f42bb110e1f1424330, type: 2}
-  - {fileID: 11400000, guid: 972a87b0e17414f42bb110e1f1424330, type: 2}
+  - {fileID: 11400000, guid: 02b093454b2f7f043b376aab32654699, type: 2}
+  - {fileID: 11400000, guid: 4059a355bdc355543b2d92fd4d5b47ac, type: 2}
+  - {fileID: 11400000, guid: 6116c2547671def4f8bb461e2232db80, type: 2}
+  - {fileID: 11400000, guid: 30576b65184e8354082fa4c99af5cc7c, type: 2}
+  - {fileID: 11400000, guid: 97859a0656ff3cd489c3aeec7168f47b, type: 2}
   spellCards:
-  - {fileID: 11400000, guid: bd08f2420c77484468fa1d2fba1677db, type: 2}
-  - {fileID: 11400000, guid: bd08f2420c77484468fa1d2fba1677db, type: 2}
-  - {fileID: 11400000, guid: bd08f2420c77484468fa1d2fba1677db, type: 2}
-  - {fileID: 11400000, guid: bd08f2420c77484468fa1d2fba1677db, type: 2}
+  - {fileID: 11400000, guid: aa07186cae25a814ba480350e9c1de94, type: 2}
+  - {fileID: 11400000, guid: aa07186cae25a814ba480350e9c1de94, type: 2}
+  - {fileID: 11400000, guid: aa07186cae25a814ba480350e9c1de94, type: 2}
+  - {fileID: 11400000, guid: aa07186cae25a814ba480350e9c1de94, type: 2}
   - {fileID: 11400000, guid: bd08f2420c77484468fa1d2fba1677db, type: 2}
 --- !u!65 &242015179
 BoxCollider:

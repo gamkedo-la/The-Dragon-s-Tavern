@@ -57,6 +57,9 @@ public class GameState : MonoBehaviour
         playerHealth = opponentHealth = 10;
         UpdateHealthUI();
         turnCount = 0;
+
+        //Card remnants from previous duels
+        GameManager.hailMary = false;
     }
     IEnumerator InitialWait()
     {
@@ -136,7 +139,7 @@ public class GameState : MonoBehaviour
         }
     }
 
-    void PlayerDraw()
+    public void PlayerDraw()
     {
         displayCurrentState.text = "Player Draw";
 
@@ -188,17 +191,32 @@ public class GameState : MonoBehaviour
 
         //Scoop up cards in the parent
         CardDisplay[] cardsOnTable = playerCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
-       
-        for (int i = 0; i < cardsOnTable.Length; i++)
+
+        if (!GameManager.hailMary)
         {
-            cardsOnTable[i].TurnPlayerInteractableCardsOn();
+            for (int i = 0; i < cardsOnTable.Length; i++)
+            {
+                cardsOnTable[i].TurnPlayerInteractableCardsOn();
+            }
+
+            CardDisplay[] opponentCardsOnTable = enemyCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
+            for (int i = 0; i < opponentCardsOnTable.Length; i++)
+            {
+                opponentCardsOnTable[i].TurnEnemyInteractableCardsOn();
+            }
+        }
+        else
+        {
+            for (int i = 0; i < cardsOnTable.Length; i++)
+            {
+                cardsOnTable[i].TurnPlayerInteractableCardsOff();
+                cardsOnTable[i].inDefense = true;
+                cardsOnTable[i].transform.eulerAngles = new Vector3(90, 0, 90);
+                print("gamestate");
+            }
+            GameManager.hailMary = false;
         }
 
-        CardDisplay[] opponentCardsOnTable = enemyCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
-        for (int i = 0; i < opponentCardsOnTable.Length; i++)
-        {
-            opponentCardsOnTable[i].TurnEnemyInteractableCardsOn();
-        }
 
         //this should check the rules between the cards, may reference functions from other cards
         //the actual doing of the stuff should be on the card display (updating HP or functions)
