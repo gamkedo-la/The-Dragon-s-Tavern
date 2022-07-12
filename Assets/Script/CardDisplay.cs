@@ -502,8 +502,12 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     void PrincessOfGifts()
     {
+        gameState = GameObject.Find("GameState").GetComponent<GameState>();
+
         gameState.PlayerDraw();
         gameState.PlayerDraw();
+
+        StartCoroutine(RemovePlayedCard());
     }
 
     public void SpearShatter()

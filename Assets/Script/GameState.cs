@@ -49,6 +49,9 @@ public class GameState : MonoBehaviour
 
     public static int turnCount;
 
+    //advance Player turn off of draw
+    bool advanceTurn;
+
     private void Start()
     {
         //The initial Wait After Player draws their hand to draw a 6th card
@@ -60,6 +63,7 @@ public class GameState : MonoBehaviour
 
         //Card remnants from previous duels
         GameManager.hailMary = false;
+        advanceTurn = true;
     }
     IEnumerator InitialWait()
     {
@@ -141,11 +145,14 @@ public class GameState : MonoBehaviour
 
     public void PlayerDraw()
     {
-        displayCurrentState.text = "Player Draw";
+        if (advanceTurn)
+        {
+            displayCurrentState.text = "Player Draw";
 
-        turnCount++;
+            turnCount++;
 
-        gamePhase++;
+            gamePhase++;
+        }
         StartCoroutine(WaitForPlayerDraw());
     }
 
@@ -153,7 +160,11 @@ public class GameState : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         playerDeck.GetComponent<DrawACard>().DrawCard();
-        DetermineTurn();
+        if (advanceTurn)
+        {
+            DetermineTurn();
+        }
+        advanceTurn = false;
     }
 
     void PlayerSet()
@@ -268,6 +279,7 @@ public class GameState : MonoBehaviour
         playerCamera.SetTrigger("Outward");
         StartCoroutine(WaitForSeconds(1f));
         displayCurrentState.text = "AI End";
+        advanceTurn = true;
         StartCoroutine(CycleTurnThisIsTemp());
     }
 
