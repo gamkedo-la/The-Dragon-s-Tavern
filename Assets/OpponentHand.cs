@@ -81,7 +81,6 @@ public class OpponentHand : MonoBehaviour
 
             cardsInHand.Add(cardNameToSave);
           //  Printing(cardNameToSave);
-
             SpellCard tempCard = Resources.Load<SpellCard>("ScriptableObject/Spell/" + cardNameToSave) as SpellCard;
 
 
