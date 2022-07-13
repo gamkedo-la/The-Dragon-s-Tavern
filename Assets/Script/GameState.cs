@@ -49,6 +49,9 @@ public class GameState : MonoBehaviour
 
     public static int turnCount;
 
+    //advance Player turn off of draw
+    bool advanceTurn;
+
     private void Start()
     {
         //The initial Wait After Player draws their hand to draw a 6th card
@@ -57,6 +60,10 @@ public class GameState : MonoBehaviour
         playerHealth = opponentHealth = 10;
         UpdateHealthUI();
         turnCount = 0;
+
+        //Card remnants from previous duels
+        GameManager.hailMary = false;
+        advanceTurn = true;
     }
     IEnumerator InitialWait()
     {
@@ -136,13 +143,16 @@ public class GameState : MonoBehaviour
         }
     }
 
-    void PlayerDraw()
+    public void PlayerDraw()
     {
-        displayCurrentState.text = "Player Draw";
+        if (advanceTurn)
+        {
+            displayCurrentState.text = "Player Draw";
 
-        turnCount++;
+            turnCount++;
 
-        gamePhase++;
+            gamePhase++;
+        }
         StartCoroutine(WaitForPlayerDraw());
     }
 
@@ -150,7 +160,11 @@ public class GameState : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         playerDeck.GetComponent<DrawACard>().DrawCard();
-        DetermineTurn();
+        if (advanceTurn)
+        {
+            DetermineTurn();
+        }
+        advanceTurn = false;
     }
 
     void PlayerSet()
@@ -188,17 +202,32 @@ public class GameState : MonoBehaviour
 
         //Scoop up cards in the parent
         CardDisplay[] cardsOnTable = playerCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
-       
-        for (int i = 0; i < cardsOnTable.Length; i++)
+
+        if (!GameManager.hailMary)
         {
-            cardsOnTable[i].TurnPlayerInteractableCardsOn();
+            for (int i = 0; i < cardsOnTable.Length; i++)
+            {
+                cardsOnTable[i].TurnPlayerInteractableCardsOn();
+            }
+
+            CardDisplay[] opponentCardsOnTable = enemyCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
+            for (int i = 0; i < opponentCardsOnTable.Length; i++)
+            {
+                opponentCardsOnTable[i].TurnEnemyInteractableCardsOn();
+            }
+        }
+        else
+        {
+            for (int i = 0; i < cardsOnTable.Length; i++)
+            {
+                cardsOnTable[i].TurnPlayerInteractableCardsOff();
+                cardsOnTable[i].inDefense = true;
+                cardsOnTable[i].transform.eulerAngles = new Vector3(90, 0, 90);
+                print("gamestate");
+            }
+            GameManager.hailMary = false;
         }
 
-        CardDisplay[] opponentCardsOnTable = enemyCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
-        for (int i = 0; i < opponentCardsOnTable.Length; i++)
-        {
-            opponentCardsOnTable[i].TurnEnemyInteractableCardsOn();
-        }
 
         //this should check the rules between the cards, may reference functions from other cards
         //the actual doing of the stuff should be on the card display (updating HP or functions)
@@ -250,6 +279,7 @@ public class GameState : MonoBehaviour
         playerCamera.SetTrigger("Outward");
         StartCoroutine(WaitForSeconds(1f));
         displayCurrentState.text = "AI End";
+        advanceTurn = true;
         StartCoroutine(CycleTurnThisIsTemp());
     }
 

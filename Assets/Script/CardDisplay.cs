@@ -68,6 +68,8 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     int thisCardsAttack;
     int thisCardsDefense;
+    int thisCardCost;
+
 
     private void Start()
     {
@@ -102,6 +104,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
             thisCardsAttack = card.attack;
             thisCardsDefense = card.defense;
+            thisCardCost = card.cost;
 
             UpdateUI();
         }
@@ -178,19 +181,14 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         }
         //
 
-        //checking if Card has been played (referenced in PlayableSpot.cs
+        //checking if Card has been played (referenced in PlayableSpot.cs)
         if (hasBeenPulled && GameManager.cardPlayed)
         {
             PutCardBackInHand();
             GameManager.cardPlayed = false;
             Destroy(transform.parent.gameObject);
         }
-        /*
-        if (Input.GetMouseButtonDown(1) && isMonster && hasBeenPlayed && GameObject.Find("GameState").GetComponent<GameState>().gamePhase == 2)
-        {
-            inDefense = !inDefense;
-            FlipCardPosition();
-        }*/
+
     }
 
     public void CardHoverEnter()
@@ -276,6 +274,30 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         else if (spellCard.name == "Lost In Quicksand")
         {
             Quicksand();
+        }
+        else if (spellCard.name == "Tomb of the Risen")
+        {
+            TombOfTheRisen();
+        }
+        else if (spellCard.name == "Crown Tax")
+        {
+            CrownTax();
+        }
+        else if (spellCard.name == "Ogre Hammer")
+        {
+            OgreHammer();
+        }
+        else if (spellCard.name == "Princess of Gifts")
+        {
+            PrincessOfGifts();
+        }
+        else if (spellCard.name == "Spear Shatter")
+        {
+            SpearShatter();
+        }
+        else if (spellCard.name == "Hail Mary")
+        {
+            HailMary();
         }
     }
     #region Spells
@@ -407,6 +429,130 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         int randomDestroy = Random.Range(0, cardsOnTable.Length);
         Destroy(cardsOnTable[randomDestroy].transform.parent.gameObject);
 
+        StartCoroutine(RemovePlayedCard());
+    }
+
+    void TombOfTheRisen()
+    {
+        //Scoop up cards in the parent
+        playerCardPlacementOnTableParent = GameObject.Find("Player's Play Area").transform;
+        enemyCardPlacementOnTableParent = GameObject.Find("Opponent's Play Area").transform;
+
+        CardDisplay[] cardsOnTable = playerCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
+
+        for (int i = 0; i < cardsOnTable.Length; i++)
+        {
+            if (cardsOnTable[i].card.type.ToString() == "Zombie")
+            {
+                cardsOnTable[i].thisCardsAttack += 2;
+
+                cardsOnTable[i].UpdateUI();
+            }
+        }
+        StartCoroutine(RemovePlayedCard());
+    }
+
+    void CrownTax()
+    {
+        //Scoop up cards in the parent
+        playerCardPlacementOnTableParent = GameObject.Find("Player's Play Area").transform;
+        enemyCardPlacementOnTableParent = GameObject.Find("Opponent's Play Area").transform;
+
+        CardDisplay[] cardsOnTable = playerCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
+
+        for (int i = 0; i < cardsOnTable.Length; i++)
+        {
+            if (cardsOnTable[i].card.type.ToString() == "Human")
+            {
+                cardsOnTable[i].thisCardCost += 2;
+
+                cardsOnTable[i].UpdateUI();
+            }
+
+            if (cardsOnTable[i].card.type.ToString() == "Diety")
+            {
+                cardsOnTable[i].thisCardCost += 2;
+
+                cardsOnTable[i].UpdateUI();
+            }
+        }
+        StartCoroutine(RemovePlayedCard());
+    }
+
+    void OgreHammer()
+    {
+        //Scoop up cards in the parent
+        playerCardPlacementOnTableParent = GameObject.Find("Player's Play Area").transform;
+        enemyCardPlacementOnTableParent = GameObject.Find("Opponent's Play Area").transform;
+
+        CardDisplay[] cardsOnTable = playerCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
+
+        for (int i = 0; i < cardsOnTable.Length; i++)
+        {
+            if (cardsOnTable[i].card.type.ToString() == "Fiend")
+            {
+                cardsOnTable[i].thisCardsAttack += 3;
+                cardsOnTable[i].thisCardCost -= 2;
+
+                cardsOnTable[i].UpdateUI();
+            }
+        }
+        StartCoroutine(RemovePlayedCard());
+    }
+
+    void PrincessOfGifts()
+    {
+        gameState = GameObject.Find("GameState").GetComponent<GameState>();
+
+        gameState.PlayerDraw();
+        gameState.PlayerDraw();
+
+        StartCoroutine(RemovePlayedCard());
+    }
+
+    public void SpearShatter()
+    {
+        enemyCardPlacementOnTableParent = GameObject.Find("Opponent's Play Area").transform;
+
+        CardDisplay[] cardsOnTable = enemyCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
+
+        //print(cardsOnTable[0].name);
+
+        int randomHalf = Random.Range(0, cardsOnTable.Length);
+        int attackValue = cardsOnTable[randomHalf].thisCardsAttack;
+
+        Mathf.RoundToInt(attackValue * .5f);
+        cardsOnTable[randomHalf].thisCardsAttack = attackValue;
+
+        cardsOnTable[randomHalf].UpdateUI();
+
+        StartCoroutine(RemovePlayedCard());
+    }
+
+    public void HailMary()
+    {
+        playerCardPlacementOnTableParent = GameObject.Find("Player's Play Area").transform;
+        enemyCardPlacementOnTableParent = GameObject.Find("Opponent's Play Area").transform;
+
+        GameManager.hailMary = true;
+        CardDisplay[] cardsOnTable = playerCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
+
+        for (int i = 0; i < cardsOnTable.Length; i++)
+        {
+            cardsOnTable[i].thisCardsDefense = 1;
+            cardsOnTable[i].thisCardsAttack *= 2;
+
+            if (!cardsOnTable[i].inDefense)
+            {
+                inDefense = true;
+
+                this.GetComponentInChildren<CardDisplay>().thisCardInDefense = true;
+                print("Im in defense!");
+                this.transform.eulerAngles = new Vector3(90, 0, 90);
+            }
+
+            cardsOnTable[i].UpdateUI();
+        }
         StartCoroutine(RemovePlayedCard());
     }
     #endregion
@@ -714,7 +860,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             previewCard.GetComponent<CardDisplay>().desc.text = card.description;
             previewCard.GetComponent<CardDisplay>().def.text = thisCardsDefense.ToString();
             previewCard.GetComponent<CardDisplay>().att.text = thisCardsAttack.ToString();
-            previewCard.GetComponent<CardDisplay>().cost.text = card.cost.ToString();
+            previewCard.GetComponent<CardDisplay>().cost.text = thisCardCost.ToString();
             previewCard.GetComponent<CardDisplay>().type.text = card.type;
             previewCard.GetComponent<CardDisplay>().background.sprite = card.artwork;
             previewCard.GetComponent<Image>().color = new Color32(255, 142, 109, 255);
@@ -764,5 +910,6 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     {
         att.text = thisCardsAttack.ToString();
         def.text = thisCardsDefense.ToString();
+        cost.text = thisCardCost.ToString();
     }
 }

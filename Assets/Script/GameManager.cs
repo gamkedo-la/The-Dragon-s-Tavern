@@ -19,5 +19,8 @@ public class GameManager : MonoBehaviour
     public static bool playerAttacking;
 
     public static CardDisplay InitiatorCard;
-    public static CardDisplay ReceivingCard; 
+    public static CardDisplay ReceivingCard;
+
+    //Card aftermath
+    public static bool hailMary;
 }
