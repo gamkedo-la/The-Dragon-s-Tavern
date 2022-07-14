@@ -1379,7 +1379,7 @@ Transform:
   - {fileID: 1321053539}
   - {fileID: 840823119}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &274078471
 PrefabInstance:
@@ -4725,7 +4725,7 @@ RectTransform:
   m_Children:
   - {fileID: 631941409}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4856,9 +4856,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 217947462}
-  - {fileID: 1798505872}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &823588934
 PrefabInstance:
@@ -5710,7 +5709,7 @@ Transform:
   - {fileID: 775210054}
   - {fileID: 236255930}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &915405346
 MonoBehaviour:
@@ -7413,7 +7412,7 @@ Transform:
   - {fileID: 1979361091}
   - {fileID: 1073126215}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1264978696
 GameObject:
@@ -8661,7 +8660,7 @@ GameObject:
   - component: {fileID: 1433170198}
   - component: {fileID: 1433170197}
   m_Layer: 0
-  m_Name: Graveyard
+  m_Name: OpponentGraveyard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8674,12 +8673,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1433170195}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.9536064, y: 1.7816925, z: -3.033578}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: -4.841606, y: 3.033, z: -8.236423}
   m_LocalScale: {x: 1, y: 0.1, z: 1.5}
   m_Children: []
-  m_Father: {fileID: 1742501058}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1433170197
 BoxCollider:
@@ -10740,9 +10739,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1459200502}
-  - {fileID: 1433170196}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &1784273359
 GameObject:
@@ -10893,7 +10891,7 @@ GameObject:
   - component: {fileID: 1798505870}
   - component: {fileID: 1798505869}
   m_Layer: 0
-  m_Name: Graveyard
+  m_Name: PlayerGraveyard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10970,11 +10968,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1798505868}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.9536064, y: 1.7816925, z: -3.033578}
+  m_LocalPosition: {x: 3.71, y: 3.033, z: -11.62}
   m_LocalScale: {x: 1, y: 0.1, z: 1.5}
   m_Children: []
-  m_Father: {fileID: 814905427}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1869383684
 GameObject:
@@ -11086,7 +11084,7 @@ Transform:
   - {fileID: 1903337475}
   - {fileID: 600511299}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1888321651
 PrefabInstance:
@@ -11125,7 +11123,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3133345052587285983, guid: 505699bd5aac78d42a8c8dba03f91b91, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3133345052587285983, guid: 505699bd5aac78d42a8c8dba03f91b91, type: 3}
       propertyPath: m_AnchorMax.x
@@ -12773,7 +12771,7 @@ Transform:
   - {fileID: 1257489682251816840}
   - {fileID: 3647605980566388442}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2133537894
 GameObject:
@@ -12872,7 +12870,7 @@ RectTransform:
   - {fileID: 2024658936}
   - {fileID: 1606979957}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -13108,7 +13106,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9069718567259845437, guid: 496c19d1d6a0d214eabac93f1593a5c8, type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 9069718567259845437, guid: 496c19d1d6a0d214eabac93f1593a5c8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13593,7 +13591,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7012178180209252378, guid: 74e4ca38baf1f61409f52d6a1dd2cdb2, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 7012178180209252378, guid: 74e4ca38baf1f61409f52d6a1dd2cdb2, type: 3}
       propertyPath: m_AnchorMax.x

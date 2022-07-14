@@ -70,6 +70,10 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     int thisCardsDefense;
     int thisCardCost;
 
+    Transform playerGraveyard, opponentGraveyard;
+
+    bool destroyInitiator, destroyReceivor; 
+
 
     private void Start()
     {
@@ -741,6 +745,9 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        playerGraveyard = GameObject.Find("PlayerGraveyard").transform;
+        opponentGraveyard = GameObject.Find("OpponentGraveyard").transform;
+
         if (eventData.button == PointerEventData.InputButton.Right && isMonster && hasBeenPlayed && GameObject.Find("GameState").GetComponent<GameState>().gamePhase == 2)
         {
             inDefense = !inDefense;
@@ -769,7 +776,13 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
                     GameManager.ReceivingCard.def.text = GameManager.ReceivingCard.thisCardsDefense.ToString();
 
-                    Destroy(GameManager.InitiatorCard.transform.parent.gameObject);
+                    destroyInitiator = true;
+
+                 //   GameManager.InitiatorCard.transform.position = playerGraveyard.transform.position;
+
+                    StartCoroutine(LerpPosition(playerGraveyard.transform.position, 1));
+
+                 //   Destroy(GameManager.InitiatorCard.transform.parent.gameObject);
                 }
 
                 else if (GameManager.InitiatorCard.thisCardsAttack == GameManager.ReceivingCard.thisCardsDefense)
@@ -836,6 +849,8 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
             GameManager.attackDamage = 0;
             GameManager.playerAttacking = false;
+
+    
 
             GameManager.InitiatorCard = null;
             GameManager.ReceivingCard = null; 
@@ -911,5 +926,24 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         att.text = thisCardsAttack.ToString();
         def.text = thisCardsDefense.ToString();
         cost.text = thisCardCost.ToString();
+    }
+
+    IEnumerator LerpPosition(Vector3 targetPosition, float duration)
+    {
+        print("play particle system");
+
+       // yield return new WaitForSeconds(1f);
+        float time = 0;
+        Vector3 startPosition = GameManager.InitiatorCard.transform.position;
+        while (time < duration)
+        {
+            transform.position = Vector3.Lerp(startPosition, targetPosition, time / duration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        transform.position = targetPosition;
+
+        destroyInitiator = false;
+        destroyReceivor = false;
     }
 }
