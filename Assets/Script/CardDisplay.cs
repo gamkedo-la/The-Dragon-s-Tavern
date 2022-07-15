@@ -72,9 +72,9 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     Transform playerGraveyard, opponentGraveyard;
 
-    bool destroyInitiator, destroyReceivor; 
+    bool destroyInitiator, destroyReceivor;
 
-
+    bool lerping;
     private void Start()
     {
         gameState = GameObject.Find("GameState").GetComponent<GameState>();
@@ -192,7 +192,6 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             GameManager.cardPlayed = false;
             Destroy(transform.parent.gameObject);
         }
-
     }
 
     public void CardHoverEnter()
@@ -932,12 +931,39 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
         yield return new WaitForSeconds(lengthOfTime); // start at time X
         float startTime = Time.time; // Time.time contains current frame time, so remember starting point
-        while (Time.time - startTime <= 1)
-        { // until one second passed
-            GameManager.ReceivingCard.transform.position = Vector3.Lerp(GameManager.ReceivingCard.transform.position, GameManager.InitiatorCard.transform.position, Time.time - startTime); // lerp from A to B in one second
-            yield return 1; // wait for next frame
+
+
+        if (GameManager.ReceivingCard == null)
+        {
+            Debug.LogWarning("ReceivingCard wasn't set");
         }
-        destroyInitiator = false;
-        destroyReceivor = false;
+        else if (GameManager.InitiatorCard == null)
+        {
+            Debug.LogWarning("InitiatorCard wasn't set");
+        }
+        else
+        {
+            // lerp line here
+            print(GameManager.ReceivingCard.gameObject.name);
+            print(GameManager.InitiatorCard.gameObject.name);
+
+
+
+            Vector3 InitiatorCardStartingPosition = GameManager.InitiatorCard.transform.position;
+
+            /*
+            while (Time.time - startTime <= 1)
+            { // until one second passed
+                GameManager.ReceivingCard.transform.position = Vector3.Lerp(GameManager.ReceivingCard.transform.position, GameManager.InitiatorCard.transform.position, Time.time - startTime); // lerp from A to B in one second
+                yield return 1; // wait for next frame
+            }
+            */
+            yield return new WaitForSeconds(2f);
+            GameManager.InitiatorCard.transform.position = InitiatorCardStartingPosition;
+
+            destroyInitiator = false;
+            destroyReceivor = false;
+        }
+
     }
 }

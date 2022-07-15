@@ -163,7 +163,11 @@ public class OpponentHand : MonoBehaviour
 
             //chooseAttackOrDefense
 
-            int choosePosition = Random.Range(0, 2);
+            int choosePosition = Random.Range(0, 1);
+
+            print("change this back to 2. this was used to test Attack v Defense animations");
+
+
            // print(choosePosition);
             //Defense
             if (choosePosition == 0)
