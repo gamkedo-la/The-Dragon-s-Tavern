@@ -778,8 +778,8 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
                     destroyInitiator = true;
 
-                    GameManager.InitiatorCard.transform.position = playerGraveyard.transform.position;
-                    StartCoroutine(MoveToGraveYard());
+                   // GameManager.InitiatorCard.transform.position = playerGraveyard.transform.position;
+                    StartCoroutine(MoveToReceiverCard(1f, 1f));
                 }
 
                 else if (GameManager.InitiatorCard.thisCardsAttack == GameManager.ReceivingCard.thisCardsDefense)
@@ -925,14 +925,18 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         cost.text = thisCardCost.ToString();
     }
 
-    IEnumerator MoveToGraveYard()
+    IEnumerator MoveToReceiverCard(float lengthOfTime, float returnTime)
     {
 
         print("play particle system");
 
-        yield return new WaitForSeconds(1f);
-
-
+        yield return new WaitForSeconds(lengthOfTime); // start at time X
+        float startTime = Time.time; // Time.time contains current frame time, so remember starting point
+        while (Time.time - startTime <= 1)
+        { // until one second passed
+            GameManager.ReceivingCard.transform.position = Vector3.Lerp(GameManager.ReceivingCard.transform.position, GameManager.InitiatorCard.transform.position, Time.time - startTime); // lerp from A to B in one second
+            yield return 1; // wait for next frame
+        }
         destroyInitiator = false;
         destroyReceivor = false;
     }
