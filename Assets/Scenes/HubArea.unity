@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -327,7 +327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -589,7 +589,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -1252,6 +1252,68 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de07accfe1aa9c04eb8476ed1c5d128a, type: 3}
+--- !u!1 &683999652
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 683999654}
+  - component: {fileID: 683999653}
+  m_Layer: 0
+  m_Name: GameState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &683999653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 683999652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93421fee40c21654da26e278c8b94d5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
+  gamePhase: 0
+  playerDeck: {fileID: 0}
+  displayCurrentState: {fileID: 0}
+  CurrentStateUIImage: {fileID: 0}
+  playerEndSetButton: {fileID: 0}
+  playerEndAttackButton: {fileID: 0}
+  playerCardPlacementOnTableParent: {fileID: 0}
+  enemyCardPlacementOnTableParent: {fileID: 0}
+  playerPointsImage: {fileID: 0}
+  startingColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  currencyBackground: {fileID: 0}
+  notEnoughCurrencyColor: {r: 1, g: 0, b: 0, a: 1}
+  playerCamera: {fileID: 0}
+  playerHandUI: {fileID: 0}
+  opponentHand: {fileID: 0}
+  playerHealthUI: {fileID: 0}
+  opponentHealthUI: {fileID: 0}
+  isHub: 1
+--- !u!4 &683999654
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 683999652}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.12475327, y: 2.947719, z: -8.934285}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &695043973
 GameObject:
   m_ObjectHideFlags: 0
@@ -1931,7 +1993,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -2066,7 +2128,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1653861873}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.6
+  m_Size: 0.46153846
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

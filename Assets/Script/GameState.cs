@@ -52,18 +52,24 @@ public class GameState : MonoBehaviour
     //advance Player turn off of draw
     bool advanceTurn;
 
+    public bool isHub;
+
     private void Start()
     {
         //The initial Wait After Player draws their hand to draw a 6th card
-        StartCoroutine(InitialWait());
 
-        playerHealth = opponentHealth = 10;
-        UpdateHealthUI();
-        turnCount = 0;
+        if (!isHub)
+        {
+            StartCoroutine(InitialWait());
 
-        //Card remnants from previous duels
-        GameManager.hailMary = false;
-        advanceTurn = true;
+            playerHealth = opponentHealth = 10;
+            UpdateHealthUI();
+            turnCount = 0;
+
+            //Card remnants from previous duels
+            GameManager.hailMary = false;
+            advanceTurn = true;
+        }
     }
     IEnumerator InitialWait()
     {
