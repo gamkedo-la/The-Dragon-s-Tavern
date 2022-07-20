@@ -266,12 +266,15 @@ public class GameState : MonoBehaviour
 
     void AISet()
     {
+        //change this back to 4
+        CurrencyThisTurn = 10;
+
         displayCurrentState.text = "AI Set";
         opponentHand.PlayHand();
-        opponentHand.PlayHand();
+  //      opponentHand.PlayHand();
 
         //this is only temporary for the opponent to play two cards in one turn;
-        AdvanceTurnFromAnotherScript();
+     //   AdvanceTurnFromAnotherScript();
     }
 
     void AIAttack()

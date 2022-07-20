@@ -114,24 +114,51 @@ public class OpponentHand : MonoBehaviour
 
     public void PlayHand()
     {
-       // Printing("card is being played");
-       // Printing(cardsInHand.Count.ToString());
-        //Choose a random card to play
-        cardToChoose = Random.Range(0, cardsInHand.Count);
-       // Printing(cardsInHand[cardToChoose]);
-        //Play an instantiated card on the table
-       // Printing(cardsInHand[cardToChoose] + " played on the table");
+        for (int i = 0; i < cardsInHand.Count; i++)
+        {
+            //Choose a random card to play
+            cardToChoose = Random.Range(0, cardsInHand.Count);
 
-        // Choose a random spot to create the card
-        ChooseWhereToPlayCard();
+            string chosen = cardsInHand[cardToChoose];
 
-        //Remove card from list
-       // Printing(cardsInHand[cardToChoose] + " has been removed from the hand");
-        cardsInHand.Remove(cardsInHand[cardToChoose]);
-       // Printing(cardsInHand.Count.ToString());
+            //need to get the .name of Monster cards in order for them to line up and be played on the table. 
 
+            if (monsterCards[i].name == chosen)
+            {
+                if (monsterCards[i].cost <= GameState.CurrencyThisTurn)
+                {
+                    // Choose a random spot to create the card
+                    ChooseWhereToPlayCard();
+
+                    GameState.CurrencyThisTurn -= monsterCards[i].cost;
+
+                    //Remove card from list
+                    cardsInHand.Remove(cardsInHand[i]);
+                    i++;
+                }
+            }
+        }
+
+        /* for (int i = 0; i < cardsInHand.Count; i++)
+         {
+
+
+             print(cardsInHand[i].ToString() + " " + monsterCards[i].name);
+        */
+        /*    if (monsterCards[i].cost <= GameState.CurrencyThisTurn)
+            {
+               
+
+                print("Currency:" + GameState.CurrencyThisTurn);
+            }
+            else
+            {
+                i++;
+
+                print("Currency:" + GameState.CurrencyThisTurn + " Too Expensive");
+            }*/
         //Work on this, this is just a placeholder
-  //      gameState.AdvanceTurnFromAnotherScript();
+        gameState.AdvanceTurnFromAnotherScript();
     }
 
     void ChooseWhereToPlayCard()
@@ -163,9 +190,7 @@ public class OpponentHand : MonoBehaviour
 
             //chooseAttackOrDefense
 
-            int choosePosition = Random.Range(0, 1);
-
-            print("change this back to 2. this was used to test Attack v Defense animations");
+            int choosePosition = Random.Range(0, 2);
 
 
            // print(choosePosition);
