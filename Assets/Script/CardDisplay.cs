@@ -70,7 +70,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     int thisCardsDefense;
     int thisCardCost;
 
-    Transform playerGraveyard, opponentGraveyard;
+   // Transform playerGraveyard, opponentGraveyard;
 
     bool destroyInitiator, destroyReceivor;
 
@@ -317,7 +317,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             if (cardsOnTable[i].card.type.ToString() == "Lore")
             {
                 //for each Lore card, you're adding one so 3 cards would be 3 bonus
-                
+
                 int totalCards = cardsOnTable.Length;
                 cardsOnTable[i].thisCardsDefense += totalCards;
                 //
@@ -326,6 +326,10 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
                 // cardsOnTable[i].defenseOffset += 1;
 
                 cardsOnTable[i].def.text = thisCardsDefense.ToString();
+            }
+            else
+            {
+                print("no effect");
             }
         }
         StartCoroutine(RemovePlayedCard());
@@ -744,8 +748,8 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        playerGraveyard = GameObject.Find("PlayerGraveyard").transform;
-        opponentGraveyard = GameObject.Find("OpponentGraveyard").transform;
+     //  playerGraveyard = GameObject.Find("PlayerGraveyard").transform;
+      //  opponentGraveyard = GameObject.Find("OpponentGraveyard").transform;
 
         if (eventData.button == PointerEventData.InputButton.Right && isMonster && hasBeenPlayed && GameObject.Find("GameState").GetComponent<GameState>().gamePhase == 2)
         {

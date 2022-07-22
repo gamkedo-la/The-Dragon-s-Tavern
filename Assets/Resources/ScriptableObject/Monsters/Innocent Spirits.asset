@@ -15,7 +15,7 @@ MonoBehaviour:
   name: Innocent Spirits
   description: It seems so precious, it must be protected.
   type: Spirit
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: aa40ce22ab59e5d4e910ab0bf302841d, type: 3}
   cost: 4
   attack: 3
   defense: 5

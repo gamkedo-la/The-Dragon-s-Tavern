@@ -16,4 +16,4 @@ MonoBehaviour:
   effect: 'All cards go to defense until next turn and their defense is reduced to
     1, but attack is doubled. '
   type: Quick
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 35d436f6ea86cb7488e72a202d25271b, type: 3}

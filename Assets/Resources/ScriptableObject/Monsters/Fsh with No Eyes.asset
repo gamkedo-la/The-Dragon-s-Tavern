@@ -15,7 +15,7 @@ MonoBehaviour:
   name: Fsh with No Eyes
   description: 'It is a pun and if you go deep enough - demented. '
   type: Creature
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: f7c6e36e7944f724b89caad341cdd3fa, type: 3}
   cost: 1
   attack: 2
   defense: 1

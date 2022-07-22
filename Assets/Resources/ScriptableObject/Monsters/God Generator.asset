@@ -15,7 +15,7 @@ MonoBehaviour:
   name: God Generator
   description: 'You are not god, the machine is. '
   type: Diety
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 6eddacaefeaeebb47a3f1226f355f816, type: 3}
   cost: 10
   attack: 16
   defense: 4

@@ -15,7 +15,7 @@ MonoBehaviour:
   name: Golem of Night
   description: 'Darkness looms around every corner. Watch your step. '
   type: Rock
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 801c686423c43af489e5eda151843a2b, type: 3}
   cost: 6
   attack: 8
   defense: 4
