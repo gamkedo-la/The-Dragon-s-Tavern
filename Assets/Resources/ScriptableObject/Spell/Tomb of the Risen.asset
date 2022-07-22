@@ -15,4 +15,4 @@ MonoBehaviour:
   name: Tomb of the Risen
   effect: Each Zombie monster gains 2 attack
   type: Quick
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: b11b5e9b5968fac459cd10c89e60cfd7, type: 3}

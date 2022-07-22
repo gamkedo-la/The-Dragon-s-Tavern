@@ -1339,11 +1339,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5f8017a43e8855b42bd15b3493de10f6, type: 2}
   - {fileID: 11400000, guid: c4bd62bf71dd4104ea5fe17803290b56, type: 2}
   spellCards:
-  - {fileID: 11400000, guid: c7b8009921ae1064c8c716c745d4b788, type: 2}
-  - {fileID: 11400000, guid: 2bd14efeca58dd64ea26fbac312b06f5, type: 2}
-  - {fileID: 11400000, guid: 037c0dbe329ed8d47998f4b3ba1c6a0a, type: 2}
-  - {fileID: 11400000, guid: 8f6885d5cd0c35444870c63e77f41f7c, type: 2}
-  - {fileID: 11400000, guid: afb1de2208d02064cb612355c9556784, type: 2}
+  - {fileID: 11400000, guid: 5347778923d271c40a6a74951129c5e9, type: 2}
+  - {fileID: 11400000, guid: 482b3b24e8f5ac04ca57a7def108f8b3, type: 2}
+  - {fileID: 11400000, guid: e2c5979b6eeefce408d4925082ab351d, type: 2}
+  - {fileID: 11400000, guid: 9df01bfbcd63e3341becd816a361e666, type: 2}
+  - {fileID: 11400000, guid: 50c53826916f8fa4389168c71009aa6c, type: 2}
 --- !u!65 &242015179
 BoxCollider:
   m_ObjectHideFlags: 0

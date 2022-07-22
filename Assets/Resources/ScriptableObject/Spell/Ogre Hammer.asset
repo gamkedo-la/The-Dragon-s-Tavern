@@ -15,4 +15,4 @@ MonoBehaviour:
   name: Ogre Hammer
   effect: Fiend monsters gain 3 attack, but their cost drops by 2.
   type: Quick
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 32d4487b33a39f347933b28220d981d6, type: 3}
