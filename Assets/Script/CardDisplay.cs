@@ -882,6 +882,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
             previewCard.transform.Find("Attack").gameObject.SetActive(true);
             previewCard.transform.Find("Defense").gameObject.SetActive(true);
+            previewCard.transform.Find("Cost").gameObject.SetActive(true);
         }
         else
         {
@@ -893,6 +894,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
             previewCard.transform.Find("Attack").gameObject.SetActive(false);
             previewCard.transform.Find("Defense").gameObject.SetActive(false);
+            previewCard.transform.Find("Cost").gameObject.SetActive(false);
         }
         #endregion
     }
