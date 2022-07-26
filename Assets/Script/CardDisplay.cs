@@ -70,6 +70,10 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     int thisCardsDefense;
     int thisCardCost;
 
+    System.Action doWhenCardsCollide;
+    CardDisplay refInitiator;
+    CardDisplay refDefender;
+
    // Transform playerGraveyard, opponentGraveyard;
 
     bool destroyInitiator, destroyReceivor;
@@ -746,6 +750,25 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     #endregion
 
+    void DestroyDefender()
+    {
+        print("refDefender");
+        Destroy(refDefender.gameObject);
+    }
+
+    void DestroyAttackerr()
+    {
+        print("refAttacker");
+        Destroy(refInitiator.gameObject);
+    }
+
+    void DestroyBoth()
+    {
+        print("destroy both");
+        Destroy(refInitiator.gameObject);
+        Destroy(refDefender.gameObject);
+    }
+
     public void OnPointerClick(PointerEventData eventData)
     {
      //  playerGraveyard = GameObject.Find("PlayerGraveyard").transform;
@@ -779,16 +802,19 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
                     GameManager.ReceivingCard.def.text = GameManager.ReceivingCard.thisCardsDefense.ToString();
 
-                    destroyInitiator = true;
+           //         destroyInitiator = true;
 
-                   // GameManager.InitiatorCard.transform.position = playerGraveyard.transform.position;
+                    doWhenCardsCollide = DestroyAttackerr;
+
+                    // GameManager.InitiatorCard.transform.position = playerGraveyard.transform.position;
                     //StartCoroutine(MoveToReceiverCard(2f, 2f));
                 }
 
                 else if (GameManager.InitiatorCard.thisCardsAttack == GameManager.ReceivingCard.thisCardsDefense)
                 {
-                   // Destroy(GameManager.InitiatorCard.transform.parent.gameObject);
-                   // Destroy(GameManager.ReceivingCard.transform.parent.gameObject);
+                    // Destroy(GameManager.InitiatorCard.transform.parent.gameObject);
+                    // Destroy(GameManager.ReceivingCard.transform.parent.gameObject);
+                    doWhenCardsCollide = DestroyBoth;
                 }
 
                 else if (GameManager.InitiatorCard.thisCardsAttack > GameManager.ReceivingCard.thisCardsDefense)
@@ -797,8 +823,12 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
                     GameManager.InitiatorCard.att.text = GameManager.InitiatorCard.thisCardsAttack.ToString();
 
-                   // Destroy(GameManager.ReceivingCard.transform.parent.gameObject);
+                    doWhenCardsCollide = DestroyDefender;
+                    // Destroy(GameManager.ReceivingCard.transform.parent.gameObject);
                 }
+                refInitiator = GameManager.InitiatorCard;
+                refDefender = GameManager.ReceivingCard;
+
                 StartCoroutine(MoveToReceiverCard(2f, 2f));
             }
             else
@@ -950,19 +980,22 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
             movingCard.transform.position = Vector3.Lerp(initiatorCardStartedFrom, receivingCardStartedFrom, (f/ lengthOfTime));
         }
-
-         print("play particle system");
-        yield return new WaitForSeconds(1.5f);
         //how long does the particle need to play
+        print("play particle system");
+        yield return new WaitForSeconds(1.5f);
+        doWhenCardsCollide();
 
-        for (float f = 0; f < lengthOfTime; f += moveStepTime)
+        yield return new WaitForEndOfFrame(); //Give destroy a chance to take effect
+
+        if (movingCard)
         {
-            yield return new WaitForSeconds(moveStepTime);
+            for (float f = 0; f < lengthOfTime; f += moveStepTime)
+            {
+                yield return new WaitForSeconds(moveStepTime);
 
-            movingCard.transform.position = Vector3.Lerp(initiatorCardStartedFrom, receivingCardStartedFrom, 1.0f-(f / lengthOfTime));
+                movingCard.transform.position = Vector3.Lerp(initiatorCardStartedFrom, receivingCardStartedFrom, 1.0f - (f / lengthOfTime));
+            }
         }
-
-
 
         /*
         float startTime = Time.time; // Time.time contains current frame time, so remember starting point
