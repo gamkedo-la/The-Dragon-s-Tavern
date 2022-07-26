@@ -74,11 +74,11 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     CardDisplay refInitiator;
     CardDisplay refDefender;
 
-   // Transform playerGraveyard, opponentGraveyard;
+    // Transform playerGraveyard, opponentGraveyard;
 
-    bool destroyInitiator, destroyReceivor;
+    //bool destroyInitiator, destroyReceivor;
 
-    bool lerping;
+    public bool destroyMe = false;
     private void Start()
     {
         gameState = GameObject.Find("GameState").GetComponent<GameState>();
@@ -750,23 +750,42 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     #endregion
 
+    public void FullyRemoveWithParent()
+    {
+        Destroy(transform.parent.gameObject);
+    }
+
     void DestroyDefender()
     {
         print("refDefender");
-        Destroy(refDefender.gameObject);
+        //Destroy(refDefender.gameObject);
+        refDefender.PlayDead();
     }
 
     void DestroyAttackerr()
     {
         print("refAttacker");
-        Destroy(refInitiator.gameObject);
+        refInitiator.FullyRemoveWithParent();
     }
 
     void DestroyBoth()
     {
         print("destroy both");
-        Destroy(refInitiator.gameObject);
-        Destroy(refDefender.gameObject);
+        refInitiator.FullyRemoveWithParent();
+        // Destroy(refDefender.gameObject);
+        refDefender.PlayDead();
+    }
+
+    public void PlayDead()
+    {
+        //can't remove defender mid coroutine, have to hide then will remove later
+        destroyMe = true;
+        Renderer[] allRend = gameObject.GetComponentsInChildren<Renderer>();
+
+        for (int i = 0; i < allRend.Length; i++)
+        {
+            allRend[i].enabled = false;
+        }
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -995,6 +1014,12 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
                 movingCard.transform.position = Vector3.Lerp(initiatorCardStartedFrom, receivingCardStartedFrom, 1.0f - (f / lengthOfTime));
             }
+        }
+
+        if (refDefender.destroyMe)
+        {
+            refDefender.FullyRemoveWithParent();
+            print("now really removing playDead object");
         }
 
         /*
