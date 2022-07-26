@@ -123,12 +123,12 @@ public class OpponentHand : MonoBehaviour
 
             //need to get the .name of Monster cards in order for them to line up and be played on the table. 
 
-            if (monsterCards[i].name == chosen)
+          /*  if (monsterCards[i].name == chosen)
             {
                 if (monsterCards[i].cost <= GameState.CurrencyThisTurn)
                 {
                     // Choose a random spot to create the card
-                    ChooseWhereToPlayCard();
+             //       ChooseWhereToPlayCard();
 
                     GameState.CurrencyThisTurn -= monsterCards[i].cost;
 
@@ -138,11 +138,12 @@ public class OpponentHand : MonoBehaviour
                 }
             }
         }
-
+          
         for (int i = 0; i < cardsInHand.Count; i++)
         {
-            Card monsterCard = GameManager.instance.FindMonster(cardsInHand[i]);
-            SpellCard spellCard = GameManager.instance.FindSpell(cardsInHand[i]);
+          */
+            Card monsterCard = GameManager.instance.FindMonster(chosen);
+            SpellCard spellCard = GameManager.instance.FindSpell(chosen);
 
             string cardName = "error";
             int cardCost = 0;
@@ -160,15 +161,16 @@ public class OpponentHand : MonoBehaviour
             }
             else
             {
-                Debug.LogError("No card name found: " + cardsInHand[i]);
+                Debug.LogError("No card name found: " + chosen);
             }
             
-            print(cardsInHand[i].ToString() + " " + cardName);
+            print(chosen.ToString() + " " + cardName);
 
             if (cardCost <= GameState.CurrencyThisTurn)
             {
                 GameState.CurrencyThisTurn -= cardCost;
                 print("Currency:" + GameState.CurrencyThisTurn);
+                ChooseWhereToPlayCard();
             }
             else
             {
