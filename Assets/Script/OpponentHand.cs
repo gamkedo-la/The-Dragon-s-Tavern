@@ -139,15 +139,15 @@ public class OpponentHand : MonoBehaviour
             }
         }
 
-        /* for (int i = 0; i < cardsInHand.Count; i++)
-         {
+        for (int i = 0; i < cardsInHand.Count; i++)
+        {
 
 
-             print(cardsInHand[i].ToString() + " " + monsterCards[i].name);
-        */
-        /*    if (monsterCards[i].cost <= GameState.CurrencyThisTurn)
+            print(cardsInHand[i].ToString() + " " + monsterCards[i].name);
+
+            if (monsterCards[i].cost <= GameState.CurrencyThisTurn)
             {
-               
+
 
                 print("Currency:" + GameState.CurrencyThisTurn);
             }
@@ -156,7 +156,8 @@ public class OpponentHand : MonoBehaviour
                 i++;
 
                 print("Currency:" + GameState.CurrencyThisTurn + " Too Expensive");
-            }*/
+            }
+        }
         //Work on this, this is just a placeholder
         gameState.AdvanceTurnFromAnotherScript();
     }

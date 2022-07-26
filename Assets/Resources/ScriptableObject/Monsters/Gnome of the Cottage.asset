@@ -15,7 +15,7 @@ MonoBehaviour:
   name: Gnome of the Cottage
   description: A quaint person in a quaint little house.
   type: Human
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: c0d44fd8494a4fc4989102e6889b8442, type: 3}
   cost: 3
   attack: 2
   defense: 4
