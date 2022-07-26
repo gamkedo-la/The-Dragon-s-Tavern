@@ -933,10 +933,13 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     IEnumerator MoveToReceiverCard(float lengthOfTime, float returnTime)
     {
         //move later
-        // print("play particle system");
+        
         float moveStepTime = 0.03f;
 
+
         Vector3 initiatorCardStartedFrom = GameManager.InitiatorCard.transform.position;
+
+        //could add offsets in here to not cover the card 
         Vector3 receivingCardStartedFrom = GameManager.ReceivingCard.transform.position;
 
         CardDisplay movingCard = GameManager.InitiatorCard;
@@ -947,6 +950,18 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
             movingCard.transform.position = Vector3.Lerp(initiatorCardStartedFrom, receivingCardStartedFrom, (f/ lengthOfTime));
         }
+
+         print("play particle system");
+        yield return new WaitForSeconds(1.5f);
+        //how long does the particle need to play
+
+        for (float f = 0; f < lengthOfTime; f += moveStepTime)
+        {
+            yield return new WaitForSeconds(moveStepTime);
+
+            movingCard.transform.position = Vector3.Lerp(initiatorCardStartedFrom, receivingCardStartedFrom, 1.0f-(f / lengthOfTime));
+        }
+
 
 
         /*
