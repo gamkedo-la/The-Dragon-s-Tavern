@@ -23,4 +23,38 @@ public class GameManager : MonoBehaviour
 
     //Card aftermath
     public static bool hailMary;
+
+    // Every Card Dictionary
+    public static GameManager instance;
+    public List<Card> MonsterCardList;
+    public List<SpellCard> SpellCardList;
+
+    private void Start()
+    {
+        instance = this;
+    }
+
+    public Card FindMonster(string cardName)
+    {
+        for (int i = 0; i < MonsterCardList.Count; i++)
+        {
+            if (MonsterCardList[i].name == cardName)
+            {
+                return MonsterCardList[i];
+            }
+        }
+        return null;
+    }
+
+    public SpellCard FindSpell(string cardName)
+    {
+        for (int i = 0; i < SpellCardList.Count; i++)
+        {
+            if (SpellCardList[i].name == cardName)
+            {
+                return SpellCardList[i];
+            }
+        }
+        return null;
+    }
 }

@@ -141,20 +141,38 @@ public class OpponentHand : MonoBehaviour
 
         for (int i = 0; i < cardsInHand.Count; i++)
         {
+            Card monsterCard = GameManager.instance.FindMonster(cardsInHand[i]);
+            SpellCard spellCard = GameManager.instance.FindSpell(cardsInHand[i]);
 
+            string cardName = "error";
+            int cardCost = 0;
 
-            print(cardsInHand[i].ToString() + " " + monsterCards[i].name);
-
-            if (monsterCards[i].cost <= GameState.CurrencyThisTurn)
+            if (monsterCard != null)
             {
+                cardName = monsterCard.name;
+                cardCost = monsterCard.cost;
+            }
+            else if (spellCard != null)
+            {
+                cardName = spellCard.name;
+                //there is no cost for spell cards
+                cardCost = 0;
+            }
+            else
+            {
+                Debug.LogError("No card name found: " + cardsInHand[i]);
+            }
+            
+            print(cardsInHand[i].ToString() + " " + cardName);
 
-
+            if (cardCost <= GameState.CurrencyThisTurn)
+            {
+                GameState.CurrencyThisTurn -= cardCost;
                 print("Currency:" + GameState.CurrencyThisTurn);
             }
             else
             {
                 i++;
-
                 print("Currency:" + GameState.CurrencyThisTurn + " Too Expensive");
             }
         }
