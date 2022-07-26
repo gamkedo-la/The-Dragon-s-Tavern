@@ -782,13 +782,13 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
                     destroyInitiator = true;
 
                    // GameManager.InitiatorCard.transform.position = playerGraveyard.transform.position;
-                    StartCoroutine(MoveToReceiverCard(1f, 1f));
+                    //StartCoroutine(MoveToReceiverCard(2f, 2f));
                 }
 
                 else if (GameManager.InitiatorCard.thisCardsAttack == GameManager.ReceivingCard.thisCardsDefense)
                 {
-                    Destroy(GameManager.InitiatorCard.transform.parent.gameObject);
-                    Destroy(GameManager.ReceivingCard.transform.parent.gameObject);
+                   // Destroy(GameManager.InitiatorCard.transform.parent.gameObject);
+                   // Destroy(GameManager.ReceivingCard.transform.parent.gameObject);
                 }
 
                 else if (GameManager.InitiatorCard.thisCardsAttack > GameManager.ReceivingCard.thisCardsDefense)
@@ -797,9 +797,9 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
                     GameManager.InitiatorCard.att.text = GameManager.InitiatorCard.thisCardsAttack.ToString();
 
-                    Destroy(GameManager.ReceivingCard.transform.parent.gameObject);
+                   // Destroy(GameManager.ReceivingCard.transform.parent.gameObject);
                 }
-
+                StartCoroutine(MoveToReceiverCard(2f, 2f));
             }
             else
             {
@@ -932,10 +932,24 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     IEnumerator MoveToReceiverCard(float lengthOfTime, float returnTime)
     {
+        //move later
+        // print("play particle system");
+        float moveStepTime = 0.03f;
 
-        print("play particle system");
+        Vector3 initiatorCardStartedFrom = GameManager.InitiatorCard.transform.position;
+        Vector3 receivingCardStartedFrom = GameManager.ReceivingCard.transform.position;
 
-        yield return new WaitForSeconds(lengthOfTime); // start at time X
+        CardDisplay movingCard = GameManager.InitiatorCard;
+
+        for (float f = 0; f < lengthOfTime; f+=moveStepTime)
+        {
+            yield return new WaitForSeconds(moveStepTime); 
+
+            movingCard.transform.position = Vector3.Lerp(initiatorCardStartedFrom, receivingCardStartedFrom, (f/ lengthOfTime));
+        }
+
+
+        /*
         float startTime = Time.time; // Time.time contains current frame time, so remember starting point
 
 
@@ -957,19 +971,12 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
             Vector3 InitiatorCardStartingPosition = GameManager.InitiatorCard.transform.position;
 
-            /*
-            while (Time.time - startTime <= 1)
-            { // until one second passed
-                GameManager.ReceivingCard.transform.position = Vector3.Lerp(GameManager.ReceivingCard.transform.position, GameManager.InitiatorCard.transform.position, Time.time - startTime); // lerp from A to B in one second
-                yield return 1; // wait for next frame
-            }
-            */
             yield return new WaitForSeconds(2f);
             GameManager.InitiatorCard.transform.position = InitiatorCardStartingPosition;
 
             destroyInitiator = false;
             destroyReceivor = false;
         }
-
+        */
     }
 }
