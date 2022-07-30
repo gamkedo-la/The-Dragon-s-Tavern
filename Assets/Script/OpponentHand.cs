@@ -45,7 +45,7 @@ public class OpponentHand : MonoBehaviour
 
         newCard = Instantiate(opponentVisualCard, transform.position, transform.rotation) as GameObject;
         newCard.transform.parent = opponentHand.transform;
-        newCard.transform.position = new Vector3(0, 0, 0);
+        newCard.transform.position = new Vector3(.5f, .2f, -4.3f);
         newCard.transform.localScale = new Vector3(1, 30, 20);
         opponentsVisualCardsInHand.Add(newCard);
 
@@ -114,6 +114,7 @@ public class OpponentHand : MonoBehaviour
 
     public void PlayHand()
     {
+
         for (int i = 0; i < cardsInHand.Count; i++)
         {
             //Choose a random card to play
@@ -184,6 +185,7 @@ public class OpponentHand : MonoBehaviour
 
     void ChooseWhereToPlayCard()
     {
+        opponentArm.SetTrigger("PlayCard");
         GameObject cardCreated;
         //play card on table
         randomOpenPlayableSpot = Random.Range(0, playableAreas.Length);
