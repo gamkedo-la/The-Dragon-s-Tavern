@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Court Jester
   m_EditorClassIdentifier: 
   name: Court Jester
-  description: All opponent's defense cards change to attack position
+  description: 'Entertaining all, but are they truly happy? '
   type: Human
   artwork: {fileID: 21300000, guid: 9389e26a4c3e3d8418c55171a9335509, type: 3}
   cost: 4
-  attack: 1
-  defense: 1
+  attack: 5
+  defense: 3
   playedByAI: 0
