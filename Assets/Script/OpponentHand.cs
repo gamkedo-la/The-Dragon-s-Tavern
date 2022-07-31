@@ -165,7 +165,7 @@ public class OpponentHand : MonoBehaviour
                 Debug.LogError("No card name found: " + chosen);
             }
             
-            print(chosen.ToString() + " " + cardName);
+            //print(chosen.ToString() + " " + cardName);
 
             if (cardCost <= GameState.CurrencyThisTurn)
             {
@@ -191,7 +191,14 @@ public class OpponentHand : MonoBehaviour
         randomOpenPlayableSpot = Random.Range(0, playableAreas.Length);
         if (playableAreas[randomOpenPlayableSpot].transform.childCount != 0)
         {
-            ChooseWhereToPlayCard();
+            if (playableAreas[0].transform.childCount != 0 && playableAreas[1].transform.childCount != 0 && playableAreas[2].transform.childCount != 0 && playableAreas[3].transform.childCount != 0 && playableAreas[4].transform.childCount != 0 && playableAreas[5].transform.childCount != 0)
+            {
+                print("no playable spots available");
+            }
+            else
+            {
+                ChooseWhereToPlayCard();
+            }
         }
         else
         {
