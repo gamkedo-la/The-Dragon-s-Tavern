@@ -849,8 +849,6 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
                 }
                 refInitiator = GameManager.InitiatorCard;
                 refDefender = GameManager.ReceivingCard;
-
-                StartCoroutine(MoveToReceiverCard(1.25f, 1.25f));
             }
             else
             {
@@ -869,7 +867,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
                     GameManager.InitiatorCard.thisCardsAttack -= GameManager.ReceivingCard.thisCardsAttack;
                     GameManager.InitiatorCard.att.text = GameManager.InitiatorCard.thisCardsAttack.ToString();
 
-                    Destroy(GameManager.ReceivingCard.transform.parent.gameObject);
+                    doWhenCardsCollide = DestroyDefender;
                 }
 
                 else if (GameManager.InitiatorCard.thisCardsAttack < GameManager.ReceivingCard.thisCardsAttack)
@@ -883,15 +881,19 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
                     GameManager.ReceivingCard.thisCardsAttack -= GameManager.InitiatorCard.thisCardsAttack;
                     GameManager.ReceivingCard.att.text = GameManager.ReceivingCard.thisCardsAttack.ToString();
 
-                    Destroy(GameManager.InitiatorCard.transform.parent.gameObject);
+                    doWhenCardsCollide = DestroyAttackerr;
+
                 }
 
                 else if (GameManager.InitiatorCard.thisCardsAttack == GameManager.ReceivingCard.thisCardsAttack)
                 {
-                    Destroy(GameManager.InitiatorCard.transform.parent.gameObject);
-                    Destroy(GameManager.ReceivingCard.transform.parent.gameObject);
+                    doWhenCardsCollide = DestroyBoth;
                 }
+                refInitiator = GameManager.InitiatorCard;
+                refDefender = GameManager.ReceivingCard;
             }
+
+            StartCoroutine(MoveToReceiverCard(1.25f, 1.25f));
 
             GameManager.InitiatorCard.GetComponent<Button>().interactable = false;
 

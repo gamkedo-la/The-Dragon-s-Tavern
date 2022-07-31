@@ -213,7 +213,7 @@ public class OpponentHand : MonoBehaviour
 
             //chooseAttackOrDefense
 
-            int choosePosition = Random.Range(0, 1);
+            int choosePosition = Random.Range(0, 2);
 
 
            // print(choosePosition);
