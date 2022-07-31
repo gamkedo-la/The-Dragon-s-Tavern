@@ -4492,6 +4492,7 @@ MonoBehaviour:
   tributeNo: {fileID: 0}
   thisCardInDefense: 0
   destroyMe: 0
+  attackEffect: {fileID: 0}
 --- !u!114 &631941413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14114,23 +14115,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3133345051209633034, guid: 505699bd5aac78d42a8c8dba03f91b91, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3133345051209633034, guid: 505699bd5aac78d42a8c8dba03f91b91, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3133345051209633034, guid: 505699bd5aac78d42a8c8dba03f91b91, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 69.26
       objectReference: {fileID: 0}
     - target: {fileID: 3133345051209633034, guid: 505699bd5aac78d42a8c8dba03f91b91, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -23.555
       objectReference: {fileID: 0}
     - target: {fileID: 3133345052587285968, guid: 505699bd5aac78d42a8c8dba03f91b91, type: 3}
       propertyPath: m_Name
       value: TableCardSpell
+      objectReference: {fileID: 0}
+    - target: {fileID: 3133345052587285968, guid: 505699bd5aac78d42a8c8dba03f91b91, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3133345052587285983, guid: 505699bd5aac78d42a8c8dba03f91b91, type: 3}
       propertyPath: m_Pivot.x
@@ -14218,11 +14223,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3133345052853893248, guid: 505699bd5aac78d42a8c8dba03f91b91, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 138.52
       objectReference: {fileID: 0}
     - target: {fileID: 3133345052853893248, guid: 505699bd5aac78d42a8c8dba03f91b91, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 47.11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 505699bd5aac78d42a8c8dba03f91b91, type: 3}
@@ -16939,15 +16944,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7012178179942661445, guid: 74e4ca38baf1f61409f52d6a1dd2cdb2, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 138.52
       objectReference: {fileID: 0}
     - target: {fileID: 7012178179942661445, guid: 74e4ca38baf1f61409f52d6a1dd2cdb2, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 47.11
       objectReference: {fileID: 0}
     - target: {fileID: 7012178180209252373, guid: 74e4ca38baf1f61409f52d6a1dd2cdb2, type: 3}
       propertyPath: m_Name
       value: TableCardMonster
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012178180209252373, guid: 74e4ca38baf1f61409f52d6a1dd2cdb2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7012178180209252378, guid: 74e4ca38baf1f61409f52d6a1dd2cdb2, type: 3}
       propertyPath: m_Pivot.x
@@ -17035,19 +17044,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7012178181586897103, guid: 74e4ca38baf1f61409f52d6a1dd2cdb2, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7012178181586897103, guid: 74e4ca38baf1f61409f52d6a1dd2cdb2, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7012178181586897103, guid: 74e4ca38baf1f61409f52d6a1dd2cdb2, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 69.26
       objectReference: {fileID: 0}
     - target: {fileID: 7012178181586897103, guid: 74e4ca38baf1f61409f52d6a1dd2cdb2, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -23.555
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74e4ca38baf1f61409f52d6a1dd2cdb2, type: 3}

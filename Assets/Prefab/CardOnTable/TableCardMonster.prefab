@@ -1427,6 +1427,8 @@ MonoBehaviour:
   tributeButton: {fileID: 6030233205888592690}
   tributeNo: {fileID: 3608980540102771266}
   thisCardInDefense: 0
+  destroyMe: 0
+  attackEffect: {fileID: 4834214172176429866, guid: 2ab351665bbe9734f9ddba27f6d5a6b4, type: 3}
 --- !u!114 &7039814323314807372
 MonoBehaviour:
   m_ObjectHideFlags: 0

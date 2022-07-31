@@ -79,6 +79,8 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     //bool destroyInitiator, destroyReceivor;
 
     public bool destroyMe = false;
+
+    public GameObject attackEffect;
     private void Start()
     {
         gameState = GameObject.Find("GameState").GetComponent<GameState>();
@@ -848,7 +850,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
                 refInitiator = GameManager.InitiatorCard;
                 refDefender = GameManager.ReceivingCard;
 
-                StartCoroutine(MoveToReceiverCard(2f, 2f));
+                StartCoroutine(MoveToReceiverCard(1.25f, 1.25f));
             }
             else
             {
@@ -999,8 +1001,11 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
             movingCard.transform.position = Vector3.Lerp(initiatorCardStartedFrom, receivingCardStartedFrom, (f/ lengthOfTime));
         }
-        //how long does the particle need to play
-        print("play particle system");
+
+
+        Instantiate(attackEffect, receivingCardStartedFrom - new Vector3(0,0, .8f), Quaternion.identity);
+
+
         yield return new WaitForSeconds(1.5f);
         doWhenCardsCollide();
 
