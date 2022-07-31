@@ -15,7 +15,7 @@ MonoBehaviour:
   name: Astral Otter
   description: All-knowing Celestial Lutra
   type: Diety
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: f824b62ad3fe8574882c1b0614ab41d0, type: 3}
   cost: 6
   attack: 4
   defense: 8
