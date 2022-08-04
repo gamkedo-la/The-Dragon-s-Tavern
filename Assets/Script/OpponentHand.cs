@@ -35,6 +35,8 @@ public class OpponentHand : MonoBehaviour
 
     public Animator opponentArm;
 
+    CardDisplay refInitiator;
+
     private void Start()
     {
         //draw initial hand
@@ -264,6 +266,7 @@ public class OpponentHand : MonoBehaviour
             if (playableAreas[i].transform.childCount != 0 && !playableAreas[i].GetComponentInChildren<CardDisplay>().thisCardInDefense)
             {
                 GameManager.InitiatorCard = playableAreas[i].GetComponentInChildren<CardDisplay>();
+                refInitiator = GameManager.InitiatorCard;
                 print(GameManager.InitiatorCard.card.name);
                 iterationCountLimit = 0;
                 ChoosingPlayerCardToAttack();
@@ -308,6 +311,7 @@ public class OpponentHand : MonoBehaviour
                 }
                 else if (playerSpots[i].transform.childCount != 0)
                 {
+                    GameManager.InitiatorCard = refInitiator;
                     GameManager.ReceivingCard = playerSpots[i].GetComponentInChildren<CardDisplay>();
 
                     print(GameManager.ReceivingCard.card.name);
