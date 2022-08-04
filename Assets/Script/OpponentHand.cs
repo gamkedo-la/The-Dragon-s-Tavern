@@ -13,6 +13,9 @@ public class OpponentHand : MonoBehaviour
     public List<string> cardsInHand = new List<string>();
 
     public GameObject[] playableAreas;
+    public GameObject[] playerSpots;
+
+    int iterationCountLimit = 0;
 
     int totalCardsInDeck;
 
@@ -115,19 +118,13 @@ public class OpponentHand : MonoBehaviour
     public void PlayHand()
     {
         //Changing card position to attack or defense
-        print("hurdle1");
-
 
         for (int i = 0; i < playableAreas.Length; i++)
         {
-            print("hurdle2");
             if(playableAreas[i].transform.childCount != 0)
             {
-                print("hurdle3");
                 if (playableAreas[i].GetComponentInChildren<CardDisplay>().thisCardsAttack >= playableAreas[i].GetComponentInChildren<CardDisplay>().thisCardsDefense)
                 {
-                    print("change card to attack");
-
                     playableAreas[i].GetComponentInChildren<CardDisplay>().thisCardInDefense = false;
                     playableAreas[i].transform.GetChild(0).transform.localScale = new Vector3(.7f, .45f, .8f);
                     playableAreas[i].transform.GetChild(0).transform.localRotation = Quaternion.identity;
@@ -135,8 +132,6 @@ public class OpponentHand : MonoBehaviour
                 }
                 else
                 {
-                    print("change card to defense");
-
                     playableAreas[i].GetComponentInChildren<CardDisplay>().thisCardInDefense = true;
                     playableAreas[i].transform.GetChild(0).transform.localScale = new Vector3(.45f, .7f, .8f);
                     playableAreas[i].transform.GetChild(0).transform.localRotation = Quaternion.Euler(0, 0, 90);
@@ -144,7 +139,7 @@ public class OpponentHand : MonoBehaviour
                 }
             }
         }
-
+        //figuring out where to place it
         if (playableAreas[randomOpenPlayableSpot].transform.childCount != 0)
         {
             if (playableAreas[0].transform.childCount != 0 && playableAreas[1].transform.childCount != 0 && playableAreas[2].transform.childCount != 0 && playableAreas[3].transform.childCount != 0 && playableAreas[4].transform.childCount != 0 && playableAreas[5].transform.childCount != 0)
@@ -186,19 +181,15 @@ public class OpponentHand : MonoBehaviour
             {
                 Debug.LogError("No card name found: " + chosen);
             }
-            
-            //print(chosen.ToString() + " " + cardName);
 
             if (cardCost <= GameState.CurrencyThisTurn)
             {
                 GameState.CurrencyThisTurn -= cardCost;
-                print("Currency:" + GameState.CurrencyThisTurn);
                 ChooseWhereToPlayCard();
             }
             else
             {
                 i++;
-                print("Currency:" + GameState.CurrencyThisTurn + " Too Expensive");
             }
         }
 
@@ -236,7 +227,6 @@ public class OpponentHand : MonoBehaviour
             opponentsVisualCardsInHand.Remove(opponentsVisualCardsInHand[pulledCardVisual]);
             Destroy(toBeDestroyed);
 
-           // Printing(cardsInHand[cardToChoose]);
             //this is a valid location
             cardCreated = Instantiate(monsterCard, playableAreas[randomOpenPlayableSpot].transform.position, Quaternion.identity) as GameObject;
             cardCreated.transform.parent = playableAreas[randomOpenPlayableSpot].transform;
@@ -247,7 +237,6 @@ public class OpponentHand : MonoBehaviour
             cardCreated.GetComponentInChildren<CardDisplay>().card.playedByAI = true;
 
             //chooseAttackOrDefense
-
             int choosePosition = Random.Range(0, 2);
 
             //Defense
@@ -265,12 +254,75 @@ public class OpponentHand : MonoBehaviour
                 cardCreated.transform.localRotation = Quaternion.identity;
                 cardCreated.transform.localPosition = new Vector3(35, 0, 0);
             }
-
         }
     }
 
     public void AttackPlayer()
     {
+        for (int i = 0; i < playableAreas.Length; i++)
+        {
+            if (playableAreas[i].transform.childCount != 0 && !playableAreas[i].GetComponentInChildren<CardDisplay>().thisCardInDefense)
+            {
+                GameManager.InitiatorCard = playableAreas[i].GetComponentInChildren<CardDisplay>();
+                print(GameManager.InitiatorCard.card.name);
+                iterationCountLimit = 0;
+                ChoosingPlayerCardToAttack();
+            }
+            else
+            {
+                print("advance");
+            }
+        }
+        
         gameState.AdvanceTurnFromAnotherScript();
+    }
+
+    public void ChoosingPlayerCardToAttack()
+    {
+        print("choose a random player card to attack");
+
+        int ChoosingPlayerCard = Random.Range(0, 6);
+
+        if (playerSpots[0].transform.childCount == 0 && playerSpots[1].transform.childCount == 0 && playerSpots[2].transform.childCount == 0 && playerSpots[3].transform.childCount == 0 && playerSpots[4].transform.childCount == 0 && playerSpots[5].transform.childCount == 0)
+        {
+            print("this is a direct attack");
+
+            print("put an animation here to attack player directly");
+
+            GameState.playerHealth -= GameManager.InitiatorCard.thisCardsAttack;
+            gameState.UpdateHealthUI();
+        }
+
+        else
+        {
+            for (int i = 0; i < playerSpots.Length; i++)
+            {
+                if (playerSpots[i].transform.childCount == 0 && iterationCountLimit <= 3)
+                {
+                    iterationCountLimit++;
+                    ChoosingPlayerCardToAttack();
+                }
+                else if (playerSpots[i].transform.childCount == 0 && iterationCountLimit > 3)
+                {
+                    print("tried to attack too many empty squares. Card not attacking this turn");
+                }
+                else if (playerSpots[i].transform.childCount != 0)
+                {
+                    GameManager.ReceivingCard = playerSpots[i].GetComponentInChildren<CardDisplay>();
+
+                    print(GameManager.ReceivingCard.card.name);
+                    //causing issues
+                    print(GameManager.InitiatorCard.card.name);
+
+                    GameManager.InitiatorCard.GetComponent<CardDisplay>().AttackingEquation();
+                }
+                else
+                {
+                    Debug.LogWarning("Something is wrong with the player card chosen to be attacked by enemy");
+                }
+            }
+        }
+        GameManager.InitiatorCard = null;
+        GameManager.ReceivingCard = null;
     }
 }

@@ -7303,6 +7303,13 @@ MonoBehaviour:
   - {fileID: 898948410}
   - {fileID: 171266686}
   - {fileID: 750844170}
+  playerSpots:
+  - {fileID: 1265845218}
+  - {fileID: 1203965538}
+  - {fileID: 333952488}
+  - {fileID: 1687304273}
+  - {fileID: 1603444255}
+  - {fileID: 783334020}
   cards:
   - {fileID: 3307337137049910837, guid: 659bb00e8eb85ae4da0949915e6fdd66, type: 3}
   - {fileID: 63669640475768113, guid: de07accfe1aa9c04eb8476ed1c5d128a, type: 3}

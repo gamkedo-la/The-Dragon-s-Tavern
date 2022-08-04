@@ -803,113 +803,118 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
         if (isMonster && this.gameObject.GetComponentInChildren<CardDisplay>().card.playedByAI && GameManager.playerAttacking && eventData.button == PointerEventData.InputButton.Left && GameObject.Find("GameState").GetComponent<GameState>().gamePhase == 2)
         {
-            print(this.gameObject.GetComponentInChildren<CardDisplay>().card.name);
-
-            if (this.gameObject.GetComponentInChildren<CardDisplay>().thisCardInDefense)
-            {
-                GameManager.ReceivingCard = this;
-
-                //only have a single function to update attacks or defenses of a card, poke the function rather than scattered through the script
-                print("calculate attack v defense:" + GameManager.InitiatorCard.thisCardsAttack + " " + GameManager.ReceivingCard.thisCardsDefense);
-                if (GameManager.InitiatorCard.thisCardsAttack < GameManager.ReceivingCard.thisCardsDefense)
-                {
-                    print("Player loses life points: " + (GameManager.InitiatorCard.thisCardsAttack - GameManager.ReceivingCard.thisCardsDefense));
-
-                    GameState.playerHealth += (GameManager.InitiatorCard.thisCardsAttack - GameManager.ReceivingCard.thisCardsDefense);
-
-                    gameState.UpdateHealthUI();
-
-                    GameManager.ReceivingCard.thisCardsDefense -= GameManager.InitiatorCard.thisCardsAttack;
-
-                    GameManager.ReceivingCard.def.text = GameManager.ReceivingCard.thisCardsDefense.ToString();
-
-           //         destroyInitiator = true;
-
-                    doWhenCardsCollide = DestroyAttackerr;
-
-                    // GameManager.InitiatorCard.transform.position = playerGraveyard.transform.position;
-                    //StartCoroutine(MoveToReceiverCard(2f, 2f));
-                }
-
-                else if (GameManager.InitiatorCard.thisCardsAttack == GameManager.ReceivingCard.thisCardsDefense)
-                {
-                    // Destroy(GameManager.InitiatorCard.transform.parent.gameObject);
-                    // Destroy(GameManager.ReceivingCard.transform.parent.gameObject);
-                    doWhenCardsCollide = DestroyBoth;
-                }
-
-                else if (GameManager.InitiatorCard.thisCardsAttack > GameManager.ReceivingCard.thisCardsDefense)
-                {
-                    GameManager.InitiatorCard.thisCardsAttack -= GameManager.ReceivingCard.thisCardsDefense;
-
-                    GameManager.InitiatorCard.att.text = GameManager.InitiatorCard.thisCardsAttack.ToString();
-
-                    doWhenCardsCollide = DestroyDefender;
-                    // Destroy(GameManager.ReceivingCard.transform.parent.gameObject);
-                }
-                refInitiator = GameManager.InitiatorCard;
-                refDefender = GameManager.ReceivingCard;
-            }
-            else
-            {
-                GameManager.ReceivingCard = this;
-
-                print("calculate attack v attack :" + GameManager.InitiatorCard.thisCardsAttack + " " + GameManager.ReceivingCard.thisCardsAttack);
-
-                if (GameManager.InitiatorCard.thisCardsAttack > GameManager.ReceivingCard.thisCardsAttack)
-                {
-                    int difference = GameManager.InitiatorCard.thisCardsAttack - GameManager.ReceivingCard.thisCardsAttack;
-
-                    GameState.opponentHealth -= difference;
-
-                    gameState.UpdateHealthUI();
-
-                    GameManager.InitiatorCard.thisCardsAttack -= GameManager.ReceivingCard.thisCardsAttack;
-                    GameManager.InitiatorCard.att.text = GameManager.InitiatorCard.thisCardsAttack.ToString();
-
-                    doWhenCardsCollide = DestroyDefender;
-                }
-
-                else if (GameManager.InitiatorCard.thisCardsAttack < GameManager.ReceivingCard.thisCardsAttack)
-                {
-                    int difference = GameManager.ReceivingCard.thisCardsAttack - GameManager.InitiatorCard.thisCardsAttack;
-
-                    GameState.playerHealth -= difference;
-
-                    gameState.UpdateHealthUI();
-
-                    GameManager.ReceivingCard.thisCardsAttack -= GameManager.InitiatorCard.thisCardsAttack;
-                    GameManager.ReceivingCard.att.text = GameManager.ReceivingCard.thisCardsAttack.ToString();
-
-                    doWhenCardsCollide = DestroyAttackerr;
-
-                }
-
-                else if (GameManager.InitiatorCard.thisCardsAttack == GameManager.ReceivingCard.thisCardsAttack)
-                {
-                    doWhenCardsCollide = DestroyBoth;
-                }
-                refInitiator = GameManager.InitiatorCard;
-                refDefender = GameManager.ReceivingCard;
-            }
-
-            StartCoroutine(MoveToReceiverCard(1.25f, 1.25f));
-
-            GameManager.InitiatorCard.GetComponent<Button>().interactable = false;
-
-            monsterTargeted = false;
-            UpdateCardColors();
-
-            GameManager.attackDamage = 0;
-            GameManager.playerAttacking = false;
-
-    
-
-            GameManager.InitiatorCard = null;
-            GameManager.ReceivingCard = null; 
-
-            //card interactable is turned off
+            AttackingEquation();
         }
+    }
+
+    public void AttackingEquation()
+    {
+        print(this.gameObject.GetComponentInChildren<CardDisplay>().card.name);
+
+        if (this.gameObject.GetComponentInChildren<CardDisplay>().thisCardInDefense)
+        {
+            GameManager.ReceivingCard = this;
+
+            //only have a single function to update attacks or defenses of a card, poke the function rather than scattered through the script
+            print("calculate attack v defense:" + GameManager.InitiatorCard.thisCardsAttack + " " + GameManager.ReceivingCard.thisCardsDefense);
+            if (GameManager.InitiatorCard.thisCardsAttack < GameManager.ReceivingCard.thisCardsDefense)
+            {
+                print("Player loses life points: " + (GameManager.InitiatorCard.thisCardsAttack - GameManager.ReceivingCard.thisCardsDefense));
+
+                GameState.playerHealth += (GameManager.InitiatorCard.thisCardsAttack - GameManager.ReceivingCard.thisCardsDefense);
+
+                gameState.UpdateHealthUI();
+
+                GameManager.ReceivingCard.thisCardsDefense -= GameManager.InitiatorCard.thisCardsAttack;
+
+                GameManager.ReceivingCard.def.text = GameManager.ReceivingCard.thisCardsDefense.ToString();
+
+                //         destroyInitiator = true;
+
+                doWhenCardsCollide = DestroyAttackerr;
+
+                // GameManager.InitiatorCard.transform.position = playerGraveyard.transform.position;
+                //StartCoroutine(MoveToReceiverCard(2f, 2f));
+            }
+
+            else if (GameManager.InitiatorCard.thisCardsAttack == GameManager.ReceivingCard.thisCardsDefense)
+            {
+                // Destroy(GameManager.InitiatorCard.transform.parent.gameObject);
+                // Destroy(GameManager.ReceivingCard.transform.parent.gameObject);
+                doWhenCardsCollide = DestroyBoth;
+            }
+
+            else if (GameManager.InitiatorCard.thisCardsAttack > GameManager.ReceivingCard.thisCardsDefense)
+            {
+                GameManager.InitiatorCard.thisCardsAttack -= GameManager.ReceivingCard.thisCardsDefense;
+
+                GameManager.InitiatorCard.att.text = GameManager.InitiatorCard.thisCardsAttack.ToString();
+
+                doWhenCardsCollide = DestroyDefender;
+                // Destroy(GameManager.ReceivingCard.transform.parent.gameObject);
+            }
+            refInitiator = GameManager.InitiatorCard;
+            refDefender = GameManager.ReceivingCard;
+        }
+        else
+        {
+            GameManager.ReceivingCard = this;
+
+            print("calculate attack v attack :" + GameManager.InitiatorCard.thisCardsAttack + " " + GameManager.ReceivingCard.thisCardsAttack);
+
+            if (GameManager.InitiatorCard.thisCardsAttack > GameManager.ReceivingCard.thisCardsAttack)
+            {
+                int difference = GameManager.InitiatorCard.thisCardsAttack - GameManager.ReceivingCard.thisCardsAttack;
+
+                GameState.opponentHealth -= difference;
+
+                gameState.UpdateHealthUI();
+
+                GameManager.InitiatorCard.thisCardsAttack -= GameManager.ReceivingCard.thisCardsAttack;
+                GameManager.InitiatorCard.att.text = GameManager.InitiatorCard.thisCardsAttack.ToString();
+
+                doWhenCardsCollide = DestroyDefender;
+            }
+
+            else if (GameManager.InitiatorCard.thisCardsAttack < GameManager.ReceivingCard.thisCardsAttack)
+            {
+                int difference = GameManager.ReceivingCard.thisCardsAttack - GameManager.InitiatorCard.thisCardsAttack;
+
+                GameState.playerHealth -= difference;
+
+                gameState.UpdateHealthUI();
+
+                GameManager.ReceivingCard.thisCardsAttack -= GameManager.InitiatorCard.thisCardsAttack;
+                GameManager.ReceivingCard.att.text = GameManager.ReceivingCard.thisCardsAttack.ToString();
+
+                doWhenCardsCollide = DestroyAttackerr;
+
+            }
+
+            else if (GameManager.InitiatorCard.thisCardsAttack == GameManager.ReceivingCard.thisCardsAttack)
+            {
+                doWhenCardsCollide = DestroyBoth;
+            }
+            refInitiator = GameManager.InitiatorCard;
+            refDefender = GameManager.ReceivingCard;
+        }
+
+        StartCoroutine(MoveToReceiverCard(1.25f, 1.25f));
+
+        GameManager.InitiatorCard.GetComponent<Button>().interactable = false;
+
+        monsterTargeted = false;
+        UpdateCardColors();
+
+        GameManager.attackDamage = 0;
+        GameManager.playerAttacking = false;
+
+
+
+        GameManager.InitiatorCard = null;
+        GameManager.ReceivingCard = null;
+
+        //card interactable is turned off
     }
 
     public void OnPointerEnter(PointerEventData pointerEventData)
