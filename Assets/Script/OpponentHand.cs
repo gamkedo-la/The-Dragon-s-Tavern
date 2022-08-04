@@ -116,31 +116,34 @@ public class OpponentHand : MonoBehaviour
     {
         //Changing card position to attack or defense
         print("hurdle1");
-     /*   for (int i = 0; i < playableAreas.Length; i++)
+
+
+        for (int i = 0; i < playableAreas.Length; i++)
         {
             print("hurdle2");
             if(playableAreas[i].transform.childCount != 0)
             {
+                print("hurdle3");
                 if (playableAreas[i].GetComponentInChildren<CardDisplay>().thisCardsAttack >= playableAreas[i].GetComponentInChildren<CardDisplay>().thisCardsDefense)
                 {
                     print("change card to attack");
 
                     playableAreas[i].GetComponentInChildren<CardDisplay>().thisCardInDefense = false;
-                    playableAreas[i].transform.localScale = new Vector3(.7f, .45f, .8f);
-                    playableAreas[i].transform.localRotation = Quaternion.identity;
-                    playableAreas[i].transform.localPosition = new Vector3(35, 0, 0);
+                    playableAreas[i].transform.GetChild(0).transform.localScale = new Vector3(.7f, .45f, .8f);
+                    playableAreas[i].transform.GetChild(0).transform.localRotation = Quaternion.identity;
+                    playableAreas[i].transform.GetChild(0).transform.localPosition = new Vector3(35, 0, 0);
                 }
                 else
                 {
                     print("change card to defense");
 
                     playableAreas[i].GetComponentInChildren<CardDisplay>().thisCardInDefense = true;
-                    playableAreas[i].transform.localScale = new Vector3(.45f, .7f, .8f);
-                    playableAreas[i].transform.localRotation = Quaternion.Euler(0, 0, 90);
-                    playableAreas[i].transform.localPosition = new Vector3(0, 20, 0);
+                    playableAreas[i].transform.GetChild(0).transform.localScale = new Vector3(.45f, .7f, .8f);
+                    playableAreas[i].transform.GetChild(0).transform.localRotation = Quaternion.Euler(0, 0, 90);
+                    playableAreas[i].transform.GetChild(0).transform.localPosition = new Vector3(0, 20, 0);
                 }
             }
-        }*/
+        }
 
         if (playableAreas[randomOpenPlayableSpot].transform.childCount != 0)
         {
@@ -162,27 +165,6 @@ public class OpponentHand : MonoBehaviour
 
             string chosen = cardsInHand[cardToChoose];
 
-            //need to get the .name of Monster cards in order for them to line up and be played on the table. 
-
-          /*  if (monsterCards[i].name == chosen)
-            {
-                if (monsterCards[i].cost <= GameState.CurrencyThisTurn)
-                {
-                    // Choose a random spot to create the card
-             //       ChooseWhereToPlayCard();
-
-                    GameState.CurrencyThisTurn -= monsterCards[i].cost;
-
-                    //Remove card from list
-                    cardsInHand.Remove(cardsInHand[i]);
-                    i++;
-                }
-            }
-        }
-          
-        for (int i = 0; i < cardsInHand.Count; i++)
-        {
-          */
             Card monsterCard = GameManager.instance.FindMonster(chosen);
             SpellCard spellCard = GameManager.instance.FindSpell(chosen);
 
@@ -219,7 +201,13 @@ public class OpponentHand : MonoBehaviour
                 print("Currency:" + GameState.CurrencyThisTurn + " Too Expensive");
             }
         }
-        //Work on this, this is just a placeholder
+
+        StartCoroutine(HoldForTime());
+    }
+
+    IEnumerator HoldForTime()
+    {
+        yield return new WaitForSeconds(1.5f);
         gameState.AdvanceTurnFromAnotherScript();
     }
 
