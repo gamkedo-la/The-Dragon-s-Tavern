@@ -280,7 +280,10 @@ public class GameState : MonoBehaviour
     void AIAttack()
     {
         displayCurrentState.text = "AI Attack";
-        StartCoroutine(CycleTurnThisIsTemp());
+
+        opponentHand.AttackPlayer();
+
+       // StartCoroutine(CycleTurnThisIsTemp());
     }
 
     void AIEnd()

@@ -66,9 +66,9 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     GameState gameState;
 
-    int thisCardsAttack;
-    int thisCardsDefense;
-    int thisCardCost;
+    public int thisCardsAttack;
+    public int thisCardsDefense;
+    public int thisCardCost;
 
     System.Action doWhenCardsCollide;
     CardDisplay refInitiator;

@@ -114,6 +114,46 @@ public class OpponentHand : MonoBehaviour
 
     public void PlayHand()
     {
+        //Changing card position to attack or defense
+        print("hurdle1");
+     /*   for (int i = 0; i < playableAreas.Length; i++)
+        {
+            print("hurdle2");
+            if(playableAreas[i].transform.childCount != 0)
+            {
+                if (playableAreas[i].GetComponentInChildren<CardDisplay>().thisCardsAttack >= playableAreas[i].GetComponentInChildren<CardDisplay>().thisCardsDefense)
+                {
+                    print("change card to attack");
+
+                    playableAreas[i].GetComponentInChildren<CardDisplay>().thisCardInDefense = false;
+                    playableAreas[i].transform.localScale = new Vector3(.7f, .45f, .8f);
+                    playableAreas[i].transform.localRotation = Quaternion.identity;
+                    playableAreas[i].transform.localPosition = new Vector3(35, 0, 0);
+                }
+                else
+                {
+                    print("change card to defense");
+
+                    playableAreas[i].GetComponentInChildren<CardDisplay>().thisCardInDefense = true;
+                    playableAreas[i].transform.localScale = new Vector3(.45f, .7f, .8f);
+                    playableAreas[i].transform.localRotation = Quaternion.Euler(0, 0, 90);
+                    playableAreas[i].transform.localPosition = new Vector3(0, 20, 0);
+                }
+            }
+        }*/
+
+        if (playableAreas[randomOpenPlayableSpot].transform.childCount != 0)
+        {
+            if (playableAreas[0].transform.childCount != 0 && playableAreas[1].transform.childCount != 0 && playableAreas[2].transform.childCount != 0 && playableAreas[3].transform.childCount != 0 && playableAreas[4].transform.childCount != 0 && playableAreas[5].transform.childCount != 0)
+            {
+                print("no playable spots available");
+            }
+            else
+            {
+                ChooseWhereToPlayCard();
+            }
+        }
+
 
         for (int i = 0; i < cardsInHand.Count; i++)
         {
@@ -222,14 +262,10 @@ public class OpponentHand : MonoBehaviour
 
             int choosePosition = Random.Range(0, 2);
 
-
-           // print(choosePosition);
             //Defense
             if (choosePosition == 0)
             {
                 cardCreated.GetComponentInChildren<CardDisplay>().thisCardInDefense = true;
-             //   Debug.Log(cardCreated.GetComponentInChildren<CardDisplay>().thisCardInDefense);
-             //   print(cardCreated.GetComponentInChildren<CardDisplay>().card.name + " " + cardCreated.GetComponentInChildren<CardDisplay>().card.inDefense);
                 cardCreated.transform.localScale = new Vector3(.45f, .7f, .8f);
                 cardCreated.transform.localRotation = Quaternion.Euler(0, 0, 90);
                 cardCreated.transform.localPosition = new Vector3(0, 20, 0);
@@ -242,8 +278,11 @@ public class OpponentHand : MonoBehaviour
                 cardCreated.transform.localPosition = new Vector3(35, 0, 0);
             }
 
-           // print(cardCreated.GetComponentInChildren<CardDisplay>().card.name + " " + cardCreated.GetComponentInChildren<CardDisplay>().thisCardInDefense);
-
         }
+    }
+
+    public void AttackPlayer()
+    {
+        gameState.AdvanceTurnFromAnotherScript();
     }
 }
