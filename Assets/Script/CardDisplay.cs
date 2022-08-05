@@ -813,7 +813,10 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
         if (this.gameObject.GetComponentInChildren<CardDisplay>().thisCardInDefense)
         {
-            GameManager.ReceivingCard = this;
+            if (GameObject.Find("GameState").GetComponent<GameState>().gamePhase == 2)
+            {
+                GameManager.ReceivingCard = this;
+            }
 
             //only have a single function to update attacks or defenses of a card, poke the function rather than scattered through the script
             print("calculate attack v defense:" + GameManager.InitiatorCard.thisCardsAttack + " " + GameManager.ReceivingCard.thisCardsDefense);
@@ -858,9 +861,12 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         }
         else
         {
-            GameManager.ReceivingCard = this;
+            if (GameObject.Find("GameState").GetComponent<GameState>().gamePhase == 2)
+            {
+                GameManager.ReceivingCard = this;
+            }
 
-            print("calculate attack v attack :" + GameManager.InitiatorCard.thisCardsAttack + " " + GameManager.ReceivingCard.thisCardsAttack);
+            print("calculate attack v attack :" + GameManager.InitiatorCard.card.name + " "  + GameManager.InitiatorCard.thisCardsAttack + " " + GameManager.ReceivingCard.card.name + " " + GameManager.ReceivingCard.thisCardsAttack);
 
             if (GameManager.InitiatorCard.thisCardsAttack > GameManager.ReceivingCard.thisCardsAttack)
             {
@@ -1033,35 +1039,5 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             refDefender.FullyRemoveWithParent();
             print("now really removing playDead object");
         }
-
-        /*
-        float startTime = Time.time; // Time.time contains current frame time, so remember starting point
-
-
-        if (GameManager.ReceivingCard == null)
-        {
-            Debug.LogWarning("ReceivingCard wasn't set");
-        }
-        else if (GameManager.InitiatorCard == null)
-        {
-            Debug.LogWarning("InitiatorCard wasn't set");
-        }
-        else
-        {
-            // lerp line here
-            print(GameManager.ReceivingCard.gameObject.name);
-            print(GameManager.InitiatorCard.gameObject.name);
-
-
-
-            Vector3 InitiatorCardStartingPosition = GameManager.InitiatorCard.transform.position;
-
-            yield return new WaitForSeconds(2f);
-            GameManager.InitiatorCard.transform.position = InitiatorCardStartingPosition;
-
-            destroyInitiator = false;
-            destroyReceivor = false;
-        }
-        */
     }
 }

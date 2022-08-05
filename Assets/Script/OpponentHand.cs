@@ -258,7 +258,6 @@ public class OpponentHand : MonoBehaviour
             }
         }
     }
-
     public void AttackPlayer()
     {
         for (int i = 0; i < playableAreas.Length; i++)
@@ -269,22 +268,25 @@ public class OpponentHand : MonoBehaviour
                 refInitiator = GameManager.InitiatorCard;
                 print(GameManager.InitiatorCard.card.name);
                 iterationCountLimit = 0;
-                ChoosingPlayerCardToAttack();
+                StartCoroutine(HoldForEnemyTurn());
             }
             else
             {
                 print("advance");
             }
         }
-        
         gameState.AdvanceTurnFromAnotherScript();
+    }
+
+    IEnumerator HoldForEnemyTurn()
+    {
+        yield return new WaitForSeconds(3.5f);
+        ChoosingPlayerCardToAttack();
     }
 
     public void ChoosingPlayerCardToAttack()
     {
         print("choose a random player card to attack");
-
-        int ChoosingPlayerCard = Random.Range(0, 6);
 
         if (playerSpots[0].transform.childCount == 0 && playerSpots[1].transform.childCount == 0 && playerSpots[2].transform.childCount == 0 && playerSpots[3].transform.childCount == 0 && playerSpots[4].transform.childCount == 0 && playerSpots[5].transform.childCount == 0)
         {
@@ -298,33 +300,37 @@ public class OpponentHand : MonoBehaviour
 
         else
         {
-            for (int i = 0; i < playerSpots.Length; i++)
-            {
-                if (playerSpots[i].transform.childCount == 0 && iterationCountLimit <= 3)
-                {
-                    iterationCountLimit++;
-                    ChoosingPlayerCardToAttack();
-                }
-                else if (playerSpots[i].transform.childCount == 0 && iterationCountLimit > 3)
-                {
-                    print("tried to attack too many empty squares. Card not attacking this turn");
-                }
-                else if (playerSpots[i].transform.childCount != 0)
-                {
-                    GameManager.InitiatorCard = refInitiator;
-                    GameManager.ReceivingCard = playerSpots[i].GetComponentInChildren<CardDisplay>();
+            AttackingACard();
+        }  
+    }
 
-                    print(GameManager.ReceivingCard.card.name);
-                    //causing issues
-                    print(GameManager.InitiatorCard.card.name);
+    void AttackingACard()
+    {
+        int ChoosingPlayerCard = Random.Range(0, 6);
 
-                    GameManager.InitiatorCard.GetComponent<CardDisplay>().AttackingEquation();
-                }
-                else
-                {
-                    Debug.LogWarning("Something is wrong with the player card chosen to be attacked by enemy");
-                }
-            }
+        if (playerSpots[ChoosingPlayerCard].transform.childCount == 0)
+        {
+            iterationCountLimit++;
+            AttackingACard();
+        }
+        else if (playerSpots[ChoosingPlayerCard].transform.childCount == 0 && iterationCountLimit > 3)
+        {
+            print("tried to attack too many empty squares. Card not attacking this turn");
+        }
+        else if (playerSpots[ChoosingPlayerCard].transform.childCount != 0)
+        {
+            GameManager.InitiatorCard = refInitiator;
+            GameManager.ReceivingCard = playerSpots[ChoosingPlayerCard].GetComponentInChildren<CardDisplay>();
+
+            print(GameManager.ReceivingCard.card.name);
+            //causing issues
+            print(GameManager.InitiatorCard.card.name);
+
+            GameManager.InitiatorCard.GetComponent<CardDisplay>().AttackingEquation();
+        }
+        else
+        {
+            Debug.LogWarning("Something is wrong with the player card chosen to be attacked by enemy");
         }
         GameManager.InitiatorCard = null;
         GameManager.ReceivingCard = null;
