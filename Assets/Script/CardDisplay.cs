@@ -761,15 +761,30 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     void DestroyDefender()
     {
-        print("refDefender");
-        //Destroy(refDefender.gameObject);
-        refDefender.PlayDead();
+        if (GameObject.Find("GameState").GetComponent<GameState>().gamePhase == 2)
+        {
+            print("refDefender");
+            //Destroy(refDefender.gameObject);
+            refDefender.PlayDead();
+        }
+        else
+        {
+            refDefender.FullyRemoveWithParent();
+        }
     }
 
     void DestroyAttackerr()
     {
         print("refAttacker");
-        refInitiator.FullyRemoveWithParent();
+
+        if (GameObject.Find("GameState").GetComponent<GameState>().gamePhase == 2)
+        {
+            refInitiator.FullyRemoveWithParent();
+        }
+        else
+        {
+            refInitiator.PlayDead();
+        }
     }
 
     void DestroyBoth()

@@ -39,6 +39,8 @@ public class OpponentHand : MonoBehaviour
 
     bool directAttack = false;
 
+    int ChoosingPlayerCard;
+
     private void Start()
     {
         //draw initial hand
@@ -307,7 +309,7 @@ public class OpponentHand : MonoBehaviour
     {
         if (!directAttack)
         {
-            int ChoosingPlayerCard = Random.Range(0, 6);
+            ChoosingPlayerCard = Random.Range(0, 6);
 
             print(ChoosingPlayerCard);
 
@@ -330,8 +332,11 @@ public class OpponentHand : MonoBehaviour
 
                 GameManager.InitiatorCard.GetComponent<CardDisplay>().AttackingEquation();
 
-                GameState.playerHealth -= GameManager.InitiatorCard.thisCardsAttack;
-                gameState.UpdateHealthUI();
+                if (directAttack)
+                {
+                    GameState.playerHealth -= GameManager.InitiatorCard.thisCardsAttack;
+                    gameState.UpdateHealthUI();
+                }
 
                 directAttack = false;
             }
