@@ -37,6 +37,8 @@ public class OpponentHand : MonoBehaviour
 
     CardDisplay refInitiator;
 
+    bool directAttack = false;
+
     private void Start()
     {
         //draw initial hand
@@ -296,39 +298,61 @@ public class OpponentHand : MonoBehaviour
         if (playerSpots[0].transform.childCount == 0 && playerSpots[1].transform.childCount == 0 && playerSpots[2].transform.childCount == 0 && playerSpots[3].transform.childCount == 0 && playerSpots[4].transform.childCount == 0 && playerSpots[5].transform.childCount == 0)
         {
             print("this is a direct attack");
-
-            print("put an animation here to attack player directly");
-
-            GameState.playerHealth -= GameManager.InitiatorCard.thisCardsAttack;
-            gameState.UpdateHealthUI();
+            directAttack = true;
         }
-
-        else
-        {
-            AttackingACard();
-        }  
+        AttackingACard();
     }
 
     void AttackingACard()
     {
-        int ChoosingPlayerCard = Random.Range(0, 6);
-
-        print(ChoosingPlayerCard);
-
-        if (playerSpots[ChoosingPlayerCard].transform.childCount != 0)
+        if (!directAttack)
         {
-            print("Card found");
+            int ChoosingPlayerCard = Random.Range(0, 6);
 
-            GameManager.InitiatorCard = refInitiator;
-            GameManager.ReceivingCard = playerSpots[ChoosingPlayerCard].GetComponentInChildren<CardDisplay>();
+            print(ChoosingPlayerCard);
 
-            print(GameManager.ReceivingCard.card.name + " " + GameManager.InitiatorCard.card.name);
+            if (playerSpots[ChoosingPlayerCard].transform.childCount != 0)
+            {
+                print("Card found");
 
-            GameManager.InitiatorCard.GetComponent<CardDisplay>().AttackingEquation();
+                GameManager.InitiatorCard = refInitiator;
+
+                if (directAttack)
+                {
+                    GameManager.ReceivingCard = null;
+                }
+                else
+                {
+                    GameManager.ReceivingCard = playerSpots[ChoosingPlayerCard].GetComponentInChildren<CardDisplay>();
+                }
+
+                print(GameManager.ReceivingCard.card.name + " " + GameManager.InitiatorCard.card.name);
+
+                GameManager.InitiatorCard.GetComponent<CardDisplay>().AttackingEquation();
+
+                GameState.playerHealth -= GameManager.InitiatorCard.thisCardsAttack;
+                gameState.UpdateHealthUI();
+
+                directAttack = false;
+            }
+            else
+            {
+                print("Card not found");
+            }
         }
         else
         {
-            print("Card not found");
+            GameManager.InitiatorCard = refInitiator;
+
+            GameManager.ReceivingCard = null;
+
+            GameManager.InitiatorCard.GetComponent<CardDisplay>().AttackingEquation();
+
+            GameState.playerHealth -= refInitiator.thisCardsAttack;
+            //GameState.playerHealth -= GameManager.InitiatorCard.thisCardsAttack;
+            gameState.UpdateHealthUI();
+
+            directAttack = false;
         }
 
         GameManager.InitiatorCard = null;

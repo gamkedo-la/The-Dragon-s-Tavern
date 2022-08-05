@@ -81,6 +81,8 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     public bool destroyMe = false;
 
     public GameObject attackEffect;
+
+    Vector3 receivingCardStartedFrom;
     private void Start()
     {
         gameState = GameObject.Find("GameState").GetComponent<GameState>();
@@ -875,43 +877,47 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
                 GameManager.ReceivingCard = this;
             }
 
-            print("calculate attack v attack :" + GameManager.InitiatorCard.card.name + " "  + GameManager.InitiatorCard.thisCardsAttack + " " + GameManager.ReceivingCard.card.name + " " + GameManager.ReceivingCard.thisCardsAttack);
-
-            if (GameManager.InitiatorCard.thisCardsAttack > GameManager.ReceivingCard.thisCardsAttack)
+            if (GameManager.ReceivingCard != null)
             {
-                int difference = GameManager.InitiatorCard.thisCardsAttack - GameManager.ReceivingCard.thisCardsAttack;
+                print("calculate attack v attack :" + GameManager.InitiatorCard.card.name + " " + GameManager.InitiatorCard.thisCardsAttack + " " + GameManager.ReceivingCard.card.name + " " + GameManager.ReceivingCard.thisCardsAttack);
 
-                GameState.opponentHealth -= difference;
 
-                gameState.UpdateHealthUI();
+                if (GameManager.InitiatorCard.thisCardsAttack > GameManager.ReceivingCard.thisCardsAttack)
+                {
+                    int difference = GameManager.InitiatorCard.thisCardsAttack - GameManager.ReceivingCard.thisCardsAttack;
 
-                GameManager.InitiatorCard.thisCardsAttack -= GameManager.ReceivingCard.thisCardsAttack;
-                GameManager.InitiatorCard.att.text = GameManager.InitiatorCard.thisCardsAttack.ToString();
+                    GameState.opponentHealth -= difference;
 
-                doWhenCardsCollide = DestroyDefender;
+                    gameState.UpdateHealthUI();
+
+                    GameManager.InitiatorCard.thisCardsAttack -= GameManager.ReceivingCard.thisCardsAttack;
+                    GameManager.InitiatorCard.att.text = GameManager.InitiatorCard.thisCardsAttack.ToString();
+
+                    doWhenCardsCollide = DestroyDefender;
+                }
+
+                else if (GameManager.InitiatorCard.thisCardsAttack < GameManager.ReceivingCard.thisCardsAttack)
+                {
+                    int difference = GameManager.ReceivingCard.thisCardsAttack - GameManager.InitiatorCard.thisCardsAttack;
+
+                    GameState.playerHealth -= difference;
+
+                    gameState.UpdateHealthUI();
+
+                    GameManager.ReceivingCard.thisCardsAttack -= GameManager.InitiatorCard.thisCardsAttack;
+                    GameManager.ReceivingCard.att.text = GameManager.ReceivingCard.thisCardsAttack.ToString();
+
+                    doWhenCardsCollide = DestroyAttackerr;
+
+                }
+
+                else if (GameManager.InitiatorCard.thisCardsAttack == GameManager.ReceivingCard.thisCardsAttack)
+                {
+                    doWhenCardsCollide = DestroyBoth;
+                }
+                refInitiator = GameManager.InitiatorCard;
+                refDefender = GameManager.ReceivingCard;
             }
-
-            else if (GameManager.InitiatorCard.thisCardsAttack < GameManager.ReceivingCard.thisCardsAttack)
-            {
-                int difference = GameManager.ReceivingCard.thisCardsAttack - GameManager.InitiatorCard.thisCardsAttack;
-
-                GameState.playerHealth -= difference;
-
-                gameState.UpdateHealthUI();
-
-                GameManager.ReceivingCard.thisCardsAttack -= GameManager.InitiatorCard.thisCardsAttack;
-                GameManager.ReceivingCard.att.text = GameManager.ReceivingCard.thisCardsAttack.ToString();
-
-                doWhenCardsCollide = DestroyAttackerr;
-
-            }
-
-            else if (GameManager.InitiatorCard.thisCardsAttack == GameManager.ReceivingCard.thisCardsAttack)
-            {
-                doWhenCardsCollide = DestroyBoth;
-            }
-            refInitiator = GameManager.InitiatorCard;
-            refDefender = GameManager.ReceivingCard;
         }
 
         StartCoroutine(MoveToReceiverCard(1.25f, 1.25f));
@@ -1003,7 +1009,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         cost.text = thisCardCost.ToString();
     }
 
-    IEnumerator MoveToReceiverCard(float lengthOfTime, float returnTime)
+    public IEnumerator MoveToReceiverCard(float lengthOfTime, float returnTime)
     {
         //move later
         
@@ -1012,8 +1018,16 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
         Vector3 initiatorCardStartedFrom = GameManager.InitiatorCard.transform.position;
 
+
         //could add offsets in here to not cover the card 
-        Vector3 receivingCardStartedFrom = GameManager.ReceivingCard.transform.position;
+        if (GameManager.ReceivingCard != null)
+        {
+            receivingCardStartedFrom = GameManager.ReceivingCard.transform.position;
+        }
+        else
+        {
+            receivingCardStartedFrom = new Vector3(-.53f, 3.62f, -15.61f);
+        }
 
         CardDisplay movingCard = GameManager.InitiatorCard;
 
@@ -1029,7 +1043,10 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
 
         yield return new WaitForSeconds(1.5f);
-        doWhenCardsCollide();
+        if (GameManager.ReceivingCard != null)
+        {
+            doWhenCardsCollide();
+        }
 
         yield return new WaitForEndOfFrame(); //Give destroy a chance to take effect
 
@@ -1042,11 +1059,13 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
                 movingCard.transform.position = Vector3.Lerp(initiatorCardStartedFrom, receivingCardStartedFrom, 1.0f - (f / lengthOfTime));
             }
         }
-
-        if (refDefender.destroyMe)
+        if (GameManager.ReceivingCard != null)
         {
-            refDefender.FullyRemoveWithParent();
-            print("now really removing playDead object");
+            if (refDefender.destroyMe)
+            {
+                refDefender.FullyRemoveWithParent();
+                print("now really removing playDead object");
+            }
         }
     }
 }
