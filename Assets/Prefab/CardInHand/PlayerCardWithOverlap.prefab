@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 7215fd6f941ea16419e80663b38cc43d, type: 2}
   m_Color: {r: 1, g: 0.5555956, b: 0.4292453, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -152,8 +152,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: ec74bf9d65c146644a9df81c7bac60bd, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -174,9 +174,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 735d258472ea65e499a002f0cbe944f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInitializedFromStart: 0
   skipCardFlip: 0
   backOfCard: {fileID: 6893300768465468075}
   rotationSpeed: 10
+  isEnemyCard: 0
   isMonster: 1
   card: {fileID: 0}
   spellCard: {fileID: 0}
@@ -190,6 +192,16 @@ MonoBehaviour:
   offset: {x: 0, y: 30, z: 0}
   pullFromHand: {x: 500, y: -500, z: 0}
   hasBeenPlayed: 0
+  inDefense: 0
+  directAttackAgainstOpponent: {fileID: 0}
+  tributeButton: {fileID: 0}
+  tributeNo: {fileID: 0}
+  thisCardInDefense: 0
+  thisCardsAttack: 0
+  thisCardsDefense: 0
+  thisCardCost: 0
+  destroyMe: 0
+  attackEffect: {fileID: 0}
 --- !u!114 &1534345064
 MonoBehaviour:
   m_ObjectHideFlags: 0

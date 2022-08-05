@@ -1374,7 +1374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 7215fd6f941ea16419e80663b38cc43d, type: 2}
   m_Color: {r: 1, g: 0.5555956, b: 0.4292453, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -1382,8 +1382,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: ec74bf9d65c146644a9df81c7bac60bd, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1427,6 +1427,9 @@ MonoBehaviour:
   tributeButton: {fileID: 6030233205888592690}
   tributeNo: {fileID: 3608980540102771266}
   thisCardInDefense: 0
+  thisCardsAttack: 0
+  thisCardsDefense: 0
+  thisCardCost: 0
   destroyMe: 0
   attackEffect: {fileID: 4834214172176429866, guid: 2ab351665bbe9734f9ddba27f6d5a6b4, type: 3}
 --- !u!114 &7039814323314807372
