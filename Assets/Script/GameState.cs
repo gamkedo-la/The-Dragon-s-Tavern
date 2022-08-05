@@ -54,6 +54,9 @@ public class GameState : MonoBehaviour
 
     public bool isHub;
 
+    public GameObject playerLoss, playerWin;
+    public Text winningsShown, winningsShownLoss;
+
     private void Start()
     {
         //The initial Wait After Player draws their hand to draw a 6th card
@@ -336,19 +339,32 @@ public class GameState : MonoBehaviour
         playerHealthUI.text = playerHealth.ToString();
         opponentHealthUI.text = opponentHealth.ToString();
 
-        if (opponentHealth <= 0)
-        {
-            print("Player Wins!");
-        }
-        else if (playerHealth <= 0)
-        {
-            print("Opponent Wins!");
-        }
+        TriggerWinCondition();
+
     }
 
     IEnumerator WaitForSeconds(float seconds)
     { 
         yield return new WaitForSeconds(seconds);
         playerHandUI.SetActive(true);
+    }
+
+    public void TriggerWinCondition()
+    {
+        if (opponentHealth <= 0)
+        {
+            print("Player Wins!");
+            playerWin.SetActive(true);
+            int additionalCurrency = Random.Range(3, 6);
+            GameManager.currency += additionalCurrency;
+            winningsShown.text = additionalCurrency.ToString();
+        }
+        else if (playerHealth <= 0)
+        {
+            print("Opponent Wins!");
+            playerLoss.SetActive(true);
+            GameManager.currency += 1;
+            winningsShownLoss.text = "1";
+        }
     }
 }

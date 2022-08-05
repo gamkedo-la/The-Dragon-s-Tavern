@@ -29,6 +29,9 @@ public class GameManager : MonoBehaviour
     public List<Card> MonsterCardList;
     public List<SpellCard> SpellCardList;
 
+    //Currency
+    public static int currency = 0;
+
     private void Start()
     {
         instance = this;
