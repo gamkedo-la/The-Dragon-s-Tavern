@@ -264,6 +264,7 @@ public class OpponentHand : MonoBehaviour
         {
             if (playableAreas[i].transform.childCount != 0 && !playableAreas[i].GetComponentInChildren<CardDisplay>().thisCardInDefense)
             {
+                //Currently only one is attacking - need one of each card to attack, with a delay
                 GameManager.InitiatorCard = playableAreas[i].GetComponentInChildren<CardDisplay>();
                 refInitiator = GameManager.InitiatorCard;
                 print(GameManager.InitiatorCard.card.name);
@@ -274,13 +275,17 @@ public class OpponentHand : MonoBehaviour
             {
                 print("advance");
             }
+
+            if (i == playableAreas.Length -1)
+            {
+                gameState.AdvanceTurnFromAnotherScript();
+            }
         }
-        gameState.AdvanceTurnFromAnotherScript();
     }
 
     IEnumerator HoldForEnemyTurn()
     {
-        yield return new WaitForSeconds(3.5f);
+        yield return new WaitForSeconds(.25f);
         ChoosingPlayerCardToAttack();
     }
 
@@ -308,30 +313,24 @@ public class OpponentHand : MonoBehaviour
     {
         int ChoosingPlayerCard = Random.Range(0, 6);
 
-        if (playerSpots[ChoosingPlayerCard].transform.childCount == 0)
+        print(ChoosingPlayerCard);
+
+        if (playerSpots[ChoosingPlayerCard].transform.childCount != 0)
         {
-            iterationCountLimit++;
-            AttackingACard();
-        }
-        else if (playerSpots[ChoosingPlayerCard].transform.childCount == 0 && iterationCountLimit > 3)
-        {
-            print("tried to attack too many empty squares. Card not attacking this turn");
-        }
-        else if (playerSpots[ChoosingPlayerCard].transform.childCount != 0)
-        {
+            print("Card found");
+
             GameManager.InitiatorCard = refInitiator;
             GameManager.ReceivingCard = playerSpots[ChoosingPlayerCard].GetComponentInChildren<CardDisplay>();
 
-            print(GameManager.ReceivingCard.card.name);
-            //causing issues
-            print(GameManager.InitiatorCard.card.name);
+            print(GameManager.ReceivingCard.card.name + " " + GameManager.InitiatorCard.card.name);
 
             GameManager.InitiatorCard.GetComponent<CardDisplay>().AttackingEquation();
         }
         else
         {
-            Debug.LogWarning("Something is wrong with the player card chosen to be attacked by enemy");
+            print("Card not found");
         }
+
         GameManager.InitiatorCard = null;
         GameManager.ReceivingCard = null;
     }
