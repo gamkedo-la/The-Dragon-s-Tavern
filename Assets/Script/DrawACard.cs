@@ -24,6 +24,9 @@ public class DrawACard : MonoBehaviour
 
     private void Start()
     {
+        // set deck cards (if player has selected them)
+        SetDeckContentToSelectionIfExisting();
+        
         //draw initial hand
         StartCoroutine(WaitToDrawCard());
         totalCardsInDeck = monsterCards.Count + spellCards.Count;
@@ -115,5 +118,14 @@ public class DrawACard : MonoBehaviour
             DrawCard();
             initialCardsToDraw--;
         }
+    }
+
+    private void SetDeckContentToSelectionIfExisting()
+    {
+        CardsSelectedForDeck cardsSelectedForDeck = FindObjectOfType<CardsSelectedForDeck>();
+        if (cardsSelectedForDeck == null) return;
+        
+        monsterCards = cardsSelectedForDeck.monsterCards;
+        spellCards = cardsSelectedForDeck.spellCards;
     }
 }
