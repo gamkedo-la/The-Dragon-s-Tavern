@@ -6,6 +6,8 @@ public class CardsSelectedForDeck : MonoBehaviour
     public static CardsSelectedForDeck instance;
     public List<Card> monsterCards;
     public List<SpellCard> spellCards;
+    
+    public SelectedCardUI selectedCardUI = null;
 
     private void Awake() 
     {
@@ -22,7 +24,6 @@ public class CardsSelectedForDeck : MonoBehaviour
 
     private void Start() 
     {
-        Debug.Log("Hello");
         if (monsterCards.Count == 0 && spellCards.Count == 0) return;
 
         DrawACard playersDeck = FindObjectOfType<DrawACard>();
@@ -33,10 +34,12 @@ public class CardsSelectedForDeck : MonoBehaviour
     public void SelectMonsterCard(Card card)
     {
         monsterCards.Add(card);
+        selectedCardUI.DisplaySelectedMonsterCard(card);
     }
 
     public void SelectSpellCard(SpellCard card)
     {
         spellCards.Add(card);
+        selectedCardUI.DisplaySelectedSpellCard(card);
     }
 }
