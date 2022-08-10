@@ -29,6 +29,26 @@ public class HubAreaTriggers : MonoBehaviour
         cameraAnimation.SetTrigger("ToMainFromCards");
     }
 
+    public void ToCredits()
+    {
+        cameraAnimation.SetTrigger("ToCredits");
+    }
+
+    public void BackFromCredits()
+    {
+        cameraAnimation.SetTrigger("BackFromCredits");
+    }
+
+    public void ToTutorial()
+    {
+        cameraAnimation.SetTrigger("ToTutorial");
+    }
+
+    public void BackFromTutorial()
+    {
+        cameraAnimation.SetTrigger("BackFromTutorial");
+    }
+
     IEnumerator WaitForDeck()
     {
         yield return new WaitForSeconds(2.75f);
