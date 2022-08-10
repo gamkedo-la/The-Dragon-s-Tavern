@@ -10,6 +10,7 @@ public class SelectedCardUI : MonoBehaviour
     {
         GameObject monsterCardInstance = Instantiate(monsterCardPrefab, scrollRectContentArea);
         HubCardDisplay cardDisplay = monsterCardInstance.GetComponentInChildren<HubCardDisplay>();
+        cardDisplay.isInSelectedArea = true;
 
         cardDisplay.monsterCard = selectedMonsterCard;
 
@@ -29,6 +30,7 @@ public class SelectedCardUI : MonoBehaviour
     {
         GameObject spellCardInstance = Instantiate(spellCardPrefab, scrollRectContentArea);
         HubCardDisplay cardDisplay = spellCardInstance.GetComponentInChildren<HubCardDisplay>();
+        cardDisplay.isInSelectedArea = true;
         
         cardDisplay.spellCard = selectedSpellCard;
         

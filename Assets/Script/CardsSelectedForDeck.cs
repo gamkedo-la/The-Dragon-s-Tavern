@@ -42,4 +42,28 @@ public class CardsSelectedForDeck : MonoBehaviour
         spellCards.Add(card);
         selectedCardUI.DisplaySelectedSpellCard(card);
     }
+
+    public void RemoveMonsterCard(Card card)
+    {
+        for(int i = 0; i < monsterCards.Count; i++)
+        {
+            if (monsterCards[i].name == card.name)
+            {
+                monsterCards.RemoveAt(i);
+                return;
+            }
+        }
+    }
+
+    public void RemoveSpellCard(SpellCard card)
+    {
+        for(int i = 0; i < spellCards.Count; i++)
+        {
+            if (spellCards[i].name == card.name)
+            {
+                spellCards.RemoveAt(i);
+                return;
+            }
+        }
+    }
 }

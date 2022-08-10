@@ -22,7 +22,10 @@ public class HubCardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnter
 
     // Hover Param
     public Vector3 offset = new Vector3(0, 30, 0);
-    bool hasEntered;
+    public bool hasEntered;
+
+    // Booleans
+    public bool isInSelectedArea = false;
 
     // Start is called before the first frame update
     void Start()
@@ -65,6 +68,31 @@ public class HubCardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnter
     public void OnPointerClick(PointerEventData eventData)
     {
         CardsSelectedForDeck cardsSelectedForDeck = FindObjectOfType<CardsSelectedForDeck>();
+        
+        if (!isInSelectedArea){
+            AddCardToSelection(cardsSelectedForDeck);
+        }
+        else {
+            RemoveCardFromSelection(cardsSelectedForDeck);
+        }
+    }
+
+    private void RemoveCardFromSelection(CardsSelectedForDeck cardsSelectedForDeck)
+    {
+        if (monsterCard != null)
+        {
+            cardsSelectedForDeck.RemoveMonsterCard(monsterCard);
+        }
+        else
+        {
+            cardsSelectedForDeck.RemoveSpellCard(spellCard);
+        }
+
+        Destroy(transform.parent.gameObject);
+    }
+
+    private void AddCardToSelection(CardsSelectedForDeck cardsSelectedForDeck)
+    {   
         if (monsterCard != null)
         {
             cardsSelectedForDeck.SelectMonsterCard(monsterCard);
@@ -74,7 +102,7 @@ public class HubCardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnter
             cardsSelectedForDeck.SelectSpellCard(spellCard);
         }
     }
-    
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         #region Preview Card
