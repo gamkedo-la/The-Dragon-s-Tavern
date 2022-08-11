@@ -6,6 +6,7 @@ public class HubAreaTriggers : MonoBehaviour
 {
     public Animator cameraAnimation;
     public GameObject DeckCreation;
+    public GameObject packPurchase;
 
     public void SetUpDeck()
     {
@@ -16,17 +17,21 @@ public class HubAreaTriggers : MonoBehaviour
     public void BuyCards()
     {
         cameraAnimation.SetTrigger("ToPurchase");
+        StartCoroutine(WaitForDeck2());
     }
 
     public void BackFromDeck()
     {
         cameraAnimation.SetTrigger("ToMainFromDeck");
         DeckCreation.SetActive(false);
+        packPurchase.SetActive(false);
     }
 
     public void BackFromCards()
     {
         cameraAnimation.SetTrigger("ToMainFromCards");
+        DeckCreation.SetActive(false);
+        packPurchase.SetActive(false);
     }
 
     public void ToCredits()
@@ -53,5 +58,11 @@ public class HubAreaTriggers : MonoBehaviour
     {
         yield return new WaitForSeconds(2.75f);
         DeckCreation.SetActive(true);
+    }
+
+    IEnumerator WaitForDeck2()
+    {
+        yield return new WaitForSeconds(2.75f);
+        packPurchase.SetActive(true);
     }
 }
