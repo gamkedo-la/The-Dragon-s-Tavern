@@ -264,6 +264,12 @@ public class OpponentHand : MonoBehaviour
     }
     public void AttackPlayer()
     {
+        StartCoroutine(AttackWithDelays());
+
+    }
+
+    IEnumerator AttackWithDelays()
+    { 
         for (int i = 0; i < playableAreas.Length; i++)
         {
             if (playableAreas[i].transform.childCount != 0 && !playableAreas[i].GetComponentInChildren<CardDisplay>().thisCardInDefense)
@@ -273,7 +279,8 @@ public class OpponentHand : MonoBehaviour
                 refInitiator = GameManager.InitiatorCard;
                 print(GameManager.InitiatorCard.card.name);
                 iterationCountLimit = 0;
-                StartCoroutine(HoldForEnemyTurn());
+                ChoosingPlayerCardToAttack();
+                yield return new WaitForSeconds(.25f);
             }
             else
             {
@@ -285,12 +292,6 @@ public class OpponentHand : MonoBehaviour
                 gameState.AdvanceTurnFromAnotherScript();
             }
         }
-    }
-
-    IEnumerator HoldForEnemyTurn()
-    {
-        yield return new WaitForSeconds(.25f);
-        ChoosingPlayerCardToAttack();
     }
 
     public void ChoosingPlayerCardToAttack()
