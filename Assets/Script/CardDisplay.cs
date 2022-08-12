@@ -766,6 +766,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             print("refDefender");
             //Destroy(refDefender.gameObject);
             refDefender.PlayDead();
+            print("Destroying");
         }
         else
         {
@@ -780,6 +781,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         if (GameObject.Find("GameState").GetComponent<GameState>().gamePhase == 2)
         {
             refInitiator.FullyRemoveWithParent();
+            print("Destroying");
         }
         else
         {
@@ -796,6 +798,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             refInitiator.FullyRemoveWithParent();
             // Destroy(refDefender.gameObject);
             refDefender.PlayDead();
+            print("Destroying");
         }
         else
         {
@@ -907,7 +910,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
                     GameManager.InitiatorCard.thisCardsAttack -= GameManager.ReceivingCard.thisCardsAttack;
                     GameManager.InitiatorCard.att.text = GameManager.InitiatorCard.thisCardsAttack.ToString();
-
+                    print("Should Destroy" + GameObject.Find("GameState").GetComponent<GameState>().gamePhase);
                     doWhenCardsCollide = DestroyDefender;
                 }
 

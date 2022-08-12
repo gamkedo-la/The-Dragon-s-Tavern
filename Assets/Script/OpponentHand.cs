@@ -265,7 +265,6 @@ public class OpponentHand : MonoBehaviour
     public void AttackPlayer()
     {
         StartCoroutine(AttackWithDelays());
-
     }
 
     IEnumerator AttackWithDelays()
@@ -280,7 +279,7 @@ public class OpponentHand : MonoBehaviour
                 print(GameManager.InitiatorCard.card.name);
                 iterationCountLimit = 0;
                 ChoosingPlayerCardToAttack();
-                yield return new WaitForSeconds(.25f);
+                yield return new WaitForSeconds(2.25f);
             }
             else
             {
