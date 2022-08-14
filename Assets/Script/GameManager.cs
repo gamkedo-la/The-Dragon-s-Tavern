@@ -32,6 +32,13 @@ public class GameManager : MonoBehaviour
     //Currency
     public static int currency = 0;
 
+    //TotalCardsPlayerCanPull;
+    public List<Card> MonsterCardsToBePulled;
+    public List<SpellCard> SpellCardsToBePulled;
+
+    public List<Card> MonsterCardsOwned;
+    public List<SpellCard> SpellCardsOwned;
+
     private void Start()
     {
         instance = this;
