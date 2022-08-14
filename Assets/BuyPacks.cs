@@ -23,7 +23,7 @@ public class BuyPacks : MonoBehaviour
 
             cardPull.SetTrigger("PullPack");
 
-            print("Buy 1 card");
+           // print("Buy 1 card");
             currencyValue.text = GameManager.currency.ToString();
         }
     }

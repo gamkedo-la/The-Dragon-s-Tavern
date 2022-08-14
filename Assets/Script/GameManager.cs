@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     public List<SpellCard> SpellCardList;
 
     //Currency
-    public static int currency = 0;
+    public static int currency = 3;
 
     //TotalCardsPlayerCanPull;
     public List<Card> MonsterCardsToBePulled;
