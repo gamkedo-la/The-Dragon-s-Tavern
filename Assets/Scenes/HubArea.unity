@@ -62890,6 +62890,8 @@ MonoBehaviour:
   buy1Cost: 1
   buy3Cost: 3
   cardPull: {fileID: 2026129083}
+  backButton: {fileID: 1613912247}
+  buyButton: {fileID: 626344424}
 --- !u!1001 &1700756342
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -78952,6 +78954,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardToReceive: {fileID: 2119646899}
+  individualCard: {fileID: 2119646903}
 --- !u!1001 &2031463479
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -81567,7 +81570,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2119646900
 RectTransform:
   m_ObjectHideFlags: 0
@@ -81658,12 +81661,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cdc32a8b504ca1439bf7d01e4a9f03d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monster: {fileID: 6541153709748730473}
-  spell: {fileID: 8806070409561723085}
-  card: {fileID: 0}
-  spellCard: {fileID: 0}
-  monsterBackground: {fileID: 0}
-  spellBackground: {fileID: 0}
+  monster: {fileID: 6541153709646599857}
+  spell: {fileID: 8806070409670343701}
+  monsterBackground: {fileID: 6541153709748730487}
+  spellBackground: {fileID: 8806070409561723091}
   monsterTitle: {fileID: 6541153708031566102}
   spellTitle: {fileID: 8806070411285433266}
   monsterDesc: {fileID: 6541153707798791784}

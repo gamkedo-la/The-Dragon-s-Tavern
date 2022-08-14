@@ -7,9 +7,6 @@ public class DetermineCard : MonoBehaviour
 {
     public GameObject monster, spell;
 
-    public Card card;
-    public SpellCard spellCard;
-
     public Image monsterBackground, spellBackground;
     public Text monsterTitle, spellTitle;
     public Text monsterDesc, spellDesc;
@@ -47,6 +44,8 @@ public class DetermineCard : MonoBehaviour
                 cost.text = gameManager.MonsterCardsToBePulled[monsterCardToPick].cost.ToString();
                 monsterBackground.sprite = gameManager.MonsterCardsToBePulled[monsterCardToPick].artwork;
 
+                gameManager.MonsterCardsOwned.Add(gameManager.MonsterCardsToBePulled[monsterCardToPick]);
+                gameManager.MonsterCardsToBePulled.Remove(gameManager.MonsterCardsToBePulled[monsterCardToPick]);
                 //Unlock in the game manager
             }
         }
@@ -66,8 +65,12 @@ public class DetermineCard : MonoBehaviour
                 spellTitle.text = gameManager.SpellCardsToBePulled[spellCardToPick].name;
                 spellDesc.text = gameManager.SpellCardsToBePulled[spellCardToPick].effect;
                 spellType.text = gameManager.SpellCardsToBePulled[spellCardToPick].type;
-                spellBackground.sprite = gameManager.SpellCardsToBePulled[spellCardToPick].artwork;
+                spellBackground.GetComponent<Image>().sprite = gameManager.SpellCardsToBePulled[spellCardToPick].artwork;
+
+
                 //Unlock in the game manager
+                gameManager.SpellCardsOwned.Add(gameManager.SpellCardsToBePulled[spellCardToPick]);
+                gameManager.SpellCardsToBePulled.Remove(gameManager.SpellCardsToBePulled[spellCardToPick]);
             }
         }
     }

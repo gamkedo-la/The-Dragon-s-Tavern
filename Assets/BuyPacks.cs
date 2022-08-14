@@ -10,6 +10,8 @@ public class BuyPacks : MonoBehaviour
 
     public Animator cardPull;
 
+    public Button backButton, buyButton;
+
     private void Start()
     {
         currencyValue.text = GameManager.currency.ToString();
@@ -25,6 +27,10 @@ public class BuyPacks : MonoBehaviour
 
            // print("Buy 1 card");
             currencyValue.text = GameManager.currency.ToString();
+
+            backButton.interactable = false;
+            buyButton.interactable = false;
+            StartCoroutine(Waiting());
         }
     }
     public void Buy3()
@@ -36,5 +42,12 @@ public class BuyPacks : MonoBehaviour
             print("Buy 3 card");
             currencyValue.text = GameManager.currency.ToString();
         }
+    }
+
+    IEnumerator Waiting()
+    {
+        yield return new WaitForSeconds(5f);
+        backButton.interactable = true;
+        buyButton.interactable = true;
     }
 }
