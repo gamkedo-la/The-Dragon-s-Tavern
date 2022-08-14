@@ -81675,6 +81675,8 @@ MonoBehaviour:
   monsterType: {fileID: 6541153708990166081}
   spellType: {fileID: 8806070410322517733}
   gameManager: {fileID: 1966203120}
+  particles: {fileID: 1579120634}
+  cardFace: {fileID: 2119646899}
 --- !u!1001 &2119930126
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -15,7 +15,7 @@ public class DetermineCard : MonoBehaviour
 
     public GameManager gameManager;
 
-    GameObject cardPreview;
+    public GameObject particles, cardFace;
 
     public void ChooseCardToUnlock()
     {
@@ -73,5 +73,27 @@ public class DetermineCard : MonoBehaviour
                 gameManager.SpellCardsToBePulled.Remove(gameManager.SpellCardsToBePulled[spellCardToPick]);
             }
         }
+    }
+
+    public void TurnEverythingOff()
+    {
+        monsterTitle.text = null;
+        monsterDesc.text = null;
+        monsterType.text = null;
+        attack.text = null;
+        defense.text = null;
+        cost.text = null;
+        monsterBackground.sprite = null;
+
+        spellTitle.text = null;
+        spellDesc.text = null;
+        spellType.text = null;
+        spellBackground.GetComponent<Image>().sprite = null;
+
+        monster.SetActive(false);
+        spell.SetActive(false);
+
+        particles.SetActive(false);
+        cardFace.SetActive(false);
     }
 }
