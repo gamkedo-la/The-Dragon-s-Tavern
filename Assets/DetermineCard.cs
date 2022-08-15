@@ -90,6 +90,8 @@ public class DetermineCard : MonoBehaviour
         spellType.text = null;
         spellBackground.GetComponent<Image>().sprite = null;
 
+
+
         monster.SetActive(false);
         spell.SetActive(false);
 
