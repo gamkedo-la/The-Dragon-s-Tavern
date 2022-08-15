@@ -191,8 +191,7 @@ public class GameState : MonoBehaviour
             cardsOnTable[i].TurnPlayerInteractableCardsOn();
         }
 
-        //change this back to 4
-        CurrencyThisTurn = 10;
+        CurrencyThisTurn = 4;
         UpdateCardValueUI();
     }
 
@@ -270,7 +269,7 @@ public class GameState : MonoBehaviour
     void AISet()
     {
         //change this back to 4
-        CurrencyThisTurn = 10;
+        CurrencyThisTurn = 6;
 
         displayCurrentState.text = "AI Set";
         opponentHand.PlayHand();
