@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UpdateCardsOwned : MonoBehaviour
 {
@@ -10,15 +11,32 @@ public class UpdateCardsOwned : MonoBehaviour
 
     public Transform contentHolder;
 
+    public GameManager gameManager;
+
     void Start()
     {
         //Refresh the List
 
-        for (int i = 0; i < CardsToCreate; i++)
+
+
+        for (int i = 0; i < gameManager.SpellCardsOwned.Count; i++)
         {
-            spellCard = Instantiate(spellCard, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-            spellCard.transform.parent = contentHolder.transform;
-            spellCard.transform.localScale = new Vector3(1, 1, 1);
+            GameObject spellCardCreated = Instantiate(spellCard, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+
+            spellCardCreated.GetComponentInChildren<HubCardDisplay>().spellCard = gameManager.SpellCardsOwned[i];
+
+            spellCardCreated.transform.parent = contentHolder.transform;
+            spellCardCreated.transform.localScale = new Vector3(1, 1, 1);
+        }
+
+        for (int i = 0; i < gameManager.MonsterCardsOwned.Count; i++)
+        {
+            GameObject monsterCardCreated = Instantiate(monsterCard, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+
+            monsterCardCreated.GetComponentInChildren<HubCardDisplay>().monsterCard = gameManager.MonsterCardsOwned[i];
+
+            monsterCardCreated.transform.parent = contentHolder.transform;
+            monsterCardCreated.transform.localScale = new Vector3(1, 1, 1);
         }
     }
 }
