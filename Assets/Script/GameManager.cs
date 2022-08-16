@@ -42,6 +42,8 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         instance = this;
+
+        LoadGame();
     }
 
     public Card FindMonster(string cardName)
@@ -66,5 +68,26 @@ public class GameManager : MonoBehaviour
             }
         }
         return null;
+    }
+
+    public void SaveGame()
+    {
+        print("Game Saved");
+        //Currency
+
+        //Cards Owned
+
+        //Card Packs remaining
+
+    }
+
+    public void LoadGame()
+    {
+        print("Game Loaded");
+        //Currency
+
+        //Cards Owned
+
+        //Card Packs remaining
     }
 }

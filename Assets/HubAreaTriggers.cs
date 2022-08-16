@@ -8,6 +8,13 @@ public class HubAreaTriggers : MonoBehaviour
     public GameObject DeckCreation;
     public GameObject packPurchase;
 
+    GameManager gameManager;
+
+    private void Start()
+    {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+    }
+
     public void SetUpDeck()
     {
         cameraAnimation.SetTrigger("ToDeck");
@@ -25,6 +32,8 @@ public class HubAreaTriggers : MonoBehaviour
         cameraAnimation.SetTrigger("ToMainFromDeck");
         DeckCreation.SetActive(false);
         packPurchase.SetActive(false);
+
+        gameManager.SaveGame();
     }
 
     public void BackFromCards()
@@ -32,6 +41,8 @@ public class HubAreaTriggers : MonoBehaviour
         cameraAnimation.SetTrigger("ToMainFromCards");
         DeckCreation.SetActive(false);
         packPurchase.SetActive(false);
+
+        gameManager.SaveGame();
     }
 
     public void ToCredits()
