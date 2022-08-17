@@ -8164,7 +8164,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 929912476}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1784273360}
+        m_TargetAssemblyTypeName: GameState, Assembly-CSharp
+        m_MethodName: RestartRoom
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &929912476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9187,7 +9199,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1017438342}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1784273360}
+        m_TargetAssemblyTypeName: GameState, Assembly-CSharp
+        m_MethodName: ReturnToLobby
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1017438342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11717,7 +11741,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1333960515}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1784273360}
+        m_TargetAssemblyTypeName: GameState, Assembly-CSharp
+        m_MethodName: RestartRoom
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1333960515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12201,6 +12237,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bd08f2420c77484468fa1d2fba1677db, type: 2}
   - {fileID: 11400000, guid: 037c0dbe329ed8d47998f4b3ba1c6a0a, type: 2}
   - {fileID: 11400000, guid: afb1de2208d02064cb612355c9556784, type: 2}
+  MonsterCardsToBePulled: []
+  SpellCardsToBePulled: []
+  MonsterCardsOwned: []
+  SpellCardsOwned: []
 --- !u!4 &1384870701
 Transform:
   m_ObjectHideFlags: 0
@@ -12646,7 +12686,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1432957932}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1784273360}
+        m_TargetAssemblyTypeName: GameState, Assembly-CSharp
+        m_MethodName: ReturnToLobby
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1432957932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16018,6 +16070,8 @@ MonoBehaviour:
   playerWin: {fileID: 547035969}
   winningsShown: {fileID: 1546199295}
   winningsShownLoss: {fileID: 118063432}
+  sameRoom: SampleScene
+  lobby: HubArea
 --- !u!4 &1784273361
 Transform:
   m_ObjectHideFlags: 0

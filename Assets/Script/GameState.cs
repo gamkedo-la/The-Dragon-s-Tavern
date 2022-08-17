@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public enum GamePhases { PlayerDraw, PlayerSet, PlayerAttack, PlayerEnd, AIDraw, AISet, AIAttack, AIEnd }
 
@@ -57,6 +58,10 @@ public class GameState : MonoBehaviour
     public GameObject playerLoss, playerWin;
     public Text winningsShown, winningsShownLoss;
 
+    GameManager gameManager;
+
+    public string sameRoom, lobby;
+
     private void Start()
     {
         //The initial Wait After Player draws their hand to draw a 6th card
@@ -73,6 +78,8 @@ public class GameState : MonoBehaviour
             GameManager.hailMary = false;
             advanceTurn = true;
         }
+
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
     IEnumerator InitialWait()
     {
@@ -365,5 +372,17 @@ public class GameState : MonoBehaviour
             GameManager.currency += 1;
             winningsShownLoss.text = "1";
         }
+    }
+
+    public void RestartRoom()
+    {
+        gameManager.SaveGame();
+        SceneManager.LoadScene(sameRoom);
+    }
+
+    public void ReturnToLobby()
+    {
+        gameManager.SaveGame();
+        SceneManager.LoadScene(lobby);
     }
 }

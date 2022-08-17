@@ -15,7 +15,7 @@ MonoBehaviour:
   name: Dragon of Chaos
   description: 'Depending on their mood, you may need to run far away. '
   type: Dragon
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 5c2c49afd00817e48b26a6ce809dfd1f, type: 3}
   cost: 8
   attack: 10
   defense: 6

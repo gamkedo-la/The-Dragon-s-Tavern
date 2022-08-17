@@ -73,7 +73,9 @@ public class GameManager : MonoBehaviour
     public void SaveGame()
     {
         print("Game Saved");
+
         //Currency
+        PlayerPrefs.SetInt("PackPoints", currency);
 
         //Cards Owned
 
@@ -84,7 +86,9 @@ public class GameManager : MonoBehaviour
     public void LoadGame()
     {
         print("Game Loaded");
+
         //Currency
+        currency = PlayerPrefs.GetInt("PackPoints");
 
         //Cards Owned
 

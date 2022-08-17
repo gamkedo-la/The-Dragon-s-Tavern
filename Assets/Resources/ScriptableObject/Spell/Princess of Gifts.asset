@@ -15,4 +15,4 @@ MonoBehaviour:
   name: Princess of Gifts
   effect: Player draws two cards
   type: Quick
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 93ae77d2639d49647b7586f80ebe5710, type: 3}

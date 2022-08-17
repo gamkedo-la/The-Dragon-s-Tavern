@@ -15,7 +15,7 @@ MonoBehaviour:
   name: Zombie of the Forgotten
   description: Everyone wants to be remembered, even those forgotten
   type: Zombie
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: b1a0b1fb44fff734d9b84d54fb293eb5, type: 3}
   cost: 5
   attack: 7
   defense: 3
