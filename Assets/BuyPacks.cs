@@ -14,7 +14,7 @@ public class BuyPacks : MonoBehaviour
 
     private void Start()
     {
-        currencyValue.text = GameManager.currency.ToString();
+        StartCoroutine(Wait());
     }
 
     public void Buy1()
@@ -49,5 +49,11 @@ public class BuyPacks : MonoBehaviour
         yield return new WaitForSeconds(5f);
         backButton.interactable = true;
         buyButton.interactable = true;
+    }
+
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(1.5f);
+        currencyValue.text = GameManager.currency.ToString();
     }
 }

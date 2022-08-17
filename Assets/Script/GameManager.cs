@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     public List<SpellCard> SpellCardList;
 
     //Currency
-    public static int currency = 3;
+    public static int currency;
 
     //TotalCardsPlayerCanPull;
     public List<Card> MonsterCardsToBePulled;
@@ -39,11 +39,20 @@ public class GameManager : MonoBehaviour
     public List<Card> MonsterCardsOwned;
     public List<SpellCard> SpellCardsOwned;
 
+    public static int firstTimeLoadingIn;
+
     private void Start()
     {
         instance = this;
 
+        currency = 5;
         LoadGame();
+
+        if (firstTimeLoadingIn == 0)
+        {
+            currency = 5;
+            firstTimeLoadingIn += 1;
+        }
     }
 
     public Card FindMonster(string cardName)
@@ -74,6 +83,9 @@ public class GameManager : MonoBehaviour
     {
         print("Game Saved");
 
+        //FirstTimeLoadingIn
+        PlayerPrefs.SetInt("FirstTime", firstTimeLoadingIn);
+
         //Currency
         PlayerPrefs.SetInt("PackPoints", currency);
 
@@ -86,6 +98,9 @@ public class GameManager : MonoBehaviour
     public void LoadGame()
     {
         print("Game Loaded");
+
+        //FirstTimeLoadingIn
+        firstTimeLoadingIn = PlayerPrefs.GetInt("FirstTime");
 
         //Currency
         currency = PlayerPrefs.GetInt("PackPoints");
