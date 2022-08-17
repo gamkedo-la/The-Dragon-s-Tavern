@@ -53,7 +53,7 @@ public class BuyPacks : MonoBehaviour
 
     IEnumerator Wait()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.5f);
         currencyValue.text = GameManager.currency.ToString();
     }
 }

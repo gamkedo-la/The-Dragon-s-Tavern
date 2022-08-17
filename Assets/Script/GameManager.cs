@@ -41,18 +41,14 @@ public class GameManager : MonoBehaviour
 
     public static int firstTimeLoadingIn;
 
+    int totalMonstersOwned, totalSpellsOwned, totalMonstersToPull, totalSpellsToPull;
+
     private void Start()
     {
         instance = this;
 
         currency = 5;
         LoadGame();
-
-        if (firstTimeLoadingIn == 0)
-        {
-            currency = 5;
-            firstTimeLoadingIn += 1;
-        }
     }
 
     public Card FindMonster(string cardName)
@@ -85,19 +81,61 @@ public class GameManager : MonoBehaviour
 
         //FirstTimeLoadingIn
         PlayerPrefs.SetInt("FirstTime", firstTimeLoadingIn);
+        firstTimeLoadingIn = PlayerPrefs.GetInt("FirstTime");
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.SetInt("FirstTime", firstTimeLoadingIn);
 
         //Currency
         PlayerPrefs.SetInt("PackPoints", currency);
 
         //Cards Owned
+        for (int i = 0; i < MonsterCardsOwned.Count; i++)
+        {
+            PlayerPrefs.SetString("MonsterCard" + i, MonsterCardsOwned[i].name);
+        }
+
+        PlayerPrefs.SetInt("MonsterCardsOwned", MonsterCardsOwned.Count);
+
+        for (int i = 0; i < SpellCardsOwned.Count; i++)
+        {
+            PlayerPrefs.SetString("SpellCard" + i, SpellCardsOwned[i].name);
+        }
+
+        PlayerPrefs.SetInt("SpellCardsOwned", SpellCardsOwned.Count);
 
         //Card Packs remaining
+        for (int i = 0; i < MonsterCardsToBePulled.Count; i++)
+        {
+            PlayerPrefs.SetString("MonsterPacks" + i, MonsterCardsToBePulled[i].name);
+        }
 
+        PlayerPrefs.SetInt("MonsterCardsToBePulled", MonsterCardsToBePulled.Count);
+
+        for (int i = 0; i < SpellCardsToBePulled.Count; i++)
+        {
+            PlayerPrefs.SetString("SpellPacks" + i, SpellCardsToBePulled[i].name);
+        }
+
+        PlayerPrefs.SetInt("SpellCardsToBePulled", SpellCardsToBePulled.Count);
     }
 
     public void LoadGame()
     {
         print("Game Loaded");
+
+        if (firstTimeLoadingIn == 0)
+        {
+            currency = 5;
+            firstTimeLoadingIn += 1;
+        }
+        else
+        {
+            MonsterCardsOwned.Clear();
+            SpellCardsOwned.Clear();
+
+            MonsterCardsToBePulled.Clear();
+            SpellCardsToBePulled.Clear();
+        }
 
         //FirstTimeLoadingIn
         firstTimeLoadingIn = PlayerPrefs.GetInt("FirstTime");
@@ -107,6 +145,40 @@ public class GameManager : MonoBehaviour
 
         //Cards Owned
 
+        totalMonstersOwned = PlayerPrefs.GetInt("MonsterCardsOwned");
+        totalSpellsOwned = PlayerPrefs.GetInt("SpellCardsOwned");
+
+        for (int i = 0; i < totalMonstersOwned; i++)
+        {
+            string cardName = PlayerPrefs.GetString("MonsterCard" + i);
+
+            print(cardName);
+
+            Card cardToAdd = Resources.Load<Card>("Cards/Monsters/" + cardName) as Card;
+            MonsterCardsOwned.Add(cardToAdd);
+        }
+
+        for (int i = 0; i < totalSpellsOwned; i++)
+        {
+            string cardName = PlayerPrefs.GetString("SpellCard" + i);
+            // MonsterCardsOwned.Add(cardName)
+        }
+
         //Card Packs remaining
+
+        totalMonstersToPull = PlayerPrefs.GetInt("MonsterCardsToBePulled");
+        totalSpellsToPull = PlayerPrefs.GetInt("SpellCardsToBePulled");
+
+        for (int i = 0; i < totalMonstersToPull; i++)
+        {
+            string cardName = PlayerPrefs.GetString("MonsterPacks" + i);
+            // MonsterCardsOwned.Add(cardName)
+        }
+
+        for (int i = 0; i < totalSpellsToPull; i++)
+        {
+            string cardName = PlayerPrefs.GetString("SpellPacks" + i);
+            // MonsterCardsOwned.Add(cardName)
+        }
     }
 }
