@@ -45,6 +45,8 @@ public class OpponentHand : MonoBehaviour
     public GameObject winningScreen;
     public Text winningScreenText;
 
+    public GameObject[] tableDeck;
+
     private void Start()
     {
         //draw initial hand
@@ -102,6 +104,11 @@ public class OpponentHand : MonoBehaviour
             spellCards.Remove(spellCards[randomCardFromDeck]);
         }
         totalCardsInDeck--;
+
+        if (totalCardsInDeck < 10)
+        {
+            tableDeck[totalCardsInDeck].SetActive(false);
+        }
     }
 
     IEnumerator WaitToDrawCard()

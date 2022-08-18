@@ -7964,19 +7964,31 @@ MonoBehaviour:
   gameState: {fileID: 1784273360}
   initialCardsToDraw: 5
   monsterCards:
-  - {fileID: 11400000, guid: 3a8777e39da5e2841b8fdb589836e5e8, type: 2}
-  - {fileID: 11400000, guid: 86f794b6eb776744c99a979e59be8dfd, type: 2}
-  - {fileID: 11400000, guid: e0e55f9d7124eea4fa826fef0e0155fe, type: 2}
   - {fileID: 11400000, guid: 937e2699855a7f942a204582415c5a5e, type: 2}
   - {fileID: 11400000, guid: e5075d3d6f541cc4b8d98c5bebfc7295, type: 2}
+  - {fileID: 11400000, guid: 5ee280de711498a41825675162d3d6f1, type: 2}
+  - {fileID: 11400000, guid: 02b093454b2f7f043b376aab32654699, type: 2}
   - {fileID: 11400000, guid: 5f8017a43e8855b42bd15b3493de10f6, type: 2}
   - {fileID: 11400000, guid: 7b385161c18d1d84cac1b64156398bfc, type: 2}
-  - {fileID: 11400000, guid: a977ec0cbd408df4da1cc96f4fa4fd6f, type: 2}
-  - {fileID: 11400000, guid: 972a87b0e17414f42bb110e1f1424330, type: 2}
+  - {fileID: 11400000, guid: e0e55f9d7124eea4fa826fef0e0155fe, type: 2}
   - {fileID: 11400000, guid: 9f10078e3adeda04fb8650798ec8e9e6, type: 2}
+  - {fileID: 11400000, guid: f521518affd79f840bf0902383144ad2, type: 2}
+  - {fileID: 11400000, guid: 30576b65184e8354082fa4c99af5cc7c, type: 2}
+  - {fileID: 11400000, guid: 6116c2547671def4f8bb461e2232db80, type: 2}
+  - {fileID: 11400000, guid: 972a87b0e17414f42bb110e1f1424330, type: 2}
+  - {fileID: 11400000, guid: 3a8777e39da5e2841b8fdb589836e5e8, type: 2}
+  - {fileID: 11400000, guid: a977ec0cbd408df4da1cc96f4fa4fd6f, type: 2}
   - {fileID: 11400000, guid: bbfa531222b7d9f40881afdc35aad9ee, type: 2}
   - {fileID: 11400000, guid: c4bd62bf71dd4104ea5fe17803290b56, type: 2}
+  - {fileID: 11400000, guid: dc8f6b6ac55bfd346ae16495535be484, type: 2}
+  - {fileID: 11400000, guid: 2f72827eaf153cf4e986e0a4cb8bc53f, type: 2}
   - {fileID: 11400000, guid: 85542a59dd54c294f80714c7aaa43097, type: 2}
+  - {fileID: 11400000, guid: 1dd2cc1fdba18de44bfb3014e055345c, type: 2}
+  - {fileID: 11400000, guid: fdfcff53e95942d41ac04ed96ea6ac51, type: 2}
+  - {fileID: 11400000, guid: 86f794b6eb776744c99a979e59be8dfd, type: 2}
+  - {fileID: 11400000, guid: 4e36179db8f7a81459e21d7d917b8793, type: 2}
+  - {fileID: 11400000, guid: 97859a0656ff3cd489c3aeec7168f47b, type: 2}
+  - {fileID: 11400000, guid: 4059a355bdc355543b2d92fd4d5b47ac, type: 2}
   spellCards: []
   cardsInHand: []
   playableAreas:
@@ -8002,6 +8014,19 @@ MonoBehaviour:
   opponentVisualCard: {fileID: 4434717173652589217, guid: e6f32b5737fd7a842a939618b26b1de6, type: 3}
   opponentHand: {fileID: 1606979957}
   opponentArm: {fileID: 328219080}
+  winningScreen: {fileID: 547035969}
+  winningScreenText: {fileID: 2116714147}
+  tableDeck:
+  - {fileID: 875016566}
+  - {fileID: 2042123820}
+  - {fileID: 1343905864}
+  - {fileID: 890377452}
+  - {fileID: 1416930893}
+  - {fileID: 730666093}
+  - {fileID: 1157684990}
+  - {fileID: 1046663265}
+  - {fileID: 775210053}
+  - {fileID: 236255929}
 --- !u!1001 &924030796
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16074,6 +16099,9 @@ MonoBehaviour:
   winningsShownLoss: {fileID: 118063432}
   sameRoom: SampleScene
   lobby: HubArea
+  outOfCards: 0
+  opponentOutOfCards: 0
+  opponentDeck: {fileID: 0}
 --- !u!4 &1784273361
 Transform:
   m_ObjectHideFlags: 0
