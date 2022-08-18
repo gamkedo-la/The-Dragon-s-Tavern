@@ -395,13 +395,13 @@ public class GameState : MonoBehaviour
 
     public void RestartRoom()
     {
-        gameManager.SaveGame();
+       // gameManager.SaveGame();
         SceneManager.LoadScene(sameRoom);
     }
 
     public void ReturnToLobby()
     {
-        gameManager.SaveGame();
+       // gameManager.SaveGame();
         SceneManager.LoadScene(lobby);
     }
 }

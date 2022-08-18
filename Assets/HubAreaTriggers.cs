@@ -33,7 +33,7 @@ public class HubAreaTriggers : MonoBehaviour
         DeckCreation.SetActive(false);
         packPurchase.SetActive(false);
 
-        gameManager.SaveGame();
+      //  gameManager.SaveGame();
     }
 
     public void BackFromCards()
@@ -42,7 +42,7 @@ public class HubAreaTriggers : MonoBehaviour
         DeckCreation.SetActive(false);
         packPurchase.SetActive(false);
 
-        gameManager.SaveGame();
+      //  gameManager.SaveGame();
     }
 
     public void ToCredits()

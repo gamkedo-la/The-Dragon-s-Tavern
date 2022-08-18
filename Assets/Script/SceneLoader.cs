@@ -11,7 +11,7 @@ public class SceneLoader : MonoBehaviour
     }
     public void LoadSceneByName(string sceneName)
     {
-        gameManager.SaveGame();
+       // gameManager.SaveGame();
 
         SceneManager.LoadScene(sceneName);
     }

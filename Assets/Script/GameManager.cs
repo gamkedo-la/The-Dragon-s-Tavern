@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager gameManager;
+
     public static bool hasBeenPulled;
     public static bool monsterSelected;
     public static bool spellSelected;
@@ -41,14 +43,27 @@ public class GameManager : MonoBehaviour
 
     public static int firstTimeLoadingIn;
 
-    public int totalMonstersOwned, totalSpellsOwned, totalMonstersToPull, totalSpellsToPull;
+    int totalMonstersOwned, totalSpellsOwned, totalMonstersToPull, totalSpellsToPull;
+
+    private void Awake()
+    {
+        if (gameManager == null)
+        {
+            gameManager = this;
+            DontDestroyOnLoad(this);
+        }
+        else if (gameManager != this)
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void Start()
     {
         instance = this;
 
         currency = 5;
-        LoadGame();
+      //  LoadGame();
     }
 
     public Card FindMonster(string cardName)
