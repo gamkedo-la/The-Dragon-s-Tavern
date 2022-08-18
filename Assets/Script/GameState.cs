@@ -62,6 +62,10 @@ public class GameState : MonoBehaviour
 
     public string sameRoom, lobby;
 
+    public bool outOfCards, opponentOutOfCards;
+
+    public GameObject opponentDeck;
+
     private void Start()
     {
         //The initial Wait After Player draws their hand to draw a 6th card
@@ -268,31 +272,43 @@ public class GameState : MonoBehaviour
 
     void AIDraw()
     {
-        displayCurrentState.text = "AI Draw";
-        opponentHand.DrawACard();
-        StartCoroutine(CycleTurnThisIsTemp());
+            displayCurrentState.text = "AI Draw";
+            opponentHand.DrawACard();
+            StartCoroutine(CycleTurnThisIsTemp());
     }
 
     void AISet()
     {
-        //change this back to 4
-        CurrencyThisTurn = 6;
+        if (opponentOutOfCards)
+        {
+            opponentHand.GetComponent<OpponentHand>().enabled = false ;
+        }
 
-        displayCurrentState.text = "AI Set";
-        opponentHand.PlayHand();
-  //      opponentHand.PlayHand();
+        else
+        {
+            CurrencyThisTurn = 6;
 
-        //this is only temporary for the opponent to play two cards in one turn;
-     //   AdvanceTurnFromAnotherScript();
+            displayCurrentState.text = "AI Set";
+            opponentHand.PlayHand();
+        }
     }
 
     void AIAttack()
     {
-        displayCurrentState.text = "AI Attack";
+        if (opponentOutOfCards)
+        {
+            opponentHand.GetComponent<OpponentHand>().enabled = false;
+            print("here");
+        }
 
-        opponentHand.AttackPlayer();
+        else
+        {
+            displayCurrentState.text = "AI Attack";
 
-       // StartCoroutine(CycleTurnThisIsTemp());
+            opponentHand.AttackPlayer();
+
+            // StartCoroutine(CycleTurnThisIsTemp());
+        }
     }
 
     void AIEnd()
@@ -307,6 +323,7 @@ public class GameState : MonoBehaviour
     IEnumerator CycleTurnThisIsTemp()
     {
         yield return new WaitForSeconds(2f);
+        print("here");
         gamePhase++;
         DetermineTurn();
     }
@@ -357,20 +374,22 @@ public class GameState : MonoBehaviour
 
     public void TriggerWinCondition()
     {
-        if (opponentHealth <= 0)
+        if (opponentHealth <= 0 || opponentOutOfCards)
         {
             print("Player Wins!");
             playerWin.SetActive(true);
             int additionalCurrency = Random.Range(3, 6);
             GameManager.currency += additionalCurrency;
             winningsShown.text = additionalCurrency.ToString();
+            opponentOutOfCards = false;
         }
-        else if (playerHealth <= 0)
+        else if (playerHealth <= 0 || outOfCards)
         {
             print("Opponent Wins!");
             playerLoss.SetActive(true);
             GameManager.currency += 1;
             winningsShownLoss.text = "1";
+            outOfCards = false;
         }
     }
 

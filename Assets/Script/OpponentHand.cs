@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class OpponentHand : MonoBehaviour
 {
@@ -41,6 +42,9 @@ public class OpponentHand : MonoBehaviour
 
     int ChoosingPlayerCard;
 
+    public GameObject winningScreen;
+    public Text winningScreenText;
+
     private void Start()
     {
         //draw initial hand
@@ -73,7 +77,7 @@ public class OpponentHand : MonoBehaviour
             cardNameToSave = cardNameToSave.Replace(" (Card)", "");
 
             cardsInHand.Add(cardNameToSave);
-          //  Printing(cardNameToSave);
+            //  Printing(cardNameToSave);
 
             Card tempCard = Resources.Load<Card>("ScriptableObject/Monsters/" + cardNameToSave) as Card;
 
@@ -89,7 +93,7 @@ public class OpponentHand : MonoBehaviour
             cardNameToSave = cardNameToSave.Replace(" (SpellCard)", "");
 
             cardsInHand.Add(cardNameToSave);
-          //  Printing(cardNameToSave);
+            //  Printing(cardNameToSave);
             SpellCard tempCard = Resources.Load<SpellCard>("ScriptableObject/Spell/" + cardNameToSave) as SpellCard;
 
 
@@ -117,89 +121,113 @@ public class OpponentHand : MonoBehaviour
     }
     public void DrawACard()
     {
-      //  Printing("card is drawn");
-        DrawCard();
+        GameState gameState = GameObject.Find("GameState").GetComponent<GameState>();
+        if (totalCardsInDeck <= 0 || gameState.opponentOutOfCards)
+        {
+            gameState.opponentOutOfCards = true;
+            gameState.TriggerWinCondition();
+            print("Opponent has no more cards to draw. The game is over.");
+            winningScreen.SetActive(true);
+            winningScreenText.text = "You outlasted your opponent. They have no more cards to draw. You win this round";
+
+            this.GetComponent<OpponentHand>().enabled = false;
+        }
+        else
+        {
+            //  Printing("card is drawn");
+            DrawCard();
+        }
     }
 
     public void PlayHand()
     {
         //Changing card position to attack or defense
-
-        for (int i = 0; i < playableAreas.Length; i++)
+        if (totalCardsInDeck <= 0 || gameState.opponentOutOfCards)
         {
-            if(playableAreas[i].transform.childCount != 0)
+            for (int i = 0; i < playableAreas.Length; i++)
             {
-                if (playableAreas[i].GetComponentInChildren<CardDisplay>().thisCardsAttack >= playableAreas[i].GetComponentInChildren<CardDisplay>().thisCardsDefense)
+                playableAreas[i].SetActive(false);
+            }
+        }
+
+        else
+        {
+            for (int i = 0; i < playableAreas.Length; i++)
+            {
+                if (playableAreas[i].transform.childCount != 0)
                 {
-                    playableAreas[i].GetComponentInChildren<CardDisplay>().thisCardInDefense = false;
-                    playableAreas[i].transform.GetChild(0).transform.localScale = new Vector3(.7f, .45f, .8f);
-                    playableAreas[i].transform.GetChild(0).transform.localRotation = Quaternion.identity;
-                    playableAreas[i].transform.GetChild(0).transform.localPosition = new Vector3(35, 0, 0);
+                    if (playableAreas[i].GetComponentInChildren<CardDisplay>().thisCardsAttack >= playableAreas[i].GetComponentInChildren<CardDisplay>().thisCardsDefense)
+                    {
+                        playableAreas[i].GetComponentInChildren<CardDisplay>().thisCardInDefense = false;
+                        playableAreas[i].transform.GetChild(0).transform.localScale = new Vector3(.7f, .45f, .8f);
+                        playableAreas[i].transform.GetChild(0).transform.localRotation = Quaternion.identity;
+                        playableAreas[i].transform.GetChild(0).transform.localPosition = new Vector3(35, 0, 0);
+                    }
+                    else
+                    {
+                        playableAreas[i].GetComponentInChildren<CardDisplay>().thisCardInDefense = true;
+                        playableAreas[i].transform.GetChild(0).transform.localScale = new Vector3(.45f, .7f, .8f);
+                        playableAreas[i].transform.GetChild(0).transform.localRotation = Quaternion.Euler(0, 0, 90);
+                        playableAreas[i].transform.GetChild(0).transform.localPosition = new Vector3(0, 20, 0);
+                    }
+                }
+            }
+            //figuring out where to place it
+            if (playableAreas[randomOpenPlayableSpot].transform.childCount != 0)
+            {
+                if (playableAreas[0].transform.childCount != 0 && playableAreas[1].transform.childCount != 0 && playableAreas[2].transform.childCount != 0 && playableAreas[3].transform.childCount != 0 && playableAreas[4].transform.childCount != 0 && playableAreas[5].transform.childCount != 0)
+                {
+                    print("no playable spots available");
                 }
                 else
                 {
-                    playableAreas[i].GetComponentInChildren<CardDisplay>().thisCardInDefense = true;
-                    playableAreas[i].transform.GetChild(0).transform.localScale = new Vector3(.45f, .7f, .8f);
-                    playableAreas[i].transform.GetChild(0).transform.localRotation = Quaternion.Euler(0, 0, 90);
-                    playableAreas[i].transform.GetChild(0).transform.localPosition = new Vector3(0, 20, 0);
+                    ChooseWhereToPlayCard();
                 }
             }
+
+
+            for (int i = 0; i < cardsInHand.Count; i++)
+            {
+                //Choose a random card to play
+                cardToChoose = Random.Range(0, cardsInHand.Count);
+
+                string chosen = cardsInHand[cardToChoose];
+
+                Card monsterCard = GameManager.instance.FindMonster(chosen);
+                SpellCard spellCard = GameManager.instance.FindSpell(chosen);
+
+                string cardName = "error";
+                int cardCost = 0;
+
+                if (monsterCard != null)
+                {
+                    cardName = monsterCard.name;
+                    cardCost = monsterCard.cost;
+                }
+                else if (spellCard != null)
+                {
+                    cardName = spellCard.name;
+                    //there is no cost for spell cards
+                    cardCost = 0;
+                }
+                else
+                {
+                    Debug.LogError("No card name found: " + chosen);
+                }
+
+                if (cardCost <= GameState.CurrencyThisTurn)
+                {
+                    GameState.CurrencyThisTurn -= cardCost;
+                    ChooseWhereToPlayCard();
+                }
+                else
+                {
+                    i++;
+                }
+            }
+
+            StartCoroutine(HoldForTime());
         }
-        //figuring out where to place it
-        if (playableAreas[randomOpenPlayableSpot].transform.childCount != 0)
-        {
-            if (playableAreas[0].transform.childCount != 0 && playableAreas[1].transform.childCount != 0 && playableAreas[2].transform.childCount != 0 && playableAreas[3].transform.childCount != 0 && playableAreas[4].transform.childCount != 0 && playableAreas[5].transform.childCount != 0)
-            {
-                print("no playable spots available");
-            }
-            else
-            {
-                ChooseWhereToPlayCard();
-            }
-        }
-
-
-        for (int i = 0; i < cardsInHand.Count; i++)
-        {
-            //Choose a random card to play
-            cardToChoose = Random.Range(0, cardsInHand.Count);
-
-            string chosen = cardsInHand[cardToChoose];
-
-            Card monsterCard = GameManager.instance.FindMonster(chosen);
-            SpellCard spellCard = GameManager.instance.FindSpell(chosen);
-
-            string cardName = "error";
-            int cardCost = 0;
-
-            if (monsterCard != null)
-            {
-                cardName = monsterCard.name;
-                cardCost = monsterCard.cost;
-            }
-            else if (spellCard != null)
-            {
-                cardName = spellCard.name;
-                //there is no cost for spell cards
-                cardCost = 0;
-            }
-            else
-            {
-                Debug.LogError("No card name found: " + chosen);
-            }
-
-            if (cardCost <= GameState.CurrencyThisTurn)
-            {
-                GameState.CurrencyThisTurn -= cardCost;
-                ChooseWhereToPlayCard();
-            }
-            else
-            {
-                i++;
-            }
-        }
-
-        StartCoroutine(HoldForTime());
     }
 
     IEnumerator HoldForTime()

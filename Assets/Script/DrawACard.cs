@@ -22,6 +22,9 @@ public class DrawACard : MonoBehaviour
     string cardNameToSave;
     SpellCard spellCardToPull;
 
+    public GameObject losingScreen;
+    public Text losingScreenText;
+
     private void Start()
     {
         // set deck cards (if player has selected them)
@@ -45,7 +48,12 @@ public class DrawACard : MonoBehaviour
         //List of Monster Cards and Spell cards are public right now. May want to hide that eventually.
         if (totalCardsInDeck <= 0)
         {
+            GameState gameState = GameObject.Find("GameState").GetComponent<GameState>();
+            gameState.outOfCards = true;
+            gameState.TriggerWinCondition();
             print("Player has no more cards to draw. The game is over.");
+            losingScreen.SetActive(true);
+            losingScreenText.text = "Ran out of cards? I'd suggest adding more cards, or try playing more aggressive in order to win faster.";
         }
         else
         {

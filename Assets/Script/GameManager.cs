@@ -89,11 +89,13 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("PackPoints", currency);
 
         //Cards Owned
+
+/*
         for (int i = 0; i < MonsterCardsOwned.Count; i++)
         {
             PlayerPrefs.SetString("MonsterCard" + i, MonsterCardsOwned[i].name);
         }
-
+*/
         PlayerPrefs.SetInt("MonsterCardsOwned", MonsterCardsOwned.Count);
 
         for (int i = 0; i < SpellCardsOwned.Count; i++)
