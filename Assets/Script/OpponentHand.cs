@@ -47,11 +47,15 @@ public class OpponentHand : MonoBehaviour
 
     public GameObject[] tableDeck;
 
+    GameManager gameManager;
+
     private void Start()
     {
         //draw initial hand
         StartCoroutine(WaitToDrawCard());
-        totalCardsInDeck = monsterCards.Count /*+ spellCards.Count*/;      
+        totalCardsInDeck = monsterCards.Count /*+ spellCards.Count*/;
+
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     public void DrawCard()
@@ -200,8 +204,10 @@ public class OpponentHand : MonoBehaviour
 
                 string chosen = cardsInHand[cardToChoose];
 
-                Card monsterCard = GameManager.instance.FindMonster(chosen);
-                SpellCard spellCard = GameManager.instance.FindSpell(chosen);
+                print(chosen);
+
+                Card monsterCard = gameManager.FindMonster(chosen);
+               // SpellCard spellCard = GameManager.instance.FindSpell(chosen);
 
                 string cardName = "error";
                 int cardCost = 0;
@@ -210,12 +216,6 @@ public class OpponentHand : MonoBehaviour
                 {
                     cardName = monsterCard.name;
                     cardCost = monsterCard.cost;
-                }
-                else if (spellCard != null)
-                {
-                    cardName = spellCard.name;
-                    //there is no cost for spell cards
-                    cardCost = 0;
                 }
                 else
                 {
