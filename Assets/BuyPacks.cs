@@ -11,10 +11,23 @@ public class BuyPacks : MonoBehaviour
     public Animator cardPull;
 
     public Button backButton, buyButton;
+    public GameObject buttonBuy;
+
+    GameManager gameManager;
 
     private void Start()
     {
         StartCoroutine(Wait());
+
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+    }
+
+    private void Update()
+    {
+        if (gameManager.MonsterCardsToBePulled.Count <= 0 && gameManager.SpellCardsToBePulled.Count <= 0)
+        {
+            buttonBuy.SetActive(false);
+        }
     }
 
     public void Buy1()
@@ -25,7 +38,7 @@ public class BuyPacks : MonoBehaviour
 
             cardPull.SetTrigger("PullPack");
 
-           // print("Buy 1 card");
+            // print("Buy 1 card");
             currencyValue.text = GameManager.currency.ToString();
 
             backButton.interactable = false;

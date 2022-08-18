@@ -22899,6 +22899,9 @@ MonoBehaviour:
   winningsShownLoss: {fileID: 0}
   sameRoom: 
   lobby: 
+  outOfCards: 0
+  opponentOutOfCards: 0
+  opponentDeck: {fileID: 0}
 --- !u!4 &683999654
 Transform:
   m_ObjectHideFlags: 0
@@ -62478,6 +62481,7 @@ MonoBehaviour:
   cardPull: {fileID: 2026129083}
   backButton: {fileID: 1613912247}
   buyButton: {fileID: 626344424}
+  buttonBuy: {fileID: 1613912245}
 --- !u!1001 &1700756342
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -77258,6 +77262,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2bd14efeca58dd64ea26fbac312b06f5, type: 2}
   - {fileID: 11400000, guid: 50c53826916f8fa4389168c71009aa6c, type: 2}
   - {fileID: 11400000, guid: 9df01bfbcd63e3341becd816a361e666, type: 2}
+  totalMonstersOwned: 0
+  totalSpellsOwned: 0
+  totalMonstersToPull: 0
+  totalSpellsToPull: 0
 --- !u!4 &1966203121
 Transform:
   m_ObjectHideFlags: 0

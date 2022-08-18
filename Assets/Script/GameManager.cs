@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
 
     public static int firstTimeLoadingIn;
 
-    int totalMonstersOwned, totalSpellsOwned, totalMonstersToPull, totalSpellsToPull;
+    public int totalMonstersOwned, totalSpellsOwned, totalMonstersToPull, totalSpellsToPull;
 
     private void Start()
     {
