@@ -77,28 +77,31 @@ public class HubCardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnter
         
         if (!isInSelectedArea){
             AddCardToSelection(cardsSelectedForDeck);
-            print("Remove card from Deck Area");
 
             if (this.monsterCard != null)
             {
                 gameManager.MonsterCardsOwned.Remove(this.monsterCard);
-                print("Remove Card from GameManager.Owned");
                 updateCardsOwned.RefreshList();
-                print("Update GameManager.Owned list");
             }
             else
             {
                 gameManager.SpellCardsOwned.Remove(this.spellCard);
-                print("Remove Card from GameManager.Owned");
                 updateCardsOwned.RefreshList();
-                print("Update GameManager.Owned list");
             }
         }
         else {
             RemoveCardFromSelection(cardsSelectedForDeck);
-            print("Add card to Deck Area");
-            print("Add Card from GameManager.Owned");
-            print("Update GameManager.Owned list");
+
+            if (this.monsterCard != null)
+            {
+                gameManager.MonsterCardsOwned.Add(this.monsterCard);
+                updateCardsOwned.RefreshList();
+            }
+            else
+            {
+                gameManager.SpellCardsOwned.Add(this.spellCard);
+                updateCardsOwned.RefreshList();
+            }
         }
     }
 

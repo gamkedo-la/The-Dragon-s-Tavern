@@ -21,7 +21,6 @@ public class UpdateCardsOwned : MonoBehaviour
 
     public void RefreshList()
     {
-        print("DestroyAllPreviousCardsToUpdateList");
         foreach (Transform child in contentHolder.transform)
         {
             GameObject.Destroy(child.gameObject);
