@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 
 public class HubCardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
-    public Card monsterCard; //mmonster card
+    public Card monsterCard; //monster card
     public SpellCard spellCard;
     
     //Needed to display the card info on the card itself
@@ -27,9 +27,15 @@ public class HubCardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnter
     // Booleans
     public bool isInSelectedArea = false;
 
+    GameManager gameManager;
+    UpdateCardsOwned updateCardsOwned;
+
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
+        updateCardsOwned = GameObject.Find("Canvas-DeckCreation").GetComponent<UpdateCardsOwned>();
         //Initial display of information
         if (monsterCard != null)
         {
@@ -71,9 +77,28 @@ public class HubCardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnter
         
         if (!isInSelectedArea){
             AddCardToSelection(cardsSelectedForDeck);
+            print("Remove card from Deck Area");
+
+            if (this.monsterCard != null)
+            {
+                gameManager.MonsterCardsOwned.Remove(this.monsterCard);
+                print("Remove Card from GameManager.Owned");
+                updateCardsOwned.RefreshList();
+                print("Update GameManager.Owned list");
+            }
+            else
+            {
+                gameManager.SpellCardsOwned.Remove(this.spellCard);
+                print("Remove Card from GameManager.Owned");
+                updateCardsOwned.RefreshList();
+                print("Update GameManager.Owned list");
+            }
         }
         else {
             RemoveCardFromSelection(cardsSelectedForDeck);
+            print("Add card to Deck Area");
+            print("Add Card from GameManager.Owned");
+            print("Update GameManager.Owned list");
         }
     }
 

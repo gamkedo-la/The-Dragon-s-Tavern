@@ -16,8 +16,16 @@ public class UpdateCardsOwned : MonoBehaviour
     void Start()
     {
         //Refresh the List
+        RefreshList();
+    }
 
-
+    public void RefreshList()
+    {
+        print("DestroyAllPreviousCardsToUpdateList");
+        foreach (Transform child in contentHolder.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
 
         for (int i = 0; i < gameManager.SpellCardsOwned.Count; i++)
         {
