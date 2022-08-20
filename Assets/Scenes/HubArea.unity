@@ -78602,6 +78602,8 @@ MonoBehaviour:
   monsterCards: []
   spellCards: []
   selectedCardUI: {fileID: 1595372707}
+  playButton: {fileID: 320984953}
+  playText: {fileID: 316155004}
 --- !u!4 &2021351359
 Transform:
   m_ObjectHideFlags: 0

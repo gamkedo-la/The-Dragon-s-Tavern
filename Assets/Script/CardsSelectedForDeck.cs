@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CardsSelectedForDeck : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public class CardsSelectedForDeck : MonoBehaviour
     public List<SpellCard> spellCards;
     
     public SelectedCardUI selectedCardUI = null;
+
+    public Button playButton;
+    public Text playText;
 
     private void Awake() 
     {
@@ -30,7 +34,21 @@ public class CardsSelectedForDeck : MonoBehaviour
         playersDeck.monsterCards = monsterCards;
         playersDeck.spellCards = spellCards;
     }
-    
+
+    private void Update()
+    {
+        if (monsterCards.Count == 0 && spellCards.Count == 0)
+        {
+            playButton.interactable = false;
+            playText.text = "Build a Deck";
+        }
+        else
+        {
+            playButton.interactable = true;
+            playText.text = "Play";
+        }
+    }
+
     public void SelectMonsterCard(Card card)
     {
         monsterCards.Add(card);
