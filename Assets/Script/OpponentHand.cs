@@ -206,8 +206,6 @@ public class OpponentHand : MonoBehaviour
 
                 print(chosen);
 
-
-                //I think this is the problem line. I changed it from GameManager to gameManager? 
                 Card monsterCard = gameManager.FindMonster(chosen);
                 //SpellCard spellCard = GameManager.instance.FindSpell(chosen);
 

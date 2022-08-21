@@ -764,7 +764,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         if (GameObject.Find("GameState").GetComponent<GameState>().gamePhase == 2)
         {
             print("refDefender");
-            //Destroy(refDefender.gameObject);
+           // Destroy(refDefender.gameObject);
             refDefender.PlayDead();
             print("Destroying");
         }
@@ -796,7 +796,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         if (GameObject.Find("GameState").GetComponent<GameState>().gamePhase == 2)
         {
             refInitiator.FullyRemoveWithParent();
-            // Destroy(refDefender.gameObject);
+            //Destroy(refDefender.gameObject);
             refDefender.PlayDead();
             print("Destroying");
         }
@@ -910,7 +910,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
                     GameManager.InitiatorCard.thisCardsAttack -= GameManager.ReceivingCard.thisCardsAttack;
                     GameManager.InitiatorCard.att.text = GameManager.InitiatorCard.thisCardsAttack.ToString();
-                    print("Should Destroy" + GameObject.Find("GameState").GetComponent<GameState>().gamePhase);
+                    print("Should Destroy" + GameObject.Find("GameState").GetComponent<GameState>().gamePhase + " " + GameManager.ReceivingCard.card.name + " " + GameManager.InitiatorCard.card.name);
                     doWhenCardsCollide = DestroyDefender;
                 }
 
@@ -938,7 +938,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             }
         }
 
-        StartCoroutine(MoveToReceiverCard(1.25f, 1.25f));
+        StartCoroutine(MoveToReceiverCard(0.25f, 0.25f));
 
         GameManager.InitiatorCard.GetComponent<Button>().interactable = false;
 
@@ -1035,19 +1035,20 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
 
         Vector3 initiatorCardStartedFrom = GameManager.InitiatorCard.transform.position;
-
+        CardDisplay receivingCard = GameManager.ReceivingCard;
+        CardDisplay initiatorCard = GameManager.InitiatorCard;
 
         //could add offsets in here to not cover the card 
-        if (GameManager.ReceivingCard != null)
+        if (receivingCard != null)
         {
-            receivingCardStartedFrom = GameManager.ReceivingCard.transform.position;
+            receivingCardStartedFrom = receivingCard.transform.position;
         }
         else
         {
             receivingCardStartedFrom = new Vector3(-.53f, 3.62f, -15.61f);
         }
 
-        CardDisplay movingCard = GameManager.InitiatorCard;
+        CardDisplay movingCard = initiatorCard;
 
         for (float f = 0; f < lengthOfTime; f+=moveStepTime)
         {
@@ -1059,9 +1060,9 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
         Instantiate(attackEffect, receivingCardStartedFrom - new Vector3(0,0, .8f), Quaternion.identity);
 
+        yield return new WaitForSeconds(0.25f);
 
-        yield return new WaitForSeconds(1.5f);
-        if (GameManager.ReceivingCard != null)
+        if (receivingCard != null)
         {
             doWhenCardsCollide();
         }
@@ -1077,7 +1078,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
                 movingCard.transform.position = Vector3.Lerp(initiatorCardStartedFrom, receivingCardStartedFrom, 1.0f - (f / lengthOfTime));
             }
         }
-        if (GameManager.ReceivingCard != null)
+        if (receivingCard != null)
         {
             if (refDefender.destroyMe)
             {

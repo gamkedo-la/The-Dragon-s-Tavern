@@ -202,7 +202,7 @@ public class GameState : MonoBehaviour
             cardsOnTable[i].TurnPlayerInteractableCardsOn();
         }
 
-        CurrencyThisTurn = 4;
+        CurrencyThisTurn = 10;
         UpdateCardValueUI();
     }
 
