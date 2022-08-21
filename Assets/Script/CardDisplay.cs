@@ -785,7 +785,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         }
         else
         {
-            Debug.Log("Should be destroying: " + refInitiator.name);
+            Debug.Log("Should be destroying: " + refInitiator.card.name);
             refInitiator.PlayDead();
         }
     }
@@ -801,21 +801,36 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             refDefender.PlayDead();
             print("Destroying");
         }
-        else
+        else if (GameObject.Find("GameState").GetComponent<GameState>().gamePhase == 6)
         {
             refDefender.FullyRemoveWithParent();
-            refInitiator.FullyRemoveWithParent();
+            //Destroy(refDefender.gameObject);
+            refInitiator.PlayDead();
+            print("Destroying");
+        }
+        else
+        {
+           // refDefender.FullyRemoveWithParent();
+           // refInitiator.FullyRemoveWithParent();
+            print("Shouldn't reach here");
         }
     }
 
     public void PlayDead()
     {
         //can't remove defender mid coroutine, have to hide then will remove later
+
         destroyMe = true;
         Renderer[] allRend = gameObject.GetComponentsInChildren<Renderer>();
 
+        print(card.name);
+
+        print("All Rend Length: " + allRend.Length);
+
         for (int i = 0; i < allRend.Length; i++)
         {
+            print(allRend[i].name);
+
             allRend[i].enabled = false;
         }
     }
@@ -1085,6 +1100,15 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             {
                 refDefender.FullyRemoveWithParent();
                 print("now really removing playDead object");
+            }
+        }
+
+        if (initiatorCard != null)
+        {
+            if (initiatorCard.destroyMe)
+            {
+                initiatorCard.FullyRemoveWithParent();
+                print("now really removing playDead object of RefInitator");
             }
         }
     }
