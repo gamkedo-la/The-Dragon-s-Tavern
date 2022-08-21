@@ -204,7 +204,7 @@ public class OpponentHand : MonoBehaviour
 
                 string chosen = cardsInHand[cardToChoose];
 
-                print(chosen);
+          //      print(chosen);
 
                 Card monsterCard = gameManager.FindMonster(chosen);
                 //SpellCard spellCard = GameManager.instance.FindSpell(chosen);
@@ -314,11 +314,11 @@ public class OpponentHand : MonoBehaviour
                 print(GameManager.InitiatorCard.card.name);
                 iterationCountLimit = 0;
                 ChoosingPlayerCardToAttack();
-                yield return new WaitForSeconds(2.25f);
+                yield return new WaitForSeconds(1.25f);
             }
             else
             {
-                print("advance");
+                print("Advance turn, no more cards to play");
             }
 
             if (i == playableAreas.Length -1)
@@ -330,7 +330,7 @@ public class OpponentHand : MonoBehaviour
 
     public void ChoosingPlayerCardToAttack()
     {
-        print("choose a random player card to attack");
+     //   print("choose a random player card to attack");
 
         if (playerSpots[0].transform.childCount == 0 && playerSpots[1].transform.childCount == 0 && playerSpots[2].transform.childCount == 0 && playerSpots[3].transform.childCount == 0 && playerSpots[4].transform.childCount == 0 && playerSpots[5].transform.childCount == 0)
         {
@@ -346,11 +346,11 @@ public class OpponentHand : MonoBehaviour
         {
             ChoosingPlayerCard = Random.Range(0, 6);
 
-            print(ChoosingPlayerCard);
+          //  print(ChoosingPlayerCard);
 
             if (playerSpots[ChoosingPlayerCard].transform.childCount != 0)
             {
-                print("Card found");
+        //        print("Card found");
 
                 GameManager.InitiatorCard = refInitiator;
 
@@ -363,7 +363,7 @@ public class OpponentHand : MonoBehaviour
                     GameManager.ReceivingCard = playerSpots[ChoosingPlayerCard].GetComponentInChildren<CardDisplay>();
                 }
 
-                print(GameManager.ReceivingCard.card.name + " " + GameManager.InitiatorCard.card.name);
+        //        print(GameManager.ReceivingCard.card.name + " " + GameManager.InitiatorCard.card.name);
 
                 GameManager.InitiatorCard.GetComponent<CardDisplay>().AttackingEquation();
 

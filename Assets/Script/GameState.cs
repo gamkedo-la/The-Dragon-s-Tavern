@@ -323,7 +323,7 @@ public class GameState : MonoBehaviour
     IEnumerator CycleTurnThisIsTemp()
     {
         yield return new WaitForSeconds(2f);
-        print("here");
+    //    print("here");
         gamePhase++;
         DetermineTurn();
     }

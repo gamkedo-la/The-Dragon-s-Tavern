@@ -141,7 +141,7 @@ public class PlayableSpot : MonoBehaviour
                 //not enough points to play card
                 else
                 {
-                    Debug.Log("Not enough currency");
+                //    Debug.Log("Not enough currency");
                     //Destroy Temp Created Card
 
                     Destroy(cardCreated);

@@ -763,10 +763,10 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     {
         if (GameObject.Find("GameState").GetComponent<GameState>().gamePhase == 2)
         {
-            print("refDefender");
+         //   print("refDefender");
            // Destroy(refDefender.gameObject);
             refDefender.PlayDead();
-            print("Destroying");
+          //  print("Destroying");
         }
         else
         {
@@ -776,37 +776,37 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     void DestroyAttackerr()
     {
-        print("refAttacker");
+      //  print("refAttacker");
 
         if (GameObject.Find("GameState").GetComponent<GameState>().gamePhase == 2)
         {
             refInitiator.FullyRemoveWithParent();
-            print("Destroying");
+         //   print("Destroying");
         }
         else
         {
-            Debug.Log("Should be destroying: " + refInitiator.card.name);
+       //     Debug.Log("Should be destroying: " + refInitiator.card.name);
             refInitiator.PlayDead();
         }
     }
 
     void DestroyBoth()
     {
-        print("destroy both");
+      //  print("destroy both");
 
         if (GameObject.Find("GameState").GetComponent<GameState>().gamePhase == 2)
         {
             refInitiator.FullyRemoveWithParent();
             //Destroy(refDefender.gameObject);
             refDefender.PlayDead();
-            print("Destroying");
+         //  print("Destroying");
         }
         else if (GameObject.Find("GameState").GetComponent<GameState>().gamePhase == 6)
         {
             refDefender.FullyRemoveWithParent();
             //Destroy(refDefender.gameObject);
             refInitiator.PlayDead();
-            print("Destroying");
+         //   print("Destroying");
         }
         else
         {
@@ -823,13 +823,13 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         destroyMe = true;
         Renderer[] allRend = gameObject.GetComponentsInChildren<Renderer>();
 
-        print(card.name);
+      //  print(card.name);
 
-        print("All Rend Length: " + allRend.Length);
+      //  print("All Rend Length: " + allRend.Length);
 
         for (int i = 0; i < allRend.Length; i++)
         {
-            print(allRend[i].name);
+        //    print(allRend[i].name);
 
             allRend[i].enabled = false;
         }
@@ -854,7 +854,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     public void AttackingEquation()
     {
-        print(this.gameObject.GetComponentInChildren<CardDisplay>().card.name);
+      //  print(this.gameObject.GetComponentInChildren<CardDisplay>().card.name);
 
         if (this.gameObject.GetComponentInChildren<CardDisplay>().thisCardInDefense)
         {
@@ -913,7 +913,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
             if (GameManager.ReceivingCard != null)
             {
-                print("calculate attack v attack :" + GameManager.InitiatorCard.card.name + " " + GameManager.InitiatorCard.thisCardsAttack + " " + GameManager.ReceivingCard.card.name + " " + GameManager.ReceivingCard.thisCardsAttack);
+          //      print("calculate attack v attack :" + GameManager.InitiatorCard.card.name + " " + GameManager.InitiatorCard.thisCardsAttack + " " + GameManager.ReceivingCard.card.name + " " + GameManager.ReceivingCard.thisCardsAttack);
 
 
                 if (GameManager.InitiatorCard.thisCardsAttack > GameManager.ReceivingCard.thisCardsAttack)
@@ -933,7 +933,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
                     GameManager.InitiatorCard.thisCardsAttack -= GameManager.ReceivingCard.thisCardsAttack;
                     GameManager.InitiatorCard.att.text = GameManager.InitiatorCard.thisCardsAttack.ToString();
-                    print("Should Destroy" + GameObject.Find("GameState").GetComponent<GameState>().gamePhase + " " + GameManager.ReceivingCard.card.name + " " + GameManager.InitiatorCard.card.name);
+                  //  print("Should Destroy" + GameObject.Find("GameState").GetComponent<GameState>().gamePhase + " " + GameManager.ReceivingCard.card.name + " " + GameManager.InitiatorCard.card.name);
                     doWhenCardsCollide = DestroyDefender;
                 }
 
@@ -1114,7 +1114,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             if (refDefender.destroyMe)
             {
                 refDefender.FullyRemoveWithParent();
-                print("now really removing playDead object");
+       //         print("now really removing playDead object");
             }
         }
 
@@ -1123,7 +1123,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             if (initiatorCard.destroyMe)
             {
                 initiatorCard.FullyRemoveWithParent();
-                print("now really removing playDead object of RefInitator");
+      //          print("now really removing playDead object of RefInitator");
             }
         }
     }
