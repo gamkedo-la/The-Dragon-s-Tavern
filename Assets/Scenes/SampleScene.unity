@@ -1881,10 +1881,10 @@ MonoBehaviour:
   initialCardsToDraw: 5
   monsterCards:
   - {fileID: 11400000, guid: 30576b65184e8354082fa4c99af5cc7c, type: 2}
-  - {fileID: 11400000, guid: 4059a355bdc355543b2d92fd4d5b47ac, type: 2}
+  - {fileID: 11400000, guid: 30576b65184e8354082fa4c99af5cc7c, type: 2}
   - {fileID: 11400000, guid: 30576b65184e8354082fa4c99af5cc7c, type: 2}
   - {fileID: 11400000, guid: dc8f6b6ac55bfd346ae16495535be484, type: 2}
-  - {fileID: 11400000, guid: fdfcff53e95942d41ac04ed96ea6ac51, type: 2}
+  - {fileID: 11400000, guid: 30576b65184e8354082fa4c99af5cc7c, type: 2}
   - {fileID: 11400000, guid: fdfcff53e95942d41ac04ed96ea6ac51, type: 2}
   spellCards:
   - {fileID: 11400000, guid: 5347778923d271c40a6a74951129c5e9, type: 2}

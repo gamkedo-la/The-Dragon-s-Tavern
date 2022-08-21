@@ -920,7 +920,14 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
                 {
                     int difference = GameManager.InitiatorCard.thisCardsAttack - GameManager.ReceivingCard.thisCardsAttack;
 
-                    GameState.opponentHealth -= difference;
+                    if (GameObject.Find("GameState").GetComponent<GameState>().gamePhase == 2)
+                    {
+                        GameState.opponentHealth -= difference;
+                    }
+                    else if(GameObject.Find("GameState").GetComponent<GameState>().gamePhase == 6)
+                    {
+                        GameState.playerHealth -= difference;
+                    }
 
                     gameState.UpdateHealthUI();
 
@@ -934,7 +941,14 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
                 {
                     int difference = GameManager.ReceivingCard.thisCardsAttack - GameManager.InitiatorCard.thisCardsAttack;
 
-                    GameState.playerHealth -= difference;
+                    if (GameObject.Find("GameState").GetComponent<GameState>().gamePhase == 2)
+                    {
+                        GameState.playerHealth -= difference;
+                    }
+                    else if (GameObject.Find("GameState").GetComponent<GameState>().gamePhase == 6)
+                    {
+                        GameState.opponentHealth -= difference;
+                    }
 
                     gameState.UpdateHealthUI();
 
