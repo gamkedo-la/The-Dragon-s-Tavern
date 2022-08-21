@@ -1093,6 +1093,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
                 movingCard.transform.position = Vector3.Lerp(initiatorCardStartedFrom, receivingCardStartedFrom, 1.0f - (f / lengthOfTime));
             }
+            movingCard.transform.position = initiatorCardStartedFrom;
         }
         if (receivingCard != null)
         {
