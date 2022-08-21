@@ -785,6 +785,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         }
         else
         {
+            Debug.Log("Should be destroying: " + refInitiator.name);
             refInitiator.PlayDead();
         }
     }
