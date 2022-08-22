@@ -13,6 +13,8 @@ public class CardsSelectedForDeck : MonoBehaviour
     public Button playButton;
     public Text playText;
 
+    public Text cardsInDeck;
+
     private void Awake() 
     {
         if (instance != null && instance != this)
@@ -47,18 +49,23 @@ public class CardsSelectedForDeck : MonoBehaviour
             playButton.interactable = true;
             playText.text = "Play";
         }
+        ShowUI();
     }
 
     public void SelectMonsterCard(Card card)
     {
         monsterCards.Add(card);
         selectedCardUI.DisplaySelectedMonsterCard(card);
+
+       // ShowUI();
     }
 
     public void SelectSpellCard(SpellCard card)
     {
         spellCards.Add(card);
         selectedCardUI.DisplaySelectedSpellCard(card);
+
+        
     }
 
     public void RemoveMonsterCard(Card card)
@@ -71,6 +78,8 @@ public class CardsSelectedForDeck : MonoBehaviour
                 return;
             }
         }
+
+        //ShowUI();
     }
 
     public void RemoveSpellCard(SpellCard card)
@@ -83,5 +92,11 @@ public class CardsSelectedForDeck : MonoBehaviour
                 return;
             }
         }
+       // ShowUI();
+    }
+
+    void ShowUI()
+    {
+        cardsInDeck.text = "Cards In Deck:  " + (monsterCards.Count + spellCards.Count);
     }
 }
