@@ -10,6 +10,8 @@ public class HubAreaTriggers : MonoBehaviour
 
     GameManager gameManager;
 
+    UpdateCardsOwned updateCardsOwned;
+
     private void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -69,6 +71,9 @@ public class HubAreaTriggers : MonoBehaviour
     {
         yield return new WaitForSeconds(2.75f);
         DeckCreation.SetActive(true);
+        yield return new WaitForSeconds(.25f);
+        updateCardsOwned = GameObject.Find("Canvas-DeckCreation").GetComponent<UpdateCardsOwned>();
+        updateCardsOwned.RefreshList();
     }
 
     IEnumerator WaitForDeck2()
