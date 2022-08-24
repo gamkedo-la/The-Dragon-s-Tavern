@@ -320,24 +320,40 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
         CardDisplay[] cardsOnTable = playerCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
 
-        for (int i = 0; i < cardsOnTable.Length; i++)
+        if (cardsOnTable.Length <= 0)
         {
-            if (cardsOnTable[i].card.type.ToString() == "Lore")
+            print("no effect");
+        }
+
+        else
+        {
+            for (int i = 0; i < cardsOnTable.Length; i++)
             {
-                //for each Lore card, you're adding one so 3 cards would be 3 bonus
+                if (cardsOnTable[i].type.text == "Quick")
+                {
+                    print("no effect");
+                }
 
-                int totalCards = cardsOnTable.Length;
-                cardsOnTable[i].thisCardsDefense += totalCards;
-                //
+                else
+                {
+                    if (cardsOnTable[i].card.type.ToString() == "Lore")
+                    {
+                        //for each Lore card, you're adding one so 3 cards would be 3 bonus
 
-                //this is increasing it by 1 regardless of the card count on the table
-                // cardsOnTable[i].defenseOffset += 1;
+                        int totalCards = cardsOnTable.Length;
+                        cardsOnTable[i].thisCardsDefense += totalCards;
+                        //
 
-                cardsOnTable[i].def.text = thisCardsDefense.ToString();
-            }
-            else
-            {
-                print("no effect");
+                        //this is increasing it by 1 regardless of the card count on the table
+                        // cardsOnTable[i].defenseOffset += 1;
+
+                        cardsOnTable[i].def.text = thisCardsDefense.ToString();
+                    }
+                    else
+                    {
+                        print("no effect");
+                    }
+                }
             }
         }
         StartCoroutine(RemovePlayedCard());
@@ -349,15 +365,21 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
         CardDisplay[] cardsOnTable = enemyCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
 
-        for (int i = 0; i < cardsOnTable.Length; i++)
+        if (cardsOnTable.Length <= 0)
         {
-            //print(cardsOnTable[i]);
-
-            cardsOnTable[i].thisCardsAttack -= 1;
-            cardsOnTable[i].att.text = cardsOnTable[i].thisCardsAttack.ToString();
-           // print(cardsOnTable[i].card.attack);
+            print("no effect");
         }
+        else
+        {
+            for (int i = 0; i < cardsOnTable.Length; i++)
+            {
+                //print(cardsOnTable[i]);
 
+                cardsOnTable[i].thisCardsAttack -= 1;
+                cardsOnTable[i].att.text = cardsOnTable[i].thisCardsAttack.ToString();
+                // print(cardsOnTable[i].card.attack);
+            }
+        }
         StartCoroutine(RemovePlayedCard());
     }
 
@@ -370,16 +392,31 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
         CardDisplay[] cardsOnTable = playerCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
 
-         for (int i = 0; i < cardsOnTable.Length; i++)
-         {
-             if (cardsOnTable[i].type.ToString() == "Spellcaster")
-             {
-               // print(cardsOnTable[i]);
-                cardsOnTable[i].thisCardsAttack += 2;
-                cardsOnTable[i].att.text = cardsOnTable[i].thisCardsAttack.ToString();
-               // print(cardsOnTable[i].card.attack);
-             }
-         }
+        if (cardsOnTable.Length <= 0)
+        {
+            print("no effect");
+        }
+        else
+        {
+            for (int i = 0; i < cardsOnTable.Length; i++)
+            {
+                if (cardsOnTable[i].type.text == "Quick")
+                {
+                    print("no effect");
+                }
+
+                else
+                {
+                    if (cardsOnTable[i].type.ToString() == "Spellcaster")
+                    {
+                        // print(cardsOnTable[i]);
+                        cardsOnTable[i].thisCardsAttack += 2;
+                        cardsOnTable[i].att.text = cardsOnTable[i].thisCardsAttack.ToString();
+                        // print(cardsOnTable[i].card.attack);
+                    }
+                }
+            }
+        }
         StartCoroutine(RemovePlayedCard());
     }
 
@@ -398,15 +435,31 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
         CardDisplay[] cardsOnTable = playerCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
 
-        for (int i = 0; i < cardsOnTable.Length; i++)
+        if (cardsOnTable.Length <= 0)
         {
-            if (cardsOnTable[i].card.type.ToString() == "Tarot")
-            {
-                cardsOnTable[i].thisCardsDefense += 2;
-                cardsOnTable[i].thisCardsAttack += 1;
+            print("no effect");
+        }
 
-                cardsOnTable[i].att.text = thisCardsAttack.ToString();
-                cardsOnTable[i].def.text = thisCardsDefense.ToString();
+        else
+        {
+            for (int i = 0; i < cardsOnTable.Length; i++)
+            {
+                if (cardsOnTable[i].type.text == "Quick")
+                {
+                    print("no effect");
+                }
+
+                else
+                {
+                    if (cardsOnTable[i].card.type.ToString() == "Tarot")
+                    {
+                        cardsOnTable[i].thisCardsDefense += 2;
+                        cardsOnTable[i].thisCardsAttack += 1;
+
+                        cardsOnTable[i].att.text = thisCardsAttack.ToString();
+                        cardsOnTable[i].def.text = thisCardsDefense.ToString();
+                    }
+                }
             }
         }
         StartCoroutine(RemovePlayedCard());
@@ -420,14 +473,29 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
         CardDisplay[] cardsOnTable = playerCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
 
-        for (int i = 0; i < cardsOnTable.Length; i++)
+        if (cardsOnTable.Length <= 0)
         {
-            if (cardsOnTable[i].card.type.ToString() == "Pet")
+            print("no effect");
+        }
+        else
+        {
+            for (int i = 0; i < cardsOnTable.Length; i++)
             {
-                cardsOnTable[i].thisCardsAttack -= 1;
-                cardsOnTable[i].thisCardsDefense += 2;
+                if (cardsOnTable[i].type.text == "Quick")
+                {
+                    print("no effect");
+                }
 
-                cardsOnTable[i].UpdateUI();
+                else
+                {
+                    if (cardsOnTable[i].card.type.ToString() == "Pet")
+                    {
+                        cardsOnTable[i].thisCardsAttack -= 1;
+                        cardsOnTable[i].thisCardsDefense += 2;
+
+                        cardsOnTable[i].UpdateUI();
+                    }
+                }
             }
         }
         StartCoroutine(RemovePlayedCard());
@@ -439,11 +507,17 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
         CardDisplay[] cardsOnTable = enemyCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
 
-        print(cardsOnTable[0].name);
+        // print(cardsOnTable[0].name);
 
-        int randomDestroy = Random.Range(0, cardsOnTable.Length);
-        Destroy(cardsOnTable[randomDestroy].transform.parent.gameObject);
-
+        if (cardsOnTable.Length <= 0)
+        {
+            print("no effect");
+        }
+        else
+        {
+            int randomDestroy = Random.Range(0, cardsOnTable.Length);
+            Destroy(cardsOnTable[randomDestroy].transform.parent.gameObject);
+        }
         StartCoroutine(RemovePlayedCard());
     }
 
@@ -455,13 +529,30 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
         CardDisplay[] cardsOnTable = playerCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
 
-        for (int i = 0; i < cardsOnTable.Length; i++)
+        if (cardsOnTable.Length <= 0)
         {
-            if (cardsOnTable[i].card.type.ToString() == "Zombie")
-            {
-                cardsOnTable[i].thisCardsAttack += 2;
+            print("no effect");
+        }
 
-                cardsOnTable[i].UpdateUI();
+        else
+        {
+
+            for (int i = 0; i < cardsOnTable.Length; i++)
+            {
+                if (cardsOnTable[i].type.text == "Quick")
+                {
+                    print("no effect");
+                }
+
+                else
+                {
+                    if (cardsOnTable[i].card.type.ToString() == "Zombie")
+                    {
+                        cardsOnTable[i].thisCardsAttack += 2;
+
+                        cardsOnTable[i].UpdateUI();
+                    }
+                }
             }
         }
         StartCoroutine(RemovePlayedCard());
@@ -475,20 +566,36 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
         CardDisplay[] cardsOnTable = playerCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
 
-        for (int i = 0; i < cardsOnTable.Length; i++)
+        if (cardsOnTable.Length <= 0)
         {
-            if (cardsOnTable[i].card.type.ToString() == "Human")
+            print("no effect");
+        }
+
+        else
+        {
+            for (int i = 0; i < cardsOnTable.Length; i++)
             {
-                cardsOnTable[i].thisCardCost += 2;
+                if (cardsOnTable[i].type.text == "Quick")
+                {
+                    print("no effect");
+                }
 
-                cardsOnTable[i].UpdateUI();
-            }
+                else
+                {
+                    if (cardsOnTable[i].card.type.ToString() == "Human")
+                    {
+                        cardsOnTable[i].thisCardCost += 2;
 
-            if (cardsOnTable[i].card.type.ToString() == "Diety")
-            {
-                cardsOnTable[i].thisCardCost += 2;
+                        cardsOnTable[i].UpdateUI();
+                    }
 
-                cardsOnTable[i].UpdateUI();
+                    if (cardsOnTable[i].card.type.ToString() == "Diety")
+                    {
+                        cardsOnTable[i].thisCardCost += 2;
+
+                        cardsOnTable[i].UpdateUI();
+                    }
+                }
             }
         }
         StartCoroutine(RemovePlayedCard());
@@ -502,14 +609,30 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
         CardDisplay[] cardsOnTable = playerCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
 
-        for (int i = 0; i < cardsOnTable.Length; i++)
+        if (cardsOnTable.Length <= 0)
         {
-            if (cardsOnTable[i].card.type.ToString() == "Fiend")
-            {
-                cardsOnTable[i].thisCardsAttack += 3;
-                cardsOnTable[i].thisCardCost -= 2;
+            print("no effect");
+        }
 
-                cardsOnTable[i].UpdateUI();
+        else
+        {
+            for (int i = 0; i < cardsOnTable.Length; i++)
+            {
+                if (cardsOnTable[i].type.text == "Quick")
+                {
+                    print("no effect");
+                }
+
+                else
+                {
+                    if (cardsOnTable[i].card.type.ToString() == "Fiend")
+                    {
+                        cardsOnTable[i].thisCardsAttack += 3;
+                        cardsOnTable[i].thisCardCost -= 2;
+
+                        cardsOnTable[i].UpdateUI();
+                    }
+                }
             }
         }
         StartCoroutine(RemovePlayedCard());
@@ -533,14 +656,22 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
         //print(cardsOnTable[0].name);
 
-        int randomHalf = Random.Range(0, cardsOnTable.Length);
-        int attackValue = cardsOnTable[randomHalf].thisCardsAttack;
+        if (cardsOnTable.Length <= 0)
+        {
+            print("no effect");
+        }
 
-        Mathf.RoundToInt(attackValue * .5f);
-        cardsOnTable[randomHalf].thisCardsAttack = attackValue;
+        else
+        {
 
-        cardsOnTable[randomHalf].UpdateUI();
+            int randomHalf = Random.Range(0, cardsOnTable.Length);
+            int attackValue = cardsOnTable[randomHalf].thisCardsAttack;
 
+            Mathf.RoundToInt(attackValue * .5f);
+            cardsOnTable[randomHalf].thisCardsAttack = attackValue;
+
+            cardsOnTable[randomHalf].UpdateUI();
+        }
         StartCoroutine(RemovePlayedCard());
     }
 
@@ -552,21 +683,37 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         GameManager.hailMary = true;
         CardDisplay[] cardsOnTable = playerCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
 
-        for (int i = 0; i < cardsOnTable.Length; i++)
+        if (cardsOnTable.Length <= 0)
         {
-            cardsOnTable[i].thisCardsDefense = 1;
-            cardsOnTable[i].thisCardsAttack *= 2;
+            print("no effect");
+        }
 
-            if (!cardsOnTable[i].inDefense)
+        else
+        {
+            for (int i = 0; i < cardsOnTable.Length; i++)
             {
-                inDefense = true;
+                if (cardsOnTable[i].type.text == "Quick")
+                {
+                    print("no effect");
+                }
 
-                this.GetComponentInChildren<CardDisplay>().thisCardInDefense = true;
-                print("Im in defense!");
-                this.transform.eulerAngles = new Vector3(90, 0, 90);
+                else
+                {
+                    cardsOnTable[i].thisCardsDefense = 1;
+                    cardsOnTable[i].thisCardsAttack *= 2;
+
+                    if (!cardsOnTable[i].inDefense)
+                    {
+                        inDefense = true;
+
+                        this.GetComponentInChildren<CardDisplay>().thisCardInDefense = true;
+                        print("Im in defense!");
+                        this.transform.eulerAngles = new Vector3(90, 0, 90);
+                    }
+
+                    cardsOnTable[i].UpdateUI();
+                }
             }
-
-            cardsOnTable[i].UpdateUI();
         }
         StartCoroutine(RemovePlayedCard());
     }
