@@ -337,6 +337,13 @@ public class GameState : MonoBehaviour
     //UI Buttons to advance Player Turns
     public void EndSet()
     {       
+        CardDisplay[] cardsOnTable = playerCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
+
+        for (int i = 0; i < cardsOnTable.Length; i++)
+        {
+            cardsOnTable[i].tributeButton.SetActive(false);
+            cardsOnTable[i].tributeNo.SetActive(false);
+        }
         gamePhase++;
         DetermineTurn();
         playerEndSetButton.SetActive(false);
