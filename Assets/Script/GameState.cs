@@ -96,13 +96,13 @@ public class GameState : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
+       /* if (Input.GetKeyDown(KeyCode.A))
         {
             //Advance Battle State
             gamePhase++;
             
             DetermineTurn();
-        }
+        }*/
 
         if (tooLowOfCurrencyTrigger)
         {
