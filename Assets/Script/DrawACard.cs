@@ -101,7 +101,7 @@ public class DrawACard : MonoBehaviour
 
             //Create the card
 
-            newCard.transform.parent = playerHand;
+            newCard.transform.SetParent(playerHand, false);
             newCard.transform.localScale = new Vector3(1, 1, 1);
             newCard.transform.localRotation = Quaternion.identity;
 

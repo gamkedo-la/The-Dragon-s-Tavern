@@ -76,7 +76,7 @@ public class PlayableSpot : MonoBehaviour
                 GameManager.spellPulled = false;
                justPulledACard = true;
 
-                cardCreated.transform.parent = this.gameObject.transform;
+                cardCreated.transform.SetParent(this.gameObject.transform, false);
                 cardCreated.transform.localScale = new Vector3(.7f, .45f, .8f);
                 cardCreated.transform.localRotation = Quaternion.identity;
                 cardCreated.transform.localPosition = new Vector3(35, 0, 0);
@@ -120,7 +120,7 @@ public class PlayableSpot : MonoBehaviour
                     GameManager.monsterPulled = false;
                     justPulledACard = true;
 
-                    cardCreated.transform.parent = this.gameObject.transform;
+                    cardCreated.transform.SetParent(this.gameObject.transform, false);
                     cardCreated.transform.localScale = new Vector3(.7f, .45f, .8f);
                     cardCreated.transform.localRotation = Quaternion.identity;
                     cardCreated.transform.localPosition = new Vector3(35, 0, 0);

@@ -63,7 +63,7 @@ public class OpponentHand : MonoBehaviour
         opponentArm.SetTrigger("DrawCard");
 
         newCard = Instantiate(opponentVisualCard, transform.position, transform.rotation) as GameObject;
-        newCard.transform.parent = opponentHand.transform;
+        newCard.transform.SetParent(opponentHand.transform, false);
         newCard.transform.position = new Vector3(.5f, .2f, -4.3f);
         newCard.transform.localScale = new Vector3(1, 30, 20);
         opponentsVisualCardsInHand.Add(newCard);
@@ -270,7 +270,7 @@ public class OpponentHand : MonoBehaviour
 
             //this is a valid location
             cardCreated = Instantiate(monsterCard, playableAreas[randomOpenPlayableSpot].transform.position, Quaternion.identity) as GameObject;
-            cardCreated.transform.parent = playableAreas[randomOpenPlayableSpot].transform;
+            cardCreated.transform.SetParent(playableAreas[randomOpenPlayableSpot].transform, false);
 
             cardCreated.GetComponentInChildren<CardDisplay>().card = Resources.Load<Card>("ScriptableObject/Monsters/" + cardsInHand[cardToChoose]) as Card;
             cardCreated.GetComponentInChildren<CardDisplay>().ReadyToInit();

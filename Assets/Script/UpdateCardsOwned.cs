@@ -32,7 +32,7 @@ public class UpdateCardsOwned : MonoBehaviour
 
             spellCardCreated.GetComponentInChildren<HubCardDisplay>().spellCard = gameManager.SpellCardsOwned[i];
 
-            spellCardCreated.transform.parent = contentHolder.transform;
+            spellCardCreated.transform.SetParent(contentHolder.transform, false);
             spellCardCreated.transform.localScale = new Vector3(1, 1, 1);
         }
 
@@ -42,7 +42,7 @@ public class UpdateCardsOwned : MonoBehaviour
 
             monsterCardCreated.GetComponentInChildren<HubCardDisplay>().monsterCard = gameManager.MonsterCardsOwned[i];
 
-            monsterCardCreated.transform.parent = contentHolder.transform;
+            monsterCardCreated.transform.SetParent(contentHolder.transform, false);
             monsterCardCreated.transform.localScale = new Vector3(1, 1, 1);
         }
     }
