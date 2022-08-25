@@ -274,6 +274,7 @@ public class OpponentHand : MonoBehaviour
 
             cardCreated.GetComponentInChildren<CardDisplay>().card = Resources.Load<Card>("ScriptableObject/Monsters/" + cardsInHand[cardToChoose]) as Card;
             cardCreated.GetComponentInChildren<CardDisplay>().ReadyToInit();
+            cardCreated.GetComponentInChildren<CardDisplay>().isEnemyCard = true;
 
             cardCreated.GetComponentInChildren<CardDisplay>().card.playedByAI = true;
 

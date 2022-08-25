@@ -798,6 +798,8 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     public void CardAttackingOtherCard(Button buttonName)
     {
+        Debug.Log(FindObjectOfType<GameState>().state);
+
         enemyCardPlacementOnTableParent = GameObject.Find("Opponent's Play Area").transform;
 
         CardDisplay[] cardsOnTable = enemyCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
@@ -992,8 +994,8 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             inDefense = !inDefense;
             FlipCardPosition();
         }
-
-        if (isMonster && this.gameObject.GetComponentInChildren<CardDisplay>().card.playedByAI && GameManager.playerAttacking && eventData.button == PointerEventData.InputButton.Left && GameObject.Find("GameState").GetComponent<GameState>().gamePhase == 2)
+        
+        if (isMonster && isEnemyCard && GameManager.playerAttacking && eventData.button == PointerEventData.InputButton.Left && GameObject.Find("GameState").GetComponent<GameState>().gamePhase == 2)
         {
             AttackingEquation();
         }
