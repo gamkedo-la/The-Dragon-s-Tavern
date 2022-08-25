@@ -36465,6 +36465,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1051437329}
   - component: {fileID: 1051437330}
+  - component: {fileID: 1051437331}
   m_Layer: 0
   m_Name: Canvas-DeckCreation
   m_TagString: Untagged
@@ -36506,6 +36507,21 @@ MonoBehaviour:
   spellCard: {fileID: 95440776753973281, guid: 505e40f52d37cbc4ab44aa19c3464a5a, type: 3}
   contentHolder: {fileID: 2137977563}
   gameManager: {fileID: 1966203120}
+--- !u!114 &1051437331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051437328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46dbc1bbea9a4af48b1965c88ed0f3f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playButton: {fileID: 320984953}
+  playText: {fileID: 316155004}
+  cardsInDeck: {fileID: 31680160}
 --- !u!1 &1052294454
 GameObject:
   m_ObjectHideFlags: 0
@@ -78676,7 +78692,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2021351359}
   - component: {fileID: 2021351358}
-  - component: {fileID: 2021351360}
   m_Layer: 0
   m_Name: CardsSelectedForDeck
   m_TagString: Untagged
@@ -78713,21 +78728,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2021351360
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2021351357}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46dbc1bbea9a4af48b1965c88ed0f3f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playButton: {fileID: 320984953}
-  playText: {fileID: 316155004}
-  cardsInDeck: {fileID: 31680160}
 --- !u!1001 &2022347978
 PrefabInstance:
   m_ObjectHideFlags: 0
