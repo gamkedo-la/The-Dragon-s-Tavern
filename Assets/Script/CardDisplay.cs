@@ -1193,8 +1193,10 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     public void NoTribute()
     {
-        tributeButton.SetActive(false);
-        tributeNo.SetActive(false);
+        if(tributeButton != null)
+            tributeButton.SetActive(false);
+        if(tributeNo != null)
+            tributeNo.SetActive(false);
     }
 
     public void UpdateUI()

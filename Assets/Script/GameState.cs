@@ -341,8 +341,7 @@ public class GameState : MonoBehaviour
 
         for (int i = 0; i < cardsOnTable.Length; i++)
         {
-            cardsOnTable[i].tributeButton.SetActive(false);
-            cardsOnTable[i].tributeNo.SetActive(false);
+            cardsOnTable[i].NoTribute();
         }
         gamePhase++;
         DetermineTurn();
