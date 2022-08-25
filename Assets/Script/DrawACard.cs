@@ -130,10 +130,9 @@ public class DrawACard : MonoBehaviour
 
     private void SetDeckContentToSelectionIfExisting()
     {
-        CardsSelectedForDeck cardsSelectedForDeck = FindObjectOfType<CardsSelectedForDeck>();
-        if (cardsSelectedForDeck == null) return;
+        if (CardsSelectedForDeck.instance == null) return;
         
-        monsterCards = cardsSelectedForDeck.monsterCards;
-        spellCards = cardsSelectedForDeck.spellCards;
+        monsterCards = CardsSelectedForDeck.instance.monsterCards;
+        spellCards = CardsSelectedForDeck.instance.spellCards;
     }
 }
