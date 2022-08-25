@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -31105,7 +31105,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 236792774}
   m_HandleRect: {fileID: 236792773}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -33534,7 +33534,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1653861874}
   m_HandleRect: {fileID: 1653861873}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -36465,6 +36465,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1051437329}
   - component: {fileID: 1051437330}
+  - component: {fileID: 1051437331}
   m_Layer: 0
   m_Name: Canvas-DeckCreation
   m_TagString: Untagged
@@ -36506,6 +36507,21 @@ MonoBehaviour:
   spellCard: {fileID: 95440776753973281, guid: 505e40f52d37cbc4ab44aa19c3464a5a, type: 3}
   contentHolder: {fileID: 2137977563}
   gameManager: {fileID: 1966203120}
+--- !u!114 &1051437331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051437328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46dbc1bbea9a4af48b1965c88ed0f3f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playButton: {fileID: 320984953}
+  playText: {fileID: 316155004}
+  cardsInDeck: {fileID: 31680160}
 --- !u!1 &1052294454
 GameObject:
   m_ObjectHideFlags: 0
@@ -78698,9 +78714,6 @@ MonoBehaviour:
   monsterCards: []
   spellCards: []
   selectedCardUI: {fileID: 1595372707}
-  playButton: {fileID: 320984953}
-  playText: {fileID: 316155004}
-  cardsInDeck: {fileID: 31680160}
 --- !u!4 &2021351359
 Transform:
   m_ObjectHideFlags: 0
