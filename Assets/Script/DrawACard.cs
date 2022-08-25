@@ -132,7 +132,9 @@ public class DrawACard : MonoBehaviour
     {
         if (CardsSelectedForDeck.instance == null) return;
         
-        monsterCards = CardsSelectedForDeck.instance.monsterCards;
-        spellCards = CardsSelectedForDeck.instance.spellCards;
+
+
+        monsterCards = new List<Card>(CardsSelectedForDeck.instance.monsterCards);
+        spellCards = new List<SpellCard>(CardsSelectedForDeck.instance.spellCards);
     }
 }

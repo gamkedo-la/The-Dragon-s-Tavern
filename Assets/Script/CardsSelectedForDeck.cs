@@ -28,8 +28,8 @@ public class CardsSelectedForDeck : MonoBehaviour
         if (monsterCards.Count == 0 && spellCards.Count == 0) return;
 
         DrawACard playersDeck = FindObjectOfType<DrawACard>();
-        playersDeck.monsterCards = monsterCards;
-        playersDeck.spellCards = spellCards;
+        //playersDeck.monsterCards = monsterCards;
+        //playersDeck.spellCards = spellCards;
     }
     
     public void SelectMonsterCard(Card card)
