@@ -278,6 +278,8 @@ public class OpponentHand : MonoBehaviour
 
             cardCreated.GetComponentInChildren<CardDisplay>().card.playedByAI = true;
 
+            cardsInHand.RemoveAt(cardToChoose);
+
             //chooseAttackOrDefense
             int choosePosition = Random.Range(0, 2);
 
