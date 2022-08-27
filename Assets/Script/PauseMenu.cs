@@ -5,7 +5,7 @@ using UnityEngine;
 public class PauseMenu : MonoBehaviour
 {
 
-    [SerializeField] GameObject pausePanel;
+    [SerializeField] GameObject pausePanel, audioPanel, buttonPanel;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +24,13 @@ public class PauseMenu : MonoBehaviour
 
     public void TogglePausePanel()
     {
+        buttonPanel.SetActive(true);
+        audioPanel.SetActive(false);
         pausePanel.SetActive(!pausePanel.activeInHierarchy);
+    }
+
+    public void ToggleAudioPanel(){
+        audioPanel.SetActive(!audioPanel.activeInHierarchy);
+        buttonPanel.SetActive(!buttonPanel.activeInHierarchy);
     }
 }
