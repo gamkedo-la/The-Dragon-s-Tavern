@@ -214,3 +214,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2bd14efeca58dd64ea26fbac312b06f5, type: 2}
   - {fileID: 11400000, guid: 50c53826916f8fa4389168c71009aa6c, type: 2}
   - {fileID: 11400000, guid: 9df01bfbcd63e3341becd816a361e666, type: 2}
+  DirectAttackButton: {fileID: 0}
+  spellTrail: {fileID: 4567195894836012841, guid: eb8cd7d522f82c04285efa5aa6681366, type: 3}

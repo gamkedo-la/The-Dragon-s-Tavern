@@ -649,9 +649,24 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     public void SpearShatter()
     {
+        playerCardPlacementOnTableParent = GameObject.Find("Player's Play Area").transform;
         enemyCardPlacementOnTableParent = GameObject.Find("Opponent's Play Area").transform;
 
         CardDisplay[] cardsOnTable = enemyCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
+        CardDisplay[] playerCardsOnTable = playerCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
+
+        Vector3 cardPos = Vector3.zero;
+
+        foreach (var card in playerCardsOnTable)
+        {
+            if (card.isMonster)
+                continue;
+            if (card.spellCard.name == spellCard.name)
+            {
+                cardPos = card.transform.position;
+                break;
+            }
+        }
 
         //print(cardsOnTable[0].name);
 
@@ -670,6 +685,8 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             cardsOnTable[randomHalf].thisCardsAttack = attackValue;
 
             cardsOnTable[randomHalf].UpdateUI();
+
+            GameManager.gameManager.FireProjectile(cardPos,cardsOnTable[randomHalf].transform.position);
         }
         StartCoroutine(RemovePlayedCard());
     }

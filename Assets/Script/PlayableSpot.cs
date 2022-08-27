@@ -65,13 +65,7 @@ public class PlayableSpot : MonoBehaviour
 
                 cardCreated.GetComponentInChildren<CardDisplay>().ReadyToInit();
 
-                //Do the spell mechanic
-                if (cardCreated.GetComponentInChildren<CardDisplay>().spellCard.type == "Quick")
-                {
-                    cardCreated.GetComponentInChildren<CardDisplay>().ActivateQuickSpell();
-                    //update status of playable spot
-                    isOpen = true;
-                }
+                
 
                 GameManager.spellPulled = false;
                justPulledACard = true;
@@ -80,6 +74,14 @@ public class PlayableSpot : MonoBehaviour
                 cardCreated.transform.localScale = new Vector3(.7f, .45f, .8f);
                 cardCreated.transform.localRotation = Quaternion.identity;
                 cardCreated.transform.localPosition = new Vector3(35, 0, 0);
+
+                //Do the spell mechanic
+                if (cardCreated.GetComponentInChildren<CardDisplay>().spellCard.type == "Quick")
+                {
+                    cardCreated.GetComponentInChildren<CardDisplay>().ActivateQuickSpell();
+                    //update status of playable spot
+                    isOpen = true;
+                }
 
                 GameManager.cardToBePlayed = "";
 

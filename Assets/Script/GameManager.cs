@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
     int totalMonstersOwned, totalSpellsOwned, totalMonstersToPull, totalSpellsToPull;
 
     public GameObject DirectAttackButton;
+    public SpellTrail spellTrail;
 
     private void Awake()
     {
@@ -199,5 +200,11 @@ public class GameManager : MonoBehaviour
             string cardName = PlayerPrefs.GetString("SpellPacks" + i);
             // MonsterCardsOwned.Add(cardName)
         }
+    }
+
+    public void FireProjectile(Vector3 from, Vector3 to)
+    {
+        SpellTrail spell = Instantiate(spellTrail, from, Quaternion.identity);
+        spell.SetTarget(to);
     }
 }
