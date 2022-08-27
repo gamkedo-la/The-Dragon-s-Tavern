@@ -378,7 +378,7 @@ public class GameState : MonoBehaviour
         playerHandUI.SetActive(true);
     }
 
-    public void TriggerWinCondition()
+    public void TriggerWinCondition(bool resign = false)
     {
         if (opponentHealth <= 0 || opponentOutOfCards)
         {
@@ -389,7 +389,7 @@ public class GameState : MonoBehaviour
             winningsShown.text = additionalCurrency.ToString();
             opponentOutOfCards = false;
         }
-        else if (playerHealth <= 0 || outOfCards)
+        else if (playerHealth <= 0 || outOfCards || resign)
         {
             print("Opponent Wins!");
             playerLoss.SetActive(true);
