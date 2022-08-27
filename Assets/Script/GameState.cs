@@ -81,6 +81,8 @@ public class GameState : MonoBehaviour
             //Card remnants from previous duels
             GameManager.hailMary = false;
             advanceTurn = true;
+            GameManager.gameManager.DirectAttackButton = GameObject.Find("DirectAttack");
+            GameManager.gameManager.DirectAttackButton.SetActive(false);
         }
 
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();

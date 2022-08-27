@@ -171,6 +171,8 @@ public class PlayableSpot : MonoBehaviour
                 GameState.opponentHealth -= GameManager.directDamage;
                 GameManager.directDamage = 0;
                 gameState.UpdateHealthUI();
+                GameManager.gameManager.DirectAttackButton.SetActive(false);
+
             }
         }
     }

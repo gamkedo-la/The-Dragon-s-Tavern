@@ -807,13 +807,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         //Direct attack (no monsters left on the field
         if (cardsOnTable.Length <= 0 && GameState.turnCount != 1)
         {
-            directAttackAgainstOpponent = GameObject.Find("DirectAttack");
-            directAttackAgainstOpponent.GetComponent<Image>().enabled = true;
-            for (int i = 0; i < directAttackAgainstOpponent.transform.childCount; i++)
-            {
-                directAttackAgainstOpponent.transform.GetChild(i).gameObject.SetActive(true);
-            }
-            directAttackAgainstOpponent.SetActive(true);
+            GameManager.gameManager.DirectAttackButton.SetActive(true);
 
             GameManager.directDamage = thisCardsAttack;
             print("attack directly");

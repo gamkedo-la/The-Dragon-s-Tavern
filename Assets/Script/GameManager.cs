@@ -45,6 +45,8 @@ public class GameManager : MonoBehaviour
 
     int totalMonstersOwned, totalSpellsOwned, totalMonstersToPull, totalSpellsToPull;
 
+    public GameObject DirectAttackButton;
+
     private void Awake()
     {
         if (gameManager == null)
