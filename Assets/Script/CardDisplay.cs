@@ -667,7 +667,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             int randomHalf = Random.Range(0, cardsOnTable.Length);
             int attackValue = cardsOnTable[randomHalf].thisCardsAttack;
 
-            Mathf.RoundToInt(attackValue * .5f);
+            attackValue = Mathf.RoundToInt(attackValue * .5f);
             cardsOnTable[randomHalf].thisCardsAttack = attackValue;
 
             cardsOnTable[randomHalf].UpdateUI();
