@@ -456,8 +456,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
                         cardsOnTable[i].thisCardsDefense += 2;
                         cardsOnTable[i].thisCardsAttack += 1;
 
-                        cardsOnTable[i].att.text = thisCardsAttack.ToString();
-                        cardsOnTable[i].def.text = thisCardsDefense.ToString();
+                        cardsOnTable[i].UpdateUI();
                     }
                 }
             }
