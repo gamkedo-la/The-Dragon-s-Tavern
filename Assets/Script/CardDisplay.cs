@@ -310,6 +310,10 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         {
             HailMary();
         }
+        else if (spellCard.name == "Vicious Might")
+        {
+            ViciousMight();
+        }
     }
     #region Spells
     public void AncestralLore()
@@ -687,6 +691,49 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             cardsOnTable[randomHalf].UpdateUI();
 
             GameManager.gameManager.FireProjectile(cardPos,cardsOnTable[randomHalf].transform.position);
+        }
+        StartCoroutine(RemovePlayedCard());
+    }
+
+    public void ViciousMight()
+    {
+        playerCardPlacementOnTableParent = GameObject.Find("Player's Play Area").transform;
+        CardDisplay[] playerCardsOnTable = playerCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
+
+        Vector3 cardPos = Vector3.zero;
+
+        foreach (var card in playerCardsOnTable)
+        {
+            if (card.isMonster)
+                continue;
+            if (card.spellCard.name == spellCard.name)
+            {
+                cardPos = card.transform.position;
+                break;
+            }
+        }
+
+        if (playerCardsOnTable.Length <= 0)
+        {
+            print("no effect");
+        }
+
+        else
+        {
+
+            int randomChange = Random.Range(0, playerCardsOnTable.Length);
+            int attackValue = playerCardsOnTable[randomChange].thisCardsAttack;
+            int defenseValue = playerCardsOnTable[randomChange].thisCardsDefense;
+
+            attackValue = playerCardsOnTable[randomChange].thisCardsAttack + 2;
+            defenseValue = playerCardsOnTable[randomChange].thisCardsDefense - 2;
+
+            playerCardsOnTable[randomChange].thisCardsAttack = attackValue;
+            playerCardsOnTable[randomChange].thisCardsDefense = defenseValue;
+
+            playerCardsOnTable[randomChange].UpdateUI();
+
+            GameManager.gameManager.FireProjectile(cardPos, playerCardsOnTable[randomChange].transform.position);
         }
         StartCoroutine(RemovePlayedCard());
     }
