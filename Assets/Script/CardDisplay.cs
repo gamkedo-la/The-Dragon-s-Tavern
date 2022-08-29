@@ -323,6 +323,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         enemyCardPlacementOnTableParent = GameObject.Find("Opponent's Play Area").transform;
 
         CardDisplay[] cardsOnTable = playerCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
+        Vector3 cardPos = GetCardPosition(cardsOnTable);
 
         if (cardsOnTable.Length <= 0)
         {
@@ -352,6 +353,9 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
                         // cardsOnTable[i].defenseOffset += 1;
 
                         cardsOnTable[i].def.text = thisCardsDefense.ToString();
+
+                        //Fire Projectile
+                        GameManager.gameManager.FireProjectile(cardPos, cardsOnTable[i].transform.position);
                     }
                     else
                     {
@@ -438,6 +442,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         enemyCardPlacementOnTableParent = GameObject.Find("Opponent's Play Area").transform;
 
         CardDisplay[] cardsOnTable = playerCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
+        Vector3 cardPos = GetCardPosition(cardsOnTable);
 
         if (cardsOnTable.Length <= 0)
         {
@@ -461,6 +466,8 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
                         cardsOnTable[i].thisCardsAttack += 1;
 
                         cardsOnTable[i].UpdateUI();
+
+                        GameManager.gameManager.FireProjectile(cardPos, cardsOnTable[i].transform.position);
                     }
                 }
             }
@@ -475,6 +482,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         enemyCardPlacementOnTableParent = GameObject.Find("Opponent's Play Area").transform;
 
         CardDisplay[] cardsOnTable = playerCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
+        Vector3 cardPos = GetCardPosition(cardsOnTable);
 
         if (cardsOnTable.Length <= 0)
         {
@@ -497,6 +505,8 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
                         cardsOnTable[i].thisCardsDefense += 2;
 
                         cardsOnTable[i].UpdateUI();
+
+                        GameManager.gameManager.FireProjectile(cardPos, cardsOnTable[i].transform.position);
                     }
                 }
             }
@@ -531,6 +541,8 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         enemyCardPlacementOnTableParent = GameObject.Find("Opponent's Play Area").transform;
 
         CardDisplay[] cardsOnTable = playerCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
+        Vector3 cardPos = GetCardPosition(cardsOnTable);
+        
 
         if (cardsOnTable.Length <= 0)
         {
@@ -554,6 +566,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
                         cardsOnTable[i].thisCardsAttack += 2;
 
                         cardsOnTable[i].UpdateUI();
+                        GameManager.gameManager.FireProjectile(cardPos, cardsOnTable[i].transform.position);
                     }
                 }
             }
@@ -568,6 +581,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         enemyCardPlacementOnTableParent = GameObject.Find("Opponent's Play Area").transform;
 
         CardDisplay[] cardsOnTable = playerCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
+        Vector3 cardPos = GetCardPosition(cardsOnTable);
 
         if (cardsOnTable.Length <= 0)
         {
@@ -590,6 +604,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
                         cardsOnTable[i].thisCardCost += 2;
 
                         cardsOnTable[i].UpdateUI();
+                        GameManager.gameManager.FireProjectile(cardPos, cardsOnTable[i].transform.position);
                     }
 
                     if (cardsOnTable[i].card.type.ToString() == "Diety")
@@ -597,6 +612,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
                         cardsOnTable[i].thisCardCost += 2;
 
                         cardsOnTable[i].UpdateUI();
+                        GameManager.gameManager.FireProjectile(cardPos, cardsOnTable[i].transform.position);
                     }
                 }
             }
@@ -611,6 +627,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         enemyCardPlacementOnTableParent = GameObject.Find("Opponent's Play Area").transform;
 
         CardDisplay[] cardsOnTable = playerCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
+        Vector3 cardPos = GetCardPosition(cardsOnTable);
 
         if (cardsOnTable.Length <= 0)
         {
@@ -634,6 +651,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
                         cardsOnTable[i].thisCardCost -= 2;
 
                         cardsOnTable[i].UpdateUI();
+                        GameManager.gameManager.FireProjectile(cardPos, cardsOnTable[i].transform.position);
                     }
                 }
             }
@@ -657,20 +675,8 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         enemyCardPlacementOnTableParent = GameObject.Find("Opponent's Play Area").transform;
 
         CardDisplay[] cardsOnTable = enemyCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
-        CardDisplay[] playerCardsOnTable = playerCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
 
-        Vector3 cardPos = Vector3.zero;
-
-        foreach (var card in playerCardsOnTable)
-        {
-            if (card.isMonster)
-                continue;
-            if (card.spellCard.name == spellCard.name)
-            {
-                cardPos = card.transform.position;
-                break;
-            }
-        }
+        Vector3 cardPos = GetCardPosition(playerCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>());
 
         //print(cardsOnTable[0].name);
 
@@ -1334,5 +1340,21 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
       //          print("now really removing playDead object of RefInitator");
             }
         }
+    }
+
+    private Vector3 GetCardPosition(CardDisplay[] playerCardsOnTable){
+        Vector3 cardPos = Vector3.zero;
+        foreach (var card in playerCardsOnTable)
+        {
+            if (card.isMonster)
+                continue;
+            if (card.spellCard.name == spellCard.name)
+            {
+                cardPos = card.transform.position;
+                break;
+            }
+        }
+
+        return cardPos;
     }
 }
