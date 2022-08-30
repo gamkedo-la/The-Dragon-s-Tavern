@@ -703,43 +703,44 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     public void ViciousMight()
     {
+        //Scoop up cards in the parent
         playerCardPlacementOnTableParent = GameObject.Find("Player's Play Area").transform;
-        CardDisplay[] playerCardsOnTable = playerCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
+        enemyCardPlacementOnTableParent = GameObject.Find("Opponent's Play Area").transform;
 
-        Vector3 cardPos = Vector3.zero;
+        CardDisplay[] cardsOnTable = playerCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
+        Vector3 cardPos = GetCardPosition(cardsOnTable);
 
-        foreach (var card in playerCardsOnTable)
-        {
-            if (card.isMonster)
-                continue;
-            if (card.spellCard.name == spellCard.name)
-            {
-                cardPos = card.transform.position;
-                break;
-            }
-        }
-
-        if (playerCardsOnTable.Length <= 0)
+        if (cardsOnTable.Length <= 0)
         {
             print("no effect");
         }
 
         else
         {
+            for (int i = 0; i < cardsOnTable.Length; i++)
+            {
+                if (cardsOnTable[i].type.text == "Quick")
+                {
+                    print("no effect");
+                }
 
-            int randomChange = Random.Range(0, playerCardsOnTable.Length);
-            int attackValue = playerCardsOnTable[randomChange].thisCardsAttack;
-            int defenseValue = playerCardsOnTable[randomChange].thisCardsDefense;
+                else
+                {
+                    cardsOnTable[i].thisCardsAttack += 2;
+                    if (cardsOnTable[i].thisCardsDefense <= 2)
+                    {
+                        cardsOnTable[i].thisCardsDefense = 0;
+                    }
+                    else
+                    {
+                        cardsOnTable[i].thisCardsDefense -= 2;
+                    }
 
-            attackValue = playerCardsOnTable[randomChange].thisCardsAttack + 2;
-            defenseValue = playerCardsOnTable[randomChange].thisCardsDefense - 2;
+                    cardsOnTable[i].UpdateUI();
 
-            playerCardsOnTable[randomChange].thisCardsAttack = attackValue;
-            playerCardsOnTable[randomChange].thisCardsDefense = defenseValue;
-
-            playerCardsOnTable[randomChange].UpdateUI();
-
-            GameManager.gameManager.FireProjectile(cardPos, playerCardsOnTable[randomChange].transform.position);
+                    GameManager.gameManager.FireProjectile(cardPos, cardsOnTable[i].transform.position);
+                }
+            }
         }
         StartCoroutine(RemovePlayedCard());
     }
