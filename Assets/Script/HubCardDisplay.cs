@@ -88,6 +88,7 @@ public class HubCardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnter
                 gameManager.SpellCardsOwned.Remove(this.spellCard);
                 updateCardsOwned.RefreshList();
             }
+            
         }
         else {
             RemoveCardFromSelection(cardsSelectedForDeck);
@@ -119,7 +120,7 @@ public class HubCardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnter
         Destroy(transform.parent.gameObject);
     }
 
-    private void AddCardToSelection(CardsSelectedForDeck cardsSelectedForDeck)
+    public void AddCardToSelection(CardsSelectedForDeck cardsSelectedForDeck)
     {   
         if (monsterCard != null)
         {

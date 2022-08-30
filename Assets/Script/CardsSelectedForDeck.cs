@@ -7,10 +7,10 @@ public class CardsSelectedForDeck : MonoBehaviour
     public static CardsSelectedForDeck instance;
     public List<Card> monsterCards;
     public List<SpellCard> spellCards;
-    
+
     public SelectedCardUI selectedCardUI = null;
 
-    private void Awake() 
+    private void Awake()
     {
         if (instance != null && instance != this)
         {
@@ -23,7 +23,7 @@ public class CardsSelectedForDeck : MonoBehaviour
         }
     }
 
-    private void Start() 
+    private void Start()
     {
         if (monsterCards.Count == 0 && spellCards.Count == 0) return;
 
@@ -31,26 +31,23 @@ public class CardsSelectedForDeck : MonoBehaviour
         //playersDeck.monsterCards = monsterCards;
         //playersDeck.spellCards = spellCards;
     }
-    
+
     public void SelectMonsterCard(Card card)
     {
         monsterCards.Add(card);
         selectedCardUI.DisplaySelectedMonsterCard(card);
-
-       // ShowUI();
+        // ShowUI();
     }
 
     public void SelectSpellCard(SpellCard card)
     {
         spellCards.Add(card);
         selectedCardUI.DisplaySelectedSpellCard(card);
-
-        
     }
 
     public void RemoveMonsterCard(Card card)
     {
-        for(int i = 0; i < monsterCards.Count; i++)
+        for (int i = 0; i < monsterCards.Count; i++)
         {
             if (monsterCards[i].name == card.name)
             {
@@ -64,7 +61,7 @@ public class CardsSelectedForDeck : MonoBehaviour
 
     public void RemoveSpellCard(SpellCard card)
     {
-        for(int i = 0; i < spellCards.Count; i++)
+        for (int i = 0; i < spellCards.Count; i++)
         {
             if (spellCards[i].name == card.name)
             {
@@ -72,6 +69,6 @@ public class CardsSelectedForDeck : MonoBehaviour
                 return;
             }
         }
-       // ShowUI();
+        // ShowUI();
     }
 }

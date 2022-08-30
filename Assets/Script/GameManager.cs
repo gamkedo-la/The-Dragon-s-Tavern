@@ -135,6 +135,18 @@ public class GameManager : MonoBehaviour
         }
 
         PlayerPrefs.SetInt("SpellCardsToBePulled", SpellCardsToBePulled.Count);
+
+        for(int i = 0; i < CardsSelectedForDeck.instance.monsterCards.Count; i++){
+            PlayerPrefs.SetString("MonstersInDeck" + i, CardsSelectedForDeck.instance.monsterCards[i].name);
+        }
+
+        PlayerPrefs.SetInt("MonsterCardsInDeck", CardsSelectedForDeck.instance.monsterCards.Count);
+
+        for(int i = 0; i < CardsSelectedForDeck.instance.spellCards.Count; i++){
+            PlayerPrefs.SetString("SpellsInDeck" + i, CardsSelectedForDeck.instance.spellCards[i].name);
+        }
+
+        PlayerPrefs.SetInt("SpellCardsInDeck", CardsSelectedForDeck.instance.spellCards.Count);
     }
 
     public void LoadGame()
@@ -158,6 +170,9 @@ public class GameManager : MonoBehaviour
 
         MonsterCardsToBePulled = new List<Card>();
         SpellCardsToBePulled = new List<SpellCard>();
+
+        CardsSelectedForDeck.instance.monsterCards = new List<Card>();
+        CardsSelectedForDeck.instance.spellCards = new List<SpellCard>();
 
         //Currency
         currency = PlayerPrefs.GetInt("PackPoints", currency);
@@ -211,6 +226,30 @@ public class GameManager : MonoBehaviour
             SpellCard cardToAdd = Resources.Load<SpellCard>("ScriptableObject/Spell/" + cardName) as SpellCard;
             SpellCardsToBePulled.Add(cardToAdd);
         }
+
+        int monstersInDeck = PlayerPrefs.GetInt("MonsterCardsInDeck", 0);
+
+        for(int i = 0; i < monstersInDeck; i++){
+            string cardName = PlayerPrefs.GetString("MonstersInDeck" + i);
+
+            print(cardName);
+
+            Card cardToAdd = Resources.Load<Card>("ScriptableObject/Monsters/" + cardName) as Card;
+            CardsSelectedForDeck.instance.monsterCards.Add(cardToAdd);
+            
+        }
+
+        int spellsInDeck = PlayerPrefs.GetInt("SpellCardsInDeck", 0);
+
+        for(int i = 0; i < spellsInDeck; i++){
+            string cardName = PlayerPrefs.GetString("SpellsInDeck" + i);
+
+            print(cardName);
+
+            SpellCard cardToAdd = Resources.Load<SpellCard>("ScriptableObject/Spell/" + cardName) as SpellCard;
+            CardsSelectedForDeck.instance.spellCards.Add(cardToAdd);
+        }
+
     }
 
     [ContextMenu("Clear PlayerPrefs")]

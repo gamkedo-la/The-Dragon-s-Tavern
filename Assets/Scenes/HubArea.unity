@@ -22077,6 +22077,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1966203120}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: SaveGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &664787330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31105,7 +31117,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 236792774}
   m_HandleRect: {fileID: 236792773}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -33534,7 +33546,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1653861874}
   m_HandleRect: {fileID: 1653861873}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -36505,6 +36517,7 @@ MonoBehaviour:
   monsterCard: {fileID: 5353349566308643970, guid: 2e0a06684661f244c933568c87d0a112, type: 3}
   spellCard: {fileID: 95440776753973281, guid: 505e40f52d37cbc4ab44aa19c3464a5a, type: 3}
   contentHolder: {fileID: 2137977563}
+  selectedContentHolder: {fileID: 1691044175}
   gameManager: {fileID: 1966203120}
 --- !u!1 &1052294454
 GameObject:

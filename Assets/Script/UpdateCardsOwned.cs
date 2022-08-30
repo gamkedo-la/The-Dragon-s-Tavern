@@ -10,6 +10,7 @@ public class UpdateCardsOwned : MonoBehaviour
     public GameObject spellCard;
 
     public Transform contentHolder;
+    public Transform selectedContentHolder;
 
     public GameManager gameManager;
 
@@ -22,6 +23,10 @@ public class UpdateCardsOwned : MonoBehaviour
     public void RefreshList()
     {
         foreach (Transform child in contentHolder.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+        foreach (Transform child in selectedContentHolder.transform)
         {
             GameObject.Destroy(child.gameObject);
         }
@@ -45,5 +50,26 @@ public class UpdateCardsOwned : MonoBehaviour
             monsterCardCreated.transform.SetParent(contentHolder.transform, false);
             monsterCardCreated.transform.localScale = new Vector3(1, 1, 1);
         }
+
+        for(int i = 0; i < CardsSelectedForDeck.instance.monsterCards.Count; i++){
+            GameObject monsterCardCreated = Instantiate(monsterCard, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+            monsterCardCreated.GetComponentInChildren<HubCardDisplay>().monsterCard = CardsSelectedForDeck.instance.monsterCards[i];
+            monsterCardCreated.GetComponentInChildren<HubCardDisplay>().isInSelectedArea = true;
+
+            monsterCardCreated.transform.SetParent(selectedContentHolder.transform, false);
+            monsterCardCreated.transform.localScale = new Vector3(1, 1, 1);
+
+        }
+
+        for(int i = 0; i < CardsSelectedForDeck.instance.spellCards.Count; i++){
+            GameObject spellCardCreated = Instantiate(spellCard, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+            spellCardCreated.GetComponentInChildren<HubCardDisplay>().spellCard = CardsSelectedForDeck.instance.spellCards[i];
+            spellCardCreated.GetComponentInChildren<HubCardDisplay>().isInSelectedArea = true;
+
+            spellCardCreated.transform.SetParent(selectedContentHolder.transform, false);
+            spellCardCreated.transform.localScale = new Vector3(1, 1, 1);
+
+        }
+
     }
 }
