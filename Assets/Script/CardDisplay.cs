@@ -186,9 +186,10 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         //
 
         //putting card back into hand
-        if (Input.GetMouseButtonDown(1) && hasEntered && hasBeenPulled)
+        if (Input.GetMouseButtonDown(1) /*&& hasEntered */&& hasBeenPulled)
         {
             this.gameObject.transform.localPosition += pullFromHand;
+          //  GameObject.Find("PlayerHand").transform.localPosition -= pullFromHand;
             PutCardBackInHand();
         }
         //
@@ -204,20 +205,22 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     public void CardHoverEnter()
     {
-        if (!hasBeenPulled)
+        this.gameObject.transform.localPosition += offset;
+        hasEntered = true;
+       /* if (!hasBeenPulled)
         {
-            this.gameObject.transform.localPosition += offset;
-            hasEntered = true;
-        }
+            
+        }*/
     }
 
     public void CardHoverExit()
     {
-        if (!hasBeenPulled)
+        this.gameObject.transform.localPosition -= offset;
+        hasEntered = false;
+       /* if (!hasBeenPulled)
         {
-            this.gameObject.transform.localPosition -= offset;
-            hasEntered = false;
-        }
+            
+        }*/
     }
 
         void ClearGameManager()
