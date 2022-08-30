@@ -74,7 +74,7 @@ public class GameState : MonoBehaviour
         {
             StartCoroutine(InitialWait());
 
-            playerHealth = opponentHealth = 10;
+            playerHealth = opponentHealth = 15;
             UpdateHealthUI();
             turnCount = 0;
 

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Vicious Might
   m_EditorClassIdentifier: 
   name: Vicious Might
-  effect: Increase one monster attack by 2 then lower their defense by 2
+  effect: Increase all monsters attack by 2 then lower their defense by 2
   type: Quick
   artwork: {fileID: 21300000, guid: 63670a22c2692fa409fab38ab37a7453, type: 3}
