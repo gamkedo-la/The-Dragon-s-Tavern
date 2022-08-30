@@ -73,6 +73,8 @@ public class DetermineCard : MonoBehaviour
                 gameManager.SpellCardsToBePulled.Remove(gameManager.SpellCardsToBePulled[spellCardToPick]);
             }
         }
+
+        GameManager.gameManager.SaveGame();
     }
 
     public void TurnEverythingOff()

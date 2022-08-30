@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
         instance = this;
 
         currency = 5;
-      //  LoadGame();
+        LoadGame();
     }
 
     public Card FindMonster(string cardName)
@@ -99,7 +99,6 @@ public class GameManager : MonoBehaviour
 
         //FirstTimeLoadingIn
         PlayerPrefs.SetInt("FirstTime", firstTimeLoadingIn);
-        firstTimeLoadingIn = PlayerPrefs.GetInt("FirstTime");
         PlayerPrefs.DeleteAll();
         PlayerPrefs.SetInt("FirstTime", firstTimeLoadingIn);
 
@@ -108,12 +107,11 @@ public class GameManager : MonoBehaviour
 
         //Cards Owned
 
-/*
         for (int i = 0; i < MonsterCardsOwned.Count; i++)
         {
             PlayerPrefs.SetString("MonsterCard" + i, MonsterCardsOwned[i].name);
         }
-*/
+
         PlayerPrefs.SetInt("MonsterCardsOwned", MonsterCardsOwned.Count);
 
         for (int i = 0; i < SpellCardsOwned.Count; i++)
@@ -143,25 +141,26 @@ public class GameManager : MonoBehaviour
     {
         print("Game Loaded");
 
+        //FirstTimeLoadingIn
+        firstTimeLoadingIn = PlayerPrefs.GetInt("FirstTime", 0);
+
+
+
         if (firstTimeLoadingIn == 0)
         {
             currency = 5;
             firstTimeLoadingIn += 1;
-        }
-        else
-        {
-            MonsterCardsOwned.Clear();
-            SpellCardsOwned.Clear();
-
-            MonsterCardsToBePulled.Clear();
-            SpellCardsToBePulled.Clear();
+            SaveGame();
         }
 
-        //FirstTimeLoadingIn
-        firstTimeLoadingIn = PlayerPrefs.GetInt("FirstTime");
+        MonsterCardsOwned = new List<Card>();
+        SpellCardsOwned = new List<SpellCard>();
+
+        MonsterCardsToBePulled = new List<Card>();
+        SpellCardsToBePulled = new List<SpellCard>();
 
         //Currency
-        currency = PlayerPrefs.GetInt("PackPoints");
+        currency = PlayerPrefs.GetInt("PackPoints", currency);
 
         //Cards Owned
 
@@ -174,14 +173,18 @@ public class GameManager : MonoBehaviour
 
             print(cardName);
 
-            Card cardToAdd = Resources.Load<Card>("Cards/Monsters/" + cardName) as Card;
+            Card cardToAdd = Resources.Load<Card>("ScriptableObject/Monsters/" + cardName) as Card;
             MonsterCardsOwned.Add(cardToAdd);
         }
 
         for (int i = 0; i < totalSpellsOwned; i++)
         {
             string cardName = PlayerPrefs.GetString("SpellCard" + i);
-            // MonsterCardsOwned.Add(cardName)
+
+            print(cardName);
+
+            SpellCard cardToAdd = Resources.Load<SpellCard>("ScriptableObject/Spell/" + cardName) as SpellCard;
+            SpellCardsOwned.Add(cardToAdd);
         }
 
         //Card Packs remaining
@@ -192,14 +195,28 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < totalMonstersToPull; i++)
         {
             string cardName = PlayerPrefs.GetString("MonsterPacks" + i);
-            // MonsterCardsOwned.Add(cardName)
+            
+            print(cardName);
+
+            Card cardToAdd = Resources.Load<Card>("ScriptableObject/Monsters/" + cardName) as Card;
+            MonsterCardsToBePulled.Add(cardToAdd);
         }
 
         for (int i = 0; i < totalSpellsToPull; i++)
         {
             string cardName = PlayerPrefs.GetString("SpellPacks" + i);
-            // MonsterCardsOwned.Add(cardName)
+
+            print(cardName);
+
+            SpellCard cardToAdd = Resources.Load<SpellCard>("ScriptableObject/Spell/" + cardName) as SpellCard;
+            SpellCardsToBePulled.Add(cardToAdd);
         }
+    }
+
+    [ContextMenu("Clear PlayerPrefs")]
+    public void ClearPlayerPrefs()
+    {
+        PlayerPrefs.DeleteAll();
     }
 
     public void FireProjectile(Vector3 from, Vector3 to)
