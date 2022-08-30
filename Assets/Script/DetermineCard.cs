@@ -22,7 +22,11 @@ public class DetermineCard : MonoBehaviour
         int monsterCardToPick = Random.Range(0, gameManager.MonsterCardsToBePulled.Count);
         int spellCardToPick = Random.Range(0, gameManager.SpellCardsToBePulled.Count);
 
-        int chooseMonsterOrSpell = Random.Range(0, 2);
+        int numCardsToPick = gameManager.MonsterCardsToBePulled.Count + gameManager.SpellCardsToBePulled.Count;
+
+        int cardToPick = Random.Range(0, numCardsToPick);
+
+        int chooseMonsterOrSpell = (cardToPick < gameManager.MonsterCardsToBePulled.Count) ? 0 : 1;
 
         if (chooseMonsterOrSpell == 0)
         {
@@ -34,6 +38,8 @@ public class DetermineCard : MonoBehaviour
             {
                 //Unlock Monster
                 monster.SetActive(true);
+
+                monsterCardToPick = cardToPick;
 
                 // Set Card Visuals
                 monsterTitle.text = gameManager.MonsterCardsToBePulled[monsterCardToPick].name;
@@ -60,6 +66,8 @@ public class DetermineCard : MonoBehaviour
             {
                 //Unlock Monster
                 spell.SetActive(true);
+
+                spellCardToPick = cardToPick - gameManager.MonsterCardsToBePulled.Count;
 
                 // Set Card Visuals
                 spellTitle.text = gameManager.SpellCardsToBePulled[spellCardToPick].name;
