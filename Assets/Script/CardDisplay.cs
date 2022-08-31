@@ -901,7 +901,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         CardDisplay[] cardsOnTable = enemyCardPlacementOnTableParent.GetComponentsInChildren<CardDisplay>();
 
         //Direct attack (no monsters left on the field
-        if (cardsOnTable.Length <= 0 && GameState.turnCount != 1)
+        if (cardsOnTable.Length <= 0 && GameState.turnCount != 1 && !inDefense)
         {
             GameManager.gameManager.DirectAttackButton.SetActive(true);
 
