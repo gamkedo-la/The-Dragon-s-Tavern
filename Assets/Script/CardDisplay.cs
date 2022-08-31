@@ -854,6 +854,14 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         {
             playerCardsOnTable[i].interactable = false;
         }
+
+        enemyCardPlacementOnTableParent = GameObject.Find("Opponent's Play Area").transform;
+        Button[] enemyCardsOnTable = enemyCardPlacementOnTableParent.GetComponentsInChildren<Button>();
+        for (int i = 0; i < enemyCardsOnTable.Length; i++)
+        {
+            monsterTargeted = false;
+            enemyCardsOnTable[i].GetComponent<Image>().color = new Color32(255, 142, 109, 255);
+        }
     }
 
     public void CardClicked()

@@ -75300,7 +75300,7 @@ MonoBehaviour:
   left: {fileID: 1363991680}
   right: {fileID: 1859239113}
   pageTurning: {fileID: 1799965196}
-  pageCount: {fileID: 0}
+  pageCount: {fileID: 1827409772}
 --- !u!1 &1907631036
 GameObject:
   m_ObjectHideFlags: 0
