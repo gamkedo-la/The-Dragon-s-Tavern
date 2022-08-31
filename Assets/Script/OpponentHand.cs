@@ -314,7 +314,7 @@ public class OpponentHand : MonoBehaviour
                 //Currently only one is attacking - need one of each card to attack, with a delay
                 GameManager.InitiatorCard = playableAreas[i].GetComponentInChildren<CardDisplay>();
                 refInitiator = GameManager.InitiatorCard;
-                print(GameManager.InitiatorCard.card.name);
+               // print(GameManager.InitiatorCard.card.name);
                 iterationCountLimit = 0;
                 ChoosingPlayerCardToAttack();
                 yield return new WaitForSeconds(1.75f);

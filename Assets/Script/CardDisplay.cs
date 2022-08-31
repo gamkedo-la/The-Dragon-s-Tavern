@@ -259,14 +259,14 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             if (inDefense)
             {
                 this.GetComponentInChildren<CardDisplay>().thisCardInDefense = true;
-                print("Im in defense!");
+                //print("Im in defense!");
                 this.transform.eulerAngles = new Vector3(90, 0, 90);
                 this.GetComponentInChildren<Button>().interactable = false;
             }
             else
             {
                 this.GetComponentInChildren<CardDisplay>().thisCardInDefense = false;
-                print("Im in attack!");
+               // print("Im in attack!");
                 this.transform.eulerAngles = new Vector3(90, 0, 0);
                 this.GetComponentInChildren<Button>().interactable = false;
             }
@@ -884,7 +884,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         //Selecting Monster to Tribute
         if (isMonster && hasBeenPlayed && GameObject.Find("GameState").GetComponent<GameState>().gamePhase == 1)
         {
-            print("Tribute? Y/N");
+           // print("Tribute? Y/N");
             tributeButton.SetActive(true);
             tributeNo.SetActive(true);
 
@@ -894,7 +894,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     public void CardAttackingOtherCard(Button buttonName)
     {
-        Debug.Log(FindObjectOfType<GameState>().state);
+        //Debug.Log(FindObjectOfType<GameState>().state);
 
         enemyCardPlacementOnTableParent = GameObject.Find("Opponent's Play Area").transform;
 
