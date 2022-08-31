@@ -64,7 +64,7 @@ public class DetermineCard : MonoBehaviour
             }
             else
             {
-                //Unlock Monster
+                //Unlock Spell
                 spell.SetActive(true);
 
                 spellCardToPick = cardToPick - gameManager.MonsterCardsToBePulled.Count;
