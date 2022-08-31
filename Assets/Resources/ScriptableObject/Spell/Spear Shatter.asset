@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Spear Shatter
   m_EditorClassIdentifier: 
   name: Spear Shatter
-  effect: Divide a random opponent's card attack by two
+  effect: Divide a random opponent card's attack in half
   type: Quick
   artwork: {fileID: 21300000, guid: e3b61ca9680dd034b856f99ecbe2b38b, type: 3}
