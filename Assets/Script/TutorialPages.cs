@@ -12,6 +12,8 @@ public class TutorialPages : MonoBehaviour
 
     public Animator pageTurning;
 
+    public Text pageCount;
+
     private void Update()
     {
         if (pageNumber <= 0)
@@ -31,6 +33,8 @@ public class TutorialPages : MonoBehaviour
         {
             right.interactable = true;
         }
+
+        pageCount.text = "Page " + pageNumber + " of " + (pages.Length - 1);
     }
 
     public void TurnRight()

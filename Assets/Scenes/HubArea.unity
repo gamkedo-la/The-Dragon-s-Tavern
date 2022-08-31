@@ -10976,7 +10976,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000011444, y: 0.000029087}
+  m_AnchoredPosition: {x: 0.000011444, y: -5.9}
   m_SizeDelta: {x: 138.52, y: 31.14}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &299628132
@@ -19097,8 +19097,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Monster Cards are coral color and are the primary method of attacking your
-    opponent.
+  m_Text: Monster Cards are coral in color and are the primary method of attacking
+    your opponent.
 --- !u!222 &536661532
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -31117,7 +31117,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 236792774}
   m_HandleRect: {fileID: 236792773}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -33546,7 +33546,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1653861874}
   m_HandleRect: {fileID: 1653861873}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -49689,7 +49689,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -39.129818}
+  m_AnchoredPosition: {x: 0, y: -45.02984}
   m_SizeDelta: {x: 138.52, y: 47.11}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1447140274
@@ -71408,6 +71408,85 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1536318a2d4f40e44b97eddc96ee0456, type: 3}
   m_PrefabInstance: {fileID: 1826384526}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1827409771
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1827409774}
+  - component: {fileID: 1827409773}
+  - component: {fileID: 1827409772}
+  m_Layer: 5
+  m_Name: PageCount
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1827409772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1827409771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 2
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Page 1 of 9
+--- !u!222 &1827409773
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1827409771}
+  m_CullTransparentMesh: 1
+--- !u!224 &1827409774
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1827409771}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
+  m_Children: []
+  m_Father: {fileID: 1906046154}
+  m_RootOrder: 21
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 5.7178, y: -5.1389966}
+  m_SizeDelta: {x: 79.2216, y: 22.9}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1831177099
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -75186,6 +75265,7 @@ RectTransform:
   - {fileID: 1822135622}
   - {fileID: 1363991683}
   - {fileID: 1859239116}
+  - {fileID: 1827409774}
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 90, y: 90, z: 0}
@@ -75220,6 +75300,7 @@ MonoBehaviour:
   left: {fileID: 1363991680}
   right: {fileID: 1859239113}
   pageTurning: {fileID: 1799965196}
+  pageCount: {fileID: 0}
 --- !u!1 &1907631036
 GameObject:
   m_ObjectHideFlags: 0
