@@ -317,7 +317,7 @@ public class OpponentHand : MonoBehaviour
                 print(GameManager.InitiatorCard.card.name);
                 iterationCountLimit = 0;
                 ChoosingPlayerCardToAttack();
-                yield return new WaitForSeconds(1.25f);
+                yield return new WaitForSeconds(1.75f);
             }
             else
             {
