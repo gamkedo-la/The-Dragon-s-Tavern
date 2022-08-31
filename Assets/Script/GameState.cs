@@ -390,6 +390,7 @@ public class GameState : MonoBehaviour
             GameManager.currency += additionalCurrency;
             winningsShown.text = additionalCurrency.ToString();
             opponentOutOfCards = false;
+            
         }
         else if (playerHealth <= 0 || outOfCards || resign)
         {
@@ -399,17 +400,18 @@ public class GameState : MonoBehaviour
             winningsShownLoss.text = "1";
             outOfCards = false;
         }
+        GameManager.gameManager.SaveGame();
     }
 
     public void RestartRoom()
     {
-       // gameManager.SaveGame();
+        gameManager.SaveGame();
         SceneManager.LoadScene(sameRoom);
     }
 
     public void ReturnToLobby()
     {
-       // gameManager.SaveGame();
+        gameManager.SaveGame();
         SceneManager.LoadScene(lobby);
     }
 }

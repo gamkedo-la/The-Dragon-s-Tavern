@@ -31,27 +31,11 @@ public class UpdateCardsOwned : MonoBehaviour
             GameObject.Destroy(child.gameObject);
         }
 
-        for (int i = 0; i < gameManager.SpellCardsOwned.Count; i++)
-        {
-            GameObject spellCardCreated = Instantiate(spellCard, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-
-            spellCardCreated.GetComponentInChildren<HubCardDisplay>().spellCard = gameManager.SpellCardsOwned[i];
-
-            spellCardCreated.transform.SetParent(contentHolder.transform, false);
-            spellCardCreated.transform.localScale = new Vector3(1, 1, 1);
-        }
-
-        for (int i = 0; i < gameManager.MonsterCardsOwned.Count; i++)
-        {
-            GameObject monsterCardCreated = Instantiate(monsterCard, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-
-            monsterCardCreated.GetComponentInChildren<HubCardDisplay>().monsterCard = gameManager.MonsterCardsOwned[i];
-
-            monsterCardCreated.transform.SetParent(contentHolder.transform, false);
-            monsterCardCreated.transform.localScale = new Vector3(1, 1, 1);
-        }
+        List<Card> monsterCardsAvailable = new List<Card>(gameManager.MonsterCardsOwned);
+        List<SpellCard> spellCardsAvailable = new List<SpellCard>(gameManager.SpellCardsOwned);
 
         for(int i = 0; i < CardsSelectedForDeck.instance.monsterCards.Count; i++){
+
             GameObject monsterCardCreated = Instantiate(monsterCard, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
             monsterCardCreated.GetComponentInChildren<HubCardDisplay>().monsterCard = CardsSelectedForDeck.instance.monsterCards[i];
             monsterCardCreated.GetComponentInChildren<HubCardDisplay>().isInSelectedArea = true;
@@ -59,6 +43,7 @@ public class UpdateCardsOwned : MonoBehaviour
             monsterCardCreated.transform.SetParent(selectedContentHolder.transform, false);
             monsterCardCreated.transform.localScale = new Vector3(1, 1, 1);
 
+            monsterCardsAvailable.Remove(CardsSelectedForDeck.instance.monsterCards[i]);
         }
 
         for(int i = 0; i < CardsSelectedForDeck.instance.spellCards.Count; i++){
@@ -69,7 +54,32 @@ public class UpdateCardsOwned : MonoBehaviour
             spellCardCreated.transform.SetParent(selectedContentHolder.transform, false);
             spellCardCreated.transform.localScale = new Vector3(1, 1, 1);
 
+            spellCardsAvailable.Remove(CardsSelectedForDeck.instance.spellCards[i]);
+
         }
+
+
+        for (int i = 0; i < spellCardsAvailable.Count; i++)
+        {
+            GameObject spellCardCreated = Instantiate(spellCard, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+
+            spellCardCreated.GetComponentInChildren<HubCardDisplay>().spellCard = spellCardsAvailable[i];
+
+            spellCardCreated.transform.SetParent(contentHolder.transform, false);
+            spellCardCreated.transform.localScale = new Vector3(1, 1, 1);
+        }
+
+        for (int i = 0; i < monsterCardsAvailable.Count; i++)
+        {
+            GameObject monsterCardCreated = Instantiate(monsterCard, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+
+            monsterCardCreated.GetComponentInChildren<HubCardDisplay>().monsterCard = monsterCardsAvailable[i];
+
+            monsterCardCreated.transform.SetParent(contentHolder.transform, false);
+            monsterCardCreated.transform.localScale = new Vector3(1, 1, 1);
+        }
+
+        
 
     }
 }

@@ -80,12 +80,12 @@ public class HubCardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnter
 
             if (this.monsterCard != null)
             {
-                gameManager.MonsterCardsOwned.Remove(this.monsterCard);
+                //gameManager.MonsterCardsOwned.Remove(this.monsterCard);
                 updateCardsOwned.RefreshList();
             }
             else
             {
-                gameManager.SpellCardsOwned.Remove(this.spellCard);
+                //gameManager.SpellCardsOwned.Remove(this.spellCard);
                 updateCardsOwned.RefreshList();
             }
             

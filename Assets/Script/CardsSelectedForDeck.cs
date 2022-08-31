@@ -34,6 +34,11 @@ public class CardsSelectedForDeck : MonoBehaviour
 
     public void SelectMonsterCard(Card card)
     {
+        if(selectedCardUI == null){
+            selectedCardUI = GameObject.Find("SelectedCardUI").GetComponent<SelectedCardUI>();
+        }
+
+
         monsterCards.Add(card);
         selectedCardUI.DisplaySelectedMonsterCard(card);
         // ShowUI();
@@ -41,6 +46,9 @@ public class CardsSelectedForDeck : MonoBehaviour
 
     public void SelectSpellCard(SpellCard card)
     {
+        if(selectedCardUI == null){
+            selectedCardUI = GameObject.Find("SelectedCardUI").GetComponent<SelectedCardUI>();
+        }
         spellCards.Add(card);
         selectedCardUI.DisplaySelectedSpellCard(card);
     }
