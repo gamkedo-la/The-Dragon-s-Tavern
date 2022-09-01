@@ -22006,7 +22006,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8665246369775000616, guid: 4a8652fa321a5f84ab14a3522e81858f, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8665246369775000616, guid: 4a8652fa321a5f84ab14a3522e81858f, type: 3}
+      propertyPath: swayAmount
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a8652fa321a5f84ab14a3522e81858f, type: 3}

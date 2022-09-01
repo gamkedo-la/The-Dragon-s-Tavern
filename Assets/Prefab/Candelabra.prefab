@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6069872456351025896}
   - component: {fileID: 5482943428065925989}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -215,10 +215,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6701136656727234298}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a4ebb4b757548b74393625ffc4ad2406, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   flickerRate: 0.304
   flickerIntensity: 2
+  swayAmount: 2.2
+  spinAmount: 6.4
