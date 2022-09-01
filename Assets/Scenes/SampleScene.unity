@@ -22004,14 +22004,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Candelabra
       objectReference: {fileID: 0}
-    - target: {fileID: 8665246369775000616, guid: 4a8652fa321a5f84ab14a3522e81858f, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8665246369775000616, guid: 4a8652fa321a5f84ab14a3522e81858f, type: 3}
-      propertyPath: swayAmount
-      value: 5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a8652fa321a5f84ab14a3522e81858f, type: 3}
 --- !u!4 &6773290046445261962 stripped
