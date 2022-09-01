@@ -81,4 +81,9 @@ public class HubAreaTriggers : MonoBehaviour
         yield return new WaitForSeconds(2.75f);
         packPurchase.SetActive(true);
     }
+
+    public void Settings()
+    { 
+    
+    }
 }
