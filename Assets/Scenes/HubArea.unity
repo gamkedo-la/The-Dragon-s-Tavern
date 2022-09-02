@@ -90969,6 +90969,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1312081970473098266, guid: 2e9c6444f71204b4bba0f4fe52fcac15, type: 3}
+      propertyPath: MonsterCardsToBePulled.Array.size
+      value: 78
+      objectReference: {fileID: 0}
+    - target: {fileID: 1312081970473098266, guid: 2e9c6444f71204b4bba0f4fe52fcac15, type: 3}
+      propertyPath: MonsterCardsToBePulled.Array.data[72]
+      value: 
+      objectReference: {fileID: 11400000, guid: 1d7f2e22bcfc63e428392b8706130b05, type: 2}
+    - target: {fileID: 1312081970473098266, guid: 2e9c6444f71204b4bba0f4fe52fcac15, type: 3}
+      propertyPath: MonsterCardsToBePulled.Array.data[73]
+      value: 
+      objectReference: {fileID: 11400000, guid: 1d7f2e22bcfc63e428392b8706130b05, type: 2}
+    - target: {fileID: 1312081970473098266, guid: 2e9c6444f71204b4bba0f4fe52fcac15, type: 3}
+      propertyPath: MonsterCardsToBePulled.Array.data[74]
+      value: 
+      objectReference: {fileID: 11400000, guid: 1d7f2e22bcfc63e428392b8706130b05, type: 2}
+    - target: {fileID: 1312081970473098266, guid: 2e9c6444f71204b4bba0f4fe52fcac15, type: 3}
+      propertyPath: MonsterCardsToBePulled.Array.data[75]
+      value: 
+      objectReference: {fileID: 11400000, guid: cb50f6ad6c4624c4593c47f0fd0547dc, type: 2}
+    - target: {fileID: 1312081970473098266, guid: 2e9c6444f71204b4bba0f4fe52fcac15, type: 3}
+      propertyPath: MonsterCardsToBePulled.Array.data[76]
+      value: 
+      objectReference: {fileID: 11400000, guid: cb50f6ad6c4624c4593c47f0fd0547dc, type: 2}
+    - target: {fileID: 1312081970473098266, guid: 2e9c6444f71204b4bba0f4fe52fcac15, type: 3}
+      propertyPath: MonsterCardsToBePulled.Array.data[77]
+      value: 
+      objectReference: {fileID: 11400000, guid: cb50f6ad6c4624c4593c47f0fd0547dc, type: 2}
     - target: {fileID: 1312081970473098267, guid: 2e9c6444f71204b4bba0f4fe52fcac15, type: 3}
       propertyPath: m_RootOrder
       value: 0
