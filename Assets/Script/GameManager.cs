@@ -41,6 +41,11 @@ public class GameManager : MonoBehaviour
     public List<Card> MonsterCardsOwned;
     public List<SpellCard> SpellCardsOwned;
 
+    //DifficultyModifications (HubAreaTriggers.cs)
+    public static float animationSpeed;
+    public static int opponentCurrency;
+    public static int playerCurrency;
+
     public static int firstTimeLoadingIn;
 
     int totalMonstersOwned, totalSpellsOwned, totalMonstersToPull, totalSpellsToPull;
@@ -64,6 +69,10 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         instance = this;
+
+        animationSpeed = 2.25f;
+        opponentCurrency = 6;
+        playerCurrency = 4;
 
         currency = 5;
         LoadGame();

@@ -1207,7 +1207,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             }
         }
 
-        StartCoroutine(MoveToReceiverCard(0.25f, 0.25f));
+        StartCoroutine(MoveToReceiverCard(0.25f, GameManager.animationSpeed));
 
         GameManager.InitiatorCard.GetComponent<Button>().interactable = false;
 

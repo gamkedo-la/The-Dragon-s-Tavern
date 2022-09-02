@@ -14,7 +14,7 @@ public class HubAreaTriggers : MonoBehaviour
     UpdateCardsOwned updateCardsOwned;
 
     public GameObject settingsMenu;
-    public Slider animationSpeed, difficultyPoints;
+    public Slider animationSpeed, difficultyPoints, playerPoints;
 
     private void Start()
     {
@@ -95,13 +95,25 @@ public class HubAreaTriggers : MonoBehaviour
     IEnumerator ToSettings()
     {
         yield return new WaitForSeconds(2.7f);
+        //Load animation Speed
+        animationSpeed.value = GameManager.animationSpeed;
+        //Load Opponent Difficulty
+        difficultyPoints.value = GameManager.opponentCurrency;
+        //Load player points
+        playerPoints.value = GameManager.playerCurrency;
+
+
         settingsMenu.SetActive(true);
     }
 
     public void BackFromSettings()
     {
         //Save animation Speed
+        GameManager.animationSpeed = animationSpeed.value;
         //Save Opponent Difficulty
+        GameManager.opponentCurrency = (int)difficultyPoints.value;
+        //Save player points
+        GameManager.playerCurrency = (int)playerPoints.value;
 
         settingsMenu.SetActive(false);
 
