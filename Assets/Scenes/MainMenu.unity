@@ -978,11 +978,11 @@ RectTransform:
   m_Father: {fileID: 1797428903}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.00076294, y: -86}
-  m_SizeDelta: {x: 152.203, y: 55.4062}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 311, y: 14}
+  m_SizeDelta: {x: 152.203, y: 55.406204}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &387309469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3497,8 +3497,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -53}
-  m_SizeDelta: {x: 305.4742, y: 282.8236}
+  m_AnchoredPosition: {x: 0.0000076294, y: -0.00107}
+  m_SizeDelta: {x: 800, y: 412.14}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1802049960
 GameObject:
@@ -3915,15 +3915,15 @@ RectTransform:
   m_GameObject: {fileID: 2064005257}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
   m_Children: []
   m_Father: {fileID: 1797428903}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00076293945, y: 84}
-  m_SizeDelta: {x: -62.4794, y: -224.4409}
+  m_AnchoredPosition: {x: 0, y: -0.000015258789}
+  m_SizeDelta: {x: 0, y: 0.000061035}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2064005259
 MonoBehaviour:
@@ -3939,7 +3939,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -3949,16 +3949,35 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 50
     m_FontStyle: 1
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 5
     m_MaxSize: 60
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: CREDITS GO HERE
+  m_Text: "Cassidy Noble: Project lead, core gameplay, character models/rigs/animations,
+    card authoring, game rules, spell and monster functionality, card movements,
+    majority of card art, base room layout, opponent AI, assorted bug fixing, player
+    UI and related implementation, Hub Area improvements, tutorial book, card buying
+    process, general UI creation, start of save/load system, debugging/cheats, Hub
+    Area light baking\n\nNeil Urwin: Assorted bug fixing related to core gameplay
+    (self-attack, retry, null checks, defeated card removal, Spear Shatter functionality,
+    Inverted Tarot functionality, projectile improvement), deck saving and loading,
+    pause menu, audio manager with related settings implemented, better card randomness,
+    general refactoring and optimizations, spell target particle trail\n\nChrister
+    \"McFunkypants\" Kaitila: 3D model integration, Kitten of Mercy card art, Card
+    placement particle effects, volumetric fog/steam, candelabra sprites, main game
+    scene lighting, additional materials (fabric, paper, environment, placemats),
+    mug bubbles, card prefab layout touch up\n\nTyler Funk: Wood floor material,
+    environment models (mug, barrel, coin purse, coin), rock wall clean up, animated
+    candle flame\n\nIan Cherabier: Hub Area scene creation, creating player deck
+    functionality\n\nLuis Monta\xF1a: Candelabra sprite, Figure Skating Worm art,
+    Vicious Might art\n\nRob Tunstall: Background music, battle card sound effect\n\nSimon
+    Donohoe: Main menu functionality (integrated into Hub Area)\n\nChris DeLeon:
+    Programming assistance, 2D hat sprites (unused)"
 --- !u!222 &2064005260
 CanvasRenderer:
   m_ObjectHideFlags: 0
