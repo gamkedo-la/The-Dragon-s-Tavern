@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HubAreaTriggers : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class HubAreaTriggers : MonoBehaviour
     GameManager gameManager;
 
     UpdateCardsOwned updateCardsOwned;
+
+    public GameObject settingsMenu;
+    public Slider animationSpeed, difficultyPoints;
 
     private void Start()
     {
@@ -83,7 +87,24 @@ public class HubAreaTriggers : MonoBehaviour
     }
 
     public void Settings()
-    { 
-    
+    {
+        cameraAnimation.SetTrigger("ToSettings");
+        StartCoroutine(ToSettings());
+    }
+
+    IEnumerator ToSettings()
+    {
+        yield return new WaitForSeconds(2.7f);
+        settingsMenu.SetActive(true);
+    }
+
+    public void BackFromSettings()
+    {
+        //Save animation Speed
+        //Save Opponent Difficulty
+
+        settingsMenu.SetActive(false);
+
+        cameraAnimation.SetTrigger("BackFromSettings");
     }
 }
