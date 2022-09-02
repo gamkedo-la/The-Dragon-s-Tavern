@@ -71,6 +71,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 85542a59dd54c294f80714c7aaa43097, type: 2}
   - {fileID: 11400000, guid: 6116c2547671def4f8bb461e2232db80, type: 2}
   - {fileID: 11400000, guid: 4e36179db8f7a81459e21d7d917b8793, type: 2}
+  - {fileID: 11400000, guid: 1d7f2e22bcfc63e428392b8706130b05, type: 2}
+  - {fileID: 11400000, guid: cb50f6ad6c4624c4593c47f0fd0547dc, type: 2}
   SpellCardList:
   - {fileID: 11400000, guid: afb1de2208d02064cb612355c9556784, type: 2}
   - {fileID: 11400000, guid: 037c0dbe329ed8d47998f4b3ba1c6a0a, type: 2}
@@ -159,6 +161,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 85542a59dd54c294f80714c7aaa43097, type: 2}
   - {fileID: 11400000, guid: 6116c2547671def4f8bb461e2232db80, type: 2}
   - {fileID: 11400000, guid: 4e36179db8f7a81459e21d7d917b8793, type: 2}
+  - {fileID: 11400000, guid: 1d7f2e22bcfc63e428392b8706130b05, type: 2}
+  - {fileID: 11400000, guid: 1d7f2e22bcfc63e428392b8706130b05, type: 2}
+  - {fileID: 11400000, guid: 1d7f2e22bcfc63e428392b8706130b05, type: 2}
+  - {fileID: 11400000, guid: cb50f6ad6c4624c4593c47f0fd0547dc, type: 2}
+  - {fileID: 11400000, guid: cb50f6ad6c4624c4593c47f0fd0547dc, type: 2}
+  - {fileID: 11400000, guid: cb50f6ad6c4624c4593c47f0fd0547dc, type: 2}
   SpellCardsToBePulled:
   - {fileID: 11400000, guid: afb1de2208d02064cb612355c9556784, type: 2}
   - {fileID: 11400000, guid: 037c0dbe329ed8d47998f4b3ba1c6a0a, type: 2}

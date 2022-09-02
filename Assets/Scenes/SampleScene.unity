@@ -9207,6 +9207,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f521518affd79f840bf0902383144ad2, type: 2}
   - {fileID: 11400000, guid: bbfa531222b7d9f40881afdc35aad9ee, type: 2}
   - {fileID: 11400000, guid: 86f794b6eb776744c99a979e59be8dfd, type: 2}
+  - {fileID: 11400000, guid: cb50f6ad6c4624c4593c47f0fd0547dc, type: 2}
+  - {fileID: 11400000, guid: 1d7f2e22bcfc63e428392b8706130b05, type: 2}
   spellCards: []
   cardsInHand: []
   playableAreas:

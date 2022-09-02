@@ -15,7 +15,7 @@ MonoBehaviour:
   name: UFO
   description: Sneaky and for some reason they like cows
   type: Ghoul
-  artwork: {fileID: 21300000, guid: 0fe3de9c8db34b142ba0832b6743b873, type: 3}
+  artwork: {fileID: 21300000, guid: 51bd9ed36ae5db848b3ef8c89cbe2dc9, type: 3}
   cost: 2
   attack: 0
   defense: 4
