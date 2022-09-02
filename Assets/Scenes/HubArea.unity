@@ -748,17 +748,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 19716505}
-  m_LocalRotation: {x: 0.0009527374, y: 0.0029735267, z: 0.05439098, w: 0.9985149}
-  m_LocalPosition: {x: 0, y: 0, z: 11.21}
+  m_LocalRotation: {x: 0.0009222404, y: 0.002983064, z: 0.044161614, w: 0.99901956}
+  m_LocalPosition: {x: 0, y: 0, z: 11.1473}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.1}
   m_Children: []
   m_Father: {fileID: 323256926}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0.09, y: 0.346, z: 6.236}
+  m_LocalEulerAnglesHint: {x: 0.09, y: 0.346, z: 5.062}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 3.52, y: 0.15}
-  m_SizeDelta: {x: 281.989, y: 358.93}
+  m_AnchoredPosition: {x: 3.4692, y: 0.1444}
+  m_SizeDelta: {x: 292.2162, y: 358.93}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &19716507
 MonoBehaviour:
@@ -773,7 +773,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.20754719, g: 0.20754719, b: 0.20754719, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -782,18 +782,30 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 1cf6cd7a195e26c409a486f4994a9088, type: 3}
-    m_FontSize: 24
+    m_FontSize: 16
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 40
+    m_MaxSize: 155
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: XXX - XXXXXXXXXX
+  m_Text: 'Christer "McFunkypants" Kaitila: 3D model integration, Kitten of Mercy
+    card art, Card placement particle effects, volumetric fog/steam, candelabra sprites,
+    main game scene lighting, additional materials (fabric, paper, environment, placemats),
+    mug bubbles, card prefab layout touch up
+
+
+    Tyler Funk: Wood floor material,
+    environment models (mug, barrel, coin purse, coin), rock wall clean up, animated
+    candle flame
+
+
+    Ian Cherabier: Hub Area scene creation, creating player deck
+    functionality'
 --- !u!222 &19716508
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8752,13 +8764,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 233522631}
-  m_LocalRotation: {x: -0.00022244453, y: -0.0006946623, z: -0.0127004655, w: 0.99991906}
-  m_LocalPosition: {x: 0, y: 0, z: 11.35}
+  m_LocalRotation: {x: -0.00022284963, y: -0.00069460267, z: -0.0121153435, w: 0.9999263}
+  m_LocalPosition: {x: 0, y: 0, z: 11.339}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.1}
   m_Children: []
   m_Father: {fileID: 323256926}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: -0.026, y: -0.079, z: -1.455}
+  m_LocalEulerAnglesHint: {x: -0.026, y: -0.079, z: -1.388}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.13, y: -1.28}
@@ -8777,7 +8789,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.20754719, g: 0.20754719, b: 0.20754719, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -8786,7 +8798,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 1cf6cd7a195e26c409a486f4994a9088, type: 3}
-    m_FontSize: 24
+    m_FontSize: 16
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -8797,7 +8809,13 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: XXX - XXXXXXXXXX
+  m_Text: "Neil Urwin: Assorted bug fixing related to core gameplay (self-attack,
+    retry, null checks, defeated card removal, Spear Shatter functionality, Inverted
+    Tarot functionality, projectile improvement), deck saving and loading, pause
+    menu, audio manager with related settings implemented, better card randomness,
+    general refactoring and optimizations, spell target particle trail\n\nLuis Monta\xF1a:
+    Candelabra sprite, Figure Skating Worm art, Vicious Might art\n\nRob Tunstall:
+    Background music, battle card sound effect"
 --- !u!222 &233522634
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9144,6 +9162,7 @@ GameObject:
   - component: {fileID: 241247483}
   - component: {fileID: 241247485}
   - component: {fileID: 241247484}
+  - component: {fileID: 241247486}
   m_Layer: 5
   m_Name: Title (2)
   m_TagString: Untagged
@@ -9183,7 +9202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.20754719, g: 0.20754719, b: 0.20754719, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -9212,6 +9231,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 241247482}
   m_CullTransparentMesh: 1
+--- !u!114 &241247486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 241247482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 1, b: 1, a: 0.5}
+  m_EffectDistance: {x: 2, y: -2}
+  m_UseGraphicAlpha: 1
 --- !u!1001 &242614994
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22183,7 +22217,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 584289035}
   m_LocalRotation: {x: 0.00089137076, y: 0.0027821066, z: 0.050888762, w: 0.9987001}
-  m_LocalPosition: {x: 0, y: 0, z: 11.31}
+  m_LocalPosition: {x: 0, y: 0, z: 11.291}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.1}
   m_Children: []
   m_Father: {fileID: 323256926}
@@ -22207,7 +22241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.20754719, g: 0.20754719, b: 0.20754719, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -22216,7 +22250,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 1cf6cd7a195e26c409a486f4994a9088, type: 3}
-    m_FontSize: 24
+    m_FontSize: 16
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -22227,7 +22261,19 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: XXX - XXXXXXXXXX
+  m_Text: 'Cassidy Noble: Project lead, core gameplay, character models/rigs/animations,
+    card authoring, game rules, spell and monster functionality, card movements,
+    majority of card art, base room layout, opponent AI, assorted bug fixing, player
+    UI and related implementation, Hub Area improvements, tutorial book, card buying
+    process, general UI creation, start of save/load system, debugging/cheats, Hub
+    Area light baking
+
+
+    Simon Donohoe: Main menu functionality (integrated into
+    Hub Area)
+
+
+    Chris DeLeon: Programming assistance, 2D hat sprites (unused)'
 --- !u!222 &584289038
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -31324,6 +31370,7 @@ GameObject:
   - component: {fileID: 841808317}
   - component: {fileID: 841808319}
   - component: {fileID: 841808318}
+  - component: {fileID: 841808320}
   m_Layer: 5
   m_Name: Title (1)
   m_TagString: Untagged
@@ -31363,7 +31410,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.20754719, g: 0.20754719, b: 0.20754719, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -31392,6 +31439,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 841808316}
   m_CullTransparentMesh: 1
+--- !u!114 &841808320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 841808316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 1, b: 1, a: 0.5}
+  m_EffectDistance: {x: 2, y: -2}
+  m_UseGraphicAlpha: 1
 --- !u!1 &841963183
 GameObject:
   m_ObjectHideFlags: 0
@@ -51688,6 +51750,7 @@ GameObject:
   - component: {fileID: 1348819146}
   - component: {fileID: 1348819148}
   - component: {fileID: 1348819147}
+  - component: {fileID: 1348819149}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -51727,7 +51790,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.20754719, g: 0.20754719, b: 0.20754719, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -51756,6 +51819,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1348819145}
   m_CullTransparentMesh: 1
+--- !u!114 &1348819149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348819145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 1, b: 1, a: 0.5}
+  m_EffectDistance: {x: 2, y: -2}
+  m_UseGraphicAlpha: 1
 --- !u!1001 &1349373708
 PrefabInstance:
   m_ObjectHideFlags: 0
