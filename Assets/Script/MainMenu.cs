@@ -7,6 +7,7 @@ public class MainMenu : MonoBehaviour
 {
 
     public GameObject tut, cred, main;
+
     public void Tutorial() // exit the game from the main menu
     {
         tut.SetActive(true);
