@@ -276,7 +276,7 @@ public class OpponentHand : MonoBehaviour
             cardCreated.GetComponentInChildren<CardDisplay>().ReadyToInit();
             cardCreated.GetComponentInChildren<CardDisplay>().isEnemyCard = true;
 
-            cardCreated.GetComponentInChildren<CardDisplay>().card.playedByAI = true;
+           // cardCreated.GetComponentInChildren<CardDisplay>().card.playedByAI = true;
 
             cardsInHand.RemoveAt(cardToChoose);
 
