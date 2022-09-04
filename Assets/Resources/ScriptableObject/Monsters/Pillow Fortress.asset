@@ -16,7 +16,7 @@ MonoBehaviour:
   description: As ancient as cozy. Why fight if you can take a long substantial nap.
   type: Magic
   artwork: {fileID: 21300000, guid: a5e00ae09f36c2745afe52f24ec1b496, type: 3}
-  cost: 3
+  cost: 4
   attack: 0
   defense: 8
   playedByAI: 0
