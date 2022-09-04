@@ -1097,6 +1097,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
         if (this.gameObject.GetComponentInChildren<CardDisplay>().thisCardInDefense)
         {
+            print("One of us is in defense");
             if (GameObject.Find("GameState").GetComponent<GameState>().gamePhase == 2)
             {
                 GameManager.ReceivingCard = this;
