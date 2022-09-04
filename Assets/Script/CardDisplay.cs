@@ -1097,7 +1097,6 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
         if (this.gameObject.GetComponentInChildren<CardDisplay>().thisCardInDefense)
         {
-            print("One of us is in defense");
             if (GameObject.Find("GameState").GetComponent<GameState>().gamePhase == 2)
             {
                 GameManager.ReceivingCard = this;
@@ -1156,7 +1155,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
           //      print("calculate attack v attack :" + GameManager.InitiatorCard.card.name + " " + GameManager.InitiatorCard.thisCardsAttack + " " + GameManager.ReceivingCard.card.name + " " + GameManager.ReceivingCard.thisCardsAttack);
 
 
-                if (GameManager.InitiatorCard.thisCardsAttack > GameManager.ReceivingCard.thisCardsAttack)
+                if (GameManager.InitiatorCard.thisCardsAttack > GameManager.ReceivingCard.thisCardsAttack && !GameManager.ReceivingCard.inDefense)
                 {
                     int difference = GameManager.InitiatorCard.thisCardsAttack - GameManager.ReceivingCard.thisCardsAttack;
 
@@ -1177,7 +1176,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
                     doWhenCardsCollide = DestroyDefender;
                 }
 
-                else if (GameManager.InitiatorCard.thisCardsAttack < GameManager.ReceivingCard.thisCardsAttack)
+                else if (GameManager.InitiatorCard.thisCardsAttack < GameManager.ReceivingCard.thisCardsAttack && !GameManager.ReceivingCard.inDefense)
                 {
                     int difference = GameManager.ReceivingCard.thisCardsAttack - GameManager.InitiatorCard.thisCardsAttack;
 
@@ -1199,10 +1198,60 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
                 }
 
-                else if (GameManager.InitiatorCard.thisCardsAttack == GameManager.ReceivingCard.thisCardsAttack)
+                else if (GameManager.InitiatorCard.thisCardsAttack == GameManager.ReceivingCard.thisCardsAttack && !GameManager.ReceivingCard.inDefense)
                 {
                     doWhenCardsCollide = DestroyBoth;
                 }
+
+
+                else if (GameManager.InitiatorCard.thisCardsAttack > GameManager.ReceivingCard.thisCardsDefense && GameManager.ReceivingCard.inDefense)
+                {
+                    int difference = GameManager.InitiatorCard.thisCardsAttack - GameManager.ReceivingCard.thisCardsDefense;
+
+                    if (GameObject.Find("GameState").GetComponent<GameState>().gamePhase == 2)
+                    {
+                        GameState.opponentHealth -= difference;
+                    }
+                    else if (GameObject.Find("GameState").GetComponent<GameState>().gamePhase == 6)
+                    {
+                        GameState.playerHealth -= difference;
+                    }
+
+                    gameState.UpdateHealthUI();
+
+                    GameManager.InitiatorCard.thisCardsAttack -= GameManager.ReceivingCard.thisCardsDefense;
+                    GameManager.InitiatorCard.att.text = GameManager.InitiatorCard.thisCardsAttack.ToString();
+                    //  print("Should Destroy" + GameObject.Find("GameState").GetComponent<GameState>().gamePhase + " " + GameManager.ReceivingCard.card.name + " " + GameManager.InitiatorCard.card.name);
+                    doWhenCardsCollide = DestroyDefender;
+                }
+
+                else if (GameManager.InitiatorCard.thisCardsAttack < GameManager.ReceivingCard.thisCardsDefense && GameManager.ReceivingCard.inDefense)
+                {
+                    int difference = GameManager.ReceivingCard.thisCardsAttack - GameManager.InitiatorCard.thisCardsDefense;
+
+                    if (GameObject.Find("GameState").GetComponent<GameState>().gamePhase == 2)
+                    {
+                        GameState.playerHealth -= difference;
+                    }
+                    else if (GameObject.Find("GameState").GetComponent<GameState>().gamePhase == 6)
+                    {
+                        GameState.opponentHealth -= difference;
+                    }
+
+                    gameState.UpdateHealthUI();
+
+                    GameManager.ReceivingCard.thisCardsDefense -= GameManager.InitiatorCard.thisCardsAttack;
+                    GameManager.ReceivingCard.def.text = GameManager.ReceivingCard.thisCardsDefense.ToString();
+
+                    doWhenCardsCollide = DestroyAttackerr;
+
+                }
+
+                else if (GameManager.InitiatorCard.thisCardsAttack == GameManager.ReceivingCard.thisCardsDefense && GameManager.ReceivingCard.inDefense)
+                {
+                    doWhenCardsCollide = DestroyBoth;
+                }
+
                 refInitiator = GameManager.InitiatorCard;
                 refDefender = GameManager.ReceivingCard;
             }
